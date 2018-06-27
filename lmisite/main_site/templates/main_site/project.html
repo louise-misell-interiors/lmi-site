@@ -1,0 +1,49 @@
+{% include "main_site/inc/header.html" with page_css="main_site/style/project.css" %}
+    <div class="content">
+        <h1>{{ project.name }}</h1>
+        <div class="row">
+            <div class="col before">
+                <h2>Before</h2>
+                <div class="imgs">
+                    <div class="slider">
+                        <div class="slider-inner">
+                            <span class="arrow"><i class="fas fa-chevron-left"></i></span>
+                            {% for img in project.before_images.all %}
+                                <div class="slide{% if forloop.first %} is-active{% endif %}">
+                                    <img src="{{ img.image.url }}" alt="">
+                                </div>
+                            {% endfor %}
+                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col after">
+                <h2>After</h2>
+                <div class="imgs">
+                    <div class="slider">
+                        <div class="slider-inner">
+                            <span class="arrow"><i class="fas fa-chevron-left"></i></span>
+                            {% for img in project.after_images.all %}
+                                <div class="slide{% if forloop.first %} is-active{% endif %}">
+                                    <img src="{{ img.image.url }}" alt="">
+                                </div>
+                            {% endfor %}
+                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>Brief</h2>
+                {{ project.breif|linebreaks }}
+            </div>
+            <div class="col">
+                <h2>Outcome</h2>
+                {{ project.outcome|linebreaks }}
+            </div>
+        </div>
+    </div>
+{% include "main_site/inc/footer.html" %}

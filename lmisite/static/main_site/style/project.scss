@@ -1,0 +1,29 @@
+@import "inc/slider";
+@import "inc/bar";
+
+.col {
+  h2 {
+    font-size: 35px;
+    margin: 0 0 $nav-link-bar-size * 2 + $content-padding;
+
+    display: inline-block;
+    @include bar;
+  }
+
+  .imgs {
+    @include slider(90%, 0%);
+    height: 70vh;
+
+    .slider {
+      .slide {
+        overflow: hidden;
+        img {
+          object-fit: cover;
+          object-position: 50% 50%;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+'use strict';(function(a){'use strict';a(document).ready(function(){var b=a('#django-admin-form-add-constants').data('modelName');a('body').on('click','.add-another',function(b){b.preventDefault();var c=a.Event('django:add-another-related');a(this).trigger(c),c.isDefaultPrevented()||showAddAnotherPopup(this)}),b&&a('form#'+b+'_form :input:visible:enabled:first').focus()})})(django.jQuery);
+
+//# sourceMappingURL=change_form-compiled.js.map

@@ -1,0 +1,26 @@
+{% include "main_site/inc/header.html" with page_css="main_site/style/testimonials.css" %}
+    <div class="content">
+        <h1>Testimonials</h1>
+        {% for testimonial in testimonials %}
+        <div class="row{% if forloop.counter|divisibleby:2 %} row-big-left{% endif %}">
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="left">
+                    <blockquote>{{ testimonial.text }}</blockquote>
+                    <span class="by-line">{{ testimonial.client }}</span>
+                </div>
+                <div class="right">
+                    <img src="{{ testimonial.image.url }}" alt="">
+                </div>
+            {% else %}
+                <div class="left">
+                    <img src="{{ testimonial.image.url }}" alt="">
+                </div>
+                <div class="right">
+                    <blockquote>{{ testimonial.text }}</blockquote>
+                    <span class="by-line">{{ testimonial.client }}</span>
+                </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+{% include "main_site/inc/footer.html" %}

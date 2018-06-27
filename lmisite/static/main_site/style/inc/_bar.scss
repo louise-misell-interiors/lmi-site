@@ -1,0 +1,37 @@
+@import "variables";
+
+@mixin inline-header() {
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin _bar() {
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 0;
+    content: "";
+    border-radius: $nav-link-bar-size;
+    border: solid $primary-colour $nav-link-bar-size / 2;
+    transition: width $fast-transition;
+}
+
+@mixin bar() {
+  position: relative;
+
+  &::after {
+    @include _bar;
+    bottom: - $nav-link-bar-size * 2;
+  }
+}
+
+@mixin bar_top() {
+  position: relative;
+
+  &::before {
+    @include _bar;
+    top: - $nav-link-bar-size * 2;
+  }
+}

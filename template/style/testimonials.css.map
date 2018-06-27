@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,IAAK;EACH,WAAW,EAAE,MAAM;EAEnB,QAAI;IACF,UAAU,EAAE,IAAI;IAChB,MAAM,EAAE,MAAM;IACd,OAAO,EAAE,KAAK;EAGhB,eAAW;IACT,SAAS,EAAE,IAAI;EAGjB,aAAS;IACP,WAAW,EAAE,IAAI;IACjB,UAAU,EAAE,MAAM;IAClB,OAAO,EAAE,YAAY;IACrB,KAAK,EAAE,IAAI",
+"sources": ["testimonials.scss"],
+"names": [],
+"file": "testimonials.css"
+}

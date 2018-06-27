@@ -1,0 +1,14 @@
+.content {
+  > div {
+    margin: 0 5%;
+
+    h1 {
+      margin: unset !important;
+      font-weight: bold !important;
+    }
+  }
+}
+
+.row {
+  align-items: center;
+}

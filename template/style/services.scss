@@ -1,0 +1,29 @@
+@import "inc/variables";
+@import "inc/bar";
+
+.content {
+  .steps {
+    padding-top: 0 !important;
+
+    .step {
+      padding: $content-padding $content-padding * 2;
+      background: #eee;
+      margin: $column-gutter;
+
+      h2 {
+        text-align: center;
+        margin: $content-padding/2 0;
+
+        &.step-number {
+          font-size: 50px;
+          font-weight: bold;
+          margin: 0;
+        }
+        &:nth-of-type(2) {
+          display: inline-block;
+          @include bar;
+        }
+      }
+    }
+  }
+}

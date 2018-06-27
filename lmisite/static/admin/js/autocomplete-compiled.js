@@ -1,0 +1,3 @@
+'use strict';(function(a){'use strict';var b=function(b,c){var d=a.extend({ajax:{data:function data(a){return{term:a.term,page:a.page}}}},c);b.select2(d)};a.fn.djangoAdminSelect2=function(c){var d=a.extend({},c);return a.each(this,function(c,e){var f=a(e);b(f,d)}),this},a(function(){a('.admin-autocomplete').not('[name*=__prefix__]').djangoAdminSelect2()}),a(document).on('formset:added',function(){return function(a,b){return b.find('.admin-autocomplete').djangoAdminSelect2()}}(this))})(django.jQuery);
+
+//# sourceMappingURL=autocomplete-compiled.js.map

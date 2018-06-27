@@ -1,0 +1,20 @@
+{% include "main_site/inc/header.html" with page_css="main_site/style/portfolio.css" %}
+    <div class="content">
+        <h1>Portfolio</h1>
+        <div class="row">
+            {% for project in projects %}
+                <div class="col">
+                    <a href="{% url 'project' project.id %}">
+                        <img src="{{ project.after_images.first.image.url }}" alt="">
+                        <hr>
+                        <h2>{{ project.name }}</h2>
+                    </a>
+                </div>
+                {% if forloop.counter|divisibleby:4 %}
+                    </div>
+                    <div class="row">
+                {% endif %}
+            {% endfor %}
+            </div>
+    </div>
+{% include "main_site/inc/footer.html" %}

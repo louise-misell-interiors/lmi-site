@@ -1,0 +1,47 @@
+{% include "main_site/inc/header.html" with page_css="main_site/style/about.css" %}
+    <div class="content">
+        <div class="bio">
+            {% for section in sections %}
+                <div class="row{% if forloop.counter|divisibleby:2 %} row-big-left{% endif %}">
+                    {% if forloop.counter|divisibleby:2 %}
+                        <div class="left">
+                            {% if section.heading %}
+                                <h2>{{ section.heading }}</h2>
+                            {% endif %}
+                            {{ section.text|safe|linebreaks }}
+                        </div>
+                        <div class="right">
+                            <div class="row">
+                                {% for img in section.images.all %}
+                                    <div class="col">
+                                        <img src="{{ img.image.url }}" alt="">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="left">
+                            <div class="row">
+                                {% for img in section.images.all %}
+                                    <div class="col">
+                                        <img src="{{ img.image.url }}" alt="">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="right">
+                            {% if section.heading %}
+                                {% if forloop.first %}
+                                    <h1>{{ section.heading }}</h1>
+                                {% else %}
+                                    <h2>{{ section.heading }}</h2>
+                                {% endif %}
+                            {% endif %}
+                            {{ section.text|safe|linebreaks }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% include "main_site/inc/footer.html" %}

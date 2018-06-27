@@ -1,0 +1,20 @@
+@import "inc/variables";
+@import "inc/bar";
+
+.content {
+  > div {
+    width: 70%;
+    margin: $column-gutter auto;
+  }
+
+  .contact-details {
+    h2 {
+      @include bar;
+      display: inline-block;
+      font-size: 35px;
+    }
+    p {
+      font-size: 25px;
+    }
+  }
+}

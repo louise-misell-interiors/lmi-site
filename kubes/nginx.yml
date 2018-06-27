@@ -1,0 +1,96 @@
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: site
+  namespace: lmi
+  labels:
+    app: site
+spec:
+#  tls:
+#  - hosts:
+#    - louisemisellinteriors.co.uk
+#    secretName: site-nginx-tls
+  rules:
+  - host: test.louisemisellinteriors.co.uk
+    http:
+      paths:
+      - path: "/"
+        backend:
+          serviceName: site-nginx
+          servicePort: 8000
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: site-nginx-cert
+  namespace: lmi
+spec:
+  secretName: site-nginx-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: louisemisellinteriors.co.uk
+  dnsNames:
+  - louisemisellinteriors.co.uk
+  acme:
+    config:
+    - http01:
+        ingressClass: traefik
+      domains:
+      - louisemisellinteriors.co.uk
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: site-nginx
+  namespace: lmi
+  labels:
+    app: site
+    tier: nginx
+spec:
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+  selector:
+    app: site
+    tier: nginx
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: site-nginx
+  namespace: lmi
+spec:
+  selector:
+    matchLabels:
+      app: site
+      tier: nginx
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: site
+        tier: nginx
+    spec:
+      volumes:
+      - name: gluster
+        glusterfs:
+          endpoints: glusterfs-cluster
+          path: kubes-pv
+      containers:
+      - name: nginx
+        image: evilben/lmi-nginx@sha256:3859c0bcf3d16011dd63cae2944c59cdedd2a56c7867bb5ea921770699be7027
+        ports:
+        - containerPort: 8000
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: gluster
+          mountPath: /src/static
+          subPath: lmi-site/static
+        - name: gluster
+          mountPath: /src/media
+          subPath: lmi-site/media
+
+

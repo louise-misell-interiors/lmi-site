@@ -1,0 +1,80 @@
+.col h2 {
+  font-size: 35px;
+  margin: 0 0 29px;
+  display: inline-block;
+  position: relative;
+}
+.col h2::after {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 0;
+  content: "";
+  border-radius: 2px;
+  border: solid #2D76C4 1px;
+  transition: width 0.2s;
+  bottom: -4px;
+}
+.col .imgs {
+  height: 70vh;
+}
+.col .imgs .slider {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.col .imgs .slider .slider-inner {
+  perspective: 5px;
+  transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.col .imgs .slider .slider-inner .slide {
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  transform: translateZ(-2px);
+  left: -85%;
+  transition: height 0.5s, transform 0.5s, left 0.5s;
+}
+.col .imgs .slider .slider-inner .slide.is-active {
+  left: 5%;
+  transform: translateY(0) translateZ(0);
+}
+.col .imgs .slider .slider-inner .slide.is-active ~ .slide {
+  left: 95%;
+}
+.col .imgs .slider .slider-inner .slide.is-active + .slide {
+  transform: translateZ(-2px);
+}
+.col .imgs .slider .slider-inner .arrow {
+  font-size: 50px;
+  color: #000;
+  opacity: 0.7;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(-105%);
+  left: 4%;
+  z-index: 99;
+  transition: opacity 0.2s;
+}
+.col .imgs .slider .slider-inner .arrow:hover {
+  opacity: 1;
+}
+.col .imgs .slider .slider-inner .arrow:last-of-type {
+  left: 97.5%;
+}
+.col .imgs .slider .slide {
+  overflow: hidden;
+}
+.col .imgs .slider .slide img {
+  object-fit: cover;
+  object-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+}
+
+/*# sourceMappingURL=project.css.map */

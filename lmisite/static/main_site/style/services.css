@@ -1,0 +1,35 @@
+.content .steps {
+  padding-top: 0 !important;
+}
+.content .steps .step {
+  padding: 25px 50px;
+  background: #eee;
+  margin: 1%;
+}
+.content .steps .step h2 {
+  text-align: center;
+  margin: 12.5px 0;
+}
+.content .steps .step h2.step-number {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0;
+}
+.content .steps .step h2:nth-of-type(2) {
+  display: inline-block;
+  position: relative;
+}
+.content .steps .step h2:nth-of-type(2)::after {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 0;
+  content: "";
+  border-radius: 2px;
+  border: solid #2D76C4 1px;
+  transition: width 0.2s;
+  bottom: -4px;
+}
+
+/*# sourceMappingURL=services.css.map */

@@ -1,0 +1,3 @@
+"use strict";(function(){if(jQuery&&jQuery.fn&&jQuery.fn.select2&&jQuery.fn.select2.amd)var a=jQuery.fn.select2.amd;return a.define("select2/i18n/fi",[],function(){return{inputTooLong:function inputTooLong(a){var b=a.input.length-a.maximum;return"Ole hyv\xE4 ja anna "+b+" merkki\xE4 v\xE4hemm\xE4n"},inputTooShort:function inputTooShort(a){var b=a.minimum-a.input.length;return"Ole hyv\xE4 ja anna "+b+" merkki\xE4 lis\xE4\xE4"},loadingMore:function loadingMore(){return"Ladataan lis\xE4\xE4 tuloksia\u2026"},maximumSelected:function maximumSelected(a){return"Voit valita ainoastaan "+a.maximum+" kpl"},noResults:function noResults(){return"Ei tuloksia"},searching:function searching(){}}}),{define:a.define,require:a.require}})();
+
+//# sourceMappingURL=fi-compiled.js.map

@@ -1,0 +1,72 @@
+{% load static %}
+{% include "main_site/inc/header.html" with page_css="main_site/style/home.css" %}
+    <div class="main-slider">
+        <div class="slider">
+            <div class="slider-inner">
+                <span class="arrow"><i class="fas fa-chevron-left"></i></span>
+                {% for img in slider_imgs %}
+                <div class="slide{% if forloop.first %} is-active{% endif %}">
+                    <img src="{{ img.image.url }}" alt="">
+                </div>
+                {% endfor %}
+                <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="services">
+            <h1>How can I help with your project?</h1>
+            <div class="row">
+            {% for service in services %}
+                <div class="col">
+                    <h2 class="step-number"><i class="fas {{ service.icon }}"></i></h2>
+                    <h2>{{ service.name }}</h2>
+                    <ul>
+                        {% for s in service.service_summaries.all %}
+                            <li>{{ s.text }}</li>
+                        {% endfor %}
+                        <li><a href="{% url 'services' %}">Find out more</a></li>
+                    </ul>
+                </div>
+                {% if forloop.counter|divisibleby:4 %}
+                    </div>
+                    <div class="row">
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+        <div class="testimonials">
+            <div class="slider">
+                <div class="slider-inner">
+                    <span class="arrow"><i class="fas fa-chevron-left"></i></span>
+                    {% for testimonial in testimonials %}
+                    <div class="slide{% if forloop.first %} is-active{% endif %}">
+                        <div class="content">
+                            <blockquote>{{ testimonial.text }}</blockquote>
+                            <span class="by-line">{{ testimonial.client }}</span></div>
+                    </div>
+                    {% endfor %}
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio">
+            <h1>Recent projects</h1>
+            <div class="row">
+                {% for project in projects %}
+                <div class="col">
+                    <a href="{% url 'project' project.id %}">
+                        <img src="{{ project.after_images.first.image.url }}" alt="">
+                        <hr>
+                        <h2>{{ project.name }}</h2>
+                    </a>
+                </div>
+                {% if forloop.counter|divisibleby:4 %}
+                    </div>
+                    <div class="row">
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{% include "main_site/inc/footer.html" with page_js="main_site/js/home-compiled.js" %}

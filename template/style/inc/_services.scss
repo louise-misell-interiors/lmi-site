@@ -1,0 +1,52 @@
+@import "variables";
+@import "bar";
+
+.services {
+
+  h1 {
+    @include bar;
+    @include inline-header;
+  }
+
+  .row {
+    .col {
+      padding: $content-padding;
+      background: #eee;
+      margin: 0 $column-gutter;
+
+      h2 {
+        text-align: center;
+        margin: $content-padding/2 0;
+
+        &.step-number {
+          font-size: 50px;
+          font-weight: bold;
+          margin: 0;
+        }
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          text-align: center;
+          padding: $content-padding/2;
+
+          @include bar;
+
+          &::after {
+            width: 30%;
+          }
+
+          &:first-of-type {
+            @include bar_top;
+            &::before {
+              width: 30%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@import "inc/variables";
+@import "inc/slider";
+@import "inc/services";
+@import "inc/testimonials";
+@import "inc/portfolio";
+
+.main-slider {
+  height: 70vh;
+  padding-top: $nav-height;
+  margin-top: -$nav-height;
+
+  @include slider(70%, 20%);
+
+  .slide {
+    background-size: cover;
+    background-position: 50% 50%;
+
+    &:nth-of-type(1) {
+      background-image: url("../img/test1.jpg");
+    }
+    &:nth-of-type(2) {
+      background-image: url("../img/test2.jpg");
+    }
+    &:nth-of-type(3) {
+      background-image: url("../img/test4.jpg");
+    }
+  }
+}

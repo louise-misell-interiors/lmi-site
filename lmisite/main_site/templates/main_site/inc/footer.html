@@ -1,0 +1,13 @@
+    <div class="footer">
+        &copy; Louise Misell Interiors {% now "Y" %}
+    </div>
+</div>
+    {%  load static %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="{% static "main_site/js/main-compiled.js" %}"></script>
+{% if page_js %}
+<script src="{%  static page_js %}"></script>
+{% endif %}
+</body>
+</html>

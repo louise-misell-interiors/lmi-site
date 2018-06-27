@@ -1,0 +1,24 @@
+@import "inc/variables";
+@import "inc/slider";
+@import "inc/services";
+@import "inc/testimonials";
+@import "inc/portfolio";
+
+.main-slider {
+  height: 85vh;
+  padding-top: $nav-height;
+  margin-top: -$nav-height;
+
+  @include slider(65%, 20%);
+
+  .slide {
+    background-size: cover;
+    background-position: 50% 50%;
+
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

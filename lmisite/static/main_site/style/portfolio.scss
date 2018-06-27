@@ -1,0 +1,18 @@
+@import "inc/variables";
+
+.row {
+    .col {
+      padding: $content-padding;
+      margin: 0 $column-gutter;
+
+      h2 {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }

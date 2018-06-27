@@ -1,0 +1,56 @@
+{% include "main_site/inc/header.html" with page_css="main_site/style/contact.css" %}
+    <div class="content">
+        <h1>Contact</h1>
+        <div class="contact-details">
+            <div class="row">
+                <div class="col">
+                    <h2>Phone</h2>
+                    <p><a href="tel:{{ config.phone.as_e164 }}">{{ config.phone.as_national }}</a></p>
+                    <p><a href="tel:{{ config.mobile.as_e164 }}">{{ config.mobile.as_national }}</a></p>
+                </div>
+                <div class="col">
+                    <h2>Email</h2>
+                    <p><a href="mailto:{{ config.email }}">{{ config.email }}</a></p>
+                </div>
+                <div class="col">
+                    <h2>Address</h2>
+                    {{ config.address|linebreaks }}
+                </div>
+                <div class="col">
+                    <h2>Book online</h2>
+                    <p><a href="#book">Click here</a> to book online</p>
+                </div>
+            </div>
+        </div>
+        <div class="form">
+            <form action="" method="post">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" name="name" placeholder="Your name">
+                    </div>
+                    <div class="col">
+                        <input type="email" name="email" placeholder="Your email">
+                    </div>
+                    <div class="col">
+                        <input type="tel" name="phone" placeholder="Your phone">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <textarea name="message" rows="10" placeholder="Your message"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="calendar" id="book">
+            <div class="calendly-inline-widget" data-url="{{ config.calendly_url }}"
+                 style="min-width:320px;height:580px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+        </div>
+    </div>
+{% include "main_site/inc/footer.html" %}

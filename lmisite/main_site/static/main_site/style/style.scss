@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700');
+@import url('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
+
+* {
+  box-sizing: border-box;
+}
+
+@import "inc/variables";
+@import "inc/hamburger";
+@import "inc/nav";
+@import "inc/icons";
+@import "inc/forms";
+@import "inc/bar";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 19px;
+  font-family: "Open Sans Condensed", Helvetica, Arial, sans-serif;
+}
+
+textarea, input, button, select {
+  font-family: inherit;
+}
+
+a {
+  color: #000;
+  transition: color .2s;
+  text-decoration: none;
+
+  &:hover {
+    color: $primary-colour;
+  }
+}
+
+hr {
+  width: 30%;
+  color: $primary-colour;
+}
+
+blockquote {
+  &::before, &::after {
+    content: '\275D';
+    font-size: 50px;
+    line-height: 0.7;
+  }
+
+  &::after {
+    content: '\275E';
+    vertical-align: top;
+    float: right;
+    line-height: 1.1;
+  }
+}
+
+img {
+  max-width: 100%;
+
+  &.round {
+    border-radius: 50%;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+
+  .left, .right, .col {
+    flex-basis: 0;
+    flex-shrink: 0;
+    padding: 0 $column-gutter;
+  }
+
+  .left {
+    flex-grow: 1;
+    flex-basis: 20%;
+  }
+
+  .right {
+    flex-grow: 3;
+  }
+
+  &.row-big-left {
+    .left {
+      flex-grow: 3;
+    }
+
+    .right {
+      flex-grow: 1;
+      flex-basis: 20%;
+    }
+  }
+
+  .col {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  &::after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+}
+
+.wrapper {
+  height: 100vh;
+
+  .content {
+    > h1 {
+      text-align: center;
+      font-size: 50px;
+      margin-top: 15px;
+      margin-bottom: 0;
+
+      @include inline-header;
+      @include bar;
+    }
+
+    > div {
+      padding: $content-padding;
+
+      h1 {
+        margin-top: $content-margin;
+        margin-bottom: $content-margin+$content-padding;
+        text-align: center;
+        font-size: $header-font-size;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: $content-padding;
+  }
+}

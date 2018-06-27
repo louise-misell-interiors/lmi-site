@@ -1,0 +1,65 @@
+@import "variables";
+
+@function clamp($number, $min, $max) {
+  @return min(max($number, $min), $max);
+}
+
+@mixin slider($slide-width, $slide-cover) {
+  .slider {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    .slider-inner {
+      perspective: 5px;
+      transform-style: preserve-3d;
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      $slide-offset: (100 - $slide-width) / 2;
+
+      .slide {
+        position: absolute;
+        width: $slide-width;
+        height: 100%;
+        transform: translateZ(-2px);
+        left: - ($slide-width - $slide-offset) + $slide-cover;
+        transition: height $medium-transition, transform $medium-transition, left $medium-transition;
+
+        &.is-active {
+          left: $slide-offset;
+          transform: translateY(0) translateZ(0);
+        }
+
+        &.is-active ~ .slide {
+          left: $slide-width + $slide-offset - $slide-cover;
+        }
+        &.is-active + .slide {
+          transform: translateZ(-2px);
+        }
+      }
+
+      .arrow {
+        font-size: 50px;
+        color: #000;
+        opacity: 0.7;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) translateX(-105%);
+        left: clamp($slide-offset - 1, 0%, 20%);
+        z-index: 99;
+        transition: opacity $fast-transition;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .arrow:last-of-type {
+        left: ($slide-width + $slide-offset) + 2.5;
+      }
+    }
+  }
+}

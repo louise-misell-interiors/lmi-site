@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Louise Misell Interiors</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static "main_site/style/style.css" %}">
+    {% if page_css %}
+    <link rel="stylesheet" href="{%  static page_css %}">
+    {% endif %}
+</head>
+<body>
+<div class="wrapper">
+    <div class="nav">
+        <nav class="nav-left">
+            <div class="logos">
+                <img src="{% static "main_site/img/cag-logo.png" %}" alt="">
+                <img src="{% static "main_site/img/baid-logo.png" %}" alt="">
+            </div>
+            {% url 'index' as home_url %}
+            {% url 'about' as about_url %}
+            {% url 'portfolio' as portfolio_url %}
+            <div>
+                <a href="{{ home_url }}" {% if request.get_full_path == home_url %}class="is-active"{% endif %}>Home</a>
+                <a href="{{ about_url }}" {% if request.get_full_path == about_url %}class="is-active"{% endif %}>About</a>
+                <a href="{{ portfolio_url }}" {% if request.get_full_path == portfolio_url %}class="is-active"{% endif %}>Portfolio</a>
+            </div>
+        </nav>
+        <div class="logo">
+            <img src="{% static "main_site/img/logo.png" %}" alt="">
+        </div>
+        <nav class="nav-right">
+            {% url 'services' as services_url %}
+            {% url 'testimonials' as testimonials_url %}
+            {% url 'contact' as contact_url %}
+            <div>
+                <a href="{{ services_url }}" {% if request.get_full_path == services_url %}class="is-active"{% endif %}>Services</a>
+                <a href="{{ testimonials_url }}" {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
+                <a href="{{ contact_url }}" {% if request.get_full_path == contact_url %}class="is-active"{% endif %}>Contact</a>
+            </div>
+            <div class="socials">
+                <a href="{{ config.instagram_url }}" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="{{ config.pintrest_url }}" target="_blank"><i class="fab fa-pinterest fa-lg"></i></a>
+                <a href="{{ config.facebook_url }}" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="{{ config.linkedin_url }}" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+                <a href="{{ config.houzz_url }}" target="_blank"><i class="fab fa-houzz fa-lg"></i></a>
+            </div>
+        </nav>
+    </div>

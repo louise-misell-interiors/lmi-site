@@ -1,0 +1,36 @@
+@import "variables";
+
+.testimonials {
+  background: $primary-colour;
+  color: #fff;
+
+  @include slider(90%, -30%);
+
+  .slider {
+    height: 170px;
+    width: 80%;
+    margin: 0 auto;
+
+    .arrow {
+      color: #fff !important;
+    }
+
+    .slide {
+      padding: $content-padding;
+
+      .content {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 25px;
+
+        .by-line {
+          font-weight: bold;
+          text-align: center;
+          display: inline-block;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

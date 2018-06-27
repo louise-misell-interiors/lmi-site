@@ -1,0 +1,67 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: site-django
+  namespace: lmi
+  labels:
+    app: site
+    tier: django
+spec:
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+  selector:
+    app: site
+    tier: django
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: site-django
+  namespace: lmi
+spec:
+  selector:
+    matchLabels:
+      app: site
+      tier: django
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: site
+        tier: django
+    spec:
+      volumes:
+      - name: gluster
+        glusterfs:
+          endpoints: glusterfs-cluster
+          path: kubes-pv
+      containers:
+      - name: django
+        image: evilben/lmi-django@sha256:2d0cc0a6653d556b66e8d268fb61397fe1b87bfb601ec487e0e5058ff4f5dca0
+        ports:
+        - containerPort: 8000
+        imagePullPolicy: Always
+        env:
+        - name: DB_HOST
+          value: mysql
+        - name: DB_USER
+          value: lmi
+        - name: DB_NAME
+          value: lmi-site
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: pass
+        volumeMounts:
+        - name: gluster
+          mountPath: /src/static
+          subPath: lmi-site/static
+        - name: gluster
+          mountPath: /src/media
+          subPath: lmi-site/media
+
+

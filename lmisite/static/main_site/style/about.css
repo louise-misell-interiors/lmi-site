@@ -1,0 +1,13 @@
+.content > div {
+  margin: 0 5%;
+}
+.content > div h1 {
+  margin: unset !important;
+  font-weight: bold !important;
+}
+
+.row {
+  align-items: center;
+}
+
+/*# sourceMappingURL=about.css.map */

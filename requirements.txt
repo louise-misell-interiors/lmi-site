@@ -1,0 +1,6 @@
+django
+django-solo
+gunicorn
+mysqlclient
+django-phonenumber-field
+Pillow

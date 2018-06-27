@@ -1,7 +1,19 @@
+from PIL import Image as Img
+import io
 from django.db import models
 from solo.models import SingletonModel
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
+
+def compress_img(image, new_width=1500):
+    img = Img.open(io.BytesIO(image.read()))
+    img.thumbnail((new_width, new_width * image.height / image.width), Img.ANTIALIAS)
+    output = io.BytesIO()
+    img.save(output, format='JPEG', quality=95, optimise=True)
+    output.seek(0)
+    return InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % image.name.split('.')[0], 'image/jpeg',
+                                len(output.getvalue()), None)
 
 class SiteConfig(SingletonModel):
     instagram_url = models.URLField(default="", blank=True)
@@ -22,6 +34,11 @@ class MainSliderImage(models.Model):
     name = models.CharField(max_length=255, default="", blank=True)
     image = models.ImageField()
 
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = compress_img(self.image)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
@@ -31,6 +48,11 @@ class Testimonial(models.Model):
     image = models.ImageField()
     client = models.CharField(max_length=255)
     featured = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = compress_img(self.image)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.client
@@ -74,10 +96,20 @@ class ProjectBeforeImage(models.Model):
     project = models.ForeignKey(Project, related_name='before_images', on_delete=models.CASCADE)
     image = models.ImageField()
 
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = compress_img(self.image)
+        super().save(*args, **kwargs)
+
 
 class ProjectAfterImage(models.Model):
     project = models.ForeignKey(Project, related_name='after_images', on_delete=models.CASCADE)
     image = models.ImageField()
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = compress_img(elf.image)
+        super().save(*args, **kwargs)
 
 
 class AboutSection(models.Model):
@@ -92,3 +124,8 @@ class AboutSection(models.Model):
 class AboutSectionImage(models.Model):
     section = models.ForeignKey(AboutSection, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField()
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = compress_img(self.image)
+        super().save(*args, **kwargs)

@@ -40,7 +40,7 @@ spec:
           path: kubes-pv
       containers:
       - name: django
-        image: evilben/lmi-django@sha256:2d0cc0a6653d556b66e8d268fb61397fe1b87bfb601ec487e0e5058ff4f5dca0
+        image: evilben/lmi-django:(hash)
         ports:
         - containerPort: 8000
         imagePullPolicy: Always

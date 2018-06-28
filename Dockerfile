@@ -1,7 +1,7 @@
 FROM python:3
 ENV PYTHONUNBUFFERED 1
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libmysqlclient-dev \
+    && apt-get install -y --no-install-recommends default-libmysqlclient-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /src

@@ -15,6 +15,7 @@ def compress_img(image, new_width=1500):
     return InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % image.name.split('.')[0], 'image/jpeg',
                                 len(output.getvalue()), None)
 
+
 class SiteConfig(SingletonModel):
     instagram_url = models.URLField(default="", blank=True)
     pintrest_url = models.URLField(default="", blank=True)
@@ -108,7 +109,7 @@ class ProjectAfterImage(models.Model):
 
     def save(self, *args, **kwargs):
         if self.image:
-            self.image = compress_img(elf.image)
+            self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
 

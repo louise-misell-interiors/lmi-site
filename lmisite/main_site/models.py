@@ -10,7 +10,10 @@ def compress_img(image, new_width=1500):
     img = Img.open(io.BytesIO(image.read()))
     img.thumbnail((new_width, new_width * image.height / image.width), Img.ANTIALIAS)
     output = io.BytesIO()
-    img.save(output, format='JPEG', quality=95, optimise=True)
+    if img.mode == 'RGBA':
+        img.save(output, format='PNG')
+    else:
+        img.save(output, format='JPEG', quality=95, optimise=True)
     output.seek(0)
     return InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % image.name.split('.')[0], 'image/jpeg',
                                 len(output.getvalue()), None)

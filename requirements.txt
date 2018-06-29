@@ -4,3 +4,4 @@ gunicorn
 mysqlclient
 django-phonenumber-field
 Pillow
+django-admin-sortable2

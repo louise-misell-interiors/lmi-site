@@ -1,44 +1,54 @@
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
-
+from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from .models import *
 
 
-class ProjectBeforeImageInline(admin.TabularInline):
+class ProjectBeforeImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = ProjectBeforeImage
     extra = 3
 
 
-class ProjectAfterImageInline(admin.TabularInline):
+class ProjectAfterImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = ProjectAfterImage
     extra = 3
 
 
-class ProjectAdmin(admin.ModelAdmin):
+@admin.register(Project)
+class ProjectAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = [ProjectBeforeImageInline, ProjectAfterImageInline]
 
 
-class ServiceSummarryInline(admin.TabularInline):
+class ServiceSummaryInline(SortableInlineAdminMixin, admin.TabularInline):
     model = ServiceSummary
     extra = 3
 
 
-class ServiceAdmin(admin.ModelAdmin):
-    inlines = [ServiceSummarryInline]
+@admin.register(Service)
+class ServiceAdmin(SortableAdminMixin, admin.ModelAdmin):
+    inlines = [ServiceSummaryInline]
 
 
-class AboutImageInline(admin.TabularInline):
+class AboutImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = AboutSectionImage
     extra = 3
 
 
-class AboutAdmin(admin.ModelAdmin):
+@admin.register(AboutSection)
+class AboutAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = [AboutImageInline]
 
 
-admin.site.register(SiteConfig, SingletonModelAdmin)
-admin.site.register(MainSliderImage)
-admin.site.register(Testimonial)
-admin.site.register(Project, ProjectAdmin)
-admin.site.register(Service, ServiceAdmin)
-admin.site.register(AboutSection, AboutAdmin)
+@admin.register(Testimonial)
+class TestimonialAdmin(SortableAdminMixin, admin.ModelAdmin):
+    pass
+
+
+@admin.register(MainSliderImage)
+class MainSliderImageAdmin(SortableAdminMixin, admin.ModelAdmin):
+    pass
+
+
+@admin.register(SiteConfig)
+class SiteConfigAdmin(SingletonModelAdmin):
+    pass

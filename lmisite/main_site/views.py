@@ -32,7 +32,6 @@ def services(request):
     services_m = Service.objects.filter(type=Service.MAIN)
     services_o = Service.objects.filter(type=Service.OTHER)
     services = list(itertools.zip_longest(services_m, services_o))
-    print(services_m, services_o, services)
     return render(request, "main_site/services.html", {"services": services})
 
 

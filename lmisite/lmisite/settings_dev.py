@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'solo.apps.SoloAppConfig',
     'phonenumber_field',
+    'adminsortable2',
     'main_site',
 ]
 

@@ -34,6 +34,10 @@ class SiteConfig(SingletonModel):
 class MainSliderImage(models.Model):
     name = models.CharField(max_length=255, default="", blank=True)
     image = models.ImageField()
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta:
+        ordering = ['order']
 
     def save(self, *args, **kwargs):
         if self.image:
@@ -49,6 +53,10 @@ class Testimonial(models.Model):
     image = models.ImageField()
     client = models.CharField(max_length=255)
     featured = models.BooleanField(default=False)
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta:
+        ordering = ['order']
 
     def save(self, *args, **kwargs):
         if self.image:
@@ -71,6 +79,10 @@ class Service(models.Model):
     icon = models.CharField(max_length=255)
     description = models.TextField()
     price = models.CharField(max_length=255, default="", blank=True)
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
         return self.name
@@ -79,15 +91,21 @@ class Service(models.Model):
 class ServiceSummary(models.Model):
     class Meta:
         verbose_name_plural = "Serivce Summaries"
+        ordering = ['order']
 
     service = models.ForeignKey(Service, related_name="service_summaries", on_delete=models.CASCADE)
     text = models.CharField(max_length=255)
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
 
 
 class Project(models.Model):
     name = models.CharField(max_length=255)
     breif = models.TextField()
     outcome = models.TextField()
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
         return self.name
@@ -96,6 +114,10 @@ class Project(models.Model):
 class ProjectBeforeImage(models.Model):
     project = models.ForeignKey(Project, related_name='before_images', on_delete=models.CASCADE)
     image = models.ImageField()
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta:
+        ordering = ['order']
 
     def save(self, *args, **kwargs):
         if self.image:
@@ -106,6 +128,10 @@ class ProjectBeforeImage(models.Model):
 class ProjectAfterImage(models.Model):
     project = models.ForeignKey(Project, related_name='after_images', on_delete=models.CASCADE)
     image = models.ImageField()
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta:
+        ordering = ['order']
 
     def save(self, *args, **kwargs):
         if self.image:
@@ -117,6 +143,10 @@ class AboutSection(models.Model):
     name = models.CharField(max_length=255)
     heading = models.CharField(max_length=255, default="", blank=True)
     text = models.TextField()
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
         return self.name
@@ -125,6 +155,10 @@ class AboutSection(models.Model):
 class AboutSectionImage(models.Model):
     section = models.ForeignKey(AboutSection, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField()
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta:
+        ordering = ['order']
 
     def save(self, *args, **kwargs):
         if self.image:

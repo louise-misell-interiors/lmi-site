@@ -8,9 +8,6 @@
                             {% if section.heading %}
                                 <h2>{{ section.heading }}</h2>
                             {% endif %}
-                            {% if section.sub_heading %}
-                                <h3>{{ section.sub_heading }}</h3>
-                            {% endif %}
                             {{ section.text|safe|linebreaks }}
                         </div>
                         <div class="right">
@@ -39,9 +36,6 @@
                                 {% else %}
                                     <h2>{{ section.heading }}</h2>
                                 {% endif %}
-                            {% endif %}
-                            {% if section.sub_heading %}
-                                <h3>{{ section.sub_heading }}</h3>
                             {% endif %}
                             {{ section.text|safe|linebreaks }}
                         </div>

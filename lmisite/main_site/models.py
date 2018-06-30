@@ -145,7 +145,6 @@ class ProjectAfterImage(models.Model):
 class AboutSection(models.Model):
     name = models.CharField(max_length=255)
     heading = models.CharField(max_length=255, default="", blank=True)
-    sub_heading = models.CharField(max_length=255, default="", blank=True)
     text = models.TextField()
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 

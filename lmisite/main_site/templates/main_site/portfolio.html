@@ -5,7 +5,9 @@
             {% for project in projects %}
                 <div class="col">
                     <a href="{% url 'project' project.id %}">
-                        <img src="{{ project.after_images.first.image.url }}" alt="">
+                        <div class="img-box">
+                            <img src="{{ project.after_images.first.image.url }}" alt="">
+                        </div>
                         <hr>
                         <h2>{{ project.name }}</h2>
                     </a>

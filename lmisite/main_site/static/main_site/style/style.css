@@ -348,5 +348,8 @@ img.round {
   text-align: center;
   padding: 25px;
 }
+.wrapper .footer a {
+  color: #fff;
+}
 
 /*# sourceMappingURL=style.css.map */

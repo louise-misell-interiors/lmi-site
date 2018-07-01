@@ -33,6 +33,9 @@ class SiteConfig(SingletonModel):
     phone = PhoneNumberField(blank=True)
     address = models.TextField(default="", blank=True)
 
+    privacy_policy = models.FileField(blank=True)
+    terms_and_conditions = models.FileField(blank=True)
+
 
 class MainSliderImage(models.Model):
     name = models.CharField(max_length=255, default="", blank=True)

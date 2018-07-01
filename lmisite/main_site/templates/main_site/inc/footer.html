@@ -1,5 +1,15 @@
     <div class="footer">
-        &copy; Louise Misell Interiors {% now "Y" %}
+        <div class="row">
+            <div class="col">
+                <a href="{% if config.privacy_policy %}{{ config.privacy_policy.url }}{% endif %}">Privacy Policy</a>
+            </div>
+            <div class="col">
+                &copy; Louise Misell Interiors {% now "Y" %}
+            </div>
+            <div class="col">
+                <a href="{% if config.terms_and_conditions %}{{ config.terms_and_conditions.url }}{% endif %}">Terms &amp; Conditions</a>
+            </div>
+        </div>
     </div>
 </div>
     {%  load static %}

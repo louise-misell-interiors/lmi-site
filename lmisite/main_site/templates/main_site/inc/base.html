@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Louise Misell Interiors</title>
+    <title>{% block title %}{% endblock %} | Louise Misell Interiors</title>
 
     {% load static %}
 
     <link rel="stylesheet" href="{% static "main_site/style/style.css" %}">
-    {% if page_css %}
-    <link rel="stylesheet" href="{%  static page_css %}">
-    {% endif %}
+
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:site_name" content="Louise Misell Interiors">
+    <meta name="twitter:card" content="summary_large_image">
+
+    {% block header %}
+    {% endblock %}
 </head>
 <body>
 <div class="wrapper">
@@ -49,3 +53,26 @@
             </div>
         </nav>
     </div>
+    {% block content %}
+    {% endblock %}
+    <div class="footer">
+        <div class="row">
+            <div class="col">
+                <a href="{% if config.privacy_policy %}{{ config.privacy_policy.url }}{% endif %}">Privacy Policy</a>
+            </div>
+            <div class="col">
+                &copy; Louise Misell Interiors {% now "Y" %}
+            </div>
+            <div class="col">
+                <a href="{% if config.terms_and_conditions %}{{ config.terms_and_conditions.url }}{% endif %}">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="{% static "main_site/js/main-compiled.js" %}"></script>
+{% block scripts %}
+{% endblock %}
+</body>
+</html>

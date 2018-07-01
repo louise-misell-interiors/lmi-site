@@ -1,4 +1,19 @@
-{% include "main_site/inc/header.html" with page_css="main_site/style/about.css" %}
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}About{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{%  static "main_site/style/about.css" %}">
+
+    <meta property="og:title" content="About Louise">
+    <meta property="og:type" content="profile" />
+    <meta property="og:profile:first_name" content="Louise" />
+    <meta property="og:profile:last_name" content="Louise" />
+    <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ sections.first.images.first.url }}">
+{% endblock %}
+
+{% block content%}
     <div class="content">
         <div class="bio">
             {% for section in sections %}
@@ -44,4 +59,4 @@
             {% endfor %}
         </div>
     </div>
-{% include "main_site/inc/footer.html" %}
+{% endblock %}

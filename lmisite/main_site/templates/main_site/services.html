@@ -1,5 +1,18 @@
-{% include "main_site/inc/header.html" with page_css="main_site/style/services.css" %}
-    <div class="content">
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}Services{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{%  static "main_site/style/services.css" %}">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Services">
+    <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% static "main_site/img/logo.png" %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
         <h1>Services</h1>
         <div class="steps">
             <h1>How can I help with your project?</h1>
@@ -20,4 +33,4 @@
             {% endfor %}
         </div>
     </div>
-{% include "main_site/inc/footer.html" %}
+{% endblock %}

@@ -1,5 +1,18 @@
-{% include "main_site/inc/header.html" with page_css="main_site/style/contact.css" %}
-    <div class="content">
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{%  static "main_site/style/contact.css" %}">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Contact">
+    <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% static "main_site/img/logo.png" %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
         <h1>Contact</h1>
         <div class="contact-details">
             <div class="row">
@@ -75,4 +88,4 @@
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
         </div>
     </div>
-{% include "main_site/inc/footer.html" %}
+{% endblock %}

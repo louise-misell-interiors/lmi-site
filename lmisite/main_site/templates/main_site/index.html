@@ -1,5 +1,17 @@
+{% extends "main_site/inc/base.html" %}
 {% load static %}
-{% include "main_site/inc/header.html" with page_css="main_site/style/home.css" %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{%  static "main_site/style/home.css" %}">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Louise Misell Interiors">
+    <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% static "main_site/img/logo.png" %}">
+{% endblock %}
+
+{% block content %}
     <div class="main-slider">
         <div class="slider">
             <div class="slider-inner">
@@ -69,8 +81,12 @@
             </div>
         </div>
     </div>
-<script>
-    const IMAGE_SLIDER_SPEED = {{ config.image_slider_speed }};
-    const TESTIMONIALS_SLIDER_SPEED = {{ config.testimonials_slider_speed }};
-</script>
-{% include "main_site/inc/footer.html" with page_js="main_site/js/home-compiled.js" %}
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        const IMAGE_SLIDER_SPEED = {{ config.image_slider_speed }};
+        const TESTIMONIALS_SLIDER_SPEED = {{ config.testimonials_slider_speed }};
+    </script>
+    <script src="{% static "main_site/js/home-compiled.js" %}"></script>
+{% endblock %}

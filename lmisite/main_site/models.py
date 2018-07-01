@@ -36,6 +36,10 @@ class SiteConfig(SingletonModel):
     privacy_policy = models.FileField(blank=True)
     terms_and_conditions = models.FileField(blank=True)
 
+    image_slider_speed = models.PositiveIntegerField(default=5000, verbose_name="Home page image slider speed (ms)")
+    testimonials_slider_speed = \
+        models.PositiveIntegerField(default=10000, verbose_name="Home page testimonials slider speed (ms)")
+
 
 class MainSliderImage(models.Model):
     name = models.CharField(max_length=255, default="", blank=True)
@@ -58,7 +62,8 @@ class Testimonial(models.Model):
     text = models.TextField()
     image = models.ImageField(blank=True)
     client = models.CharField(max_length=255)
-    featured = models.BooleanField(default=False)
+    featured = models.BooleanField(default=False, verbose_name="Featured on home page")
+    not_on_testimonials = models.BooleanField(default=False, verbose_name="Not displayed on testimonials page")
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:

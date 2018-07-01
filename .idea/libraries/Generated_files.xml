@@ -4,6 +4,7 @@
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/home-compiled-compiled.js" />
         <item url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/home-compiled.js" />
+        <item url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/home-compiled.js" />
         <item url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled-compiled.js" />
         <item url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js" />
         <item url="file://$PROJECT_DIR$/lmisite/static/admin/js/SelectBox-compiled.js" />
@@ -544,8 +545,8 @@
       <root url="file://$PROJECT_DIR$/dist/template/js/main.js" />
       <root url="file://$PROJECT_DIR$/main-compiled-compiled.js" />
       <root url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/home-compiled-compiled.js" />
-      <root url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/home-compiled.js" />
       <root url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled-compiled.js" />
+      <root url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/home-compiled.js" />
       <root url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js" />
       <root url="file://$PROJECT_DIR$/lmisite/static/admin/js/SelectBox-compiled.js" />
       <root url="file://$PROJECT_DIR$/lmisite/static/admin/js/SelectFilter2-compiled.js" />

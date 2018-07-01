@@ -36,7 +36,7 @@ def services(request):
 
 
 def testimonials(request):
-    testimonials = Testimonial.objects.all()
+    testimonials = Testimonial.objects.filter(not_on_testimonials=False)
     return render(request, "main_site/testimonials.html", {"testimonials": testimonials})
 
 

@@ -24,20 +24,42 @@
         </div>
         <div class="form">
             <form action="" method="post">
+                {% if sent %}
+                    <div class="row">
+                        <div class="col">
+                            <h4>Thank you, your message has been sent.</h4>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% csrf_token %}
+                {{ form.non_field_errors }}
                 <div class="row">
                     <div class="col">
-                        <input type="text" name="name" placeholder="Your name">
+                        {{ form.your_name.errors }}
                     </div>
                     <div class="col">
-                        <input type="email" name="email" placeholder="Your email">
+                        {{ form.your_email.errors }}
                     </div>
                     <div class="col">
-                        <input type="tel" name="phone" placeholder="Your phone">
+                        {{ form.your_phone.errors }}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <textarea name="message" rows="10" placeholder="Your message"></textarea>
+                        {{ form.your_name }}
+                    </div>
+                    <div class="col">
+                        {{ form.your_email }}
+                    </div>
+                    <div class="col">
+                        {{ form.your_phone }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ form.message.errors }}
+                        {{ form.message }}
                     </div>
                 </div>
                 <div class="row">

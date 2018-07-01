@@ -17,4 +17,16 @@
       font-size: 25px;
     }
   }
+
+  form {
+    .errorlist {
+      margin: 0;
+      text-align: left;
+      color: red;
+
+      li {
+        list-style: none;
+      }
+    }
+  }
 }

@@ -155,3 +155,6 @@ LOGGING = {
 }
 
 FILE_UPLOAD_PERMISSIONS = 0o644
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'front.mailu'

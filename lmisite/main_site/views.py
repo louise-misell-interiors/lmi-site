@@ -1,6 +1,8 @@
 import itertools
+from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from .models import *
+from .forms import *
 
 
 def index(request):
@@ -41,4 +43,23 @@ def testimonials(request):
 
 
 def contact(request):
-    return render(request, "main_site/contact.html")
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['your_name']
+            email = form.cleaned_data['your_email']
+            phone = form.cleaned_data['your_phone']
+            message = form.cleaned_data['message']
+
+            subject = f"{name} has sent a message on your website"
+            body = f"Name: {name}\r\nEmail: {email}\r\nPhone: {phone}\r\n\r\n---\r\n\r\n{message}"
+
+            config = SiteConfig.objects.first()
+            recipients = [config.email]
+            send_mail(subject, body, email, recipients)
+
+            return render(request, "main_site/contact.html", {'form': form, 'sent': True})
+    else:
+        form = ContactForm()
+
+    return render(request, "main_site/contact.html", {'form': form, 'sent': False })

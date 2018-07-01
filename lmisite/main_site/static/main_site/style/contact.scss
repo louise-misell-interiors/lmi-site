@@ -5,6 +5,10 @@
   > div {
     width: 70%;
     margin: $column-gutter auto;
+
+    @media (max-width: $media-small) {
+      width: auto;
+    }
   }
 
   .contact-details {

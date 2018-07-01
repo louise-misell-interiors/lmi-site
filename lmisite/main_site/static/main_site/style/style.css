@@ -347,6 +347,11 @@ input, textarea, button {
   border-radius: 4px;
   box-shadow: 0 0 2px #2d76c4;
 }
+@media (max-width: 800px) {
+  input, textarea, button {
+    margin: 0;
+  }
+}
 
 button {
   color: #fff;

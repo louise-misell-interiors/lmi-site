@@ -80,7 +80,7 @@ img {
 
 
     @media (max-width: $media-small) {
-      flex-basis: 100%;
+      flex-basis: 100% !important;
     }
   }
 
@@ -96,6 +96,9 @@ img {
   &.row-big-left {
     .left {
       flex-grow: 3;
+      @media (max-width: $media-small) {
+        order: 2;
+      }
     }
 
     .right {

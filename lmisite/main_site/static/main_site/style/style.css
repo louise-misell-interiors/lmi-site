@@ -417,7 +417,7 @@ img.round {
 }
 @media (max-width: 800px) {
   .row .left, .row .right, .row .col {
-    flex-basis: 100%;
+    flex-basis: 100% !important;
   }
 }
 .row .left {
@@ -429,6 +429,11 @@ img.round {
 }
 .row.row-big-left .left {
   flex-grow: 3;
+}
+@media (max-width: 800px) {
+  .row.row-big-left .left {
+    order: 2;
+  }
 }
 .row.row-big-left .right {
   flex-grow: 1;

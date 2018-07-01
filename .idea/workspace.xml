@@ -6,27 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_portfolio.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_portfolio.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_services.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_services.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_testimonials.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_testimonials.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/services.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/services.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/services.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/services.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/testimonials.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/testimonials.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/testimonials.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/testimonials.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,17 +59,17 @@
       <file leaf-file-name="_nav.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+            <state relative-caret-position="496">
+              <caret line="167" column="28" selection-start-line="167" selection-start-column="28" selection-end-line="167" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+            <state relative-caret-position="526">
+              <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -151,11 +137,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="76" column="41" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
+            <state relative-caret-position="450">
+              <caret line="30" column="71" selection-start-line="30" selection-start-column="71" selection-end-line="30" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -238,9 +224,9 @@
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_portfolio.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_services.scss" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main.js" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
       </list>
     </option>
   </component>
@@ -886,13 +872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="70" column="24" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1185">
@@ -914,24 +893,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="76" column="41" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
+        <state relative-caret-position="286">
+          <caret line="70" column="24" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+        <state relative-caret-position="496">
+          <caret line="167" column="28" selection-start-line="167" selection-start-column="28" selection-end-line="167" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+        <state relative-caret-position="526">
+          <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="71" selection-start-line="30" selection-start-column="71" selection-end-line="30" selection-end-column="71" />
         </state>
       </provider>
     </entry>

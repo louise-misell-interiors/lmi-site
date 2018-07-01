@@ -166,7 +166,6 @@
     > :not(.socials) {
       @media (max-width: $media-xsmall) {
         @include mobile-nav;
-        top: 153px;
       }
     }
   }

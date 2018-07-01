@@ -251,7 +251,6 @@
     opacity: 1;
     visibility: visible;
     transition: visibility 0.5s, opacity 0.5s;
-    top: 153px;
   }
   .nav .nav-right > :not(.socials) a {
     display: table;

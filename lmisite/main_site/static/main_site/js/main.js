@@ -33,11 +33,15 @@ $(function () {
         nextSlide($(this).parent());
     });
 
-    const $menu = $(".nav");
+    const $menu = $(".nav")
     const $menuButton = $menu.find(".menu-button");
+    const $menuLeft = $menu.find(".nav-left > :not(.logos)");
+    const $menuRight = $menu.find(".nav-right > :not(.socials)");
 
     $menuButton.on("click", function () {
         $menu.toggleClass("show-menu");
+        let top = $menuLeft.outerHeight();
+        $menuRight.css("top", top);
         $menuButton.toggleClass("fa-bars");
         $menuButton.toggleClass("fa-times");
     });

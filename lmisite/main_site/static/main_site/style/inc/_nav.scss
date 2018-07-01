@@ -1,38 +1,102 @@
 @import "variables";
 @import "bar";
 
+@mixin mobile-nav {
+  position: absolute;
+  display: block;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 99;
+  padding-bottom: 6px;
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+  transition: visibility .5s, opacity .5s;
+
+  a {
+    display: table;
+    margin: 0 auto;
+    color: #fff;
+  }
+}
+
 .nav {
   height: $nav-height;
-  position: relative;
   background: #fff;
   margin: $content-padding 0;
   padding: 0 $content-padding;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: $media-medium) {
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+
 
   .logo {
     width: $logo-width;
+    min-width: $logo-width/2;
+
     img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    @media (max-width: $media-medium) {
+      order: 3;
       width: 100%;
+      height: $nav-height/4;
+      text-align: center;
+
+      img {
+        transform: translateY(-50%) scale(2.5);
+      }
+    }
+
+    @media (max-width: $media-xsmall) {
+      order: 1;
+      height: $nav-height/2;
+
+      img {
+        transform: none;
+      }
     }
   }
 
   .nav-left, .nav-right {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    height: 100%;
     flex: 2 1;
 
+
+    @media (max-width: $media-medium) {
+      flex-wrap: wrap-reverse;
+      justify-content: center;
+      align-content: space-between;
+      height: auto;
+    }
+
+    @media (max-width: $media-xsmall) {
+      width: 50%;
+      order: 2;
+      padding: 5px 0;
+    }
+
     div {
+      @media (max-width: $media-medium) {
+        min-width: 100%;
+        flex: 0 0;
+      }
+
       display: flex;
       flex: 2 0;
       flex-wrap: nowrap;
       align-items: center;
-      justify-content: center;
+      justify-content: space-evenly;
 
         a {
-          margin: 0 15px;
+          margin: 0 5px;
           text-decoration: none;
           color: #000;
           font-size: 35px;
@@ -58,6 +122,7 @@
   .nav-left {
     .logos {
       flex: 0 1 auto;
+      min-width: 200px;
 
       img {
         margin: 0 $content-padding/2;
@@ -65,19 +130,73 @@
         min-height: $nav-height/4;
         vertical-align: middle;
         max-width: 100%;
+
+        @media (max-width: $media-medium) {
+          max-height: $nav-height/4;
+        }
+      }
+    }
+    > :not(.logos) {
+      @media (max-width: $media-xsmall) {
+        @include mobile-nav;
+        top: 0;
       }
     }
   }
   .nav-right {
+    @media (max-width: $media-medium) {
+      flex-wrap: wrap;
+    }
+
     .socials {
       flex: 1 1;
       display: flex;
       justify-content: space-between;
 
+      @media (max-width: $media-medium) {
+        justify-content: center;
+      }
+
       a {
         margin: 0 5px;
         font-size: 27px;
       }
+    }
+
+    > :not(.socials) {
+      @media (max-width: $media-xsmall) {
+        @include mobile-nav;
+        top: 153px;
+      }
+    }
+  }
+
+  .menu-button {
+      content: "\f0c9";
+      position: absolute;
+      z-index: 999;
+      right: $content-padding/2;
+      top: 0;
+      color: $primary-colour;
+      font-size: 50px;
+      font-weight: 900;
+    display: none;
+  }
+
+  @media (max-width: $media-xsmall) {
+    &:not(.show-menu) {
+      .nav-left > :not(.logos) {
+        visibility: hidden;
+        opacity: 0;
+      }
+      .nav-right > :not(.socials) {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+
+    .menu-button {
+      display: block;
     }
   }
 }

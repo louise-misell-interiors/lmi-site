@@ -39,6 +39,8 @@ hr {
 }
 
 blockquote {
+  margin: 0;
+
   &::before, &::after {
     content: '\275D';
     font-size: 50px;
@@ -74,7 +76,12 @@ img {
   .left, .right, .col {
     flex-basis: 0;
     flex-shrink: 0;
-    padding: 0 $column-gutter;
+    padding: $column-gutter;
+
+
+    @media (max-width: $media-small) {
+      flex-basis: 100%;
+    }
   }
 
   .left {
@@ -125,6 +132,10 @@ img {
 
     > div {
       padding: $content-padding;
+
+      @media (max-width: $media-small) {
+        padding: 0;
+      }
 
       h1 {
         margin-top: $content-margin;

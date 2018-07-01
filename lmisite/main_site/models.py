@@ -13,7 +13,7 @@ def compress_img(image, new_width=1500):
     if img.mode == 'RGBA':
         img.save(output, format='PNG')
     else:
-        img.save(output, format='JPEG', quality=95, optimise=True)
+        img.save(output, format='JPEG', quality=80, optimise=True)
     output.seek(0)
     return InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % image.name.split('.')[0], 'image/jpeg',
                                 len(output.getvalue()), None)

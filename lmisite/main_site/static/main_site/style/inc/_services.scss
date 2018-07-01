@@ -14,7 +14,8 @@
     .col {
       padding: $content-padding;
       background: #eee;
-      margin: 0 $column-gutter;
+      margin: $column-gutter;
+      position: relative;
 
       h2 {
         text-align: center;
@@ -30,6 +31,7 @@
       ul {
         list-style: none;
         padding: 0;
+        padding-bottom: 20px;
 
         li {
           text-align: center;
@@ -50,6 +52,11 @@
 
           &:last-of-type {
             font-weight: bold;
+            bottom: 0;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
           }
         }
       }

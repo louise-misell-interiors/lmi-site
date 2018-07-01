@@ -1,15 +1,19 @@
 .row {
-  align-items: center; }
-  .row img {
-    max-height: 30vh;
-    margin: 0 auto;
-    display: block; }
-  .row blockquote {
-    font-size: 25px; }
-  .row .by-line {
-    font-weight: bold;
-    text-align: center;
-    display: inline-block;
-    width: 100%; }
+  align-items: center;
+}
+.row img {
+  max-height: 30vh;
+  margin: 0 auto;
+  display: block;
+}
+.row blockquote {
+  font-size: 25px;
+}
+.row .by-line {
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
 
 /*# sourceMappingURL=testimonials.css.map */

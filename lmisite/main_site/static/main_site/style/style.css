@@ -82,35 +82,82 @@
 
 .nav {
   height: 150px;
-  position: relative;
   background: #fff;
   margin: 25px 0;
   padding: 0 25px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 1200px) {
+  .nav {
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
 }
 .nav .logo {
   width: 200px;
+  min-width: 100px;
 }
 .nav .logo img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+@media (max-width: 1200px) {
+  .nav .logo {
+    order: 3;
+    width: 100%;
+    height: 37.5px;
+    text-align: center;
+  }
+  .nav .logo img {
+    transform: translateY(-50%) scale(2.5);
+  }
+}
+@media (max-width: 700px) {
+  .nav .logo {
+    order: 1;
+    height: 75px;
+  }
+  .nav .logo img {
+    transform: none;
+  }
 }
 .nav .nav-left, .nav .nav-right {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  height: 100%;
   flex: 2 1;
+}
+@media (max-width: 1200px) {
+  .nav .nav-left, .nav .nav-right {
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    align-content: space-between;
+    height: auto;
+  }
+}
+@media (max-width: 700px) {
+  .nav .nav-left, .nav .nav-right {
+    width: 50%;
+    order: 2;
+    padding: 5px 0;
+  }
 }
 .nav .nav-left div, .nav .nav-right div {
   display: flex;
   flex: 2 0;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+}
+@media (max-width: 1200px) {
+  .nav .nav-left div, .nav .nav-right div {
+    min-width: 100%;
+    flex: 0 0;
+  }
 }
 .nav .nav-left div a, .nav .nav-right div a {
-  margin: 0 15px;
+  margin: 0 5px;
   text-decoration: none;
   color: #000;
   font-size: 35px;
@@ -141,6 +188,7 @@
 }
 .nav .nav-left .logos {
   flex: 0 1 auto;
+  min-width: 200px;
 }
 .nav .nav-left .logos img {
   margin: 0 12.5px;
@@ -149,14 +197,91 @@
   vertical-align: middle;
   max-width: 100%;
 }
+@media (max-width: 1200px) {
+  .nav .nav-left .logos img {
+    max-height: 37.5px;
+  }
+}
+@media (max-width: 700px) {
+  .nav .nav-left > :not(.logos) {
+    position: absolute;
+    display: block;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 99;
+    padding-bottom: 6px;
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+    transition: visibility 0.5s, opacity 0.5s;
+    top: 0;
+  }
+  .nav .nav-left > :not(.logos) a {
+    display: table;
+    margin: 0 auto;
+    color: #fff;
+  }
+}
+@media (max-width: 1200px) {
+  .nav .nav-right {
+    flex-wrap: wrap;
+  }
+}
 .nav .nav-right .socials {
   flex: 1 1;
   display: flex;
   justify-content: space-between;
 }
+@media (max-width: 1200px) {
+  .nav .nav-right .socials {
+    justify-content: center;
+  }
+}
 .nav .nav-right .socials a {
   margin: 0 5px;
   font-size: 27px;
+}
+@media (max-width: 700px) {
+  .nav .nav-right > :not(.socials) {
+    position: absolute;
+    display: block;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 99;
+    padding-bottom: 6px;
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+    transition: visibility 0.5s, opacity 0.5s;
+    top: 153px;
+  }
+  .nav .nav-right > :not(.socials) a {
+    display: table;
+    margin: 0 auto;
+    color: #fff;
+  }
+}
+.nav .menu-button {
+  content: "";
+  position: absolute;
+  z-index: 999;
+  right: 12.5px;
+  top: 0;
+  color: #2D76C4;
+  font-size: 50px;
+  font-weight: 900;
+  display: none;
+}
+@media (max-width: 700px) {
+  .nav:not(.show-menu) .nav-left > :not(.logos) {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .nav:not(.show-menu) .nav-right > :not(.socials) {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .nav .menu-button {
+    display: block;
+  }
 }
 
 .fa-facebook, .fa-facebook-square {
@@ -255,6 +380,9 @@ hr {
   color: #2D76C4;
 }
 
+blockquote {
+  margin: 0;
+}
 blockquote::before, blockquote::after {
   content: "❝";
   font-size: 50px;
@@ -286,7 +414,12 @@ img.round {
 .row .left, .row .right, .row .col {
   flex-basis: 0;
   flex-shrink: 0;
-  padding: 0 1%;
+  padding: 1%;
+}
+@media (max-width: 800px) {
+  .row .left, .row .right, .row .col {
+    flex-basis: 100%;
+  }
 }
 .row .left {
   flex-grow: 1;
@@ -339,6 +472,11 @@ img.round {
 }
 .wrapper .content > div {
   padding: 25px;
+}
+@media (max-width: 800px) {
+  .wrapper .content > div {
+    padding: 0;
+  }
 }
 .wrapper .content > div h1 {
   margin-top: 20px;

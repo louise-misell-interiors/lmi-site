@@ -9,7 +9,11 @@
   padding-top: $nav-height;
   margin-top: -$nav-height;
 
-  @include slider(65%, 20%);
+  @include slider(75%, 20%);
+
+  @media (max-width: $media-small) {
+    height: 60vh;
+  }
 
   .slide {
     background-size: cover;

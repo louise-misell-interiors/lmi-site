@@ -32,4 +32,13 @@ $(function () {
     $slider.find(".arrow:last").on("click", function () {
         nextSlide($(this).parent());
     });
+
+    const $menu = $(".nav");
+    const $menuButton = $menu.find(".menu-button");
+
+    $menuButton.on("click", function () {
+        $menu.toggleClass("show-menu");
+        $menuButton.toggleClass("fa-bars");
+        $menuButton.toggleClass("fa-times");
+    });
 });

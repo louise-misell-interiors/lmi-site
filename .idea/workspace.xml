@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/portfolio.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/portfolio.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/testimonials.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/testimonials.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.css.map" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -92,11 +92,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testimonials.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="testimonials.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/testimonials.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="65" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="65" />
+            <state relative-caret-position="300">
+              <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_slider.scss" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="271">
+              <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -180,7 +189,6 @@
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_services.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_portfolio.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_testimonials.scss" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/contact.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss" />
         <option value="$PROJECT_DIR$/kubes/django.yml" />
@@ -205,6 +213,7 @@
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/portfolio.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/testimonials.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss" />
       </list>
     </option>
   </component>
@@ -415,6 +424,16 @@
               <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
               <item name="lmisite" type="462c0819:PsiDirectoryNode" />
               <item name="main_site" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="main_site" type="462c0819:PsiDirectoryNode" />
+              <item name="style" type="462c0819:PsiDirectoryNode" />
+              <item name="inc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lmi-site" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
+              <item name="lmisite" type="462c0819:PsiDirectoryNode" />
+              <item name="main_site" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -523,7 +542,7 @@
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3154574" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3145917" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.235625" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
@@ -661,13 +680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -896,8 +908,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/testimonials.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="65" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="65" />
+        <state relative-caret-position="300">
+          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
         </state>
       </provider>
     </entry>

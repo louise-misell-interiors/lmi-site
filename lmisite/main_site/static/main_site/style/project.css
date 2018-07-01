@@ -50,14 +50,15 @@
   transform: translateZ(-2px);
 }
 .col .imgs .slider .slider-inner .arrow {
-  font-size: 50px;
-  color: #000;
-  opacity: 0.7;
+  font-size: 30px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 15px 10px;
   font-weight: bold;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%) translateX(-105%);
-  left: 4%;
+  transform: translateY(-50%) translateX(-100%);
+  left: 5%;
   z-index: 99;
   transition: opacity 0.2s;
 }
@@ -65,7 +66,8 @@
   opacity: 1;
 }
 .col .imgs .slider .slider-inner .arrow:last-of-type {
-  left: 97.5%;
+  left: 95%;
+  transform: translateY(-50%);
 }
 .col .imgs .slider .slide {
   overflow: hidden;

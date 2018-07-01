@@ -8,7 +8,7 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Portfolio">
-    <meta property="og:image" content="{% if projects.first.image %}{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ projects.first.image.url }}{% endif %}">
+    <meta property="og:image" content="{% if projects.first.image %}http://louisemisellinteriors.co.uk/{{ projects.first.image.url }}{% endif %}">
 {% endblock %}
 
 {% block content %}

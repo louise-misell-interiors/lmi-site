@@ -10,7 +10,8 @@
     <meta property="og:type" content="profile" />
     <meta property="og:profile:first_name" content="Louise" />
     <meta property="og:profile:last_name" content="Louise" />
-    <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ sections.first.images.first.url }}">
+    <meta property="og:description" content="{{ sections.first.text }}">
+    <meta property="og:image" content="http://louisemisellinteriors.co.uk/{{ sections.first.images.first.url }}">
 {% endblock %}
 
 {% block content%}

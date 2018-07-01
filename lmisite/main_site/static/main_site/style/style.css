@@ -269,6 +269,11 @@ blockquote::after {
 
 img {
   max-width: 100%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
 }
 img.round {
   border-radius: 50%;

@@ -37,8 +37,7 @@
 }
 .services .row .col ul {
   list-style: none;
-  padding: 0;
-  padding-bottom: 20px;
+  padding: 0 0 35px;
 }
 .services .row .col ul li {
   text-align: center;
@@ -80,11 +79,10 @@
 }
 .services .row .col ul li:last-of-type {
   font-weight: bold;
-  bottom: 0;
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 20px;
 }
 
 .testimonials {

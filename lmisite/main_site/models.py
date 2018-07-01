@@ -114,6 +114,7 @@ class Project(models.Model):
     breif = models.TextField()
     outcome = models.TextField()
     image = models.ImageField(blank=True)
+    photography_credits = models.TextField(blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:

@@ -6,7 +6,7 @@
                 <div class="col">
                     <a href="{% url 'project' project.id %}">
                         <div class="img-box">
-                            <img src="{{ project.image }}" alt="">
+                            <img src="{{ project.image }}" alt="{{ project.image_alt_text }}">
                         </div>
                         <hr>
                         <h2>{{ project.name }}</h2>

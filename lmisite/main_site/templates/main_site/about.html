@@ -14,7 +14,7 @@
                             <div class="row">
                                 {% for img in section.images.all %}
                                     <div class="col">
-                                        <img src="{{ img.image.url }}" alt="">
+                                        <img src="{{ img.image.url }}" alt="{{ img.alt_text }}">
                                     </div>
                                 {% endfor %}
                             </div>
@@ -24,7 +24,7 @@
                             <div class="row">
                                 {% for img in section.images.all %}
                                     <div class="col">
-                                        <img src="{{ img.image.url }}" alt="">
+                                        <img src="{{ img.image.url }}" alt="{{ img.alt_text }}">
                                     </div>
                                 {% endfor %}
                             </div>

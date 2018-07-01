@@ -6,7 +6,7 @@
                 <span class="arrow"><i class="fas fa-chevron-left"></i></span>
                 {% for img in slider_imgs %}
                 <div class="slide{% if forloop.first %} is-active{% endif %}">
-                    <img src="{{ img.image.url }}" alt="">
+                    <img src="{{ img.image.url }}" alt="{{ img.alt_text }}">
                 </div>
                 {% endfor %}
                 <span class="arrow"><i class="fas fa-chevron-right"></i></span>

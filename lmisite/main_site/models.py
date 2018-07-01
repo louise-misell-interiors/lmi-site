@@ -44,6 +44,7 @@ class SiteConfig(SingletonModel):
 class MainSliderImage(models.Model):
     name = models.CharField(max_length=255, default="", blank=True)
     image = models.ImageField(blank=True)
+    alt_text = models.CharField(max_length=255, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
@@ -61,6 +62,7 @@ class MainSliderImage(models.Model):
 class Testimonial(models.Model):
     text = models.TextField()
     image = models.ImageField(blank=True)
+    image_alt_text = models.CharField(max_length=255, blank=True)
     client = models.CharField(max_length=255)
     featured = models.BooleanField(default=False, verbose_name="Featured on home page")
     not_on_testimonials = models.BooleanField(default=False, verbose_name="Not displayed on testimonials page")
@@ -114,6 +116,7 @@ class Project(models.Model):
     breif = models.TextField()
     outcome = models.TextField()
     image = models.ImageField(blank=True)
+    image_alt_text = models.CharField(max_length=255, blank=True)
     photography_credits = models.TextField(blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
@@ -132,6 +135,7 @@ class Project(models.Model):
 class ProjectBeforeImage(models.Model):
     project = models.ForeignKey(Project, related_name='before_images', on_delete=models.CASCADE)
     image = models.ImageField(blank=True)
+    alt_text = models.CharField(max_length=255, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
@@ -146,6 +150,7 @@ class ProjectBeforeImage(models.Model):
 class ProjectAfterImage(models.Model):
     project = models.ForeignKey(Project, related_name='after_images', on_delete=models.CASCADE)
     image = models.ImageField(blank=True)
+    alt_text = models.CharField(max_length=255, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
@@ -173,6 +178,7 @@ class AboutSection(models.Model):
 class AboutSectionImage(models.Model):
     section = models.ForeignKey(AboutSection, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(blank=True)
+    alt_text = models.CharField(max_length=255, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:

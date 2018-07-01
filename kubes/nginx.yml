@@ -6,12 +6,19 @@ metadata:
   labels:
     app: site
 spec:
-#  tls:
-#  - hosts:
-#    - louisemisellinteriors.co.uk
-#    secretName: site-nginx-tls
+  tls:
+  - hosts:
+    - louisemisellinteriors.co.uk
+    secretName: site-nginx-tls
   rules:
   - host: test.louisemisellinteriors.co.uk
+    http:
+      paths:
+      - path: "/"
+        backend:
+          serviceName: site-nginx
+          servicePort: 8000
+  - host: louisemisellinteriors.co.uk
     http:
       paths:
       - path: "/"
@@ -81,7 +88,7 @@ spec:
           path: kubes-pv
       containers:
       - name: nginx
-        image: evilben/lmi-nginx@sha256:3859c0bcf3d16011dd63cae2944c59cdedd2a56c7867bb5ea921770699be7027
+        image: evilben/lmi-nginx:(hash)
         ports:
         - containerPort: 8000
         imagePullPolicy: Always

@@ -113,10 +113,16 @@ class Project(models.Model):
     name = models.CharField(max_length=255)
     breif = models.TextField()
     outcome = models.TextField()
+    image = models.ImageField(blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
         ordering = ['order']
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = compress_img(self.image)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

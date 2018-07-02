@@ -485,6 +485,8 @@ img.round {
 @media (max-width: 800px) {
   .wrapper .content > div {
     padding: 0;
+    width: auto;
+    margin: 0 5%;
   }
 }
 .wrapper .content > div h1 {

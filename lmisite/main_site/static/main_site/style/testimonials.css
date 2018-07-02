@@ -1,6 +1,11 @@
 .row {
   align-items: center;
 }
+@media (max-width: 800px) {
+  .row {
+    padding: 25px !important;
+  }
+}
 .row img {
   max-height: 30vh;
   margin: 0 auto;

@@ -138,6 +138,8 @@ img {
 
       @media (max-width: $media-small) {
         padding: 0;
+        width: auto;
+        margin: 0 5%;
       }
 
       h1 {

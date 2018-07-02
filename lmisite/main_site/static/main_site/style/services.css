@@ -6,6 +6,11 @@
   background: #eee;
   margin: 1%;
 }
+@media (max-width: 800px) {
+  .content .steps .step {
+    margin: 1% 0;
+  }
+}
 .content .steps .step h2 {
   text-align: center;
   margin: 12.5px 0;

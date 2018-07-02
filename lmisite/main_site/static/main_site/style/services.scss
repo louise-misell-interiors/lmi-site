@@ -10,6 +10,10 @@
       background: #eee;
       margin: $column-gutter;
 
+      @media (max-width: $media-small) {
+        margin: $column-gutter 0;
+      }
+
       h2 {
         text-align: center;
         margin: $content-padding/2 0;

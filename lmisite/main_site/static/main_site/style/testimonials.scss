@@ -3,6 +3,10 @@
 .row {
   align-items: center;
 
+  @media (max-width: $media-small) {
+    padding: $content-padding !important;
+  }
+
   img {
     max-height: 30vh;
     margin: 0 auto;

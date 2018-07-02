@@ -2,6 +2,11 @@
   padding: 25px;
   margin: 0 1%;
 }
+@media (max-width: 800px) {
+  .row .col {
+    margin: 0;
+  }
+}
 .row .col h2 {
   text-align: center;
   margin: 0;

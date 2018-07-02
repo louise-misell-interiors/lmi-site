@@ -22,11 +22,11 @@
                     <span class="by-line">{{ testimonial.client }}</span>
                 </div>
                 <div class="right">
-                    <img src="{{ testimonial.image.url }}" alt="{{ testimonial.image_alt_text }}">
+                    <img src="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}" alt="{{ testimonial.image_alt_text }}">
                 </div>
             {% else %}
                 <div class="left">
-                    <img src="{{ testimonial.image.url }}" alt="{{ testimonial.image_alt_text }}">
+                    <img src="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}" alt="{{ testimonial.image_alt_text }}">
                 </div>
                 <div class="right">
                     <blockquote>{{ testimonial.text }}</blockquote>

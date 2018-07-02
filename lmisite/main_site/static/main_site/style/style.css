@@ -117,7 +117,7 @@
 @media (max-width: 700px) {
   .nav .logo {
     order: 1;
-    height: 75px;
+    height: 115.3846153846px;
   }
   .nav .logo img {
     transform: none;
@@ -200,6 +200,11 @@
 @media (max-width: 1200px) {
   .nav .nav-left .logos img {
     max-height: 37.5px;
+  }
+}
+@media (max-width: 700px) {
+  .nav .nav-left .logos {
+    display: none;
   }
 }
 @media (max-width: 700px) {

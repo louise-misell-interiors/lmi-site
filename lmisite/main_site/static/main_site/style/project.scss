@@ -5,9 +5,13 @@
   padding-bottom: 0 !important;
 }
 
-.row.credits, .row.credits .col {
+.row.credits {
   padding: 0 50px !important;
   text-align: right;
+
+  &.col {
+    padding: 0 2vw !important;
+  }
 }
 
 .row.text {

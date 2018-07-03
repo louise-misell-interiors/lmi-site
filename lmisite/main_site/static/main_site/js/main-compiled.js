@@ -1,3 +1,53 @@
-"use strict";function nextSlide(a){var b=a.find(".slide.is-active"),c=b.next(".slide");0===c.length&&(c=a.find(".slide:first")),b.removeClass("is-active"),c.addClass("is-active")}function prevSlide(a){var b=a.find(".slide.is-active"),c=b.prev(".slide");0===c.length&&(c=a.find(".slide:last")),b.removeClass("is-active"),c.addClass("is-active")}$(function(){var a=$(".slider");a.find(".arrow:first").on("click",function(){prevSlide($(this).parent())}),a.find(".arrow:last").on("click",function(){nextSlide($(this).parent())});var b=$(".nav"),c=b.find(".menu-button"),d=b.find(".nav-left > :not(.logos)"),e=b.find(".nav-right > :not(.socials)");c.on("click",function(){b.toggleClass("show-menu");var a=d.outerHeight();e.css("top",a),c.toggleClass("fa-bars"),c.toggleClass("fa-times")})});
+"use strict";
+
+function nextSlide(slider) {
+    var $slide = slider.find(".slide.is-active");
+    var $nextSlide = $slide.next(".slide");
+
+    if ($nextSlide.length === 0) {
+        $nextSlide = slider.find(".slide:first");
+    }
+
+    $slide.removeClass("is-active");
+    $nextSlide.addClass("is-active");
+}
+
+function prevSlide(slider) {
+    var $slide = slider.find(".slide.is-active");
+    var $prevSlide = $slide.prev(".slide");
+
+    if ($prevSlide.length === 0) {
+        $prevSlide = slider.find(".slide:last");
+    }
+
+    $slide.removeClass("is-active");
+    $prevSlide.addClass("is-active");
+}
+
+$(function () {
+    var $slider = $(".slider");
+
+    $slider.find(".arrow:first").on("click", function () {
+        prevSlide($(this).parent());
+    });
+
+    $slider.find(".arrow:last").on("click", function () {
+        console.log($(this));
+        nextSlide($(this).parent());
+    });
+
+    var $menu = $(".nav");
+    var $menuButton = $menu.find(".menu-button");
+    var $menuLeft = $menu.find(".nav-left > :not(.logos)");
+    var $menuRight = $menu.find(".nav-right > :not(.socials)");
+
+    $menuButton.on("click", function () {
+        $menu.toggleClass("show-menu");
+        var top = $menuLeft.outerHeight();
+        $menuRight.css("top", top);
+        $menuButton.toggleClass("fa-bars");
+        $menuButton.toggleClass("fa-times");
+    });
+});
 
 //# sourceMappingURL=main-compiled.js.map

@@ -117,9 +117,10 @@
 }
 .testimonials .slider .slider-inner .slide.is-active ~ .slide {
   left: 125%;
+  display: none;
 }
 .testimonials .slider .slider-inner .slide.is-active + .slide {
-  transform: translateZ(-2px);
+  display: block;
 }
 .testimonials .slider .slider-inner .arrow {
   font-size: 30px;
@@ -168,9 +169,10 @@
   }
   .testimonials .slider .slider-inner .slide.is-active ~ .slide {
     left: 120%;
+    display: none;
   }
   .testimonials .slider .slider-inner .slide.is-active + .slide {
-    transform: translateZ(-2px);
+    display: block;
   }
   .testimonials .slider .slider-inner .arrow {
     font-size: 30px;
@@ -321,9 +323,10 @@
 }
 .main-slider .slider .slider-inner .slide.is-active ~ .slide {
   left: 67.5%;
+  display: none;
 }
 .main-slider .slider .slider-inner .slide.is-active + .slide {
-  transform: translateZ(-2px);
+  display: block;
 }
 .main-slider .slider .slider-inner .arrow {
   font-size: 30px;

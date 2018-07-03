@@ -52,9 +52,10 @@
 }
 .col .imgs .slider .slider-inner .slide.is-active ~ .slide {
   left: 95%;
+  display: none;
 }
 .col .imgs .slider .slider-inner .slide.is-active + .slide {
-  transform: translateZ(-2px);
+  display: block;
 }
 .col .imgs .slider .slider-inner .arrow {
   font-size: 30px;

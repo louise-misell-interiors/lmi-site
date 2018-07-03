@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'main_site',
     'bookings',
     'graphene_django',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [

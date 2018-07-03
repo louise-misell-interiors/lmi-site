@@ -5,6 +5,10 @@
   padding-top: 0 !important;
 }
 
+.row.text {
+  font-size: 20px;
+}
+
 .col h2 {
   font-size: 35px;
   margin: 0 0 29px;

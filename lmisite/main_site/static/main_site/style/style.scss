@@ -74,6 +74,7 @@ img {
   flex-wrap: wrap;
 
   .left, .right, .col {
+    flex-basis: 0;
     flex-shrink: 0;
     padding: $column-gutter;
 

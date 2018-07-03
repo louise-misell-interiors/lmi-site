@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {fetchGQL} from "./main";
+import {Loader} from "./Loader";
 
 class Day extends Component {
     render() {
         const date = new Date(this.props.date);
 
         return (
-          <div>
-              <h2>{date.toDateString()}</h2>
-              <button>Select</button>
-          </div>
+            <div>
+                <h2>{date.toDateString()}</h2>
+                <button>Select</button>
+            </div>
         );
     }
 }
@@ -19,7 +20,8 @@ export class DaySelect extends Component {
         super(props);
 
         this.state = {
-          currentDays: [],
+            currentDays: [],
+            loading: true,
         };
 
         this.nextDays = this.nextDays.bind(this);
@@ -32,7 +34,7 @@ export class DaySelect extends Component {
 
     nextDays() {
         if (this.state.currentDays.length !== 0) {
-            const lastDay = new Date(this.state.currentDays[this.state.currentDays.length-1]);
+            const lastDay = new Date(this.state.currentDays[this.state.currentDays.length - 1]);
             lastDay.setDate(lastDay.getDate() + 1);
             this.getNewDays(lastDay)
         }
@@ -48,17 +50,21 @@ export class DaySelect extends Component {
 
     getNewDays(start) {
         const self = this;
+        this.setState({
+            loading: true,
+        });
         fetchGQL(
-        `query ($id: ID!, $day: Date!) {
+            `query ($id: ID!, $day: Date!) {
             bookingType(id: $id) {
                 bookingDays(start: $day, num: 5)
             }
         }`,
-        {id: this.props.type.id, day: start.toISOString().split("T")[0]})
-        .then(res => res.json())
-        .then(res => self.setState({
-            currentDays: res.data.bookingType.bookingDays
-        }));
+            {id: this.props.type.id, day: start.toISOString().split("T")[0]})
+            .then(res => res.json())
+            .then(res => self.setState({
+                currentDays: res.data.bookingType.bookingDays,
+                loading: false,
+            }));
     }
 
 
@@ -69,6 +75,24 @@ export class DaySelect extends Component {
             </div>
         );
 
+        let content = null;
+
+        if (!this.state.loading) {
+            content = [
+                <div className="col slider-button" onClick={this.prevDays} key="prev">
+                    <i className="fas fa-chevron-left"/>
+                </div>,
+                days,
+                <div className="col slider-button" onClick={this.nextDays} key="next">
+                    <i className="fas fa-chevron-right"/>
+                </div>,
+            ];
+        } else {
+            content = <div className="col">
+                <Loader/>
+            </div>
+        }
+
         return (
             <div className="back-wrapper">
                 <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
@@ -77,13 +101,7 @@ export class DaySelect extends Component {
                 <hr/>
                 <h2>Select a day</h2>
                 <div className="row">
-                    <div className="col slider-button" onClick={this.prevDays}>
-                        <i className="fas fa-chevron-left"/>
-                    </div>
-                    {days}
-                    <div className="col slider-button" onClick={this.nextDays}>
-                        <i className="fas fa-chevron-right"/>
-                    </div>
+                    {content}
                 </div>
             </div>
         );

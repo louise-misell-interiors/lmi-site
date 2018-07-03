@@ -14,8 +14,7 @@ p, h1, h2 {
   margin: 1%;
 }
 .row .col.slider-button {
-  flex-basis: 0;
-  flex-shrink: 1;
+  flex-grow: 0;
   background: 0;
   font-size: 30px;
   position: relative;

@@ -16,8 +16,9 @@ class BookingType(DjangoObjectType):
     def resolve_booking_days(self, info, **kwargs):
         days = []
         day = kwargs.get("start")
-        for i in range(kwargs.get("num")):
-            days.append(day)
+        while len(days) < kwargs.get("num"):
+            if day >= datetime.datetime.now().date():
+                days.append(day)
             day = day + datetime.timedelta(days=1)
 
         return days

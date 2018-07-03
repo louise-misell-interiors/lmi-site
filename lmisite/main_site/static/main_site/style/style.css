@@ -420,6 +420,7 @@ img.round {
   flex-wrap: wrap;
 }
 .row .left, .row .right, .row .col {
+  flex-basis: 0;
   flex-shrink: 0;
   padding: 1%;
 }

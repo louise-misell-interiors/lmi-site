@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {fetchGQL} from "./main";
+import {Loader} from "./Loader";
 
 
 class BookingType extends React.Component {
@@ -17,7 +18,10 @@ class BookingType extends React.Component {
 export class BookingTypes extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {types: []}
+        this.state = {
+            types: [],
+            loading: true,
+        }
     }
 
     componentWillMount() {
@@ -32,16 +36,26 @@ export class BookingTypes extends React.Component {
             }`)
             .then(res => res.json())
             .then(res => self.setState({
-                types: res.data.bookingTypes
+                types: res.data.bookingTypes,
+                loading: false
             }));
     }
 
     render() {
-        const types = this.state.types.map(type =>
-            <div className="col" key={type.id}>
-                <BookingType data={type} onClick={() => {this.props.onSelect(type)}}/>
+        let types = null;
+        if (!this.state.loading) {
+            types = this.state.types.map(type =>
+                <div className="col" key={type.id}>
+                    <BookingType data={type} onClick={() => {
+                        this.props.onSelect(type)
+                    }}/>
+                </div>
+            );
+        } else {
+            types = <div className="col">
+                <Loader />
             </div>
-        );
+        }
 
         return (
             <div>

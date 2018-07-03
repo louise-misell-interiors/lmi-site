@@ -1,0 +1,44 @@
+@import url('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
+
+h1, h2 {
+  padding: 15px;
+  margin: 0;
+}
+
+p, h1, h2 {
+  text-align: center;
+  width: 100%;
+}
+
+
+.row {
+  .col {
+    background: #eee;
+    margin: 1%;
+
+    &.slider-button {
+      flex-basis: 0;
+      flex-shrink: 1;
+      background: 0;
+      font-size: 30px;
+      position: relative;
+
+      i {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+.back-wrapper {
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  font-size: 35px;
+}

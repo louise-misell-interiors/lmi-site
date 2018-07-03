@@ -1,3 +1,10 @@
+.row.credits {
+  padding: 0 !important;
+}
+.row.credits ~ .row {
+  padding-top: 0 !important;
+}
+
 .col h2 {
   font-size: 35px;
   margin: 0 0 29px;

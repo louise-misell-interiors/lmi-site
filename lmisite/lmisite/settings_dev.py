@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'adminsortable2',
     'main_site',
+    'bookings',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -153,3 +155,7 @@ LOGGING = {
 FILE_UPLOAD_PERMISSIONS = 0o644
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+GRAPHENE = {
+    'SCHEMA': 'bookings.schema.schema'
+}

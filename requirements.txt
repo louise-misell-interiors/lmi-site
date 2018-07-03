@@ -5,3 +5,4 @@ mysqlclient
 django-phonenumber-field
 Pillow
 django-admin-sortable2
+graphene-django>=2.0

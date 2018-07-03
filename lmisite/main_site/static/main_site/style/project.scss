@@ -1,6 +1,14 @@
 @import "inc/slider";
 @import "inc/bar";
 
+.row.credits {
+  padding: 0 !important;
+
+  & ~ .row {
+    padding-top: 0 !important;
+  }
+}
+
 .col {
   h2 {
     font-size: 35px;

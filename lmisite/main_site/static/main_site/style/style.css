@@ -347,7 +347,6 @@ input, textarea, button {
   width: 100%;
   border: none;
   padding: 15px;
-  margin: 15px;
   font-size: 20px;
   border-radius: 4px;
   box-shadow: 0 0 2px #2d76c4;
@@ -421,7 +420,6 @@ img.round {
   flex-wrap: wrap;
 }
 .row .left, .row .right, .row .col {
-  flex-basis: 0;
   flex-shrink: 0;
   padding: 1%;
 }

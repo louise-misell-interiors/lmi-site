@@ -7,10 +7,10 @@
 
 .row.credits {
   padding: 0 50px !important;
-  text-align: right;
 
-  &.col {
+  & .col {
     padding: 0 2vw !important;
+    text-align: right;
   }
 }
 

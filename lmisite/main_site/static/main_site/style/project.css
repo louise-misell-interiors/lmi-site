@@ -4,10 +4,10 @@
 
 .row.credits {
   padding: 0 50px !important;
-  text-align: right;
 }
-.row.credits.col {
+.row.credits .col {
   padding: 0 2vw !important;
+  text-align: right;
 }
 
 .row.text {

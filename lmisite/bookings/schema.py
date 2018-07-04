@@ -2,13 +2,12 @@ from graphene_django import DjangoObjectType
 import datetime
 import graphene.types.datetime
 from django.utils import timezone
-from graphql import GraphQLError
 import pytz
 from django.core.exceptions import ValidationError
 from . import models
 
 
-def get_booking_times(date, booking):
+def get_booking_times(date: datetime.date, booking: models.BookingType):
     tz = pytz.timezone(booking.timezone)
 
     times = []
@@ -26,33 +25,41 @@ def get_booking_times(date, booking):
             valid = False
 
         passes_rules = False
-        for rule in rules:
-            if rule.start_date > cur_time.date():
-                continue
-            if not rule.recurring and rule.end_date < cur_time.date():
-                continue
+        if valid:
+            for rule in rules:
+                if rule.start_date > cur_time.date():
+                    continue
+                if not rule.recurring and rule.end_date < cur_time.date():
+                    continue
 
-            if not rule.monday and cur_time.weekday() == 0:
-                continue
-            if not rule.tuesday and cur_time.weekday() == 1:
-                continue
-            if not rule.wednesday and cur_time.weekday() == 2:
-                continue
-            if not rule.thursday and cur_time.weekday() == 3:
-                continue
-            if not rule.friday and cur_time.weekday() == 4:
-                continue
-            if not rule.saturday and cur_time.weekday() == 5:
-                continue
-            if not rule.sunday and cur_time.weekday() == 6:
-                continue
+                if not rule.monday and cur_time.weekday() == 0:
+                    continue
+                if not rule.tuesday and cur_time.weekday() == 1:
+                    continue
+                if not rule.wednesday and cur_time.weekday() == 2:
+                    continue
+                if not rule.thursday and cur_time.weekday() == 3:
+                    continue
+                if not rule.friday and cur_time.weekday() == 4:
+                    continue
+                if not rule.saturday and cur_time.weekday() == 5:
+                    continue
+                if not rule.sunday and cur_time.weekday() == 6:
+                    continue
 
-            if not (rule.start_time <= cur_time.time() and rule.end_time >= (cur_time + booking.length).time()):
-                continue
+                if not (rule.start_time <= cur_time.time() and rule.end_time >= (cur_time + booking.length).time()):
+                    continue
 
-            passes_rules = True
-        if not passes_rules:
-            valid = False
+                passes_rules = True
+            if not passes_rules:
+                valid = False
+
+        if valid:
+            for b in models.Booking.objects.filter(time__date=cur_time.date()):
+                if b.time <= cur_time < (b.time + b.type.length + booking.buffer_before_event):
+                    valid = False
+                if b.time < (cur_time + booking.length + booking.buffer_after_event) < (b.time + b.type.length):
+                    valid = False
 
         if valid:
             times.append(cur_time.time())
@@ -137,6 +144,7 @@ class CreateBooking(graphene.Mutation):
 
     def mutate(self, info, id, date, time, name, email, phone, questions):
         booking_type = models.BookingType.objects.get(pk=id)
+        tz = pytz.timezone(booking_type.timezone)
         booking_times = get_booking_times(date, booking_type)
 
         if time not in booking_times:
@@ -159,7 +167,7 @@ class CreateBooking(graphene.Mutation):
             return CreateBooking(ok=False, error=map(lambda error: error[0].title() + ": " + error[1][0], e))
         customer.save()
 
-        booking.time = datetime.datetime.combine(date, time)
+        booking.time = timezone.make_aware(datetime.datetime.combine(date, time), tz)
         booking.type = booking_type
         booking.customer = customer
 

@@ -6,13 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/Conformation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/bookings/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/CustomerDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/CustomerDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main_production.js" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main_production.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main_production.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main_production.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,7 +72,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomerDetails.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CustomerDetails.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/bookings/static/bookings/js/CustomerDetails.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
@@ -150,11 +144,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schema.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="schema.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lmisite/bookings/schema.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="153" column="30" selection-start-line="153" selection-start-column="30" selection-end-line="153" selection-end-column="30" />
+            <state relative-caret-position="435">
+              <caret line="59" column="79" selection-start-line="59" selection-start-column="79" selection-end-line="59" selection-end-column="79" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -249,10 +243,10 @@
         <option value="$PROJECT_DIR$/lmisite/bookings/models.py" />
         <option value="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/TimeSelect.js" />
         <option value="$PROJECT_DIR$/kubes/nginx.yml" />
-        <option value="$PROJECT_DIR$/lmisite/bookings/schema.py" />
         <option value="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/Conformation.js" />
         <option value="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main.js" />
         <option value="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/CustomerDetails.js" />
+        <option value="$PROJECT_DIR$/lmisite/bookings/schema.py" />
       </list>
     </option>
   </component>
@@ -920,16 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/bookings/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="99" column="33" selection-start-line="99" selection-start-column="33" selection-end-line="99" selection-end-column="33" />
-          <folding>
-            <element signature="e#1#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kubes/nginx.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -941,16 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/bookings/schema.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="153" column="30" selection-start-line="153" selection-start-column="30" selection-end-line="153" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -980,6 +954,26 @@
           <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/bookings/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="99" column="33" selection-start-line="99" selection-start-column="33" selection-end-line="99" selection-end-column="33" />
+          <folding>
+            <element signature="e#1#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/bookings/schema.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="59" column="79" selection-start-line="59" selection-start-column="79" selection-end-line="59" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>

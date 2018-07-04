@@ -3,6 +3,7 @@ import datetime
 import pytz
 from django.core.validators import ValidationError
 from phonenumber_field.modelfields import PhoneNumberField
+from solo.models import SingletonModel
 
 
 class BookingType(models.Model):
@@ -24,7 +25,7 @@ class BookingType(models.Model):
 
     def clean(self):
         try:
-            _ = pytz.timezone(self.timezone)
+            pytz.timezone(self.timezone)
         except pytz.UnknownTimeZoneError:
             raise ValidationError("Invalid timezone")
 
@@ -101,3 +102,10 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.type.name} with {self.customer.name}"
+
+
+class Config(SingletonModel):
+    google_credentials = models.TextField()
+
+    def __str__(self):
+        return "Config"

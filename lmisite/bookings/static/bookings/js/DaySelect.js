@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import dateformat from 'dateformat';
 import {fetchGQL} from "./main";
 import {Loader} from "./Loader";
 
@@ -8,11 +9,7 @@ class Day extends Component {
 
         return (
             <div>
-                <h2>{date.toLocaleDateString("en-US",
-                    {
-                        weekday: "short",
-                        day: "numeric",
-                    })}</h2>
+                <h2>{dateformat(date, "ddd d")}</h2>
                 <button onClick={() => {this.props.onClick(date)}}>Select</button>
             </div>
         );

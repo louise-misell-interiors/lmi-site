@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import dateformat from 'dateformat';
 import {Loader} from "./Loader";
 import {fetchGQL} from "./main";
 
@@ -8,15 +9,7 @@ export class BookingInfo extends Component {
             <div className="col">
                 <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.description}</p>
-                <h3>{this.props.time.toLocaleDateString("en-US",
-                    {
-                        day: "numeric",
-                        month: "short",
-                        hour: "numeric",
-                        minute: "numeric",
-                        year: "numeric",
-                        weekday: "long"
-                    })}, {this.props.timezone}</h3>
+                <h3>{dateformat(this.props.time, "ddd dd mmmm yyyy hh:MM TT")}</h3>
             </div>
         )
     }
@@ -145,7 +138,7 @@ export class CustomerDetails extends Component {
             }
 
             disp = [
-                <BookingInfo type={this.props.type} time={date} timezone={this.props.timezone} key="1"/>,
+                <BookingInfo type={this.props.type} time={date} key="1"/>,
                 <div className="col" key="2">
                     {error}
                     <div className="row">

@@ -7,3 +7,7 @@ Pillow
 django-admin-sortable2
 graphene-django>=2.0
 pytz
+google-api-python-client
+google-auth
+google-auth-oauthlib
+google-auth-httplib2

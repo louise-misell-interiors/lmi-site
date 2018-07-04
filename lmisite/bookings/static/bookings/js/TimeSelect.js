@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import dateformat from 'dateformat';
 import {fetchGQL} from "./main";
 import {Loader} from "./Loader";
 
@@ -6,7 +7,7 @@ class Time extends Component {
     render() {
         return (
             <div className="time">
-                <button onClick={this.props.onClick}>{this.props.time}</button>
+                <button onClick={this.props.onClick}>{dateformat(this.props.time, "hh:MM TT")}</button>
             </div>
         );
     }
@@ -18,7 +19,6 @@ export class TimeSelect extends Component {
 
         this.state = {
             currentTimes: [],
-            timezone: "",
             loading: true,
         };
     }
@@ -35,7 +35,6 @@ export class TimeSelect extends Component {
         fetchGQL(
             `query ($id: ID!, $day: Date!) {
                 bookingType(id: $id) {
-                    timezone
                     bookingTimes(date: $day)
                 }
             }`,
@@ -43,7 +42,6 @@ export class TimeSelect extends Component {
             .then(res => res.json())
             .then(res => self.setState({
                 currentTimes: res.data.bookingType.bookingTimes,
-                timezone: res.data.bookingType.timezone,
                 loading: false,
             }));
     }
@@ -52,8 +50,8 @@ export class TimeSelect extends Component {
     render() {
         const times = this.state.currentTimes.map((time, i) => {
             const parsedTime = new Date('1970-01-01T' + time + 'Z');
-            return <Time time={time} key={i} onClick={() => {
-                this.props.onSelect(parsedTime, this.state.timezone)
+            return <Time time={parsedTime} key={i} onClick={() => {
+                this.props.onSelect(parsedTime)
             }}/>
         });
 
@@ -78,7 +76,6 @@ export class TimeSelect extends Component {
                 <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
                 <h1>{date.toDateString()}</h1>
                 <p>{this.props.type.name}</p>
-                <h5>All times are {this.state.timezone}</h5>
                 <hr/>
                 <h2>Select a time</h2>
                 {content}

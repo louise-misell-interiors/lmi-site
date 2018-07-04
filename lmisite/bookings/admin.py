@@ -1,6 +1,7 @@
 from django.contrib import admin
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
-from .models import *
+from solo.admin import SingletonModelAdmin
+from .forms import *
 
 
 class BookingRuleInline(SortableInlineAdminMixin, admin.StackedInline):
@@ -40,3 +41,8 @@ class BookingInline(admin.StackedInline):
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     inlines = [BookingInline]
+
+
+@admin.register(Config)
+class ConfigAdmin(SingletonModelAdmin):
+    form = ConfigForm

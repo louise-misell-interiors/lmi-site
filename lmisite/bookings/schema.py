@@ -13,11 +13,11 @@ def get_booking_times(date: datetime.date, booking: models.BookingType):
     tz = pytz.timezone(booking.timezone)
 
     times = []
-    cur_time = timezone.make_aware(datetime.datetime.combine(date, datetime.datetime.min.time())
-                                   .replace(hour=0, minute=0, second=0, microsecond=0), tz)
+    cur_time = datetime.datetime.combine(date, datetime.datetime.min.time())
 
-    now = timezone.now()
+    now = datetime.datetime.now()
     rules = booking.booking_rules.all()
+    bookings_on_day = models.Booking.objects.filter(time__date=cur_time.date())
     while cur_time.time() <= datetime.time(23):
         valid = True
 
@@ -49,7 +49,13 @@ def get_booking_times(date: datetime.date, booking: models.BookingType):
                 if not rule.sunday and cur_time.weekday() == 6:
                     continue
 
-                if not (rule.start_time <= cur_time.time() and rule.end_time >= (cur_time + booking.length).time()):
+                start_time = timezone.make_aware(
+                    datetime.datetime.combine(datetime.datetime(1970, 1, 1), rule.start_time), tz)\
+                    .astimezone(pytz.utc).time()
+                end_time = timezone.make_aware(
+                    datetime.datetime.combine(datetime.datetime(1970, 1, 1), rule.end_time), tz)\
+                    .astimezone(pytz.utc).time()
+                if not (start_time <= cur_time.time() and end_time >= (cur_time + booking.length).time()):
                     continue
 
                 passes_rules = True
@@ -57,14 +63,18 @@ def get_booking_times(date: datetime.date, booking: models.BookingType):
                 valid = False
 
         if valid:
-            for b in models.Booking.objects.filter(time__date=cur_time.date()):
-                if b.time <= cur_time < (
-                        b.time + b.type.length + max(booking.buffer_before_event, b.type.buffer_after_event)):
-                    valid = False
-                if b.time < (
-                        cur_time + booking.length + max(booking.buffer_after_event, b.type.buffer_before_event)) < (
-                        b.time + b.type.length):
-                    valid = False
+            if booking.max_events_per_day is not None and len(bookings_on_day) >= booking.max_events_per_day:
+                valid = False
+            else:
+                for b in bookings_on_day:
+                    time = timezone.make_naive(b.time)
+                    if time <= cur_time < (
+                            time + b.type.length + max(booking.buffer_before_event, b.type.buffer_after_event)):
+                        valid = False
+                    if time < (
+                            cur_time + booking.length + max(booking.buffer_after_event, b.type.buffer_before_event)) < (
+                            time + b.type.length):
+                        valid = False
 
         if valid:
             times.append(cur_time.time())

@@ -52,3 +52,8 @@ class MainSliderImageAdmin(SortableAdminMixin, admin.ModelAdmin):
 @admin.register(SiteConfig)
 class SiteConfigAdmin(SingletonModelAdmin):
     pass
+
+
+admin.site.site_header = "Louise Misell Interiors"
+admin.site.site_title = "Louise Misell Interiors"
+admin.site.index_title = ""

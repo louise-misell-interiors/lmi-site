@@ -13,7 +13,7 @@ export class Conformation extends Component {
                 <h1>Thank you</h1>
                 <hr/>
                 <div className="row">
-                    <BookingInfo type={this.props.type} time={date} timezone={this.props.timezone}/>
+                    <BookingInfo type={this.props.type} time={date}/>
                 </div>
             </div>
         )

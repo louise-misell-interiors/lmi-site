@@ -26,7 +26,6 @@ class BookingApp extends Component {
             selectedType: null,
             selectedDay: null,
             selectedTime: null,
-            timezone: null,
             complete: false,
         };
 
@@ -49,10 +48,9 @@ class BookingApp extends Component {
         })
     }
 
-    selectTime(time, timezone) {
+    selectTime(time) {
         this.setState({
             selectedTime: time,
-            timezone: timezone
         })
     }
 
@@ -73,7 +71,7 @@ class BookingApp extends Component {
                                }}/>
         } else if (!this.state.complete) {
             disp = <CustomerDetails type={this.state.selectedType} date={this.state.selectedDay}
-                                    time={this.state.selectedTime} timezone={this.state.timezone}
+                                    time={this.state.selectedTime}
                                     onBack={() => {
                                         this.setState({selectedTime: null})
                                     }}
@@ -83,7 +81,7 @@ class BookingApp extends Component {
             />
         } else {
             disp = <Conformation type={this.state.selectedType} date={this.state.selectedDay}
-                                 time={this.state.selectedTime} timezone={this.state.timezone}/>
+                                 time={this.state.selectedTime}/>
         }
 
         return disp;

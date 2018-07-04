@@ -8,7 +8,11 @@ class Day extends Component {
 
         return (
             <div>
-                <h2>{date.toDateString()}</h2>
+                <h2>{date.toLocaleDateString("en-US",
+                    {
+                        weekday: "short",
+                        day: "numeric",
+                    })}</h2>
                 <button onClick={() => {this.props.onClick(date)}}>Select</button>
             </div>
         );

@@ -28,9 +28,11 @@ export class CustomerDetails extends Component {
 
         this.state = {
             questions: null,
+            questionAnswers: {},
         };
 
         this.scheduleEvent = this.scheduleEvent.bind(this);
+        this.setQuestionAnswer = this.setQuestionAnswer.bind(this);
     }
 
     componentWillMount() {
@@ -54,6 +56,7 @@ export class CustomerDetails extends Component {
             .then(res => res.json())
             .then(res => self.setState({
                 questions: res.data.bookingType.questions,
+                questionAnswers: {},
             }));
     }
 
@@ -87,6 +90,14 @@ export class CustomerDetails extends Component {
             })
     }
 
+    setQuestionAnswer(question, value) {
+        this.setState({
+            questionAnswers: {
+                question: value
+            }
+        })
+    }
+
     render() {
         const date = new Date(this.props.date);
         date.setHours(this.props.time.getHours());
@@ -103,9 +114,13 @@ export class CustomerDetails extends Component {
             const questions = this.state.questions.map(question => {
                 let input = null;
                 if (question.questionType === "T") {
-                    input = <input type="text" placeholder={question.question} required={question.required}/>
+                    input = <input type="text" placeholder={question.question} required={question.required}
+                                   onChange={val => this.setQuestionAnswer(question.id, val)}
+                                   value={this.state.questionAnswers[question.id]}/>
                 } else if (question.questionType === "M") {
-                    input = <textarea placeholder={question.question} required={question.required} rows="7"/>
+                    input = <textarea placeholder={question.question} required={question.required} rows="7"
+                                      onChange={val => this.setQuestionAnswer(question.id, val)}
+                                      value={this.state.questionAnswers[question.id]}/>
                 }
 
                 return <div className="row" key={question.id}>

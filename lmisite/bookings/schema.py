@@ -4,6 +4,8 @@ import graphene.types.datetime
 from django.utils import timezone
 import pytz
 from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
+from main_site.models import SiteConfig
 from . import models
 
 
@@ -56,9 +58,12 @@ def get_booking_times(date: datetime.date, booking: models.BookingType):
 
         if valid:
             for b in models.Booking.objects.filter(time__date=cur_time.date()):
-                if b.time <= cur_time < (b.time + b.type.length + booking.buffer_before_event):
+                if b.time <= cur_time < (
+                        b.time + b.type.length + max(booking.buffer_before_event, b.type.buffer_after_event)):
                     valid = False
-                if b.time < (cur_time + booking.length + booking.buffer_after_event) < (b.time + b.type.length):
+                if b.time < (
+                        cur_time + booking.length + max(booking.buffer_after_event, b.type.buffer_before_event)) < (
+                        b.time + b.type.length):
                     valid = False
 
         if valid:
@@ -176,6 +181,14 @@ class CreateBooking(graphene.Mutation):
         except ValidationError as e:
             return CreateBooking(ok=False, error=map(lambda error: error[0].title() + ": " + error[1][0], e))
         booking.save()
+
+        subject = f"{name} has booked {booking_type.name}"
+        time = datetime.datetime.combine(date, time).strftime("%I:%M%p %a %d %b %Y")
+        body = f"Name: {name}\r\nEmail: {email}\r\nPhone: {phone}\r\n\r\n---\r\n\r\n{booking_type.name}\r\nTime: {time}"
+
+        config = SiteConfig.objects.first()
+        recipients = [config.email]
+        send_mail(subject, body, email, recipients)
 
         return CreateBooking(ok=True, error="")
 

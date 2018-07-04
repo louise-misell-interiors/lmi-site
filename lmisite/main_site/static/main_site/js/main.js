@@ -30,7 +30,6 @@ $(function () {
     });
 
     $slider.find(".arrow:last").on("click", function () {
-        console.log($(this));
         nextSlide($(this).parent());
     });
 

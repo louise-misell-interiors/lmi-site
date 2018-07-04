@@ -9,7 +9,7 @@ class Day extends Component {
         return (
             <div>
                 <h2>{date.toDateString()}</h2>
-                <button>Select</button>
+                <button onClick={() => {this.props.onClick(date)}}>Select</button>
             </div>
         );
     }
@@ -69,24 +69,31 @@ export class DaySelect extends Component {
 
 
     render() {
+        const self = this;
         const days = this.state.currentDays.map((day, i) =>
             <div className="col" key={i}>
-                <Day date={day}/>
+                <Day date={day} onClick={self.props.onSelect}/>
             </div>
         );
 
         let content = null;
 
         if (!this.state.loading) {
-            content = [
-                <div className="col slider-button" onClick={this.prevDays} key="prev">
-                    <i className="fas fa-chevron-left"/>
-                </div>,
-                days,
-                <div className="col slider-button" onClick={this.nextDays} key="next">
-                    <i className="fas fa-chevron-right"/>
-                </div>,
-            ];
+            if (days.length !== 0) {
+                content = [
+                    <div className="col slider-button" onClick={this.prevDays} key="prev">
+                        <i className="fas fa-chevron-left"/>
+                    </div>,
+                    days,
+                    <div className="col slider-button" onClick={this.nextDays} key="next">
+                        <i className="fas fa-chevron-right"/>
+                    </div>,
+                ];
+            } else {
+                content = <div className="col">
+                    <h3>No days available</h3>
+                </div>
+            }
         } else {
             content = <div className="col">
                 <Loader/>

@@ -6,10 +6,10 @@ metadata:
   labels:
     app: site
 spec:
-  tls:
-  - hosts:
-    - louisemisellinteriors.co.uk
-    secretName: site-nginx-tls
+#  tls:
+#  - hosts:
+#    - louisemisellinteriors.co.uk
+#    secretName: site-nginx-tls
   rules:
   - host: test.louisemisellinteriors.co.uk
     http:
@@ -18,13 +18,13 @@ spec:
         backend:
           serviceName: site-nginx
           servicePort: 8000
-  - host: louisemisellinteriors.co.uk
-    http:
-      paths:
-      - path: "/"
-        backend:
-          serviceName: site-nginx
-          servicePort: 8000
+#  - host: louisemisellinteriors.co.uk
+#    http:
+#      paths:
+#      - path: "/"
+#        backend:
+#          serviceName: site-nginx
+#          servicePort: 8000
 ---
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate

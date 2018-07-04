@@ -1,11 +1,15 @@
 @import url('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
 
-h1, h2 {
+h1, h2, h5, p {
   padding: 15px;
   margin: 0;
 }
 
-p, h1, h2 {
+h2, h5, p {
+  padding: 5px;
+}
+
+p, h1, h2, h5 {
   text-align: center;
   width: 100%;
 }
@@ -40,4 +44,14 @@ p, h1, h2 {
   left: 20px;
   top: 10px;
   font-size: 35px;
+}
+
+.times {
+  width: 50%;
+  padding: 10px;
+  margin: 0 auto;
+
+  .time {
+    padding: 10px 0;
+  }
 }

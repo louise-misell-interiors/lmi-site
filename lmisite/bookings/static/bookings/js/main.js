@@ -5,6 +5,7 @@ import {BookingTypes} from './BookingTypes';
 import {DaySelect} from './DaySelect';
 import {TimeSelect} from "./TimeSelect";
 import {CustomerDetails} from "./CustomerDetails";
+import {Conformation} from "./Conformation";
 
 const apiUrl = "/bookings/graphql";
 
@@ -26,6 +27,7 @@ class BookingApp extends Component {
             selectedDay: null,
             selectedTime: null,
             timezone: null,
+            complete: false,
         };
 
         this.selectType = this.selectType.bind(this);
@@ -69,12 +71,19 @@ class BookingApp extends Component {
                                onBack={() => {
                                    this.setState({selectedDay: null})
                                }}/>
-        } else {
+        } else if (!this.state.complete) {
             disp = <CustomerDetails type={this.state.selectedType} date={this.state.selectedDay}
                                     time={this.state.selectedTime} timezone={this.state.timezone}
                                     onBack={() => {
                                         this.setState({selectedTime: null})
-                                    }}/>
+                                    }}
+                                    onComplete={() => {
+                                        this.setState({complete: true})
+                                    }}
+            />
+        } else {
+            disp = <Conformation type={this.state.selectedType} date={this.state.selectedDay}
+                                 time={this.state.selectedTime} timezone={this.state.timezone}/>
         }
 
         return disp;

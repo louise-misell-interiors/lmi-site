@@ -140,7 +140,7 @@ class CreateBooking(graphene.Mutation):
         booking_times = get_booking_times(date, booking_type)
 
         if time not in booking_times:
-            raise GraphQLError("Invalid booking time")
+            return CreateBooking(ok=False, error=["Unavailable booking time"])
 
         booking = models.Booking()
 

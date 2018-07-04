@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Loader} from "./Loader";
 import {fetchGQL} from "./main";
 
-class BookingInfo extends Component {
+export class BookingInfo extends Component {
     render() {
         return (
             <div className="col">
@@ -58,6 +58,7 @@ export class CustomerDetails extends Component {
     }
 
     scheduleEvent() {
+        const self = this;
         fetchGQL(
             `mutation ($id: ID!, $date: Date!, $time: Time!, $name: String!, $email: String!, $phone: String!) {
               createBooking(id: $id, date: $date, time: $time, name: $name, email: $email, phone: $phone, questions: []) {
@@ -80,6 +81,8 @@ export class CustomerDetails extends Component {
                     self.setState({
                         error: res.data.createBooking.error
                     })
+                } else {
+                    self.props.onComplete();
                 }
             })
     }
@@ -118,6 +121,7 @@ export class CustomerDetails extends Component {
 
                 error = <div className="row">
                     <div className="col">
+                        <h4>Errors:</h4>
                         <ul>
                             {errors}
                         </ul>

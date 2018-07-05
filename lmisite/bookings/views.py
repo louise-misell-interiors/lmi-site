@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect, reverse
 import json
 import google_auth_oauthlib.flow
+import google.oauth2.credentials
 from .models import *
+import requests
 
 CLIENT_SECRETS_FILE = "client_secret.json"
 SCOPES = ['https://www.googleapis.com/auth/calendar']
+API_SERVICE_NAME = 'calendar'
+API_VERSION = 'v3'
 
 
 def index(request):
@@ -19,6 +23,7 @@ def authorise(request):
 
     authorization_url, state = flow.authorization_url(
         access_type='offline',
+        prompt='consent',
         include_granted_scopes='true')
 
     request.session['state'] = state
@@ -45,6 +50,13 @@ def oauth(request):
 
 
 def deauthorise(request):
+
+    credentials = get_credentials()
+
+    requests.post('https://accounts.google.com/o/oauth2/revoke',
+                  params={'token': credentials.token},
+                  headers={'content-type': 'application/x-www-form-urlencoded'})
+
     config = Config.objects.first()
     config.google_credentials = ""
     config.save()
@@ -59,3 +71,11 @@ def credentials_to_json(credentials):
                        'client_id': credentials.client_id,
                        'client_secret': credentials.client_secret,
                        'scopes': credentials.scopes})
+
+
+def get_credentials():
+    config = Config.objects.first()
+    data = json.loads(config.google_credentials)
+    return google.oauth2.credentials.Credentials(
+        token=data['token'], refresh_token=data['refresh_token'], token_uri=data['token_uri'],
+        client_id=data['client_id'], client_secret=data['client_secret'], scopes=data['scopes'])

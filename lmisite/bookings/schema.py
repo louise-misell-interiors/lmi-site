@@ -3,10 +3,27 @@ import datetime
 import graphene.types.datetime
 from django.utils import timezone
 import pytz
+import googleapiclient.discovery
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from main_site.models import SiteConfig
 from . import models
+import dateutil.parser
+from .views import API_SERVICE_NAME, API_VERSION, get_credentials
+
+
+def get_calendar_events(date: datetime.date):
+    creds = get_credentials()
+    calendar = googleapiclient.discovery.build(
+        API_SERVICE_NAME, API_VERSION, credentials=creds)
+
+    events = calendar.events()\
+        .list(calendarId="primary", orderBy='startTime', singleEvents=True,
+              timeMin=datetime.datetime.combine(date, datetime.time.min).isoformat() + 'Z',
+              timeMax=datetime.datetime.combine(date, datetime.time.max).isoformat() + 'Z')\
+        .execute()
+
+    return list(filter(lambda event: event.get("status", "") == 'confirmed' and event.get('kind', '') == 'calendar#event', events.get('items', [])))
 
 
 def get_booking_times(date: datetime.date, booking: models.BookingType):
@@ -18,6 +35,7 @@ def get_booking_times(date: datetime.date, booking: models.BookingType):
     now = datetime.datetime.now()
     rules = booking.booking_rules.all()
     bookings_on_day = models.Booking.objects.filter(time__date=cur_time.date())
+    cal_events = get_calendar_events(date)
     while cur_time.time() <= datetime.time(23):
         valid = True
 
@@ -59,8 +77,8 @@ def get_booking_times(date: datetime.date, booking: models.BookingType):
                     continue
 
                 passes_rules = True
-            if not passes_rules:
-                valid = False
+        if not passes_rules:
+            valid = False
 
         if valid:
             if booking.max_events_per_day is not None and len(bookings_on_day) >= booking.max_events_per_day:
@@ -74,6 +92,16 @@ def get_booking_times(date: datetime.date, booking: models.BookingType):
                     if time < (
                             cur_time + booking.length + max(booking.buffer_after_event, b.type.buffer_before_event)) < (
                             time + b.type.length):
+                        valid = False
+            for b in cal_events:
+                start = b['start'].get('dateTime')
+                end = b['end'].get('dateTime')
+                if start and end:
+                    start = timezone.make_naive(dateutil.parser.parse(start))
+                    end = timezone.make_naive(dateutil.parser.parse(end))
+                    if start <= cur_time < (end + booking.buffer_before_event):
+                        valid = False
+                    if start < (cur_time + booking.length + booking.buffer_after_event) < end:
                         valid = False
 
         if valid:

@@ -12,13 +12,12 @@ class AuthWidget(forms.Widget):
     def render(self, name, value, attrs=None, **kwargs):
         is_signed_in = False
 
-        config = Config.objects.first()
         try:
-            creds = json.loads(config.google_credentials)
+            creds = views.get_credentials()
         except json.JSONDecodeError:
             pass
         else:
-            if creds.get("scopes") == views.SCOPES:
+            if creds.scopes == views.SCOPES:
                 is_signed_in = True
 
         context = {
@@ -34,5 +33,5 @@ class ConfigForm(forms.ModelForm):
         return super().save(commit=commit)
 
     class Meta:
-        fields = []
+        fields = '__all__'
         model = Config

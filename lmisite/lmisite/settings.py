@@ -25,7 +25,7 @@ SECRET_KEY = 'qt-d9(74_5==&jku1kr&jh_tmeal+p)&s(lv30^7mpobfoch)v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["test.louisemisellinteriors.co.uk", "louisemisellinteriors.co.uk"]
+ALLOWED_HOSTS = ["test.louisemisellinteriors.co.uk", "louisemisellinteriors.co.uk", "web"]
 
 # Application definition
 

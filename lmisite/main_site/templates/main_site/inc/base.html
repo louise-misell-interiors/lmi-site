@@ -55,7 +55,9 @@
             </div>
         </nav>
         <div class="logo">
-            <img src="{% static "main_site/img/logo.png" %}" alt="">
+            <a href="{{ home_url }}">
+                <img src="{% static "main_site/img/logo.png" %}" alt="Logo">
+            </a>
         </div>
         <nav class="nav-right">
             {% url 'services' as services_url %}

@@ -22,6 +22,7 @@ export class CustomerDetails extends Component {
         this.state = {
             questions: null,
             questionAnswers: {},
+            loading: false,
         };
 
         this.scheduleEvent = this.scheduleEvent.bind(this);
@@ -55,6 +56,9 @@ export class CustomerDetails extends Component {
 
     scheduleEvent() {
         const self = this;
+        this.setState({
+            loading: true,
+        });
         fetchGQL(
             `mutation ($id: ID!, $date: Date!, $time: Time!, $name: String!, $email: String!, $phone: String!) {
               createBooking(id: $id, date: $date, time: $time, name: $name, email: $email, phone: $phone, questions: []) {
@@ -73,6 +77,9 @@ export class CustomerDetails extends Component {
         )
             .then(res => res.json())
             .then(res => {
+                this.setState({
+                    loading: false,
+                });
                 if (!res.data.createBooking.ok) {
                     self.setState({
                         error: res.data.createBooking.error
@@ -99,7 +106,7 @@ export class CustomerDetails extends Component {
 
         let disp = null;
 
-        if (this.state.questions == null) {
+        if (this.state.questions == null || this.state.loading) {
             disp = <div className="col">
                 <Loader/>
             </div>

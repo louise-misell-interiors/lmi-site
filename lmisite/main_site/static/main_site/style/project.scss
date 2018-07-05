@@ -16,6 +16,8 @@
 
 .row.text {
   font-size: 20px;
+  padding-top: 0 !important;
+  padding-bottom: $content-padding*2 !important;
 }
 
 .col {

@@ -25,7 +25,7 @@ SECRET_KEY = 'qt-d9(74_5==&jku1kr&jh_tmeal+p)&s(lv30^7mpobfoch)v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["test.louisemisellinteriors.co.uk", "louisemisellinteriors.co.uk"]
 
 # Application definition
 
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'adminsortable2',
     'main_site',
     'bookings',
+    'graphene_django',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -159,3 +161,7 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'front.mailu'
+
+GRAPHENE = {
+    'SCHEMA': 'bookings.schema.schema'
+}

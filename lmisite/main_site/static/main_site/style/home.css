@@ -234,6 +234,7 @@
   font-size: 25px;
   display: inline-block;
   left: 50%;
+  text-align: center;
 }
 .testimonials .slider .slide .content .by-line {
   font-weight: bold;

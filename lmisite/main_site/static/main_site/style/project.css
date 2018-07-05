@@ -12,6 +12,8 @@
 
 .row.text {
   font-size: 20px;
+  padding-top: 0 !important;
+  padding-bottom: 50px !important;
 }
 
 .col h2 {

@@ -13,28 +13,7 @@
 
 {% block content %}
 <div class="content">
-        <h1>Contact</h1>
-        <div class="contact-details">
-            <div class="row">
-                <div class="col">
-                    <h2>Phone</h2>
-                    <p><a href="tel:{{ config.phone.as_e164 }}">{{ config.phone.as_national }}</a></p>
-                    <p><a href="tel:{{ config.mobile.as_e164 }}">{{ config.mobile.as_national }}</a></p>
-                </div>
-                <div class="col">
-                    <h2>Email</h2>
-                    <p><a href="mailto:{{ config.email }}">{{ config.email }}</a></p>
-                </div>
-                <div class="col">
-                    <h2>Address</h2>
-                    {{ config.address|linebreaks }}
-                </div>
-                <div class="col">
-                    <h2>Book online</h2>
-                    <p><a href="#book">Click here</a> to book online</p>
-                </div>
-            </div>
-        </div>
+        <h1>Tell me about your project</h1>
         <div class="form">
             <form action="" method="post">
                 {% if sent %}
@@ -81,6 +60,27 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="contact-details">
+            <div class="row">
+                <div class="col">
+                    <h2>Phone</h2>
+                    <p><a href="tel:{{ config.phone.as_e164 }}">{{ config.phone.as_national }}</a></p>
+                    <p><a href="tel:{{ config.mobile.as_e164 }}">{{ config.mobile.as_national }}</a></p>
+                </div>
+                <div class="col">
+                    <h2>Email</h2>
+                    <p><a href="mailto:{{ config.email }}">{{ config.email }}</a></p>
+                </div>
+                <div class="col">
+                    <h2>Address</h2>
+                    {{ config.address|linebreaks }}
+                </div>
+                <div class="col">
+                    <h2><a href="#book">Book online</a></h2>
+                    <p><a href="#book">Click here</a> to book online</p>
+                </div>
+            </div>
         </div>
         <div class="calendar" id="book">
             <div class="calendly-inline-widget" data-url="{{ config.calendly_url }}"

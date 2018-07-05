@@ -7,9 +7,13 @@
     width: auto;
   }
 }
+.content .contact-details {
+  padding-top: 0 !important;
+}
 .content .contact-details h2 {
   position: relative;
   display: inline-block;
+  margin-top: 0;
   font-size: 35px;
 }
 .content .contact-details h2::after {

@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from .models import *
 from .forms import *
+import bookings.models as booking_models
 
 
 def index(request):
@@ -57,6 +58,18 @@ def contact(request):
             config = SiteConfig.objects.first()
             recipients = [config.email]
             send_mail(subject, body, email, recipients)
+
+            matching_customers = booking_models.Customer.objects.filter(email=email)
+            if len(matching_customers) > 0:
+                customer = matching_customers.first()
+            else:
+                customer = booking_models.Customer()
+                customer.email = email
+            customer.name = name
+            customer.phone = phone
+
+            customer.full_clean()
+            customer.save()
 
             return render(request, "main_site/contact.html", {'form': form, 'sent': True})
     else:

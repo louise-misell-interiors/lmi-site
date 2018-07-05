@@ -12,9 +12,11 @@
   }
 
   .contact-details {
+    padding-top: 0 !important;
     h2 {
       @include bar;
       display: inline-block;
+      margin-top: 0;
       font-size: 35px;
     }
     p {

@@ -39,5 +39,10 @@
 .content form .errorlist li {
   list-style: none;
 }
+.content .calendar iframe {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
 
 /*# sourceMappingURL=contact.css.map */

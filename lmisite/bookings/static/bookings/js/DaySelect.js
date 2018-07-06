@@ -10,7 +10,9 @@ class Day extends Component {
         return (
             <div>
                 <h2>{dateformat(date, "ddd d")}</h2>
-                <button onClick={() => {this.props.onClick(date)}}>Select</button>
+                <div className="button-div">
+                    <button onClick={() => {this.props.onClick(date)}}>Select</button>
+                </div>
             </div>
         );
     }
@@ -72,7 +74,7 @@ export class DaySelect extends Component {
     render() {
         const self = this;
         const days = this.state.currentDays.map((day, i) =>
-            <div className="col" key={i}>
+            <div className="col button-col" key={i}>
                 <Day date={day} onClick={self.props.onSelect}/>
             </div>
         );

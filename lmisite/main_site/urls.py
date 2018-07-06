@@ -15,3 +15,5 @@ urlpatterns = [
 
     path('sitemap.xml', sitemap, {'sitemaps': SITEMAP}, name='django.contrib.sitemaps.views.sitemap')
 ]
+
+app_name = 'main_site'

@@ -209,8 +209,7 @@ class BookingType(DjangoObjectType):
         while len(days) < num:
             new_days = get_days(day)
             for d, t in new_days.items():
-                print(d, t)
-                if len(t) > 0:
+                if len(t) > 0 and len(days) < num:
                     days.append(d)
             num_tried += len(new_days)
             if num_tried >= 20:

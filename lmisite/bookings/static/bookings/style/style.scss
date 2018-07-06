@@ -20,6 +20,18 @@ p, h1, h2, h5 {
     background: #eee;
     margin: 1%;
 
+    &.button-col {
+      position: relative;
+      padding-bottom: 90px;
+
+      .button-div {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+      }
+    }
+
     &.slider-button {
       flex-grow: 0;
       background: 0;

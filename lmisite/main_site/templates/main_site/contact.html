@@ -83,9 +83,9 @@
             </div>
         </div>
         <div class="calendar" id="book">
-            <div class="calendly-inline-widget" data-url="{{ config.calendly_url }}"
-                 style="min-width:320px;height:580px;"></div>
-            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+            <div style="min-width:320px;height:580px;">
+                <iframe src="{% url "bookings:index" %}" frameborder="0"></iframe>
+            </div>
         </div>
     </div>
 {% endblock %}

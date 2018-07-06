@@ -9,7 +9,9 @@ class BookingType extends React.Component {
             <div>
                 <h2>{this.props.data.name}</h2>
                 <p>{this.props.data.description}</p>
-                <button onClick={this.props.onClick}>Book</button>
+                <div className="button-div">
+                    <button onClick={this.props.onClick}>Book</button>
+                </div>
             </div>
         );
     }
@@ -45,7 +47,7 @@ export class BookingTypes extends React.Component {
         let types = null;
         if (!this.state.loading) {
             types = this.state.types.map(type =>
-                <div className="col" key={type.id}>
+                <div className="col button-col" key={type.id}>
                     <BookingType data={type} onClick={() => {
                         this.props.onSelect(type)
                     }}/>

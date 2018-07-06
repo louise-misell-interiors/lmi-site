@@ -11,3 +11,5 @@ urlpatterns = [
     path('oauth', views.oauth, name='oauth'),
     path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]
+
+app_name='bookings'

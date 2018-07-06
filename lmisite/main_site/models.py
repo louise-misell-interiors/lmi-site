@@ -26,8 +26,6 @@ class SiteConfig(SingletonModel):
     linkedin_url = models.URLField(default="", blank=True)
     houzz_url = models.URLField(default="", blank=True)
 
-    calendly_url = models.CharField(max_length=255, blank=True)
-
     email = models.EmailField(default="", blank=True)
     mobile = PhoneNumberField(blank=True)
     phone = PhoneNumberField(blank=True)

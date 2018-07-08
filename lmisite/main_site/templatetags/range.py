@@ -10,4 +10,4 @@ def range_filter(value):
 
 @register.filter(name='mod')
 def mod_filter(value, mod):
-    return value % mod
+    return mod - (value % mod)

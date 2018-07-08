@@ -71,8 +71,8 @@
                         <div class="img-box">
                             <img src="{% if project.image %}{{ project.image.url }}{% endif %}" alt="{{ project.image_alt_text }}">
                         </div>
-                        <hr>
                         <h2>{{ project.name }}</h2>
+                        <hr>
                     </a>
                 </div>
                 {% if forloop.counter|divisibleby:4 %}

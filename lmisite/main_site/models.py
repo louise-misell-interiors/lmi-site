@@ -174,7 +174,7 @@ class Testimonial(models.Model):
     featured = models.BooleanField(default=False, verbose_name="Featured on home page")
     not_on_testimonials = models.BooleanField(default=False, verbose_name="Not displayed on testimonials page")
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
-    related_project = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=True, default=0)
+    related_project = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         ordering = ['order']

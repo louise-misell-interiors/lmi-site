@@ -48,7 +48,7 @@ class BookingRule(models.Model):
 
     recurring = models.BooleanField(help_text="If recurring then End Date has no meaning")
     start_date = models.DateField()
-    end_date = models.DateField(blank=True)
+    end_date = models.DateField(blank=True, null=True)
 
     monday = models.BooleanField()
     tuesday = models.BooleanField()

@@ -8,7 +8,7 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Testimonials">
-    <meta property="og:image" content="{{ testimonials.first.image.url }}">
+    <meta property="og:image" content="{% if testimonial.first.image %}{{ testimonials.first.image.url }}{% endif %}">
 {% endblock %}
 
 {% block content %}
@@ -20,6 +20,9 @@
                 <div class="left">
                     <blockquote>{{ testimonial.text }}</blockquote>
                     <span class="by-line">{{ testimonial.client }}</span>
+                    {% if testimonial.related_project %}
+                        <a href="{% url 'project' testimonial.related_project.id %}"><h4>See project</h4></a>
+                    {% endif %}
                 </div>
                 <div class="right">
                     <img src="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}" alt="{{ testimonial.image_alt_text }}">
@@ -31,6 +34,9 @@
                 <div class="right">
                     <blockquote>{{ testimonial.text }}</blockquote>
                     <span class="by-line">{{ testimonial.client }}</span>
+                    {% if testimonial.related_project %}
+                        <a href="{% url 'project' testimonial.related_project.id %}"><h4>See project</h4></a>
+                    {% endif %}
                 </div>
             {% endif %}
         </div>

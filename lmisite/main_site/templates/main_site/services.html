@@ -25,7 +25,11 @@
                                 <h2>{{ s.name }}</h2>
                                 {{ s.description|linebreaks }}
                                 {% if s.price %}<h2>{{ s.price }}</h2>{% endif %}
-                                {% if forloop.parentloop.first %}<h3><a href="{% url 'contact' %}#book">Book online here</a></h3>{% endif %}
+                                {% if forloop.parentloop.first %}
+                                    <h3><a href="{% url 'contact' %}#book">Book online here</a></h3>
+                                {% elif forloop.last %}
+                                    <h3><a href="{% url 'contact' %}">Get in touch here</a></h3>
+                                {% endif %}
                             </div>
                         {% endif %}
                     {% endfor %}

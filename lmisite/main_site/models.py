@@ -56,28 +56,6 @@ class MainSliderImage(models.Model):
     def __str__(self):
         return self.name
 
-
-class Testimonial(models.Model):
-    text = models.TextField()
-    image = models.ImageField(blank=True)
-    image_alt_text = models.CharField(max_length=255, blank=True)
-    client = models.CharField(max_length=255)
-    featured = models.BooleanField(default=False, verbose_name="Featured on home page")
-    not_on_testimonials = models.BooleanField(default=False, verbose_name="Not displayed on testimonials page")
-    order = models.PositiveIntegerField(default=0, blank=True, null=False)
-
-    class Meta:
-        ordering = ['order']
-
-    def save(self, *args, **kwargs):
-        if self.image:
-            self.image = compress_img(self.image)
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return self.client
-
-
 class Service(models.Model):
     name = models.CharField(max_length=255)
     MAIN = 'M'
@@ -186,3 +164,25 @@ class AboutSectionImage(models.Model):
         if self.image:
             self.image = compress_img(self.image)
         super().save(*args, **kwargs)
+
+
+class Testimonial(models.Model):
+    text = models.TextField()
+    image = models.ImageField(blank=True)
+    image_alt_text = models.CharField(max_length=255, blank=True)
+    client = models.CharField(max_length=255)
+    featured = models.BooleanField(default=False, verbose_name="Featured on home page")
+    not_on_testimonials = models.BooleanField(default=False, verbose_name="Not displayed on testimonials page")
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+    related_project = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=True, default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = compress_img(self.image)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.client

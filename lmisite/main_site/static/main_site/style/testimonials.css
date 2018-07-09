@@ -14,7 +14,7 @@
 .row blockquote {
   font-size: 25px;
 }
-.row .by-line {
+.row .by-line, .row h4 {
   font-weight: bold;
   text-align: center;
   display: inline-block;

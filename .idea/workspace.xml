@@ -5,10 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/lmisite/main_site/models.py" line="165" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/migrations/0029_auto_20180709_1724.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/migrations/0030_auto_20180709_1725.py" beforeDir="false" />
-    </list>
+    <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,11 +48,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="451">
-              <caret line="176" column="89" selection-start-line="176" selection-start-column="89" selection-end-line="176" selection-end-column="89" />
+              <caret line="176" column="99" selection-start-line="176" selection-start-column="99" selection-end-line="176" selection-end-column="99" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -81,10 +78,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/bookings/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="-314">
               <caret line="50" column="53" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
             </state>
           </provider>
@@ -167,7 +164,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/rollup.config.js" />
         <option value="$PROJECT_DIR$/lmisite/bookings/templates/bookings/index.html" />
         <option value="$PROJECT_DIR$/rollup.config.js" />
@@ -213,11 +209,12 @@
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/portfolio.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/services.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/models.py" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/testimonials.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/testimonials.scss" />
         <option value="$PROJECT_DIR$/lmisite/bookings/models.py" />
         <option value="$PROJECT_DIR$/lmisite/main_site/migrations/0030_auto_20180709_1725.py" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/models.py" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/migrations/0029_auto_20180709_1826.py" />
       </list>
     </option>
   </component>
@@ -627,13 +624,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://538f30bc-b58d-4d32-95ba-84549f653a7c/schema/main/table/django_migrations">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://538f30bc-b58d-4d32-95ba-84549f653a7c/schema/main/table/bookings_bookingtype">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -933,16 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="176" column="89" selection-start-line="176" selection-start-column="89" selection-end-line="176" selection-end-column="89" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/testimonials.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -972,8 +952,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/bookings/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="-314">
           <caret line="50" column="53" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/migrations/0029_auto_20180709_1826.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="176" column="99" selection-start-line="176" selection-start-column="99" selection-end-line="176" selection-end-column="99" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

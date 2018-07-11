@@ -50,16 +50,16 @@ def oauth(request):
 
 
 def deauthorise(request):
-
     credentials = get_credentials()
 
-    requests.post('https://accounts.google.com/o/oauth2/revoke',
-                  params={'token': credentials.token},
-                  headers={'content-type': 'application/x-www-form-urlencoded'})
+    if credentials is not None:
+        requests.post('https://accounts.google.com/o/oauth2/revoke',
+                      params={'token': credentials.token},
+                      headers={'content-type': 'application/x-www-form-urlencoded'})
 
-    config = Config.objects.first()
-    config.google_credentials = ""
-    config.save()
+        config = Config.objects.first()
+        config.google_credentials = ""
+        config.save()
 
     return redirect(request.META.get('HTTP_REFERER'))
 
@@ -75,7 +75,10 @@ def credentials_to_json(credentials):
 
 def get_credentials():
     config = Config.objects.first()
-    data = json.loads(config.google_credentials)
-    return google.oauth2.credentials.Credentials(
-        token=data['token'], refresh_token=data['refresh_token'], token_uri=data['token_uri'],
-        client_id=data['client_id'], client_secret=data['client_secret'], scopes=data['scopes'])
+    try:
+        data = json.loads(config.google_credentials)
+        return google.oauth2.credentials.Credentials(
+            token=data['token'], refresh_token=data['refresh_token'], token_uri=data['token_uri'],
+            client_id=data['client_id'], client_secret=data['client_secret'], scopes=data['scopes'])
+    except json.JSONDecodeError:
+        return None

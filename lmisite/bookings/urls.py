@@ -12,4 +12,4 @@ urlpatterns = [
     path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]
 
-app_name='bookings'
+app_name = 'bookings'

@@ -83,7 +83,7 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
         cur_time = datetime.datetime.combine(date, datetime.datetime.min.time())
 
         bookings_on_day = models.Booking.objects.filter(time__date=cur_time.date())
-        while cur_time.time() <= datetime.time(23):
+        while cur_time.time() <= datetime.time(23) and cur_time.date() == date:
             valid = True
 
             if cur_time < now:
@@ -212,7 +212,9 @@ class BookingType(DjangoObjectType):
                 if len(t) > 0 and len(days) < num:
                     days.append(d)
             num_tried += len(new_days)
-            if num_tried >= 20:
+            if len(days) > 0:
+                day = days[-1] + datetime.timedelta(days=1)
+            if num_tried >= 60:
                 break
 
         return days

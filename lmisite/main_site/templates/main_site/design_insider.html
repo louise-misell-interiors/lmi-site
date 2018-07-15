@@ -1,0 +1,36 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}Desing Insider{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{%  static "main_site/style/design_insider.css" %}">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Insider">
+    <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+        <h1>Design Insider</h1>
+        <h2>The latest from Louise Misell Interiors</h2>
+            <div class="row">
+                <div class="col">
+                    {% for post in posts.0 %}
+                        {% include "main_site/design_insider_post_template.html" with post=post %}
+                    {% endfor %}
+                </div>
+                <div class="col">
+                    {% for post in posts.1 %}
+                        {% include "main_site/design_insider_post_template.html" with post=post %}
+                    {% endfor %}
+                </div>
+                <div class="col">
+                    {% for post in posts.2 %}
+                        {% include "main_site/design_insider_post_template.html" with post=post %}
+                    {% endfor %}
+                </div>
+            </div>
+    </div>
+{% endblock %}

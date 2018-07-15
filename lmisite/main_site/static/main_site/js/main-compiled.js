@@ -37,8 +37,8 @@ $(function () {
 
     var $menu = $(".nav");
     var $menuButton = $menu.find(".menu-button");
-    var $menuLeft = $menu.find(".nav-left > :not(.logos)");
-    var $menuRight = $menu.find(".nav-right > :not(.socials)");
+    var $menuLeft = $menu.find(".nav-left");
+    var $menuRight = $menu.find(".nav-right");
 
     $menuButton.on("click", function () {
         $menu.toggleClass("show-menu");

@@ -152,6 +152,47 @@ img {
     }
   }
 
+  .pre-footer {
+    .row {
+      align-items: center;
+    }
+
+    .logos {
+      img {
+        margin: 0 $content-padding/2;
+        max-height: $nav-height/2;
+        min-height: $nav-height/4;
+        vertical-align: middle;
+        max-width: 100%;
+
+        @media (max-width: $media-medium) {
+          max-height: $nav-height/4;
+        }
+      }
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+
+      a {
+        margin: 0 5px;
+        font-size: 27px;
+
+        @include bar;
+          &::after {
+          width: 0;
+          opacity: 0;
+        }
+
+        &:not(.is-active):hover::after {
+          width: 100%;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
   .footer {
     background: #444;
     color: #fff;

@@ -7,6 +7,7 @@ class BookingType extends React.Component {
     render() {
         return (
             <div>
+                <h2 className="step-number"><i className={"fas "+this.props.data.icon}/></h2>
                 <h2>{this.props.data.name}</h2>
                 <p>{this.props.data.description}</p>
                 <div className="button-div">
@@ -34,6 +35,7 @@ export class BookingTypes extends React.Component {
                     id
                     name
                     description
+                    icon
                 } 
             }`)
             .then(res => res.json())
@@ -61,7 +63,7 @@ export class BookingTypes extends React.Component {
 
         return (
             <div>
-                <h1>Make a booking</h1>
+                <h1>Book an appointment with me</h1>
                 <hr/>
                 <div className="row">
                     {types}

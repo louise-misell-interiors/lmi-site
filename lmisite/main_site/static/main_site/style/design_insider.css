@@ -1,0 +1,17 @@
+h2 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.post {
+  background: #eee;
+  padding: 20px;
+}
+.post h2, .post h3 {
+  margin: 0;
+}
+.post img {
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=design_insider.css.map */

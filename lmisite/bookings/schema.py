@@ -114,13 +114,13 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
                     if not rule.sunday and cur_time.weekday() == 6:
                         continue
 
-                    start_time = timezone.make_aware(
-                        datetime.datetime.combine(datetime.datetime(1970, 1, 1), rule.start_time), tz)\
-                        .astimezone(pytz.utc).time()
-                    end_time = timezone.make_aware(
-                        datetime.datetime.combine(datetime.datetime(1970, 1, 1), rule.end_time), tz)\
-                        .astimezone(pytz.utc).time()
-                    if not (start_time <= cur_time.time() and end_time >= (cur_time + booking.length).time()):
+                    start_time = timezone.make_naive(timezone.make_aware(
+                        datetime.datetime.combine(date, rule.start_time), tz)\
+                        .astimezone(pytz.utc))
+                    end_time = timezone.make_naive(timezone.make_aware(
+                        datetime.datetime.combine(date, rule.end_time), tz)\
+                        .astimezone(pytz.utc))
+                    if not (start_time <= cur_time and end_time >= (cur_time + booking.length)):
                         continue
 
                     passes_rules = True
@@ -171,7 +171,7 @@ class BookingQuestion(DjangoObjectType):
 class BookingType(DjangoObjectType):
     class Meta:
         model = models.BookingType
-        only_fields = ('name', 'length', 'id', 'description', 'timezone')
+        only_fields = ('name', 'length', 'id', 'description', 'timezone', 'icon')
 
     scheduling_frequency = graphene.String()
     minimum_scheduling_notice = graphene.String()
@@ -214,6 +214,8 @@ class BookingType(DjangoObjectType):
             num_tried += len(new_days)
             if len(days) > 0:
                 day = days[-1] + datetime.timedelta(days=1)
+            else:
+                day = day + datetime.timedelta(days=len(new_days))
             if num_tried >= 60:
                 break
 
@@ -223,6 +225,23 @@ class BookingType(DjangoObjectType):
 class QuestionInput(graphene.InputObjectType):
     id = graphene.ID(required=True)
     value = graphene.String(required=True)
+
+
+class QuestionError(graphene.ObjectType):
+    field = graphene.String(required=True)
+    errors = graphene.List(
+        graphene.String,
+        required=True
+    )
+
+
+def validation_error_to_graphene(error):
+    def map_func(item):
+        return QuestionError(
+            field=item[0],
+            errors=item[1]
+        )
+    return map(map_func, error)
 
 
 class CreateBooking(graphene.Mutation):
@@ -239,13 +258,10 @@ class CreateBooking(graphene.Mutation):
         )
 
     ok = graphene.Boolean()
-    error = graphene.List(
-        graphene.String
-    )
+    error = graphene.List(QuestionError)
 
     def mutate(self, info, id, date, time, name, email, phone, questions):
         booking_type = models.BookingType.objects.get(pk=id)
-        tz = pytz.timezone(booking_type.timezone)
         booking_times = get_booking_times(date, booking_type)[date]
 
         if time not in booking_times:
@@ -265,7 +281,7 @@ class CreateBooking(graphene.Mutation):
         try:
             customer.full_clean()
         except ValidationError as e:
-            return CreateBooking(ok=False, error=map(lambda error: error[0].title() + ": " + error[1][0], e))
+            return CreateBooking(ok=False, error=validation_error_to_graphene(e))
         customer.save()
 
         time = timezone.make_aware(datetime.datetime.combine(date, time), pytz.utc)
@@ -276,7 +292,7 @@ class CreateBooking(graphene.Mutation):
         try:
             booking.full_clean()
         except ValidationError as e:
-            return CreateBooking(ok=False, error=map(lambda error: error[0].title() + ": " + error[1][0], e))
+            return CreateBooking(ok=False, error=validation_error_to_graphene(e))
         # booking.save()
 
         subject = f"{name} has booked {booking_type.name}"
@@ -291,7 +307,7 @@ class CreateBooking(graphene.Mutation):
 
         insert_booking_to_calendar(booking)
 
-        return CreateBooking(ok=True, error="")
+        return CreateBooking(ok=True, error=[])
 
 
 class Query(graphene.ObjectType):

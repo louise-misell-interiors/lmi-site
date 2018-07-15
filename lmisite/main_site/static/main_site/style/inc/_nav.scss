@@ -33,7 +33,6 @@
     margin-top: 0;
   }
 
-
   .logo {
     width: $logo-width;
     min-width: $logo-width/2;
@@ -67,133 +66,77 @@
   }
 
   .nav-left, .nav-right {
-    display: flex;
-    justify-content: space-between;
     flex: 2 1;
 
-
     @media (max-width: $media-medium) {
-      flex-wrap: wrap-reverse;
-      justify-content: center;
-      align-content: space-between;
       height: auto;
     }
 
     @media (max-width: $media-xsmall) {
-      width: 50%;
+      width: 100%;
       order: 2;
       padding: 5px 0;
     }
 
-    div {
-      @media (max-width: $media-medium) {
-        min-width: 100%;
-        flex: 0 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+
+    a {
+      margin: 0 5px;
+      text-decoration: none;
+      color: #000;
+      font-size: 35px;
+
+      @include bar;
+
+      &::after {
+        width: 0;
+        opacity: 0;
       }
 
-      display: flex;
-      flex: 2 0;
-      flex-wrap: nowrap;
-      align-items: center;
-      justify-content: space-evenly;
+      &:not(.is-active):hover::after {
+        width: 100%;
+        opacity: 1;
+      }
 
-        a {
-          margin: 0 5px;
-          text-decoration: none;
-          color: #000;
-          font-size: 35px;
-
-          @include bar;
-
-          &::after {
-            width: 0;
-            opacity: 0;
-          }
-
-          &:not(.is-active):hover::after {
-            width: 100%;
-            opacity: 1;
-          }
-
-          &.is-active {
-            color: $primary-colour;
-          }
+      &.is-active {
+        color: $primary-colour;
       }
     }
   }
   .nav-left {
-    .logos {
-      flex: 0 1 auto;
-      min-width: 200px;
-
-      img {
-        margin: 0 $content-padding/2;
-        max-height: $nav-height/2;
-        min-height: $nav-height/4;
-        vertical-align: middle;
-        max-width: 100%;
-
-        @media (max-width: $media-medium) {
-          max-height: $nav-height/4;
-        }
-      }
-      @media (max-width: $media-xsmall) {
-        display: none;
-      }
-    }
-    > :not(.logos) {
-      @media (max-width: $media-xsmall) {
-        @include mobile-nav;
-        top: 0;
-      }
+    @media (max-width: $media-xsmall) {
+      @include mobile-nav;
+      top: 0;
     }
   }
   .nav-right {
-    @media (max-width: $media-medium) {
-      flex-wrap: wrap;
-    }
-
-    .socials {
-      flex: 1 1;
-      display: flex;
-      justify-content: space-between;
-
-      @media (max-width: $media-medium) {
-        justify-content: center;
-      }
-
-      a {
-        margin: 0 5px;
-        font-size: 27px;
-      }
-    }
-
-    > :not(.socials) {
-      @media (max-width: $media-xsmall) {
-        @include mobile-nav;
-      }
+    @media (max-width: $media-xsmall) {
+      @include mobile-nav;
     }
   }
 
   .menu-button {
-      content: "\f0c9";
-      position: absolute;
-      z-index: 999;
-      right: $content-padding/2;
-      top: 0;
-      color: $primary-colour;
-      font-size: 50px;
-      font-weight: 900;
+    content: "\f0c9";
+    position: absolute;
+    z-index: 999;
+    left: $content-padding/2;
+    top: 0;
+    color: $primary-colour;
+    font-size: 50px;
+    font-weight: 900;
     display: none;
   }
 
   @media (max-width: $media-xsmall) {
     &:not(.show-menu) {
-      .nav-left > :not(.logos) {
+      .nav-left {
         visibility: hidden;
         opacity: 0;
       }
-      .nav-right > :not(.socials) {
+      .nav-right {
         visibility: hidden;
         opacity: 0;
       }

@@ -2,6 +2,7 @@ from django.contrib import admin
 from solo.admin import SingletonModelAdmin
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from .models import *
+from tinymce.widgets import TinyMCE
 
 
 class ProjectBeforeImageInline(SortableInlineAdminMixin, admin.TabularInline):
@@ -54,6 +55,13 @@ class SiteConfigAdmin(SingletonModelAdmin):
     pass
 
 
+@admin.register(DesignInsiderPost)
+class DesignInsiderPost(admin.ModelAdmin):
+    formfield_overrides = {
+        models.TextField: {'widget': TinyMCE(attrs={'cols': 160, 'rows': 30})}
+    }
+
+
 admin.site.site_header = "Louise Misell Interiors"
 admin.site.site_title = "Louise Misell Interiors"
-admin.site.index_title = ""
+admin.site.index_title = "Home"

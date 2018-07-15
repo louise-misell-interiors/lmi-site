@@ -16,6 +16,20 @@ def index(request):
                    "services": services})
 
 
+def design_insider(request):
+    posts = DesignInsiderPost.objects.all()[:15]
+
+    posts1 = posts[0::3]
+    posts2 = posts[1::3]
+    posts3 = posts[2::3]
+    return render(request, "main_site/design_insider.html", {"posts": (posts1, posts2, posts3)})
+
+
+def design_insider_post(request, id):
+    post = get_object_or_404(DesignInsiderPost, id=id)
+    return render(request, "main_site/design_insider_post.html", {"post": post})
+
+
 def about(request):
     sections = AboutSection.objects.all()
     return render(request, "main_site/about.html", {"sections": sections})

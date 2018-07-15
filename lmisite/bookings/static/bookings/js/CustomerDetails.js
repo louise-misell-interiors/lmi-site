@@ -22,6 +22,9 @@ export class CustomerDetails extends Component {
         this.state = {
             questions: null,
             questionAnswers: {},
+            name: "",
+            email: "",
+            phone: "",
             loading: false,
         };
 
@@ -63,16 +66,19 @@ export class CustomerDetails extends Component {
             `mutation ($id: ID!, $date: Date!, $time: Time!, $name: String!, $email: String!, $phone: String!) {
               createBooking(id: $id, date: $date, time: $time, name: $name, email: $email, phone: $phone, questions: []) {
                 ok
-                error
+                error {
+                  field
+                  errors
+                }
               }
             }`,
             {
                 id: this.props.type.id,
                 date: this.props.date.toISOString().split("T")[0],
                 time: this.props.time.toISOString().split("T")[1].split(".")[0],
-                name: this.refs.name.value,
-                email: this.refs.email.value,
-                phone: this.refs.phone.value,
+                name: this.state.name,
+                email: this.state.email,
+                phone: this.state.phone,
             }
         )
             .then(res => res.json())
@@ -130,37 +136,38 @@ export class CustomerDetails extends Component {
                 </div>
             });
 
-            let error = null;
+            let nameErrors = null;
+            let emailErrors = null;
+            let phoneErrors = null;
             if (this.state.error !== null) {
-                const errors = this.state.error.map(error => <li>{error}</li>);
-
-                error = <div className="row">
-                    <div className="col">
-                        <h4>Errors:</h4>
-                        <ul>
-                            {errors}
-                        </ul>
-                    </div>
-                </div>
+                nameErrors = this.state.error
+                    .filter(error => error.field === "name")[0].errors
+                    .map((error, i) => <span key={i}>{error}<br/></span>);
+                emailErrors = this.state.error.filter(error => error.field === "email")[0].errors
+                    .map((error, i) => <span key={i}>{error}<br/></span>);
+                phoneErrors = this.state.error.filter(error => error.field === "phone")[0].errors
+                    .map((error, i) => <span key={i}>{error}<br/></span>);
             }
 
             disp = [
                 <BookingInfo type={this.props.type} time={date} key="1"/>,
                 <div className="col" key="2">
-                    {error}
                     <div className="row">
                         <div className="col">
-                            <input type="text" ref="name" placeholder="Name"/>
+                            <input type="text" value={this.state.name} onChange={e => this.setState({name: e.target.value})} placeholder="Name"/>
+                            {nameErrors}
                         </div>
                     </div>
                     <div className="row">
                         <div className="col">
-                            <input type="text" ref="email" placeholder="Email"/>
+                            <input type="text" value={this.state.email} onChange={e => this.setState({email: e.target.value})} placeholder="Email"/>
+                            {emailErrors}
                         </div>
                     </div>
                     <div className="row">
                         <div className="col">
-                            <input type="phone" ref="phone" placeholder="Phone Number"/>
+                            <input type="phone" value={this.state.phone} onChange={e => this.setState({phone: e.target.value})} placeholder="Phone Number"/>
+                            {phoneErrors}
                         </div>
                     </div>
                     {questions}

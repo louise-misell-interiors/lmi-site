@@ -1,0 +1,10 @@
+<a href="{% url 'design_insider_post' post.id %}">
+    <div class="post">
+        <h2>{{ post.title }}</h2>
+        <h3>{{ post.date }}</h3>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="">
+        {% endif %}
+        {{ post.summary|safe }}
+    </div>
+</a>

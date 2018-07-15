@@ -1,0 +1,18 @@
+@import "inc/variables";
+
+h2 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.post {
+  background: #eee;
+  padding: 20px;
+
+  h2, h3 {
+    margin: 0;
+  }
+  img {
+    margin-top: 20px;
+  }
+}

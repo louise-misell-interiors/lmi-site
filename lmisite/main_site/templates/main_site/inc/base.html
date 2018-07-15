@@ -42,18 +42,14 @@
 <div class="wrapper">
     <div class="nav">
         <nav class="nav-left">
-            <div class="logos">
-                <img src="{% static "main_site/img/cag-logo.png" %}" alt="">
-                <img src="{% static "main_site/img/baid-logo.png" %}" alt="">
-            </div>
             {% url 'index' as home_url %}
             {% url 'about' as about_url %}
             {% url 'portfolio' as portfolio_url %}
-            <div>
-                <a href="{{ home_url }}" {% if request.get_full_path == home_url %}class="is-active"{% endif %}>Home</a>
-                <a href="{{ about_url }}" {% if request.get_full_path == about_url %}class="is-active"{% endif %}>About</a>
-                <a href="{{ portfolio_url }}" {% if request.get_full_path == portfolio_url %}class="is-active"{% endif %}>Portfolio</a>
-            </div>
+            {% url 'design_insider' as design_insider_url %}
+            <a href="{{ home_url }}" {% if request.get_full_path == home_url %}class="is-active"{% endif %}>Home</a>
+            <a href="{{ about_url }}" {% if request.get_full_path == about_url %}class="is-active"{% endif %}>About</a>
+            <a href="{{ portfolio_url }}" {% if request.get_full_path == portfolio_url %}class="is-active"{% endif %}>Portfolio</a>
+            <a href="{{ design_insider_url }}" {% if request.get_full_path == design_insider_url %}class="is-active"{% endif %}>Design Insider</a>
         </nav>
         <div class="logo">
             <a href="{{ home_url }}">
@@ -64,23 +60,30 @@
             {% url 'services' as services_url %}
             {% url 'testimonials' as testimonials_url %}
             {% url 'contact' as contact_url %}
-            <div>
-                <a href="{{ services_url }}" {% if request.get_full_path == services_url %}class="is-active"{% endif %}>Services</a>
-                <a href="{{ testimonials_url }}" {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
-                <a href="{{ contact_url }}" {% if request.get_full_path == contact_url %}class="is-active"{% endif %}>Contact</a>
+            <a href="{{ contact_url }}#book">Book online</a>
+            <a href="{{ services_url }}" {% if request.get_full_path == services_url %}class="is-active"{% endif %}>Services</a>
+            <a href="{{ testimonials_url }}" {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
+            <a href="{{ contact_url }}" {% if request.get_full_path == contact_url %}class="is-active"{% endif %}>Contact</a>
+        </nav>
+        <i class="fas fa-bars menu-button"></i>
+    </div>
+    {% block content %}
+    {% endblock %}
+    <div class="pre-footer">
+        <div class="row">
+            <div class="col logos">
+                <img src="{% static "main_site/img/cag-logo.png" %}" alt="">
+                <img src="{% static "main_site/img/baid-logo.png" %}" alt="">
             </div>
-            <div class="socials">
+            <div class="col socials">
                 <a href="{{ config.instagram_url }}" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="{{ config.pintrest_url }}" target="_blank"><i class="fab fa-pinterest fa-lg"></i></a>
                 <a href="{{ config.facebook_url }}" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
                 <a href="{{ config.linkedin_url }}" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
                 <a href="{{ config.houzz_url }}" target="_blank"><i class="fab fa-houzz fa-lg"></i></a>
             </div>
-        </nav>
-        <i class="fas fa-bars menu-button"></i>
+        </div>
     </div>
-    {% block content %}
-    {% endblock %}
     <div class="footer">
         <div class="row">
             <div class="col">

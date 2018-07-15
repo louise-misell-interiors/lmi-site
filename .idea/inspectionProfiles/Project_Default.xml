@@ -29,6 +29,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="lmisite.bookings.schema.main_site" />
+          <option value="lmisite.main_site.sitemap.ImageSitemap.get_image" />
         </list>
       </option>
     </inspection_tool>

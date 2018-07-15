@@ -11,9 +11,10 @@ def compress_img(image, new_width=1500):
     img.thumbnail((new_width, new_width * image.height / image.width), Img.ANTIALIAS)
     output = io.BytesIO()
     if img.mode == 'RGBA':
-        img.save(output, format='PNG')
-    else:
-        img.save(output, format='JPEG', quality=80, optimise=True)
+        background = Img.new("RGB", image.size, (255, 255, 255))
+        background.paste(image, image.split()[-1])
+        image = background
+    img.save(output, format='JPEG', quality=80, optimise=True)
     output.seek(0)
     return InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % image.name.split('.')[0], 'image/jpeg',
                                 len(output.getvalue()), None)
@@ -55,6 +56,7 @@ class MainSliderImage(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Service(models.Model):
     name = models.CharField(max_length=255)
@@ -186,3 +188,23 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return self.client
+
+
+class DesignInsiderPost(models.Model):
+    title = models.CharField(max_length=255)
+    date = models.DateField()
+    image = models.ImageField(blank=True)
+    summary = models.TextField()
+    content = models.TextField()
+
+    class Meta:
+        get_latest_by = ['-date']
+        ordering = ['-date']
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = compress_img(self.image)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title

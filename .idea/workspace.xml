@@ -5,46 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/lmisite/main_site/models.py" line="167" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post_template.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/sitemap.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/BookingTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/BookingTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/CustomerDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/CustomerDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main_production.js" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main_production.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main_production.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main_production.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/static/bookings/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/style/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/static/bookings/style/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/style/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/bookings/static/bookings/style/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/bookings/static/bookings/style/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/lmisite/settings_dev.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/lmisite/settings_dev.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/lmisite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/lmisite/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/sitemap.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/sitemap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/about.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/about.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/about.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/about.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/about.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/about.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/contact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-    </list>
+    <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,31 +51,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sitemap.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lmisite/main_site/sitemap.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1710">
-              <caret line="150" column="33" selection-start-line="150" selection-start-column="33" selection-end-line="150" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="contact.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/contact.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="_nav.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
+            <state relative-caret-position="1125">
               <caret line="75" column="15" selection-start-line="75" selection-start-column="15" selection-end-line="75" selection-end-column="15" />
             </state>
           </provider>
@@ -123,7 +63,7 @@
       <file leaf-file-name="schema.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/bookings/schema.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
+            <state relative-caret-position="4470">
               <caret line="309" column="45" selection-start-line="309" selection-start-column="45" selection-end-line="309" selection-end-column="45" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
@@ -135,7 +75,7 @@
       <file leaf-file-name="style.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
+            <state relative-caret-position="2550">
               <caret line="170" column="7" selection-start-line="170" selection-start-column="7" selection-end-line="170" selection-end-column="7" />
             </state>
           </provider>
@@ -143,15 +83,13 @@
       </file>
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-629" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="BookingTypes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/bookings/static/bookings/js/BookingTypes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
+            <state relative-caret-position="945">
               <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
             </state>
           </provider>
@@ -160,7 +98,7 @@
       <file leaf-file-name="CustomerDetails.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/bookings/static/bookings/js/CustomerDetails.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
+            <state relative-caret-position="2490">
               <caret line="169" column="40" selection-start-line="169" selection-start-column="40" selection-end-line="169" selection-end-column="40" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -169,7 +107,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/bookings/static/bookings/style/style.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
@@ -178,11 +116,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main.js">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lmisite/lmisite/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
+            <state relative-caret-position="661">
+              <caret line="178" selection-start-line="178" selection-end-line="178" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings_dev.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lmisite/lmisite/settings_dev.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="526">
+              <caret line="44" column="16" lean-forward="true" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -232,7 +188,6 @@
         <option value="$PROJECT_DIR$/lmisite/bookings/views.py" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_testimonials.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.scss" />
-        <option value="$PROJECT_DIR$/lmisite/lmisite/settings.py" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/contact.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/shadow.scss" />
         <option value="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/DaySelect.js" />
@@ -270,6 +225,7 @@
         <option value="$PROJECT_DIR$/lmisite/bookings/schema.py" />
         <option value="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/CustomerDetails.js" />
         <option value="$PROJECT_DIR$/lmisite/bookings/static/bookings/style/style.scss" />
+        <option value="$PROJECT_DIR$/lmisite/lmisite/settings.py" />
       </list>
     </option>
   </component>
@@ -401,6 +357,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -489,6 +446,13 @@
               <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
               <item name="lmisite" type="462c0819:PsiDirectoryNode" />
               <item name="main_site" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lmi-site" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
+              <item name="lmisite" type="462c0819:PsiDirectoryNode" />
+              <item name="main_site" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -555,7 +519,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -668,15 +631,14 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.3145917" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.235625" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32797858" />
       <window_info anchor="right" id="SciView" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Jenkins" order="3" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -684,6 +646,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32931727" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32797858" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -797,13 +760,6 @@
     <entry file="file://$PROJECT_DIR$/kubes/django.yml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/lmisite/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="89" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/lmisite/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -850,9 +806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1">
           <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -911,20 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/lmisite/settings_dev.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="48" column="14" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
@@ -936,9 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -964,7 +900,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
+        <state relative-caret-position="660">
           <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
         </state>
       </provider>
@@ -978,7 +914,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/sitemap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1710">
+        <state relative-caret-position="2220">
           <caret line="150" column="33" selection-start-line="150" selection-start-column="33" selection-end-line="150" selection-end-column="33" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
@@ -988,28 +924,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
+        <state relative-caret-position="1125">
           <caret line="75" column="15" selection-start-line="75" selection-start-column="15" selection-end-line="75" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
+        <state relative-caret-position="2550">
           <caret line="170" column="7" selection-start-line="170" selection-start-column="7" selection-end-line="170" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/bookings/static/bookings/js/BookingTypes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
+        <state relative-caret-position="945">
           <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/bookings/schema.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
+        <state relative-caret-position="4470">
           <caret line="309" column="45" selection-start-line="309" selection-start-column="45" selection-end-line="309" selection-end-column="45" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
@@ -1018,13 +954,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-629" />
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/bookings/static/bookings/js/CustomerDetails.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
+        <state relative-caret-position="2490">
           <caret line="169" column="40" selection-start-line="169" selection-start-column="40" selection-end-line="169" selection-end-column="40" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
@@ -1036,6 +970,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/lmisite/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="178" selection-start-line="178" selection-end-line="178" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/lmisite/settings_dev.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="44" column="16" lean-forward="true" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
         </state>
       </provider>
     </entry>

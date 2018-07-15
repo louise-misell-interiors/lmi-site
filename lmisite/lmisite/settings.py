@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ["test.louisemisellinteriors.co.uk", "louisemisellinteriors.co.u
 # Application definition
 
 INSTALLED_APPS = [
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'bookings',
     'graphene_django',
     'django.contrib.sitemaps',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -165,3 +167,12 @@ EMAIL_HOST = 'front.mailu'
 GRAPHENE = {
     'SCHEMA': 'bookings.schema.schema'
 }
+
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}
+TINYMCE_SPELLCHECKER = True
+TINYMCE_COMPRESSOR = True

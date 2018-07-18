@@ -9,6 +9,7 @@ spec:
   tls:
   - hosts:
     - louisemisellinteriors.co.uk
+    - www.louisemisellinteriors.co.uk
     secretName: site-nginx-tls
   rules:
   - host: test.louisemisellinteriors.co.uk
@@ -19,6 +20,13 @@ spec:
           serviceName: site-nginx
           servicePort: 8000
   - host: louisemisellinteriors.co.uk
+    http:
+      paths:
+      - path: "/"
+        backend:
+          serviceName: site-nginx
+          servicePort: 8000
+  - host: www.louisemisellinteriors.co.uk
     http:
       paths:
       - path: "/"
@@ -39,12 +47,14 @@ spec:
   commonName: louisemisellinteriors.co.uk
   dnsNames:
   - louisemisellinteriors.co.uk
+  - www.louisemisellinteriors.co.uk
   acme:
     config:
     - http01:
         ingressClass: traefik
       domains:
       - louisemisellinteriors.co.uk
+      - www.louisemisellinteriors.co.uk
 ---
 kind: Service
 apiVersion: v1

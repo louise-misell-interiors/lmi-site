@@ -1,7 +1,7 @@
 {% extends "main_site/inc/base.html" %}
 {% load static %}
 
-{% block title %}Desing Insider{% endblock %}
+{% block title %}Design Insider{% endblock %}
 
 {% block header %}
     <link rel="stylesheet" href="{%  static "main_site/style/design_insider.css" %}">
@@ -14,7 +14,7 @@
 {% block content %}
 <div class="content">
         <h1>Design Insider</h1>
-        <h2>The latest from Louise Misell Interiors</h2>
+        <h2>The latest news, tips, and inspiration from Louise Misell Interiors</h2>
             <div class="row">
                 <div class="col">
                     {% for post in posts.0 %}

@@ -194,8 +194,8 @@ class DesignInsiderPost(models.Model):
     title = models.CharField(max_length=255)
     date = models.DateField()
     image = models.ImageField(blank=True)
-    summary = models.TextField()
-    content = models.TextField()
+    summary = models.TextField(blank=True)
+    content = models.TextField(blank=True)
 
     class Meta:
         get_latest_by = ['-date']

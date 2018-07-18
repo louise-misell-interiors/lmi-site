@@ -140,13 +140,22 @@ export class CustomerDetails extends Component {
             let emailErrors = null;
             let phoneErrors = null;
             if (this.state.error !== null) {
-                nameErrors = this.state.error
-                    .filter(error => error.field === "name")[0].errors
-                    .map((error, i) => <span key={i}>{error}<br/></span>);
-                emailErrors = this.state.error.filter(error => error.field === "email")[0].errors
-                    .map((error, i) => <span key={i}>{error}<br/></span>);
-                phoneErrors = this.state.error.filter(error => error.field === "phone")[0].errors
-                    .map((error, i) => <span key={i}>{error}<br/></span>);
+                let nameError = this.state.error
+                    .filter(error => error.field === "name");
+                if (nameError.length !== 0) {
+                    nameErrors = nameError[0].errors
+                            .map((error, i) => <span key={i}>{error}<br/></span>);
+                }
+                let emailError = this.state.error.filter(error => error.field === "email");
+                if (emailError.length !== 0) {
+                    emailErrors = emailError[0].errors
+                        .map((error, i) => <span key={i}>{error}<br/></span>);
+                }
+                let phoneError = this.state.error.filter(error => error.field === "phone");
+                if (phoneError.length !== 0) {
+                    phoneErrors = phoneError[0].errors
+                        .map((error, i) => <span key={i}>{error}<br/></span>);
+                }
             }
 
             disp = [

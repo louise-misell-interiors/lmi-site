@@ -45,13 +45,12 @@
     }
 
     @media (max-width: $media-medium) {
-      order: 3;
+      order: 1;
       width: 100%;
-      height: $nav-height/4;
       text-align: center;
 
       img {
-        transform: translateY(-50%) scale(2.5);
+        height: $nav-height/3*2;
       }
     }
 
@@ -70,12 +69,17 @@
 
     @media (max-width: $media-medium) {
       height: auto;
+      order: 2;
+      flex-basis: 100%;
+
+      a {
+        font-size: 30px;
+      }
     }
 
     @media (max-width: $media-xsmall) {
-      width: 100%;
-      order: 2;
       padding: 5px 0;
+      width: 100%;
     }
 
     display: flex;

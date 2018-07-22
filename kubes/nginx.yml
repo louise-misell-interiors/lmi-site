@@ -5,6 +5,8 @@ metadata:
   namespace: lmi
   labels:
     app: site
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   tls:
   - hosts:

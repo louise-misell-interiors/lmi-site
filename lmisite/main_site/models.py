@@ -4,6 +4,7 @@ from django.db import models
 from solo.models import SingletonModel
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 def compress_img(image, new_width=1500):
@@ -195,7 +196,7 @@ class DesignInsiderPost(models.Model):
     date = models.DateField()
     image = models.ImageField(blank=True)
     summary = models.TextField(blank=True)
-    content = models.TextField(blank=True)
+    content = RichTextUploadingField(blank=True)
 
     class Meta:
         get_latest_by = ['-date']

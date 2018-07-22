@@ -13,5 +13,4 @@ google-auth-oauthlib
 google-auth-httplib2
 requests
 python-dateutil
-django-tinymce
-django-filebrowser
+django-ckeditor

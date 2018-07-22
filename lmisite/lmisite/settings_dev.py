@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +45,8 @@ INSTALLED_APPS = [
     'bookings',
     'graphene_django',
     'django.contrib.sitemaps',
-    'tinymce',
+    'ckeditor',
+    'ckeditor_uploader'
 ]
 
 MIDDLEWARE = [
@@ -165,13 +165,13 @@ GRAPHENE = {
     'SCHEMA': 'bookings.schema.schema'
 }
 
-TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste,searchreplace",
-    'theme': "advanced",
-    'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 10,
-}
-TINYMCE_SPELLCHECKER = True
-TINYMCE_COMPRESSOR = False
+CKEDITOR_UPLOAD_PATH = ""
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_BROWSE_SHOW_DIRS = True
 
-FILEBROWSER_DIRECTORY = "/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'width': 1200,
+    },
+}

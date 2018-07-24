@@ -7,6 +7,10 @@
   @media (max-width: $media-small) {
     width: auto;
   }
+
+  img {
+    max-width: unset !important;
+  }
 }
 
 h2 {

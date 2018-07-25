@@ -7,7 +7,7 @@
     width: auto;
   }
 }
-.content img {
+.content .post img {
   max-width: unset !important;
 }
 

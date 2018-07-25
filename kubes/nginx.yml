@@ -6,7 +6,12 @@ metadata:
   labels:
     app: site
   annotations:
+    ingress.kubernetes.io/force-hsts: "true"
+    ingress.kubernetes.io/hsts-max-age: "315360000"
+    ingress.kubernetes.io/hsts-preload: "true"
+    ingress.kubernetes.io/hsts-include-subdomains: "true"
     ingress.kubernetes.io/ssl-redirect: "true"
+    ingress.kubernetes.io/ssl-temporary-redirect: "false"
 spec:
   tls:
   - hosts:

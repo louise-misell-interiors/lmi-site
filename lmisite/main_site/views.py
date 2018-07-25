@@ -16,6 +16,10 @@ def index(request):
                    "services": services})
 
 
+def config(request):
+    return render(request, "main_site/config.js", content_type="application/javascript")
+
+
 def design_insider(request):
     posts = DesignInsiderPost.objects.all()[:15]
 

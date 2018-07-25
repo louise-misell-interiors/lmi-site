@@ -13,9 +13,10 @@ urlpatterns = [
     path('design_insider/<id>', views.design_insider_post, name='design_insider_post'),
     path('testimonials', views.testimonials, name='testimonials'),
     path('contact', views.contact, name='contact'),
+    path('config.js', views.config, name='config.js'),
 
 
-    path('sitemap.xml', sitemap,  {'sitemaps': SITEMAP,'template_name': 'main_site/sitemap.xml'},
+    path('sitemap.xml', sitemap,  {'sitemaps': SITEMAP, 'template_name': 'main_site/sitemap.xml'},
          name='django.contrib.sitemaps.views.sitemap')
 ]
 

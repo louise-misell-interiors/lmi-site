@@ -14,3 +14,4 @@ google-auth-httplib2
 requests
 python-dateutil
 django-ckeditor
+django-tinymce

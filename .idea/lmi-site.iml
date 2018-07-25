@@ -24,6 +24,7 @@
     <orderEntry type="library" name="jquery-3.3.1" level="application" />
     <orderEntry type="library" name="react.development" level="application" />
     <orderEntry type="library" name="react-dom.development" level="application" />
+    <orderEntry type="library" name="jquery-3.3.1" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

@@ -49,4 +49,12 @@ $(function () {
     });
 });
 
+window.dataLayer = window.dataLayer || [];
+function gtag() {
+    dataLayer.push(arguments);
+}
+gtag('js', new Date());
+
+gtag('config', 'UA-122537706-1');
+
 //# sourceMappingURL=main-compiled.js.map

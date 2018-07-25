@@ -35,6 +35,8 @@ export class BookingTypes extends React.Component {
                     id
                     name
                     description
+                    whilstBookingMessage
+                    afterBookingMessage
                     icon
                 } 
             }`)

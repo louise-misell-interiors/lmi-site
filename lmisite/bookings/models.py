@@ -9,6 +9,8 @@ from solo.models import SingletonModel
 class BookingType(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
+    whilst_booking_message = models.TextField(blank=True)
+    after_booking_message = models.TextField(blank=True)
     length = models.DurationField()
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     icon = models.CharField(max_length=255, blank=True)

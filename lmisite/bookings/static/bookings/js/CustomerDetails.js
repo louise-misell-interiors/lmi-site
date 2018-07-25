@@ -3,12 +3,12 @@ import dateformat from 'dateformat';
 import {Loader} from "./Loader";
 import {fetchGQL} from "./main";
 
-export class BookingInfo extends Component {
+class BookingInfo extends Component {
     render() {
         return (
             <div className="col">
                 <h2>{this.props.type.name}</h2>
-                <p>{this.props.type.description}</p>
+                <p>{this.props.type.whilstBookingMessage}</p>
                 <h3>{dateformat(this.props.time, "ddd dd mmmm yyyy hh:MM TT")}</h3>
             </div>
         )

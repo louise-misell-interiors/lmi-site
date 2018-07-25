@@ -6,12 +6,17 @@ metadata:
   labels:
     app: site
   annotations:
+    ingress.kubernetes.io/referrer-policy: "strict-origin-when-cross-origin"
+    ingress.kubernetes.io/custom-response-headers: "Expect-CT: enforce, max-age=0, report-uri=https://evilben.report-uri.com/r/d/ct/reportOnly||Feature-Policy: usermedia 'none';"
+    ingress.kubernetes.io/content-security-policy: "block-all-mixed-content; default-src https:; form-action https:; connect-src https: wss:; upgrade-insecure-requests; report-uri https://evilben.report-uri.com/r/d/csp/enforce;"
     ingress.kubernetes.io/force-hsts: "true"
     ingress.kubernetes.io/hsts-max-age: "315360000"
     ingress.kubernetes.io/hsts-preload: "true"
     ingress.kubernetes.io/hsts-include-subdomains: "true"
     ingress.kubernetes.io/ssl-redirect: "true"
     ingress.kubernetes.io/ssl-temporary-redirect: "false"
+    ingress.kubernetes.io/browser-xss-filter: "true"
+    ingress.kubernetes.io/content-type-nosniff: "true"
 spec:
   tls:
   - hosts:
@@ -20,26 +25,16 @@ spec:
     secretName: site-nginx-tls
   rules:
   - host: test.louisemisellinteriors.co.uk
-    http:
+    http: &http_rules
       paths:
       - path: "/"
         backend:
           serviceName: site-nginx
           servicePort: 8000
   - host: louisemisellinteriors.co.uk
-    http:
-      paths:
-      - path: "/"
-        backend:
-          serviceName: site-nginx
-          servicePort: 8000
+    http: *http_rules
   - host: www.louisemisellinteriors.co.uk
-    http:
-      paths:
-      - path: "/"
-        backend:
-          serviceName: site-nginx
-          servicePort: 8000
+    http: *http_rules
 ---
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
@@ -53,14 +48,15 @@ spec:
     kind: ClusterIssuer
   commonName: louisemisellinteriors.co.uk
   dnsNames:
-  - louisemisellinteriors.co.uk
   - www.louisemisellinteriors.co.uk
+  - test.louisemisellinteriors.co.uk
   acme:
     config:
     - http01:
         ingressClass: traefik
       domains:
       - louisemisellinteriors.co.uk
+      - test.louisemisellinteriors.co.uk
       - www.louisemisellinteriors.co.uk
 ---
 kind: Service

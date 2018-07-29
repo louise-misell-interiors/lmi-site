@@ -451,6 +451,9 @@ img.round {
   font-size: 45px;
   font-weight: normal;
 }
+.wrapper .pre-footer {
+  padding: 20px 0;
+}
 .wrapper .pre-footer .row {
   align-items: center;
 }

@@ -8,9 +8,9 @@ import bookings.models as booking_models
 
 def index(request):
     slider_imgs = MainSliderImage.objects.all()
-    testimonials = Testimonial.objects.filter(featured=True)
-    projects = Project.objects.all()[:4]
-    services = Service.objects.filter(type=Service.MAIN)
+    testimonials = Testimonial.objects.filter(featured=True, draft=False)
+    projects = Project.objects.filter(draft=False)[:4]
+    services = Service.objects.filter(type=Service.MAIN, draft=False)
     return render(request, "main_site/index.html",
                   {"testimonials": testimonials, "slider_imgs": slider_imgs, "projects": projects,
                    "services": services})
@@ -21,7 +21,7 @@ def config(request):
 
 
 def design_insider(request):
-    posts = DesignInsiderPost.objects.all()[:15]
+    posts = DesignInsiderPost.objects.filter(draft=False)
 
     posts1 = posts[0::3]
     posts2 = posts[1::3]
@@ -30,34 +30,34 @@ def design_insider(request):
 
 
 def design_insider_post(request, id):
-    post = get_object_or_404(DesignInsiderPost, id=id)
+    post = get_object_or_404(DesignInsiderPost, id=id, draft=False)
     return render(request, "main_site/design_insider_post.html", {"post": post})
 
 
 def about(request):
-    sections = AboutSection.objects.all()
+    sections = AboutSection.objects.filter(draft=False)
     return render(request, "main_site/about.html", {"sections": sections})
 
 
 def portfolio(request):
-    projects = Project.objects.all()
+    projects = Project.objects.filter(draft=False)
     return render(request, "main_site/portfolio.html", {"projects": projects})
 
 
 def project(request, id):
-    project = get_object_or_404(Project, id=id)
+    project = get_object_or_404(Project, id=id, draft=False)
     return render(request, "main_site/project.html", {"project": project})
 
 
 def services(request):
-    services_m = Service.objects.filter(type=Service.MAIN)
-    services_o = Service.objects.filter(type=Service.OTHER)
+    services_m = Service.objects.filter(type=Service.MAIN, draft=False)
+    services_o = Service.objects.filter(type=Service.OTHER, draft=False)
     services = list(itertools.zip_longest(services_m, services_o))
     return render(request, "main_site/services.html", {"services": services})
 
 
 def testimonials(request):
-    testimonials = Testimonial.objects.filter(not_on_testimonials=False)
+    testimonials = Testimonial.objects.filter(not_on_testimonials=False, draft=False)
     return render(request, "main_site/testimonials.html", {"testimonials": testimonials})
 
 

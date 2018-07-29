@@ -22,6 +22,7 @@ spec:
   - hosts:
     - louisemisellinteriors.co.uk
     - www.louisemisellinteriors.co.uk
+    - test.louisemisellinteriors.co.uk
     secretName: site-nginx-tls
   rules:
   - host: test.louisemisellinteriors.co.uk

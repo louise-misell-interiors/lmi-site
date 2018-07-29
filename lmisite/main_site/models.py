@@ -60,6 +60,7 @@ class MainSliderImage(models.Model):
 
 
 class Service(models.Model):
+    draft = models.BooleanField(default=False)
     name = models.CharField(max_length=255)
     MAIN = 'M'
     OTHER = 'O'
@@ -91,6 +92,7 @@ class ServiceSummary(models.Model):
 
 
 class Project(models.Model):
+    draft = models.BooleanField(default=False)
     name = models.CharField(max_length=255)
     breif = models.TextField()
     outcome = models.TextField()
@@ -142,6 +144,7 @@ class ProjectAfterImage(models.Model):
 
 
 class AboutSection(models.Model):
+    draft = models.BooleanField(default=False)
     name = models.CharField(max_length=255)
     heading = models.CharField(max_length=255, default="", blank=True)
     text = models.TextField()
@@ -170,6 +173,7 @@ class AboutSectionImage(models.Model):
 
 
 class Testimonial(models.Model):
+    draft = models.BooleanField(default=False)
     text = models.TextField()
     image = models.ImageField(blank=True)
     image_alt_text = models.CharField(max_length=255, blank=True)
@@ -192,6 +196,7 @@ class Testimonial(models.Model):
 
 
 class DesignInsiderPost(models.Model):
+    draft = models.BooleanField(default=False)
     title = models.CharField(max_length=255)
     date = models.DateField()
     image = models.ImageField(blank=True)

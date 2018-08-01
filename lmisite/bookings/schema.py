@@ -293,16 +293,30 @@ class CreateBooking(graphene.Mutation):
             booking.full_clean()
         except ValidationError as e:
             return CreateBooking(ok=False, error=validation_error_to_graphene(e))
-        # booking.save()
+        booking.save()
 
         subject = f"{name} has booked {booking_type.name}"
         tz = pytz.timezone(booking_type.timezone)
         time = time.astimezone(tz=tz).strftime("%I:%M%p %a %d %b %Y")
-        body = f"Name: {name}\r\nEmail: {email}\r\nPhone: {phone}\r\n\r\n---\r\n\r\n{booking_type.name}\r\n" \
+        body = f"Name: {name}\r\n" \
+               f"Email: {email}\r\n" \
+               f"Phone: {phone}" \
+               f"\r\n\r\n---\r\n\r\n" \
+               f"{booking_type.name}\r\n" \
                f"Time: {time}, {booking_type.timezone}"
 
         config = SiteConfig.objects.first()
         recipients = [config.email]
+        send_mail(subject, body, email, recipients)
+
+        subject = f"Conformation of {booking_type.name} with Louise"
+        body = f"You have successfully booked {booking_type.name} with Louise at {time}, {booking_type.timezone}" \
+               f"\r\n\r\n---\r\n\r\n" \
+               f"Name: {name}\r\n" \
+               f"Email: {email}\r\n" \
+               f"Phone: {phone}"
+
+        recipients = [email]
         send_mail(subject, body, email, recipients)
 
         insert_booking_to_calendar(booking)

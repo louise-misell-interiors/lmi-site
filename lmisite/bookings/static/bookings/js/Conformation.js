@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import dateformat from 'dateformat';
 
 class BookingInfo extends Component {
     render() {

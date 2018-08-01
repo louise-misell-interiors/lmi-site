@@ -236,12 +236,7 @@ class QuestionError(graphene.ObjectType):
 
 
 def validation_error_to_graphene(error):
-    def map_func(item):
-        return QuestionError(
-            field=item[0],
-            errors=item[1]
-        )
-    return map(map_func, error)
+    return map(lambda item: QuestionError(field=item[0], errors=item[1]), error)
 
 
 class CreateBooking(graphene.Mutation):
@@ -317,7 +312,7 @@ class CreateBooking(graphene.Mutation):
                f"Phone: {phone}"
 
         recipients = [email]
-        send_mail(subject, body, email, recipients)
+        send_mail(subject, body, config.email, recipients)
 
         insert_booking_to_calendar(booking)
 

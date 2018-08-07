@@ -19,7 +19,7 @@ def authorise(request):
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         CLIENT_SECRETS_FILE, scopes=SCOPES)
 
-    flow.redirect_uri = request.build_absolute_uri(reverse('oauth'))
+    flow.redirect_uri = request.build_absolute_uri(reverse('bookings:oauth'))
 
     authorization_url, state = flow.authorization_url(
         access_type='offline',
@@ -37,7 +37,7 @@ def oauth(request):
 
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         CLIENT_SECRETS_FILE, scopes=SCOPES, state=state)
-    flow.redirect_uri = request.build_absolute_uri(reverse('oauth'))
+    flow.redirect_uri = request.build_absolute_uri(reverse('bookings:oauth'))
 
     flow.fetch_token(code=request.GET.get("code"))
 

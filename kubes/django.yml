@@ -38,6 +38,9 @@ spec:
         glusterfs:
           endpoints: glusterfs-cluster
           path: kubes-pv
+      - name: oauth
+        secret:
+          secretName: google-client-secret
       containers:
       - name: django
         image: evilben/lmi-django:(hash)
@@ -63,5 +66,10 @@ spec:
         - name: gluster
           mountPath: /src/media
           subPath: lmi-site/media
+        - name: oauth
+          mountPath: /src/client_secret.json
+          subPath: secret
+          readOnly: true
+
 
 

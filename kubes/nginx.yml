@@ -8,7 +8,7 @@ metadata:
   annotations:
     ingress.kubernetes.io/referrer-policy: "strict-origin-when-cross-origin"
     ingress.kubernetes.io/custom-response-headers: "Expect-CT: enforce, max-age=0, report-uri=https://evilben.report-uri.com/r/d/ct/reportOnly||Feature-Policy: usermedia 'none';"
-    ingress.kubernetes.io/content-security-policy: "default-src https:; script-src 'self' https://www.googletagmanager.com https://code.jquery.com 'unsafe-inline'; style-src https: 'unsafe-inline'; connect-src https: wss:; object-src 'self' ; frame-src 'self' ; frame-ancestors 'self' ; form-action 'self' ; upgrade-insecure-requests; block-all-mixed-content; base-uri 'self'; report-uri https://evilben.report-uri.com/r/d/csp/enforce;"
+    ingress.kubernetes.io/content-security-policy: "default-src https:; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://code.jquery.com 'unsafe-inline'; style-src https: 'unsafe-inline'; connect-src https: wss:; object-src 'self' ; frame-src 'self' ; frame-ancestors 'self' ; form-action 'self' ; upgrade-insecure-requests; block-all-mixed-content; base-uri 'self'; report-uri https://evilben.report-uri.com/r/d/csp/enforce;"
     ingress.kubernetes.io/force-hsts: "true"
     ingress.kubernetes.io/hsts-max-age: "315360000"
     ingress.kubernetes.io/hsts-preload: "true"

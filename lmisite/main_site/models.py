@@ -23,6 +23,7 @@ def compress_img(image, new_width=1500):
 
 class SiteConfig(SingletonModel):
     instagram_url = models.URLField(default="", blank=True)
+    twitter_url = models.URLField(default="", blank=True)
     pintrest_url = models.URLField(default="", blank=True)
     facebook_url = models.URLField(default="", blank=True)
     linkedin_url = models.URLField(default="", blank=True)

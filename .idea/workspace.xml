@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/kubes/nginx.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kubes/nginx.yml" afterDir="false" />
-    </list>
+    <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +76,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Dockerfile" value="13" />
-          <entry key="HTML" value="26" />
+          <entry key="HTML" value="73" />
           <entry key="PLAIN_TEXT" value="15" />
           <entry key="Python" value="351" />
           <entry key="SCSS" value="21" />
@@ -102,7 +100,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="conf" value="15" />
-          <entry key="html" value="26" />
+          <entry key="html" value="73" />
           <entry key="nginx" value="13" />
           <entry key="py" value="351" />
           <entry key="scss" value="21" />
@@ -156,7 +154,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kubes/nginx.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="435">
@@ -168,8 +166,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="45" column="28" lean-forward="true" selection-start-line="43" selection-start-column="26" selection-end-line="45" selection-end-column="28" />
+            <state relative-caret-position="405">
+              <caret line="72" column="95" selection-start-line="72" selection-start-column="95" selection-end-line="72" selection-end-column="95" />
             </state>
           </provider>
         </entry>
@@ -192,10 +190,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/sitemap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1965">
+            <state relative-caret-position="1330">
               <caret line="131" column="79" selection-start-line="131" selection-start-column="79" selection-end-line="131" selection-end-column="79" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
@@ -292,10 +290,10 @@
         <option value="$PROJECT_DIR$/lmisite/main_site/models.py" />
         <option value="$PROJECT_DIR$/Dockerfile.nginx" />
         <option value="$PROJECT_DIR$/config/nginx/django.conf" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
         <option value="$PROJECT_DIR$/lmisite/bookings/templates/bookings/index.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/sitemap.py" />
         <option value="$PROJECT_DIR$/kubes/nginx.yml" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
       </list>
     </option>
   </component>
@@ -969,16 +967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/bookings/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile.nginx">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -990,23 +978,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="72" selection-start-line="7" selection-start-column="72" selection-end-line="7" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/sitemap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1965">
-          <caret line="131" column="79" selection-start-line="131" selection-start-column="79" selection-end-line="131" selection-end-column="79" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="45" column="28" lean-forward="true" selection-start-line="43" selection-start-column="26" selection-end-line="45" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1035,6 +1006,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/bookings/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="72" column="95" selection-start-line="72" selection-start-column="95" selection-end-line="72" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/sitemap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1330">
+          <caret line="131" column="79" selection-start-line="131" selection-start-column="79" selection-end-line="131" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

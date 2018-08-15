@@ -54,12 +54,12 @@ class ProjectSitemap(ImageSitemap):
         imgs = []
         for img in item.before_images.all():
             imgs.append({
-                "loc": img.image.url,
+                "loc": "%s://%s%s" % (protocol, domain, img.image.url),
                 "caption": img.alt_text
             })
         for img in item.after_images.all():
             imgs.append({
-                "loc": img.image.url,
+                "loc":  "%s://%s%s" % (protocol, domain, img.image.url),
                 "caption": img.alt_text
             })
         return imgs
@@ -76,7 +76,7 @@ class DesignInsiderSitemap(ImageSitemap):
         imgs = []
         if item.image:
             imgs.append({
-                "loc": item.image.url
+                "loc": "%s://%s%s" % (protocol, domain, item.image.url)
             })
         return imgs
 
@@ -93,7 +93,7 @@ class TestimonialSitemap(ImageSitemap):
         for testimonial in Testimonial.objects.all():
             if testimonial.image:
                 imgs.append({
-                    "loc": testimonial.image.url,
+                    "loc": "%s://%s%s" % (protocol, domain, testimonial.image.url),
                     "caption": testimonial.image_alt_text
                 })
         return imgs
@@ -111,7 +111,7 @@ class AboutSitemap(ImageSitemap):
         for about_section in AboutSectionImage.objects.all():
             if about_section.image:
                 imgs.append({
-                    "loc": about_section.image.url,
+                    "loc": "%s://%s%s" % (protocol, domain, about_section.image.url),
                     "caption": about_section.alt_text
                 })
         return imgs
@@ -129,7 +129,7 @@ class PortfolioSitemap(ImageSitemap):
         for project in Project.objects.all():
             if project.image:
                 imgs.append({
-                    "loc": project.image.url,
+                    "loc": "%s://%s%s" % (protocol, domain, project.image.url,)
                     "caption": project.image_alt_text
                 })
         return imgs

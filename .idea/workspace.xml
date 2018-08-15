@@ -63,11 +63,11 @@
         <counts>
           <entry key="Dockerfile" value="2" />
           <entry key="conf" value="1" />
-          <entry key="html" value="1" />
+          <entry key="html" value="2" />
           <entry key="js" value="2" />
           <entry key="json" value="2" />
           <entry key="nginx" value="1" />
-          <entry key="py" value="5" />
+          <entry key="py" value="6" />
           <entry key="scss" value="2" />
           <entry key="sh" value="1" />
           <entry key="yml" value="2" />
@@ -87,11 +87,11 @@
         <counts>
           <entry key="Bash" value="1" />
           <entry key="Dockerfile" value="3" />
-          <entry key="HTML" value="1" />
+          <entry key="HTML" value="2" />
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="5" />
+          <entry key="Python" value="6" />
           <entry key="SCSS" value="2" />
           <entry key="YAML" value="2" />
         </counts>
@@ -133,7 +133,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/nginx/django.conf">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
@@ -157,17 +157,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+            <state relative-caret-position="510">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="41" selection-end-column="72" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deploy.sh">
+        <entry file="file://$PROJECT_DIR$/lmisite/bookings/templates/bookings/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="52" />
+            <state relative-caret-position="105">
+              <caret line="7" column="72" selection-start-line="7" selection-start-column="72" selection-end-line="7" selection-end-column="72" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lmisite/main_site/sitemap.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -234,7 +246,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main.js" />
         <option value="$PROJECT_DIR$/lmisite/bookings/admin.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/lmisite/bookings/forms.py" />
@@ -282,9 +293,10 @@
         <option value="$PROJECT_DIR$/lmisite/bookings/views.py" />
         <option value="$PROJECT_DIR$/kubes/nginx.yml" />
         <option value="$PROJECT_DIR$/lmisite/main_site/models.py" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
         <option value="$PROJECT_DIR$/Dockerfile.nginx" />
         <option value="$PROJECT_DIR$/config/nginx/django.conf" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
+        <option value="$PROJECT_DIR$/lmisite/bookings/templates/bookings/index.html" />
       </list>
     </option>
   </component>
@@ -712,14 +724,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/migrations/0019_siteconfig_calendly_url.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/migrations/0020_auto_20180629_1024.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-29" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/migrations/0021_aboutsection_sub_heading.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -970,13 +974,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/lmisite/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1015,6 +1012,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="41" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/bookings/templates/bookings/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="72" selection-start-line="7" selection-start-column="72" selection-end-line="7" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/sitemap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

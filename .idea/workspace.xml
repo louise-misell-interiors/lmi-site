@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="" />
+    <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/sitemap.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/sitemap.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +80,7 @@
           <entry key="Dockerfile" value="13" />
           <entry key="HTML" value="26" />
           <entry key="PLAIN_TEXT" value="15" />
-          <entry key="Python" value="341" />
+          <entry key="Python" value="351" />
           <entry key="SCSS" value="21" />
           <entry key="YAML" value="110" />
         </counts>
@@ -102,7 +104,7 @@
           <entry key="conf" value="15" />
           <entry key="html" value="26" />
           <entry key="nginx" value="13" />
-          <entry key="py" value="341" />
+          <entry key="py" value="351" />
           <entry key="scss" value="21" />
           <entry key="yml" value="110" />
         </counts>
@@ -175,8 +177,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/sitemap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="50" />
+            <state relative-caret-position="1965">
+              <caret line="131" column="79" selection-start-line="131" selection-start-column="79" selection-end-line="131" selection-end-column="79" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -265,7 +267,6 @@
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post_template.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/about.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/sitemap.xml" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/sitemap.py" />
         <option value="$PROJECT_DIR$/lmisite/bookings/static/bookings/style/style.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/admin.py" />
@@ -297,6 +298,7 @@
         <option value="$PROJECT_DIR$/config/nginx/django.conf" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
         <option value="$PROJECT_DIR$/lmisite/bookings/templates/bookings/index.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/sitemap.py" />
       </list>
     </option>
   </component>
@@ -1031,8 +1033,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/sitemap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="50" />
+        <state relative-caret-position="1965">
+          <caret line="131" column="79" selection-start-line="131" selection-start-column="79" selection-end-line="131" selection-end-column="79" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>

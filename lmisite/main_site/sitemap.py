@@ -129,7 +129,7 @@ class PortfolioSitemap(ImageSitemap):
         for project in Project.objects.all():
             if project.image:
                 imgs.append({
-                    "loc": "%s://%s%s" % (protocol, domain, project.image.url,)
+                    "loc": "%s://%s%s" % (protocol, domain, project.image.url),
                     "caption": project.image_alt_text
                 })
         return imgs

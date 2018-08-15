@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Dockerfile.nginx" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile.nginx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/nginx/django.conf" beforeDir="false" afterPath="$PROJECT_DIR$/config/nginx/django.conf" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,7 +79,7 @@
         <counts>
           <entry key="Dockerfile" value="11" />
           <entry key="HTML" value="26" />
-          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="PLAIN_TEXT" value="11" />
           <entry key="Python" value="341" />
           <entry key="SCSS" value="21" />
           <entry key="YAML" value="110" />
@@ -102,7 +101,7 @@
       <usages-collector id="statistics.js.language.service.starts" />
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="conf" value="5" />
+          <entry key="conf" value="11" />
           <entry key="html" value="26" />
           <entry key="nginx" value="11" />
           <entry key="py" value="341" />
@@ -127,7 +126,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dockerfile.nginx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
@@ -136,11 +135,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/nginx/django.conf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="240">
+              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -286,8 +285,8 @@
         <option value="$PROJECT_DIR$/kubes/nginx.yml" />
         <option value="$PROJECT_DIR$/lmisite/main_site/models.py" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
-        <option value="$PROJECT_DIR$/config/nginx/django.conf" />
         <option value="$PROJECT_DIR$/Dockerfile.nginx" />
+        <option value="$PROJECT_DIR$/config/nginx/django.conf" />
       </list>
     </option>
   </component>
@@ -990,13 +989,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/nginx/django.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kubes/nginx.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1018,6 +1010,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="51" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/nginx/django.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
         </state>
       </provider>
     </entry>

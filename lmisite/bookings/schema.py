@@ -23,18 +23,22 @@ def get_calendar_events(start_date: datetime.date, end_date: datetime.date):
         calendar = googleapiclient.discovery.build(
             API_SERVICE_NAME, API_VERSION, credentials=creds)
 
-        events = calendar.events()\
-            .list(calendarId="primary", orderBy='startTime', singleEvents=True,
-                  timeMin=datetime.datetime.combine(start_date, datetime.time.min).isoformat() + 'Z',
-                  timeMax=datetime.datetime.combine(end_date, datetime.time.max).isoformat() + 'Z')\
-            .execute()
+        calendars = calendar.calendarList().list().execute()
+        calendars = filter(lambda c: c.get("selected", False), calendars.get('items', []))
 
-        events = filter(lambda e: e.get("status", "") == 'confirmed' and e.get('kind', '') == 'calendar#event', events.get('items', []))
-        for event in events:
-            start = event['start'].get('dateTime')
-            if start:
-                start = timezone.make_naive(dateutil.parser.parse(start)).date()
-                out[start].append(event)
+        for c in calendars:
+            events = calendar.events()\
+                .list(calendarId=c['id'], orderBy='startTime', singleEvents=True,
+                      timeMin=datetime.datetime.combine(start_date, datetime.time.min).isoformat() + 'Z',
+                      timeMax=datetime.datetime.combine(end_date, datetime.time.max).isoformat() + 'Z')\
+                .execute()
+
+            events = filter(lambda e: e.get("status", "") == 'confirmed' and e.get('kind', '') == 'calendar#event', events.get('items', []))
+            for event in events:
+                start = event['start'].get('dateTime')
+                if start:
+                    start = timezone.make_naive(dateutil.parser.parse(start)).date()
+                    out[start].append(event)
 
     return out
 

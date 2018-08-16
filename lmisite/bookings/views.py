@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.conf import settings
 import json
 import google_auth_oauthlib.flow
 import google.oauth2.credentials
@@ -19,7 +20,10 @@ def authorise(request):
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         CLIENT_SECRETS_FILE, scopes=SCOPES)
 
-    flow.redirect_uri = request.build_absolute_uri(reverse('bookings:oauth')).replace("http://", "https://")
+    uri = request.build_absolute_uri(reverse('bookings:oauth'))
+    if not settings.DEBUG:
+        uri = uri.replace("http://", "https://")
+    flow.redirect_uri = uri
 
     authorization_url, state = flow.authorization_url(
         access_type='offline',
@@ -37,7 +41,10 @@ def oauth(request):
 
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         CLIENT_SECRETS_FILE, scopes=SCOPES, state=state)
-    flow.redirect_uri = request.build_absolute_uri(reverse('bookings:oauth')).replace("http://", "https://")
+    uri = request.build_absolute_uri(reverse('bookings:oauth'))
+    if not settings.DEBUG:
+        uri = uri.replace("http://", "https://")
+    flow.redirect_uri = uri
 
     flow.fetch_token(code=request.GET.get("code"))
 

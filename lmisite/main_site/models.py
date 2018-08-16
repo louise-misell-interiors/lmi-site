@@ -3,6 +3,7 @@ import io
 from django.db import models
 from solo.models import SingletonModel
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.files.uploadedfile import UploadedFile
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -52,7 +53,7 @@ class MainSliderImage(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if self.image:
+        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
             self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
@@ -106,7 +107,7 @@ class Project(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if self.image:
+        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
             self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
@@ -124,7 +125,7 @@ class ProjectBeforeImage(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if self.image:
+        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
             self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
@@ -139,7 +140,7 @@ class ProjectAfterImage(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if self.image:
+        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
             self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
@@ -168,7 +169,7 @@ class AboutSectionImage(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if self.image:
+        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
             self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
@@ -188,7 +189,7 @@ class Testimonial(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if self.image:
+        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
             self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
@@ -209,7 +210,7 @@ class DesignInsiderPost(models.Model):
         ordering = ['-date']
 
     def save(self, *args, **kwargs):
-        if self.image:
+        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
             self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 

@@ -8,7 +8,8 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ project.name }}">
-    <meta property="og:description" content="{{ project.breif }}">
+    <meta property="og:description" content="{{ project.meta_description }}">
+    <meta name="description" content="{{ project.meta_description }}">
     <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% if project.image %}{{ project.image.url }}{% endif %}">
 {% endblock %}
 

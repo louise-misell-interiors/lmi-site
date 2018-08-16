@@ -10,6 +10,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Portfolio">
     <meta property="og:image" content="{% if projects.first.image %}http://louisemisellinteriors.co.uk/{{ projects.first.image.url }}{% endif %}">
+    <meta property="og:description" content="{{ config.portfolio_description }}">
+    <meta name="description" content="{{ config.portfolio_description }}">
 {% endblock %}
 
 {% block content %}

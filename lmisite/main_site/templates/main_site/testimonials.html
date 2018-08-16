@@ -9,6 +9,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Testimonials">
     <meta property="og:image" content="{% if testimonial.first.image %}{{ testimonials.first.image.url }}{% endif %}">
+    <meta property="og:description" content="{{ config.testimonials_description }}">
+    <meta name="description" content="{{ config.testimonials_description }}">
 {% endblock %}
 
 {% block content %}

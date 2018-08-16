@@ -42,6 +42,13 @@ class SiteConfig(SingletonModel):
     testimonials_slider_speed = \
         models.PositiveIntegerField(default=10000, verbose_name="Home page testimonials slider speed (ms)")
 
+    home_description = models.TextField(blank=True)
+    portfolio_description = models.TextField(blank=True)
+    blog_description = models.TextField(blank=True)
+    services_description = models.TextField(blank=True)
+    contact_description = models.TextField(blank=True)
+    testimonials_description = models.TextField(blank=True)
+
 
 class MainSliderImage(models.Model):
     name = models.CharField(max_length=255, default="", blank=True)
@@ -72,7 +79,7 @@ class Service(models.Model):
     )
     type = models.CharField(max_length=1, choices=TYPES, default=MAIN)
     icon = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     price = models.CharField(max_length=255, default="", blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
@@ -101,6 +108,7 @@ class Project(models.Model):
     image = models.ImageField(blank=True)
     image_alt_text = models.CharField(max_length=255, blank=True)
     photography_credits = models.TextField(blank=True)
+    meta_description = models.TextField(blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:

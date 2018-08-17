@@ -116,6 +116,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Louise Misell Interiors",
+  "url": "{% url 'index' %}",
+  "logo": "http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}",
+  "description": "{{ config.home_description }}",
+  "address": "{{ config.address }}",
+  "email": "{{ config.email }}",
+  contactPoint": [{
+    "@type": "ContactPoint",
+    "telephone": "{{ config.phone.as_e164 }}",
+    "contactType": "Phone",
+  },{
+    "@type": "ContactPoint",
+    "telephone": "{{ config.mobile.as_e164 }}",
+    "contactType": "Mobile"
+  },
+  "sameAs": [
+    "{{ config.instagram_url }}",
+    "{{ config.twitter_url }}",
+    "{{ config.pintrest_url }}",
+    "{{ config.facebook_url }}"
+    "{{ config.linkedin_url }}"
+    "{{ config.houzz_url }}"
+  ]
+}
+</script>
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="{% static "main_site/js/main-compiled.js" %}"></script>

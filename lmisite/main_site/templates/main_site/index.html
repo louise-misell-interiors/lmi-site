@@ -4,9 +4,9 @@
 {% block title %}Home{% endblock %}
 
 {% block header %}
-    <link rel="stylesheet" href="{%  static "main_site/style/home.css" %}">
+    <link rel="stylesheet" href="{% static "main_site/style/home.css" %}">
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="website"/>
     <meta property="og:title" content="Louise Misell Interiors">
     <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
     <meta property="og:description" content="{{ config.home_description }}">
@@ -19,9 +19,9 @@
             <div class="slider-inner">
                 <span class="arrow"><i class="fas fa-chevron-left"></i></span>
                 {% for img in slider_imgs %}
-                <div class="slide{% if forloop.first %} is-active{% endif %}">
-                    <img src="{{ img.image.url }}" alt="{{ img.alt_text }}">
-                </div>
+                    <div class="slide{% if forloop.first %} is-active{% endif %}">
+                        <img src="{{ img.image.url }}" alt="{{ img.alt_text }}">
+                    </div>
                 {% endfor %}
                 <span class="arrow"><i class="fas fa-chevron-right"></i></span>
             </div>
@@ -31,36 +31,42 @@
         <div class="services">
             <h1>How can I help with your project?</h1>
             <div class="row">
-            {% for service in services %}
-                <div class="col" itemscope itemtype="https://schema.org/Service">
-                    <h2 class="step-number"><i class="fas {{ service.icon }}"></i></h2>
-                    <h2 itemprop="name">{{ service.name }}</h2>
-                    <link itemprop="url" href="{% url 'services' %}" />
-                    <ul itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">
-                        {% for s in service.service_summaries.all %}
-                            <li itemprop="itemListElement">{{ s.text }}</li>
-                        {% endfor %}
-                        <li><a href="{% url 'services' %}">Find out more</a></li>
-                    </ul>
-                </div>
-                {% if forloop.counter|divisibleby:4 %}
+                {% for service in services %}
+                    <div class="col" itemscope itemtype="https://schema.org/Service">
+                        <h2 class="step-number"><i class="fas {{ service.icon }}"></i></h2>
+                        <h2 itemprop="name">{{ service.name }}</h2>
+                        <link itemprop="url" href="{% url 'services' %}"/>
+                        <ul itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">
+                            {% for s in service.service_summaries.all %}
+                                <li itemprop="itemListElement">{{ s.text }}</li>
+                            {% endfor %}
+                            <li><a href="{% url 'services' %}">Find out more</a></li>
+                        </ul>
                     </div>
-                    <div class="row">
-                {% endif %}
-            {% endfor %}
-            </div>
+                    {% if forloop.counter|divisibleby:4 %}
+                        </div>
+                        <div class="row">
+                    {% endif %}
+                {% endfor %}
+                </div>
         </div>
         <div class="testimonials">
             <div class="slider">
                 <div class="slider-inner">
                     <span class="arrow"><i class="fas fa-chevron-left"></i></span>
                     {% for testimonial in testimonials %}
-                    <div class="slide{% if forloop.first %} is-active{% endif %}">
-                        <div class="content" itemscope itemtype="https://schema.org/Review">
-                            <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
-                            <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
+                        <div class="slide{% if forloop.first %} is-active{% endif %}">
+                            <div class="content" itemscope itemtype="https://schema.org/Review">
+                                <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
+                                <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
+                                {% if testimonial.related_project %}
+                                    <link itemprop="itemReviewed"
+                                          href="{% url 'project' testimonial.related_project.id %}">
+                                {% else %}
+                                    <link itemprop="itemReviewed" href="{% url 'contact' %}">
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
                     {% endfor %}
                     <span class="arrow"><i class="fas fa-chevron-right"></i></span>
                 </div>
@@ -70,22 +76,23 @@
             <h1>Recent projects</h1>
             <div class="row">
                 {% for project in projects %}
-                <div class="col" itemscope itemtype="https://schema.org/CreativeWork">
-                   <link itemprop="url" href="{% url 'project' project.id %}" />
-                    <a href="{% url 'project' project.id %}">
-                        <div class="img-box">
-                            <img itemprop="image" src="{% if project.image %}{{ project.image.url }}{% endif %}" alt="{{ project.image_alt_text }}">
-                        </div>
-                        <h2 itemprop="headline">{{ project.name }}</h2>
-                        <hr>
-                    </a>
-                </div>
-                {% if forloop.counter|divisibleby:4 %}
+                    <div class="col" itemscope itemtype="https://schema.org/CreativeWork">
+                        <link itemprop="url" href="{% url 'project' project.id %}"/>
+                        <a href="{% url 'project' project.id %}">
+                            <div class="img-box">
+                                <img itemprop="image" src="{% if project.image %}{{ project.image.url }}{% endif %}"
+                                     alt="{{ project.image_alt_text }}">
+                            </div>
+                            <h2 itemprop="headline">{{ project.name }}</h2>
+                            <hr>
+                        </a>
                     </div>
-                    <div class="row">
-                {% endif %}
-            {% endfor %}
-            </div>
+                    {% if forloop.counter|divisibleby:4 %}
+                        </div>
+                        <div class="row">
+                    {% endif %}
+                {% endfor %}
+                </div>
         </div>
     </div>
 {% endblock %}

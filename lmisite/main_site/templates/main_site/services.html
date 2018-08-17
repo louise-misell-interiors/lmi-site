@@ -28,7 +28,11 @@
                                 <span itemprop="description">
                                   {{ s.description|linebreaks }}
                                 </span>
-                                {% if s.price %}<h2>Cost: <span itemprop="price">{{ s.price }}</span></h2>{% endif %}
+                                {% if s.price %}
+                                    <h2 itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                        Cost: <span itemprop="price">{{ s.price }}</span>
+                                    </h2>
+                                {% endif %}
                                 {% if forloop.parentloop.first %}
                                     <h3><a href="{% url 'contact' %}#book">Book online here</a></h3>
                                 {% elif forloop.last %}

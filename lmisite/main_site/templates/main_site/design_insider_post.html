@@ -14,8 +14,15 @@
 
 {% block content %}
 <div class="content" itemscope itemtype="http://schema.org/BlogPosting">
+        <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' post.id %}" />
+        {% if post.image %}
+            <link itemprop="image" href="{{ post.image.url }}" />
+        {% endif %}
+        <meta itemprop="author" content="Louise Misell" />
+        <meta itemprop="publisher" content="Louise Misell Interiors" />
         <h1 itemprop="headline">{{ post.title }}</h1>
         <meta itemprop="datePublished" content="{{ post.date|date:"c" }}" />
+        <meta itemprop="dateModified" content="{{ post.date|date:"c" }}" />
         <meta itemprop="description" content="{{ post.summary }}" />
         <div class="row post-content">
             <div class="col" itemprop="articleBody">

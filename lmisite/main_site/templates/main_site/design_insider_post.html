@@ -18,8 +18,15 @@
         {% if post.image %}
             <link itemprop="image" href="{{ post.image.url }}" />
         {% endif %}
-        <meta itemprop="author" itemscope itemtype="https://schema.org/Person" content="Louise Misell" />
-        <meta itemprop="publisher" itemscope itemtype="https://schema.org/Person" content="Louise Misell Interiors" />
+        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <meta itemprop="name" content="Louise Misell" />
+        </span>
+        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="name" content="Louise Misell Interiors" />
+            <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+                <link itemprop="url" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}" />
+            </span>
+        </span>
         <h1 itemprop="headline">{{ post.title }}</h1>
         <meta itemprop="datePublished" content="{{ post.date|date:"c" }}" />
         <meta itemprop="dateModified" content="{{ post.date|date:"c" }}" />

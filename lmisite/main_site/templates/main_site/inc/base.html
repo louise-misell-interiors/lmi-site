@@ -122,26 +122,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   "@context": "http://schema.org",
   "@type": "LocalBusiness",
   "name": "Louise Misell Interiors",
-  "url": "{% url 'index' %}",
-  "logo": "http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}",
+  "url": "https://louisemisellinteriors.co.uk{% url 'index' %}",
+  "logo": "https://louisemisellinteriors.co.uk{% static "main_site/img/logo.png" %}",
+  "image": "https://louisemisellinteriors.co.uk{% static "main_site/img/logo.png" %}",
   "description": "{{ config.home_description }}",
   "address": "{{ config.address }}",
   "email": "{{ config.email }}",
-  contactPoint": [{
+  "telephone": "{{ config.phone.as_e164 }}",
+  "contactPoint": [{
     "@type": "ContactPoint",
     "telephone": "{{ config.phone.as_e164 }}",
-    "contactType": "Phone",
+    "contactType": "sales"
   },{
     "@type": "ContactPoint",
     "telephone": "{{ config.mobile.as_e164 }}",
-    "contactType": "Mobile"
-  },
+    "contactType": "sales"
+  }],
   "sameAs": [
     "{{ config.instagram_url }}",
     "{{ config.twitter_url }}",
     "{{ config.pintrest_url }}",
-    "{{ config.facebook_url }}"
-    "{{ config.linkedin_url }}"
+    "{{ config.facebook_url }}",
+    "{{ config.linkedin_url }}",
     "{{ config.houzz_url }}"
   ]
 }

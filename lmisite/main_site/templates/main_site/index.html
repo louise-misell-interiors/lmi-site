@@ -42,8 +42,9 @@
                             {% endfor %}
                             <li><a href="{% url 'services' %}">Find out more</a></li>
                         </ul>
+                        <meta itemprop="description" content="{{ service.description }}">
                         <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <span itemprop="price">{{ s.price }}</span>
+                            <span itemprop="price">{{ service.price }}</span>
                         </span>
                     </div>
                     {% if forloop.counter|divisibleby:4 %}
@@ -67,6 +68,9 @@
                                           href="{% url 'project' testimonial.related_project.id %}">
                                 {% else %}
                                     <link itemprop="itemReviewed" href="{% url 'contact' %}">
+                                {% endif %}
+                                {% if testimonial.image %}
+                                    <link itemprop="image" href="{{ testimonial.image.url }}"/>
                                 {% endif %}
                             </div>
                         </div>

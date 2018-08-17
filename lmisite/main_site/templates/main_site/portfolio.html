@@ -27,6 +27,20 @@
                         </div>
                         <h2 itemprop="headline">{{ project.name }}</h2>
                         <hr>
+                        <meta itemprop="text" content="{{ project.breif }}">
+                        <meta itemprop="text" content="{{ project.outcome }}">
+                        {% for img in project.before_images.all %}
+                            <span itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}" />
+                                <meta itemprop="description" content="{{ img.alt_text }}" />
+                            </span>
+                        {% endfor %}
+                        {% for img in project.after_images.all %}
+                            <span itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}" />
+                                <meta itemprop="description" content="{{ img.alt_text }}" />
+                            </span>
+                        {% endfor %}
                     </a>
                 </div>
                 {% if forloop.counter|divisibleby:4 %}

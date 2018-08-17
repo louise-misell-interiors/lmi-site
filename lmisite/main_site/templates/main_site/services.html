@@ -28,6 +28,11 @@
                                 <span itemprop="description">
                                   {{ s.description|linebreaks }}
                                 </span>
+                                <span itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">
+                                    {% for summary in s.service_summaries.all %}
+                                        <meta itemprop="itemListElement" content="{{ summary.text }}"/>
+                                    {% endfor %}
+                                </span>
                                 {% if s.price %}
                                     <h2 itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                         Cost: <span itemprop="price">{{ s.price }}</span>

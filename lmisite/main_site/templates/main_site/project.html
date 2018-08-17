@@ -15,6 +15,9 @@
 
 {% block content %}
     <div class="content" itemscope itemtype="https://schema.org/CreativeWork">
+        {% if project.image %}
+          <link itemprop="image" href="{{ project.image.url }}">
+        {% endif %}
         <h1 itemprop="headline">{{ project.name }}</h1>
         <div class="row">
             <div class="col before">
@@ -62,14 +65,14 @@
                 {{ project.photography_credits }}
             </div>
         </div>
-        <div class="row text" itemprop="text">
+        <div class="row text">
             <div class="col">
                 <h2>Brief</h2>
-                {{ project.breif|linebreaks }}
+                <span itemprop="text">{{ project.breif|linebreaks }}</span>
             </div>
             <div class="col">
                 <h2>Outcome</h2>
-                {{ project.outcome|linebreaks }}
+                <span itemprop="text">{{ project.outcome|linebreaks }}</span>
             </div>
         </div>
     </div>

@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /bookings
+Sitemap: https://louisemisellinteriors.co.uk/sitemap.xml

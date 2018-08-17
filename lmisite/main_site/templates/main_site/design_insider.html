@@ -17,7 +17,7 @@
 <div class="content">
         <h1>Design Insider</h1>
         <h2>The latest news, tips, and inspiration from Louise Misell Interiors</h2>
-            <div class="row">
+            <div class="row" itemscope itemtype="http://schema.org/Blog">
                 <div class="col">
                     {% for post in posts.0 %}
                         {% include "main_site/design_insider_post_template.html" with post=post %}

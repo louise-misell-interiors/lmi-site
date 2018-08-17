@@ -17,27 +17,27 @@
 <div class="content">
         <h1>Testimonials</h1>
         {% for testimonial in testimonials %}
-        <div class="row{% if forloop.counter|divisibleby:2 %} row-big-left{% endif %}">
+        <div class="row{% if forloop.counter|divisibleby:2 %} row-big-left{% endif %}" itemscope itemtype="https://schema.org/Review">
             {% if forloop.counter|divisibleby:2 %}
                 <div class="left">
-                    <blockquote>{{ testimonial.text }}</blockquote>
-                    <span class="by-line">{{ testimonial.client }}</span>
+                    <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
+                    <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
                     {% if testimonial.related_project %}
-                        <a href="{% url 'project' testimonial.related_project.id %}"><h4>See project</h4></a>
+                        <a itemprop="itemReviewed" href="{% url 'project' testimonial.related_project.id %}"><h4>See project</h4></a>
                     {% endif %}
                 </div>
                 <div class="right">
-                    <img src="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}" alt="{{ testimonial.image_alt_text }}">
+                    <img itemprop="image" src="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}" alt="{{ testimonial.image_alt_text }}">
                 </div>
             {% else %}
                 <div class="left">
-                    <img src="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}" alt="{{ testimonial.image_alt_text }}">
+                    <img itemprop="image" src="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}" alt="{{ testimonial.image_alt_text }}">
                 </div>
                 <div class="right">
-                    <blockquote>{{ testimonial.text }}</blockquote>
-                    <span class="by-line">{{ testimonial.client }}</span>
+                    <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
+                    <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
                     {% if testimonial.related_project %}
-                        <a href="{% url 'project' testimonial.related_project.id %}"><h4>See project</h4></a>
+                        <a itemprop="itemReviewed" href="{% url 'project' testimonial.related_project.id %}"><h4>See project</h4></a>
                     {% endif %}
                 </div>
             {% endif %}

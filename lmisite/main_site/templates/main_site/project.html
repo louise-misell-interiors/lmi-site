@@ -14,8 +14,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content">
-        <h1>{{ project.name }}</h1>
+    <div class="content" itemscope itemtype="https://schema.org/CreativeWork">
+        <h1 itemprop="headline">{{ project.name }}</h1>
         <div class="row">
             <div class="col before">
                 <h2>Before</h2>
@@ -24,7 +24,10 @@
                         <div class="slider-inner">
                             <span class="arrow"><i class="fas fa-chevron-left"></i></span>
                             {% for img in project.before_images.all %}
-                                <div class="slide{% if forloop.first %} is-active{% endif %}">
+                                <div class="slide{% if forloop.first %} is-active{% endif %}" itemprop="associatedMedia"
+                                     itemscope itemtype="http://schema.org/ImageObject">
+                                    <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}" />
+                                    <meta itemprop="description" content="{{ img.alt_text }}" />
                                     <img src="{% if img.image %}{{ img.image.url }}{% endif %}" alt="{{ img.alt_text }}">
                                 </div>
                             {% endfor %}
@@ -40,7 +43,10 @@
                         <div class="slider-inner">
                             <span class="arrow"><i class="fas fa-chevron-left"></i></span>
                             {% for img in project.after_images.all %}
-                                <div class="slide{% if forloop.first %} is-active{% endif %}">
+                                <div class="slide{% if forloop.first %} is-active{% endif %}" itemprop="associatedMedia"
+                                     itemscope itemtype="http://schema.org/ImageObject">
+                                    <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}" />
+                                    <meta itemprop="description" content="{{ img.alt_text }}" />
                                     <img src="{% if img.image %}{{ img.image.url }}{% endif %}" alt="{{ img.alt_text }}">
                                 </div>
                             {% endfor %}
@@ -56,7 +62,7 @@
                 {{ project.photography_credits }}
             </div>
         </div>
-        <div class="row text">
+        <div class="row text" itemprop="text">
             <div class="col">
                 <h2>Brief</h2>
                 {{ project.breif|linebreaks }}

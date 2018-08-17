@@ -63,18 +63,21 @@
                 </div>
             </form>
         </div>
-        <div class="contact-details">
+        <div class="contact-details" itemscope itemtype="http://schema.org/LocalBusiness">
+            <link itemprop="logo" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}" />
             <div class="row">
                 <div class="col">
                     <h2>Phone</h2>
+                    <meta itemprop="telephone" content="{{ config.phone.as_e164 }}">
+                    <meta itemprop="telephone" content="{{ config.mobile.as_e164 }}">
                     <p><a href="tel:{{ config.phone.as_e164 }}">{{ config.phone.as_national }}</a></p>
                     <p><a href="tel:{{ config.mobile.as_e164 }}">{{ config.mobile.as_national }}</a></p>
                 </div>
                 <div class="col">
                     <h2>Email</h2>
-                    <p><a href="mailto:{{ config.email }}">{{ config.email }}</a></p>
+                    <p><a href="mailto:{{ config.email }}" itemprop="email">{{ config.email }}</a></p>
                 </div>
-                <div class="col">
+                <div class="col" itemprop="address">
                     <h2>Address</h2>
                     {{ config.address|linebreaks }}
                 </div>

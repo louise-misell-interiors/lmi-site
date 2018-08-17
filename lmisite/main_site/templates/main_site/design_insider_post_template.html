@@ -4,8 +4,8 @@
         <meta itemprop="datePublished" content="{{ post.date|date:"c" }}" />
         <meta itemprop="dateModified" content="{{ post.date|date:"c" }}" />
         <meta itemprop="description" content="{{ post.summary }}" />
-        <meta itemprop="author" content="Louise Misell" />
-        <meta itemprop="publisher" content="Louise Misell Interiors" />
+        <meta itemprop="author" itemscope itemtype="https://schema.org/Person" content="Louise Misell" />
+        <meta itemprop="publisher" itemscope itemtype="https://schema.org/Person" content="Louise Misell Interiors" />
         <h2 itemprop="headline">{{ post.title }}</h2>
         <h3>{{ post.date }}</h3>
         {% if post.image %}

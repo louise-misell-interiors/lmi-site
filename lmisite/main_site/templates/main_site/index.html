@@ -42,6 +42,9 @@
                             {% endfor %}
                             <li><a href="{% url 'services' %}">Find out more</a></li>
                         </ul>
+                        <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <span itemprop="price">{{ s.price }}</span>
+                        </span>
                     </div>
                     {% if forloop.counter|divisibleby:4 %}
                         </div>

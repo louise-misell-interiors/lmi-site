@@ -24,6 +24,8 @@
                     <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
                     {% if testimonial.related_project %}
                         <a itemprop="itemReviewed" href="{% url 'project' testimonial.related_project.id %}"><h4>See project</h4></a>
+                    {% else %}
+                        <link itemprop="itemReviewed" href="{% url 'contact' %}">
                     {% endif %}
                 </div>
                 <div class="right">

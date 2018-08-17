@@ -35,11 +35,12 @@
                 <div class="col" itemscope itemtype="https://schema.org/Service">
                     <h2 class="step-number"><i class="fas {{ service.icon }}"></i></h2>
                     <h2 itemprop="name">{{ service.name }}</h2>
+                    <link itemprop="url" href="{% url 'services' %}" />
                     <ul itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">
                         {% for s in service.service_summaries.all %}
                             <li itemprop="itemListElement">{{ s.text }}</li>
                         {% endfor %}
-                        <li><a itemprop="url" href="{% url 'services' %}">Find out more</a></li>
+                        <li><a href="{% url 'services' %}">Find out more</a></li>
                     </ul>
                 </div>
                 {% if forloop.counter|divisibleby:4 %}

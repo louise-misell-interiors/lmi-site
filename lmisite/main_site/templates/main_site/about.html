@@ -26,9 +26,11 @@
                     {% if forloop.counter|divisibleby:2 %}
                         <div class="left">
                             {% if section.heading %}
-                                <h2>{{ section.heading }}</h2>
+                                <h2 itemprop="headline">{{ section.heading }}</h2>
                             {% endif %}
-                            {{ section.text|safe|linebreaks }}
+                            <span itemprop="description">
+                                {{ section.text|safe|linebreaks }}
+                            </span>
                         </div>
                         <div class="right">
                             <div class="row">
@@ -52,12 +54,14 @@
                         <div class="right">
                             {% if section.heading %}
                                 {% if forloop.first %}
-                                    <h1>{{ section.heading }}</h1>
+                                    <h1 itemprop="headline">{{ section.heading }}</h1>
                                 {% else %}
-                                    <h2>{{ section.heading }}</h2>
+                                    <h2 itemprop="headline">{{ section.heading }}</h2>
                                 {% endif %}
                             {% endif %}
-                            {{ section.text|safe|linebreaks }}
+                            <span itemprop="description">
+                                {{ section.text|safe|linebreaks }}
+                            </span>
                         </div>
                     {% endif %}
                 </div>

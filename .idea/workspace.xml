@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled-1534880420.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,7 +69,7 @@
           <entry key="Dockerfile" value="3" />
           <entry key="conf" value="4" />
           <entry key="html" value="63" />
-          <entry key="js" value="3" />
+          <entry key="js" value="4" />
           <entry key="json" value="3" />
           <entry key="nginx" value="3" />
           <entry key="py" value="17" />
@@ -80,7 +82,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Dockerfile" value="24" />
-          <entry key="HTML" value="3150" />
+          <entry key="HTML" value="3153" />
           <entry key="JavaScript" value="4" />
           <entry key="PLAIN_TEXT" value="141" />
           <entry key="Python" value="856" />
@@ -94,7 +96,7 @@
           <entry key="Dockerfile" value="6" />
           <entry key="HTML" value="63" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="3" />
+          <entry key="JavaScript" value="4" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="Python" value="17" />
           <entry key="SCSS" value="17" />
@@ -105,7 +107,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="conf" value="35" />
-          <entry key="html" value="3150" />
+          <entry key="html" value="3153" />
           <entry key="js" value="4" />
           <entry key="nginx" value="24" />
           <entry key="py" value="856" />
@@ -162,7 +164,7 @@
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="522">
-              <caret line="153" column="54" selection-start-line="153" selection-start-column="54" selection-end-line="153" selection-end-column="54" />
+              <caret line="153" column="51" selection-start-line="153" selection-start-column="51" selection-end-line="153" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -553,6 +555,16 @@
               <item name="main_site" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="main_site" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="main.js" type="620a8d5e:NestingTreeNode" />
+            </path>
+            <path>
+              <item name="lmi-site" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
+              <item name="lmisite" type="462c0819:PsiDirectoryNode" />
+              <item name="main_site" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="main_site" type="462c0819:PsiDirectoryNode" />
               <item name="style" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -733,9 +745,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/migrations/0032_designinsiderpost_summary.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/migrations/0031_designinsiderpost_image.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1071,10 +1080,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled-1534880420.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
-          <caret line="153" column="54" selection-start-line="153" selection-start-column="54" selection-end-line="153" selection-end-column="54" />
+          <caret line="153" column="51" selection-start-line="153" selection-start-column="51" selection-end-line="153" selection-end-column="51" />
         </state>
       </provider>
     </entry>

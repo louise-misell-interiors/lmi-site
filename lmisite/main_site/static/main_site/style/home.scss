@@ -31,10 +31,12 @@
   h1 {
     @include bar;
     @include inline-header;
+    font-weight: bold !important;
   }
 
   > div {
     width: 80%;
     margin: 0 auto;
+    font-size: 23px;
   }
 }

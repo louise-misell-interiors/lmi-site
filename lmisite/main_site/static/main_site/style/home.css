@@ -378,6 +378,7 @@
   display: inline-block;
   left: 50%;
   transform: translateX(-50%);
+  font-weight: bold !important;
 }
 .about h1::after {
   position: absolute;
@@ -394,6 +395,7 @@
 .about > div {
   width: 80%;
   margin: 0 auto;
+  font-size: 23px;
 }
 
 /*# sourceMappingURL=home.css.map */

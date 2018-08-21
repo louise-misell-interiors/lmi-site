@@ -1,13 +1,13 @@
 {% extends "main_site/inc/base.html" %}
 {% load static %}
 
-{% block title %}Home{% endblock %}
+{% block title %}{{ config.home_title }}{% endblock %}
 
 {% block header %}
     <link rel="stylesheet" href="{% static "main_site/style/home.css" %}">
 
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="Louise Misell Interiors">
+    <meta property="og:title" content="{{ config.home_title }} | Louise Misell Interiors">
     <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
     <meta property="og:description" content="{{ config.home_description }}">
     <meta name="description" content="{{ config.home_description }}">
@@ -20,7 +20,7 @@
                 <span class="arrow"><i class="fas fa-chevron-left"></i></span>
                 {% for img in slider_imgs %}
                     <div class="slide{% if forloop.first %} is-active{% endif %}">
-                        <img src="{{ img.image.url }}" alt="{{ img.alt_text }}">
+                        <img data-src="{{ img.image.url }}" alt="{{ img.alt_text }}">
                     </div>
                 {% endfor %}
                 <span class="arrow"><i class="fas fa-chevron-right"></i></span>
@@ -28,13 +28,19 @@
         </div>
     </div>
     <div class="content">
+        <div class="about">
+            <h1>{{ config.home_subtitle }}</h1>
+            <div>
+                {{ config.home_text|linebreaks }}
+            </div>
+        </div>
         <div class="services">
-            <h1>How can I help with your project?</h1>
+            <h2>How can I help with your project?</h2>
             <div class="row">
                 {% for service in services %}
                     <div class="col" itemscope itemtype="https://schema.org/Service">
-                        <h2 class="step-number"><i class="fas {{ service.icon }}"></i></h2>
-                        <h2 itemprop="name">{{ service.name }}</h2>
+                        <h3 class="step-number"><i class="fas {{ service.icon }}"></i></h3>
+                        <h3 itemprop="name">{{ service.name }}</h3>
                         <link itemprop="url" href="{% url 'services' %}"/>
                         <ul itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">
                             {% for s in service.service_summaries.all %}
@@ -44,7 +50,7 @@
                         </ul>
                         <meta itemprop="description" content="{{ service.description }}">
                         <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <span itemprop="price">{{ service.price }}</span>
+                            <meta itemprop="price" content="{{ service.price }}"/>
                         </span>
                     </div>
                     {% if forloop.counter|divisibleby:4 %}
@@ -80,17 +86,18 @@
             </div>
         </div>
         <div class="portfolio">
-            <h1>Recent projects</h1>
+            <h2>Recent projects</h2>
             <div class="row">
                 {% for project in projects %}
                     <div class="col" itemscope itemtype="https://schema.org/CreativeWork">
                         <link itemprop="url" href="{% url 'project' project.id %}"/>
                         <a href="{% url 'project' project.id %}">
                             <div class="img-box">
-                                <img itemprop="image" src="{% if project.image %}{{ project.image.url }}{% endif %}"
+                                <link itemprop="image" href="{% if project.image %}{{ project.image.url }}{% endif %}">
+                                <img data-src="{% if project.image %}{{ project.image.url }}{% endif %}"
                                      alt="{{ project.image_alt_text }}">
                             </div>
-                            <h2 itemprop="headline">{{ project.name }}</h2>
+                            <h3 itemprop="headline">{{ project.name }}</h3>
                             <hr>
                         </a>
                     </div>

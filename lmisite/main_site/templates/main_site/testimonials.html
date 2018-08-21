@@ -1,51 +1,62 @@
 {% extends "main_site/inc/base.html" %}
 {% load static %}
 
-{% block title %}Testimonials{% endblock %}
+{% block title %}{{ config.testimonials_title }}{% endblock %}
 
 {% block header %}
-    <link rel="stylesheet" href="{%  static "main_site/style/testimonials.css" %}">
+    <link rel="stylesheet" href="{% static "main_site/style/testimonials.css" %}">
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Testimonials">
-    <meta property="og:image" content="http://louisemisellinteriors.co.uk{% if testimonials.first.image %}{{ testimonials.first.image.url }}{% endif %}">
+    <meta property="og:title" content="{{ config.testimonials_title }} | Louise Misell Interiors">
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="http://louisemisellinteriors.co.uk
+            {% if testimonials.first.image %}{{ testimonials.first.image.url }}{% endif %}">
     <meta property="og:description" content="{{ config.testimonials_description }}">
     <meta name="description" content="{{ config.testimonials_description }}">
 {% endblock %}
 
 {% block content %}
-<div class="content">
+    <div class="content">
         <h1>Testimonials</h1>
-        {% for testimonial in testimonials %}
-        <div class="row{% if forloop.counter|divisibleby:2 %} row-big-left{% endif %}" itemscope itemtype="https://schema.org/Review">
-            {% if forloop.counter|divisibleby:2 %}
-                <div class="left">
-                    <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
-                    <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
-                    {% if testimonial.related_project %}
-                        <a itemprop="itemReviewed" href="{% url 'project' testimonial.related_project.id %}"><h4>See project</h4></a>
-                    {% else %}
-                        <link itemprop="itemReviewed" href="{% url 'contact' %}">
-                    {% endif %}
-                </div>
-                <div class="right">
-                    <img itemprop="image" src="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}" alt="{{ testimonial.image_alt_text }}">
-                </div>
-            {% else %}
-                <div class="left">
-                    <img itemprop="image" src="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}" alt="{{ testimonial.image_alt_text }}">
-                </div>
-                <div class="right">
-                    <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
-                    <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
-                    {% if testimonial.related_project %}
-                        <a itemprop="itemReviewed" href="{% url 'project' testimonial.related_project.id %}"><h4>See project</h4></a>
-                    {% else %}
-                        <link itemprop="itemReviewed" href="{% url 'contact' %}">
-                    {% endif %}
-                </div>
-            {% endif %}
+        <div class="desc">
+            {{ config.testimonials_text|linebreaks }}
         </div>
+        {% for testimonial in testimonials %}
+            <div class="row{% if forloop.counter|divisibleby:2 %} row-big-left{% endif %}" itemscope
+                 itemtype="https://schema.org/Review">
+                {% if forloop.counter|divisibleby:2 %}
+                    <div class="left">
+                        <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
+                        <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
+                        {% if testimonial.related_project %}
+                            <a itemprop="itemReviewed" href="{% url 'project' testimonial.related_project.id %}"><h4>See
+                                project</h4></a>
+                        {% else %}
+                            <link itemprop="itemReviewed" href="{% url 'contact' %}">
+                        {% endif %}
+                    </div>
+                    <div class="right">
+                        <link itemprop="image" href="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}">
+                        <img data-src="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}"
+                             alt="{{ testimonial.image_alt_text }}">
+                    </div>
+                {% else %}
+                    <div class="left">
+                        <link itemprop="image" href="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}">
+                        <img data-src="{% if testimonial.image %}{{ testimonial.image.url }}{% endif %}"
+                             alt="{{ testimonial.image_alt_text }}">
+                    </div>
+                    <div class="right">
+                        <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
+                        <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
+                        {% if testimonial.related_project %}
+                            <a itemprop="itemReviewed" href="{% url 'project' testimonial.related_project.id %}"><h4>See
+                                project</h4></a>
+                        {% else %}
+                            <link itemprop="itemReviewed" href="{% url 'contact' %}">
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

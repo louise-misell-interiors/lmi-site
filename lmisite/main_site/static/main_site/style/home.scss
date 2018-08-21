@@ -26,3 +26,15 @@
     }
   }
 }
+
+.about {
+  h1 {
+    @include bar;
+    @include inline-header;
+  }
+
+  > div {
+    width: 80%;
+    margin: 0 auto;
+  }
+}

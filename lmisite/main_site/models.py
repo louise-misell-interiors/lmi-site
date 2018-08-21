@@ -42,12 +42,33 @@ class SiteConfig(SingletonModel):
     testimonials_slider_speed = \
         models.PositiveIntegerField(default=10000, verbose_name="Home page testimonials slider speed (ms)")
 
+    home_title = models.CharField(max_length=255, blank=True)
     home_description = models.TextField(blank=True)
+    home_subtitle = models.CharField(max_length=255, blank=True)
+    home_text = models.TextField(blank=True)
+
+    about_title = models.CharField(max_length=255, blank=True)
+    about_description = models.TextField(blank=True)
+
+    portfolio_title = models.CharField(max_length=255, blank=True)
     portfolio_description = models.TextField(blank=True)
+    portfolio_text = models.TextField(blank=True)
+
+    blog_title = models.CharField(max_length=255, blank=True)
     blog_description = models.TextField(blank=True)
+    blog_subtitle = models.CharField(max_length=255, blank=True)
+    blog_text = models.TextField(blank=True)
+
+    services_title = models.CharField(max_length=255, blank=True)
     services_description = models.TextField(blank=True)
+    services_text = models.TextField(blank=True)
+
+    contact_title = models.CharField(max_length=255, blank=True)
     contact_description = models.TextField(blank=True)
+
+    testimonials_title = models.CharField(max_length=255, blank=True)
     testimonials_description = models.TextField(blank=True)
+    testimonials_text = models.TextField(blank=True)
 
 
 class MainSliderImage(models.Model):

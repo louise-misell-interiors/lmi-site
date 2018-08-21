@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{%  static "main_site/style/project.css" %}">
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ project.name }}">
+    <meta property="og:title" content="{{ project.name }} | Louise Misell Interiors">
     <meta property="og:description" content="{{ project.meta_description }}">
     <meta name="description" content="{{ project.meta_description }}">
     <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% if project.image %}{{ project.image.url }}{% endif %}">
@@ -31,7 +31,7 @@
                                      itemscope itemtype="http://schema.org/ImageObject">
                                     <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}" />
                                     <meta itemprop="description" content="{{ img.alt_text }}" />
-                                    <img src="{% if img.image %}{{ img.image.url }}{% endif %}" alt="{{ img.alt_text }}">
+                                    <img data-src="{% if img.image %}{{ img.image.url }}{% endif %}" alt="{{ img.alt_text }}">
                                 </div>
                             {% endfor %}
                             <span class="arrow"><i class="fas fa-chevron-right"></i></span>
@@ -50,7 +50,7 @@
                                      itemscope itemtype="http://schema.org/ImageObject">
                                     <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}" />
                                     <meta itemprop="description" content="{{ img.alt_text }}" />
-                                    <img src="{% if img.image %}{{ img.image.url }}{% endif %}" alt="{{ img.alt_text }}">
+                                    <img data-src="{% if img.image %}{{ img.image.url }}{% endif %}" alt="{{ img.alt_text }}">
                                 </div>
                             {% endfor %}
                             <span class="arrow"><i class="fas fa-chevron-right"></i></span>

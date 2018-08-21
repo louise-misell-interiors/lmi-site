@@ -1,38 +1,41 @@
 {% extends "main_site/inc/base.html" %}
 {% load static %}
 
-{% block title %}Design Insider{% endblock %}
+{% block title %}{{ config.blog_title }}{% endblock %}
 
 {% block header %}
-    <link rel="stylesheet" href="{%  static "main_site/style/design_insider.css" %}">
+    <link rel="stylesheet" href="{% static "main_site/style/design_insider.css" %}">
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Design Insider">
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ config.blog_title }} | Louise Misell Interiors">
     <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
     <meta property="og:description" content="{{ config.blog_description }}">
     <meta name="description" content="{{ config.blog_description }}">
 {% endblock %}
 
 {% block content %}
-<div class="content">
+    <div class="content" itemscope itemtype="http://schema.org/Blog">
         <h1 itemprop="headline">Design Insider</h1>
-        <h2 itemprop="description">The latest news, tips, and inspiration from Louise Misell Interiors</h2>
-            <div class="row" itemscope itemtype="http://schema.org/Blog">
-                <div class="col">
-                    {% for post in posts.0 %}
-                        {% include "main_site/design_insider_post_template.html" with post=post %}
-                    {% endfor %}
-                </div>
-                <div class="col">
-                    {% for post in posts.1 %}
-                        {% include "main_site/design_insider_post_template.html" with post=post %}
-                    {% endfor %}
-                </div>
-                <div class="col">
-                    {% for post in posts.2 %}
-                        {% include "main_site/design_insider_post_template.html" with post=post %}
-                    {% endfor %}
-                </div>
+        <h2>{{ config.blog_subtitle }}</h2>
+        <div class="desc" itemprop="description">
+            {{ config.blog_text|linebreaks }}
+        </div>
+        <div class="row">
+            <div class="col">
+                {% for post in posts.0 %}
+                    {% include "main_site/design_insider_post_template.html" with post=post %}
+                {% endfor %}
             </div>
+            <div class="col">
+                {% for post in posts.1 %}
+                    {% include "main_site/design_insider_post_template.html" with post=post %}
+                {% endfor %}
+            </div>
+            <div class="col">
+                {% for post in posts.2 %}
+                    {% include "main_site/design_insider_post_template.html" with post=post %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}

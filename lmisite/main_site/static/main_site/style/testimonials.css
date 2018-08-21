@@ -1,3 +1,8 @@
+.desc {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .row {
   align-items: center;
 }

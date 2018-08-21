@@ -45,10 +45,22 @@ $(function () {
         $menuButton.toggleClass("fa-bars");
         $menuButton.toggleClass("fa-times");
     });
+
+    [].forEach.call(document.querySelectorAll('img[data-src]'),
+        function (img) {
+            img.setAttribute('src', img.getAttribute('data-src'));
+            img.onload = function () {
+                img.removeAttribute('data-src');
+            };
+        });
 });
 
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
 gtag('js', new Date());
 
 gtag('config', 'UA-122537706-1');

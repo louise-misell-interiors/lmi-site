@@ -64,9 +64,15 @@ img {
   -ms-user-select: none;
   user-select: none;
   pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s;
 
   &.round {
     border-radius: 50%;
+  }
+
+  &[data-src] {
+    opacity: 0;
   }
 }
 
@@ -78,7 +84,6 @@ img {
     flex-basis: 0;
     flex-shrink: 0;
     padding: $column-gutter;
-
 
     @media (max-width: $media-small) {
       flex-basis: 100% !important;
@@ -182,7 +187,7 @@ img {
         font-size: 27px;
 
         @include bar;
-          &::after {
+        &::after {
           width: 0;
           opacity: 0;
         }

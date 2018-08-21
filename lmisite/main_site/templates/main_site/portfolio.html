@@ -2,14 +2,15 @@
 {% load static %}
 {% load range %}
 
-{% block title %}Portfolio{% endblock %}
+{% block title %}{{ config.portfolio_title }}{% endblock %}
 
 {% block header %}
-    <link rel="stylesheet" href="{%  static "main_site/style/portfolio.css" %}">
+    <link rel="stylesheet" href="{% static "main_site/style/portfolio.css" %}">
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Portfolio">
-    <meta property="og:image" content="{% if projects.first.image %}http://louisemisellinteriors.co.uk/{{ projects.first.image.url }}{% endif %}">
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ config.portfolio_title }} | Louise Misell Interiors">
+    <meta property="og:image"
+          content="{% if projects.first.image %}http://louisemisellinteriors.co.uk/{{ projects.first.image.url }}{% endif %}">
     <meta property="og:description" content="{{ config.portfolio_description }}">
     <meta name="description" content="{{ config.portfolio_description }}">
 {% endblock %}
@@ -17,13 +18,18 @@
 {% block content %}
     <div class="content">
         <h1>Portfolio</h1>
+        <div class="desc">
+            {{ config.portfolio_text|linebreaks }}
+        </div>
         <div class="row">
             {% for project in projects %}
                 <div class="col" itemscope itemtype="https://schema.org/CreativeWork">
-                   <link itemprop="url" href="{% url 'project' project.id %}" />
+                    <link itemprop="url" href="{% url 'project' project.id %}"/>
                     <a href="{% url 'project' project.id %}">
                         <div class="img-box">
-                            <img itemprop="image" src="{% if project.image %}{{ project.image.url }}{% endif %}" alt="{{ project.image_alt_text }}">
+                            <link itemprop="image" href="{% if project.image %}{{ project.image.url }}{% endif %}">
+                            <img data-src="{% if project.image %}{{ project.image.url }}{% endif %}"
+                                 alt="{{ project.image_alt_text }}">
                         </div>
                         <h2 itemprop="headline">{{ project.name }}</h2>
                         <hr>
@@ -31,14 +37,14 @@
                         <meta itemprop="text" content="{{ project.outcome }}">
                         {% for img in project.before_images.all %}
                             <span itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}" />
-                                <meta itemprop="description" content="{{ img.alt_text }}" />
+                                <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}"/>
+                                <meta itemprop="description" content="{{ img.alt_text }}"/>
                             </span>
                         {% endfor %}
                         {% for img in project.after_images.all %}
                             <span itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}" />
-                                <meta itemprop="description" content="{{ img.alt_text }}" />
+                                <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}"/>
+                                <meta itemprop="description" content="{{ img.alt_text }}"/>
                             </span>
                         {% endfor %}
                     </a>

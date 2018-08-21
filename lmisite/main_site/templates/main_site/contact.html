@@ -1,13 +1,13 @@
 {% extends "main_site/inc/base.html" %}
 {% load static %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}{{ config.contact_title }}{% endblock %}
 
 {% block header %}
     <link rel="stylesheet" href="{%  static "main_site/style/contact.css" %}">
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Contact">
+    <meta property="og:title" content="{{ config.contact_title }} | Louise Misell Interiors">
     <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
     <meta property="og:description" content="{{ config.contact_description }}">
     <meta name="description" content="{{ config.contact_description }}">

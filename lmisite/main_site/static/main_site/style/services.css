@@ -1,6 +1,15 @@
 .content .steps {
   padding-top: 0 !important;
 }
+.content .steps > h2 {
+  font-size: 40px;
+  font-weight: normal;
+  text-align: center;
+}
+.content .steps .desc {
+  width: 80%;
+  margin: 0 auto;
+}
 .content .steps .step {
   padding: 25px 50px;
   background: #eee;

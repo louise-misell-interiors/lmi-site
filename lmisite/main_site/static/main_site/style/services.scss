@@ -3,6 +3,17 @@
 
 .content {
   .steps {
+    > h2 {
+      font-size: 40px;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    .desc {
+      width: 80%;
+      margin: 0 auto;
+    }
+
     padding-top: 0 !important;
 
     .step {

@@ -1,19 +1,19 @@
 {% extends "main_site/inc/base.html" %}
 {% load static %}
 
-{% block title %}About{% endblock %}
+{% block title %}{{ config.about_title }}{% endblock %}
 
 {% block header %}
     <link rel="stylesheet" href="{%  static "main_site/style/about.css" %}">
 
-    <meta property="og:title" content="About Louise">
+    <meta property="og:title" content="{{ config.about_title }} | Louise Misell Interiors">
     <meta property="og:type" content="profile" />
     <meta property="profile:first_name" content="Louise" />
     <meta property="profile:last_name" content="Misell" />
-    <meta property="og:description" content="{{ sections.first.text }}">
+    <meta property="og:description" content="{{ config.about_description }}">
     <meta property="og:image" content="https://louisemisellinteriors.co.uk{{ sections.first.images.first.image.url }}">
 
-    <meta name="description" content="{{ sections.first.text }}">
+    <meta name="description" content="{{ config.about_description }}">
 {% endblock %}
 
 {% block content%}

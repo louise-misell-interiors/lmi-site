@@ -4,8 +4,12 @@
 .services {
   width: 80%;
   margin: 0 auto;
+  padding-top: 0 !important;
 
-  h1 {
+  > h2 {
+    margin-top: 0;
+    margin-bottom: 35px;
+    font-size: 35px;
     @include bar;
     @include inline-header;
   }
@@ -17,9 +21,10 @@
       margin: $column-gutter;
       position: relative;
 
-      h2 {
+      h3 {
         text-align: center;
         margin: $content-padding/2 0;
+        font-size: 25px;
 
         &.step-number {
           font-size: 50px;

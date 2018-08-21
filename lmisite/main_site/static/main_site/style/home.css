@@ -1,14 +1,18 @@
 .services {
   width: 80%;
   margin: 0 auto;
+  padding-top: 0 !important;
 }
-.services h1 {
+.services > h2 {
+  margin-top: 0;
+  margin-bottom: 35px;
+  font-size: 35px;
   position: relative;
   display: inline-block;
   left: 50%;
   transform: translateX(-50%);
 }
-.services h1::after {
+.services > h2::after {
   position: absolute;
   width: 100%;
   left: 50%;
@@ -26,11 +30,12 @@
   margin: 1%;
   position: relative;
 }
-.services .row .col h2 {
+.services .row .col h3 {
   text-align: center;
   margin: 12.5px 0;
+  font-size: 25px;
 }
-.services .row .col h2.step-number {
+.services .row .col h3.step-number {
   font-size: 50px;
   font-weight: bold;
   margin: 0;
@@ -247,13 +252,15 @@
   width: 80%;
   margin: 0 auto;
 }
-.portfolio h1 {
+.portfolio > h2 {
+  margin-top: 0;
+  font-size: 35px;
   position: relative;
   display: inline-block;
   left: 50%;
   transform: translateX(-50%);
 }
-.portfolio h1::after {
+.portfolio > h2::after {
   position: absolute;
   width: 100%;
   left: 50%;
@@ -271,11 +278,13 @@
 .portfolio .row .col hr {
   width: 30%;
   color: #2D76C4;
+  margin: 0 auto;
 }
-.portfolio .row .col h2 {
+.portfolio .row .col h3 {
   text-align: center;
   margin: 0;
   padding: 0;
+  font-size: 25px;
 }
 .portfolio .row .col .img-box {
   width: 100%;
@@ -362,6 +371,29 @@
   object-fit: cover;
   height: 100%;
   width: 100%;
+}
+
+.about h1 {
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.about h1::after {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 0;
+  content: "";
+  border-radius: 2px;
+  border: solid #2D76C4 1px;
+  transition: width 0.2s;
+  bottom: -4px;
+}
+.about > div {
+  width: 80%;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=home.css.map */

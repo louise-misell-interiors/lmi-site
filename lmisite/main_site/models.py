@@ -126,6 +126,7 @@ class ServiceSummary(models.Model):
 class Project(models.Model):
     draft = models.BooleanField(default=False)
     name = models.CharField(max_length=255)
+    area = models.CharField(max_length=255, blank=True)
     breif = models.TextField()
     outcome = models.TextField()
     image = models.ImageField(blank=True)

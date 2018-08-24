@@ -23,29 +23,32 @@
             <meta itemprop="name" content="Louise Misell Interiors">
             <meta itemprop="description" content="{{ config.home_description }}">
             <link itemprop="url" href="{% url 'index' %}">
+            <h2>Do you have any questions? Or would you like to have a chat about your project?
+                Please contact me using any of the below:</h2>
             <div class="row">
                 <div class="col">
-                    <h2>Phone</h2>
+                    <h3>Phone</h3>
                     <meta itemprop="telephone" content="{{ config.phone.as_e164 }}">
                     <meta itemprop="telephone" content="{{ config.mobile.as_e164 }}">
                     <p><a href="tel:{{ config.phone.as_e164 }}">{{ config.phone.as_national }}</a></p>
                     <p><a href="tel:{{ config.mobile.as_e164 }}">{{ config.mobile.as_national }}</a></p>
                 </div>
                 <div class="col">
-                    <h2>Email</h2>
+                    <h3>Email</h3>
                     <p><a href="mailto:{{ config.email }}" itemprop="email">{{ config.email }}</a></p>
                 </div>
                 <div class="col" itemprop="address">
-                    <h2>Address</h2>
+                    <h3>Address</h3>
                     {{ config.address|linebreaks }}
                 </div>
                 <div class="col">
-                    <h2><a href="#book">Book online</a></h2>
+                    <h3><a href="#book">Book online</a></h3>
                     <p><a href="#book">Click here</a> to book online</p>
                 </div>
             </div>
         </div>
         <div class="form">
+            <h2>Or please send me a message and I'll contact you:</h2>
             <form action="" method="post">
                 {% if sent %}
                     <div class="row">

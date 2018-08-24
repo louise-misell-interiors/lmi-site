@@ -7,16 +7,21 @@
     width: auto;
   }
 }
+.content h2 {
+  text-align: center;
+  font-size: 32px;
+}
 .content .contact-details {
   padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
-.content .contact-details h2 {
+.content .contact-details h3 {
   position: relative;
   display: inline-block;
-  margin-top: 0;
-  font-size: 35px;
+  margin: 0;
+  font-size: 30px;
 }
-.content .contact-details h2::after {
+.content .contact-details h3::after {
   position: absolute;
   width: 100%;
   left: 50%;
@@ -31,12 +36,18 @@
 .content .contact-details p {
   font-size: 25px;
 }
-.content form .errorlist {
+.content .form {
+  padding-top: 0 !important;
+}
+.content .form h2 {
+  margin: 0;
+}
+.content .form .errorlist {
   margin: 0;
   text-align: left;
   color: red;
 }
-.content form .errorlist li {
+.content .form .errorlist li {
   list-style: none;
 }
 .content .calendar iframe {

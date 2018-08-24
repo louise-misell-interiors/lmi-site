@@ -234,6 +234,7 @@ class DesignInsiderPost(models.Model):
     title = models.CharField(max_length=255)
     date = models.DateField()
     image = models.ImageField(blank=True)
+    image_alt = models.CharField(verbose_name="Image alt text", max_length=255, blank=True)
     summary = models.TextField(blank=True)
     content = RichTextUploadingField(blank=True)
 

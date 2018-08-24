@@ -42,6 +42,8 @@ class SiteConfig(SingletonModel):
     testimonials_slider_speed = \
         models.PositiveIntegerField(default=10000, verbose_name="Home page testimonials slider speed (ms)")
 
+    price_range = models.CharField(max_length=255, blank=True)
+
     home_title = models.CharField(max_length=255, blank=True)
     home_description = models.TextField(blank=True)
     home_subtitle = models.CharField(max_length=255, blank=True)

@@ -29,10 +29,10 @@
                 {% if forloop.counter|divisibleby:2 %}
                     <div class="left">
                         <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
-                        <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
+                        <h2 class="by-line" itemprop="author">{{ testimonial.client }}</h2>
                         {% if testimonial.related_project %}
-                            <a itemprop="itemReviewed" href="{% url 'project' testimonial.related_project.id %}"><h4>See
-                                project</h4></a>
+                            <a itemprop="itemReviewed" href="{% url 'project' testimonial.related_project.id %}"><h3>See
+                                project</h3></a>
                         {% else %}
                             <link itemprop="itemReviewed" href="{% url 'contact' %}">
                         {% endif %}
@@ -50,10 +50,10 @@
                     </div>
                     <div class="right">
                         <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
-                        <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
+                        <h2 class="by-line" itemprop="author">{{ testimonial.client }}</h2>
                         {% if testimonial.related_project %}
-                            <a itemprop="itemReviewed" href="{% url 'project' testimonial.related_project.id %}"><h4>See
-                                project</h4></a>
+                            <a itemprop="itemReviewed" href="{% url 'project' testimonial.related_project.id %}"><h3>See
+                                project</h3></a>
                         {% else %}
                             <link itemprop="itemReviewed" href="{% url 'contact' %}">
                         {% endif %}

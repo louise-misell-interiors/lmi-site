@@ -9,17 +9,20 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 
 def compress_img(image, new_width=1500):
-    img = Img.open(io.BytesIO(image.read()))
-    img.thumbnail((new_width, new_width * image.height / image.width), Img.ANTIALIAS)
-    output = io.BytesIO()
-    if img.mode == 'RGBA':
-        background = Img.new("RGB", image.size, (255, 255, 255))
-        background.paste(image, image.split()[-1])
-        image = background
-    img.save(output, format='JPEG', quality=80, optimise=True)
-    output.seek(0)
-    return InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % image.name.split('.')[0], 'image/jpeg',
-                                len(output.getvalue()), None)
+    if bool(image) and image.file is not None and isinstance(image.file, UploadedFile):
+        img = Img.open(io.BytesIO(image.read()))
+        img.thumbnail((new_width, new_width * image.height / image.width), Img.ANTIALIAS)
+        output = io.BytesIO()
+        if img.mode == 'RGBA':
+            background = Img.new("RGB", image.size, (255, 255, 255))
+            background.paste(image, image.split()[-1])
+            image = background
+        img.save(output, format='JPEG', quality=80, optimise=True)
+        output.seek(0)
+        return InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % image.name.split('.')[0], 'image/jpeg',
+                                    len(output.getvalue()), None)
+    else:
+        return image
 
 
 class SiteConfig(SingletonModel):
@@ -83,8 +86,7 @@ class MainSliderImage(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
-            self.image = compress_img(self.image)
+        self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -139,8 +141,7 @@ class Project(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
-            self.image = compress_img(self.image)
+        self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -157,8 +158,7 @@ class ProjectBeforeImage(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
-            self.image = compress_img(self.image)
+        self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
 
@@ -172,8 +172,7 @@ class ProjectAfterImage(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
-            self.image = compress_img(self.image)
+        self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
 
@@ -201,8 +200,7 @@ class AboutSectionImage(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
-            self.image = compress_img(self.image)
+        self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
 
@@ -221,8 +219,7 @@ class Testimonial(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
-            self.image = compress_img(self.image)
+        self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -243,8 +240,7 @@ class DesignInsiderPost(models.Model):
         ordering = ['-date']
 
     def save(self, *args, **kwargs):
-        if hasattr(self.image, 'file') and isinstance(self.image.file, UploadedFile):
-            self.image = compress_img(self.image)
+        self.image = compress_img(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):

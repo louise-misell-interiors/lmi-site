@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled-1534880420.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/portfolio.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/portfolio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/services.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/services.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/testimonials.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/testimonials.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +60,7 @@
     <session id="-314264533">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.27" value="1" />
@@ -61,7 +69,8 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -121,10 +130,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
+            <state relative-caret-position="16">
               <caret line="58" column="25" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -134,19 +143,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html">
+        <entry file="file://$PROJECT_DIR$/lmisite/main_site/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
-              <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
-              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+            <state relative-caret-position="32">
+              <caret line="2" column="19" lean-forward="true" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -160,7 +160,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="522">
@@ -172,7 +172,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
+            <state relative-caret-position="592">
               <caret line="37" column="15" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
             </state>
           </provider>
@@ -181,7 +181,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
+            <state relative-caret-position="1200">
               <caret line="75" column="3" selection-start-line="75" selection-start-column="3" selection-end-line="75" selection-end-column="3" />
             </state>
           </provider>
@@ -190,7 +190,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/services.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
+            <state relative-caret-position="240">
               <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
@@ -199,7 +199,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/nginx/django.conf">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="768">
               <caret line="48" column="56" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
             </state>
           </provider>
@@ -273,21 +273,21 @@
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main.js" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post_template.html" />
         <option value="$PROJECT_DIR$/config/nginx/django.conf" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/about.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/contact.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/testimonials.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/services.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/portfolio.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/models.py" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/portfolio.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/testimonials.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/about.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/contact.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/portfolio.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/services.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/testimonials.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html" />
       </list>
     </option>
   </component>
@@ -628,19 +628,19 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lmisite/main_site/templates/main_site" />
-      <recent name="$PROJECT_DIR$/lmisite/bookings" />
-      <recent name="$PROJECT_DIR$/lmisite/lmisite" />
-      <recent name="$PROJECT_DIR$/lmisite" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lmisite" />
       <recent name="$PROJECT_DIR$/lmisite/bookings/static/bookings/img" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/lmisite/bookings/static/bookings/js" />
       <recent name="$PROJECT_DIR$/lmisite/bookings/static/bookings/style" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lmisite/main_site/static/main_site/js" />
+      <recent name="$PROJECT_DIR$/lmisite/main_site/templates/main_site" />
+      <recent name="$PROJECT_DIR$/lmisite/bookings" />
+      <recent name="$PROJECT_DIR$/lmisite/lmisite" />
+      <recent name="$PROJECT_DIR$/lmisite" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -712,7 +712,7 @@
     <frame x="0" y="27" width="1600" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2673969" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27126288" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />

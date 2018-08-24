@@ -11,6 +11,8 @@
     <meta property="og:description" content="{{ project.meta_description }}">
     <meta name="description" content="{{ project.meta_description }}">
     <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% if project.image %}{{ project.image.url }}{% endif %}">
+
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'project' project.id %}">
 {% endblock %}
 
 {% block content %}

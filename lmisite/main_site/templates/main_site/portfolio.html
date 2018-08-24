@@ -13,6 +13,8 @@
           content="{% if projects.first.image %}http://louisemisellinteriors.co.uk/{{ projects.first.image.url }}{% endif %}">
     <meta property="og:description" content="{{ config.portfolio_description }}">
     <meta name="description" content="{{ config.portfolio_description }}">
+
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'portfolio' %}">
 {% endblock %}
 
 {% block content %}

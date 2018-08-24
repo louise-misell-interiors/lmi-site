@@ -3,6 +3,7 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/home-compiled.js" />
+        <item url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled-1534880420-compiled.js" />
         <item url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js" />
         <item url="file://$PROJECT_DIR$/lmisite/static/admin/js/SelectBox-compiled.js" />
         <item url="file://$PROJECT_DIR$/lmisite/static/admin/js/SelectFilter2-compiled.js" />
@@ -546,6 +547,7 @@
       <root url="file://$PROJECT_DIR$/lmisite/bookings/static/bookings/js/BookingTypes-compiled.js" />
       <root url="file://$PROJECT_DIR$/lmisite/bookings/static/bookings/js/main-compiled.js" />
       <root url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/home-compiled.js" />
+      <root url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled-1534880420-compiled.js" />
       <root url="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main-compiled.js" />
       <root url="file://$PROJECT_DIR$/lmisite/static/admin/js/SelectBox-compiled.js" />
       <root url="file://$PROJECT_DIR$/lmisite/static/admin/js/SelectFilter2-compiled.js" />

@@ -12,6 +12,9 @@
             {% if testimonials.first.image %}{{ testimonials.first.image.url }}{% endif %}">
     <meta property="og:description" content="{{ config.testimonials_description }}">
     <meta name="description" content="{{ config.testimonials_description }}">
+
+
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'testimonials' %}">
 {% endblock %}
 
 {% block content %}

@@ -9,6 +9,7 @@
 .content .steps .desc {
   width: 80%;
   margin: 0 auto;
+  font-size: 23px;
 }
 .content .steps .step {
   padding: 25px 50px;

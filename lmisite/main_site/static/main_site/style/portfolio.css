@@ -1,5 +1,7 @@
 .desc {
   font-size: 23px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .row .col {

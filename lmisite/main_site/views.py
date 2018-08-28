@@ -35,10 +35,7 @@ def design_insider(request):
 
 
 def design_insider_post(request, id):
-    if not request.user.is_superuser:
-        post = get_object_or_404(DesignInsiderPost, id=id, draft=False)
-    else:
-        post = get_object_or_404(DesignInsiderPost, id=id)
+    post = get_object_or_404(DesignInsiderPost, id=id)
     return render(request, "main_site/design_insider_post.html", {"post": post})
 
 

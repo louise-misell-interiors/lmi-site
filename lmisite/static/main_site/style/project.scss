@@ -1,6 +1,25 @@
 @import "inc/slider";
 @import "inc/bar";
 
+.row:first-of-type {
+  padding-bottom: 0 !important;
+}
+
+.row.credits {
+  padding: 0 50px !important;
+
+  & .col {
+    padding: 0 2vw !important;
+    text-align: right;
+  }
+}
+
+.row.text {
+  font-size: 20px;
+  padding-top: 0 !important;
+  padding-bottom: $content-padding*2 !important;
+}
+
 .col {
   h2 {
     font-size: 35px;

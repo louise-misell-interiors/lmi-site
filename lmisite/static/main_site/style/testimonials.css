@@ -1,5 +1,16 @@
+.desc {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 23px;
+}
+
 .row {
   align-items: center;
+}
+@media (max-width: 800px) {
+  .row {
+    padding: 25px !important;
+  }
 }
 .row img {
   max-height: 30vh;
@@ -9,11 +20,15 @@
 .row blockquote {
   font-size: 25px;
 }
-.row .by-line {
+.row .by-line, .row h3 {
   font-weight: bold;
   text-align: center;
   display: inline-block;
   width: 100%;
+  margin: 0;
+}
+.row .by-line {
+  font-size: 25px;
 }
 
 /*# sourceMappingURL=testimonials.css.map */

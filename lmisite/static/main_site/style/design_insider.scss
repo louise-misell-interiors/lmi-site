@@ -1,0 +1,44 @@
+@import "inc/variables";
+
+.content {
+  width: 70%;
+  margin: $column-gutter auto;
+
+  @media (max-width: $media-small) {
+    width: auto;
+  }
+
+  .post-content {
+    img {
+      max-width: unset !important;
+    }
+  }
+
+  .desc {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    font-size: 23px;
+  }
+}
+
+h2, h3 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.post {
+  background: #eee;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  h3, h4 {
+    margin: 0;
+  }
+  h3 {
+    font-size: 25px;
+  }
+  img {
+    margin-top: 20px;
+  }
+}

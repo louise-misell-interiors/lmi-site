@@ -32,4 +32,35 @@ $(function () {
     $slider.find(".arrow:last").on("click", function () {
         nextSlide($(this).parent());
     });
+
+    const $menu = $(".nav");
+    const $menuButton = $menu.find(".menu-button");
+    const $menuLeft = $menu.find(".nav-left");
+    const $menuRight = $menu.find(".nav-right");
+
+    $menuButton.on("click", function () {
+        $menu.toggleClass("show-menu");
+        let top = $menuLeft.outerHeight();
+        $menuRight.css("top", top);
+        $menuButton.toggleClass("fa-bars");
+        $menuButton.toggleClass("fa-times");
+    });
+
+    [].forEach.call(document.querySelectorAll('img[data-src]'),
+        function (img) {
+            img.setAttribute('src', img.getAttribute('data-src'));
+            img.onload = function () {
+                img.removeAttribute('data-src');
+            };
+        });
 });
+
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+gtag('config', 'UA-122537706-1');

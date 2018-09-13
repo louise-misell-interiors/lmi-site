@@ -2,8 +2,14 @@
 @import "bar";
 
 .services {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 0 !important;
 
-  h1 {
+  > h2 {
+    margin-top: 0;
+    margin-bottom: 35px;
+    font-size: 35px;
     @include bar;
     @include inline-header;
   }
@@ -12,11 +18,13 @@
     .col {
       padding: $content-padding;
       background: #eee;
-      margin: 0 $column-gutter;
+      margin: $column-gutter;
+      position: relative;
 
-      h2 {
+      h3 {
         text-align: center;
         margin: $content-padding/2 0;
+        font-size: 25px;
 
         &.step-number {
           font-size: 50px;
@@ -27,7 +35,7 @@
 
       ul {
         list-style: none;
-        padding: 0;
+        padding: 0 0 35px;
 
         li {
           text-align: center;
@@ -44,6 +52,14 @@
             &::before {
               width: 30%;
             }
+          }
+
+          &:last-of-type {
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 20px;
           }
         }
       }

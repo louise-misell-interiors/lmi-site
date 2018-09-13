@@ -1,14 +1,40 @@
+.desc {
+  font-size: 23px;
+  width: 80%;
+  margin: 0 auto;
+}
+
 .row .col {
   padding: 25px;
   margin: 0 1%;
 }
-.row .col h2 {
+@media (max-width: 800px) {
+  .row .col {
+    margin: 0;
+  }
+}
+.row .col h2, .row .col h3 {
   text-align: center;
   margin: 0;
   padding: 0;
 }
 .row .col a {
   text-decoration: none;
+}
+.row .col a .img-box {
+  width: 100%;
+  padding-top: 66.19%;
+  position: relative;
+  overflow: hidden;
+  height: 0;
+}
+.row .col a .img-box img {
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /*# sourceMappingURL=portfolio.css.map */

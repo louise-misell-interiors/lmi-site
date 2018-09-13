@@ -25,7 +25,7 @@ SECRET_KEY = 'qt-d9(74_5==&jku1kr&jh_tmeal+p)&s(lv30^7mpobfoch)v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["test.louisemisellinteriors.co.uk", "louisemisellinteriors.co.uk", "web"]
+ALLOWED_HOSTS = ["www.louisemisellinteriors.co.uk", "louisemisellinteriors.co.uk"]
 
 # Application definition
 
@@ -81,12 +81,15 @@ WSGI_APPLICATION = 'lmisite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+with open(os.path.join(BASE_DIR, "db_pass")) as f:
+  db_pass = f.read()
+
 DATABASES = {
     'default': {
-        'NAME': os.getenv('DB_NAME', 'lmi-site'),
-        'USER': os.getenv('DB_USER', 'root'),
-        'PASSWORD': os.getenv('DB_PASS', ''),
-        'HOST': os.getenv('DB_HOST', 'db'),
+        'NAME': os.getenv('DB_NAME', 'lmisite'),
+        'USER': os.getenv('DB_USER', 'lmisite'),
+        'PASSWORD': os.getenv('DB_PASS', db_pass),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
         'ENGINE': 'django.db.backends.mysql',
         'PORT': '',
     }

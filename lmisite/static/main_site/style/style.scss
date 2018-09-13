@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700');
-@import url('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
+@import url('https://use.fontawesome.com/releases/v5.1.0/css/all.css');
 
 * {
   box-sizing: border-box;
@@ -35,10 +35,13 @@ a {
 
 hr {
   width: 30%;
-  color: $primary-colour;
+  border: 1px solid $primary-colour;
+  height: 0;
 }
 
 blockquote {
+  margin: 0;
+
   &::before, &::after {
     content: '\275D';
     font-size: 50px;
@@ -56,8 +59,20 @@ blockquote {
 img {
   max-width: 100%;
 
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s;
+
   &.round {
     border-radius: 50%;
+  }
+
+  &[data-src] {
+    opacity: 0;
   }
 }
 
@@ -68,7 +83,11 @@ img {
   .left, .right, .col {
     flex-basis: 0;
     flex-shrink: 0;
-    padding: 0 $column-gutter;
+    padding: $column-gutter;
+
+    @media (max-width: $media-small) {
+      flex-basis: 100% !important;
+    }
   }
 
   .left {
@@ -83,6 +102,9 @@ img {
   &.row-big-left {
     .left {
       flex-grow: 3;
+      @media (max-width: $media-small) {
+        order: 2;
+      }
     }
 
     .right {
@@ -109,7 +131,7 @@ img {
   .content {
     > h1 {
       text-align: center;
-      font-size: 50px;
+      font-size: 45px;
       margin-top: 15px;
       margin-bottom: 0;
 
@@ -119,6 +141,12 @@ img {
 
     > div {
       padding: $content-padding;
+
+      @media (max-width: $media-small) {
+        padding: 0;
+        width: auto;
+        margin: 0 5%;
+      }
 
       h1 {
         margin-top: $content-margin;
@@ -130,10 +158,56 @@ img {
     }
   }
 
+  .pre-footer {
+    padding: 20px 0;
+    .row {
+      align-items: center;
+    }
+
+    .logos {
+      img {
+        margin: 0 $content-padding/2;
+        max-height: $nav-height/2;
+        min-height: $nav-height/4;
+        vertical-align: middle;
+        max-width: 100%;
+
+        @media (max-width: $media-medium) {
+          max-height: $nav-height/4;
+        }
+      }
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+
+      a {
+        margin: 0 5px;
+        font-size: 27px;
+
+        @include bar;
+        &::after {
+          width: 0;
+          opacity: 0;
+        }
+
+        &:not(.is-active):hover::after {
+          width: 100%;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
   .footer {
-    background: #000;
+    background: #444;
     color: #fff;
     text-align: center;
-    padding: $content-padding;
+    padding: $content-padding/2;
+
+    a {
+      color: #fff;
+    }
   }
 }

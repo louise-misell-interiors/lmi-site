@@ -54,10 +54,7 @@ def portfolio(request):
 
 
 def project(request, id):
-    if not request.user.is_superuser:
-        project = get_object_or_404(Project, id=id, draft=False)
-    else:
-        project = get_object_or_404(Project, id=id)
+    project = get_object_or_404(Project, id=id)
     return render(request, "main_site/project.html", {"project": project})
 
 

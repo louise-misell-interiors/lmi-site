@@ -1,0 +1,84 @@
+---
+- name: Create folder
+  file:
+    path: /opt/apps/lmisite
+    state: directory
+  run_once: true  
+    
+- name: Create venv
+  shell: "python3 -m virtualenv /opt/apps/lmisite/env"
+  run_once: true
+
+- name: Copy files
+  synchronize:
+    src: lmisite/
+    dest: /opt/apps/lmisite/src
+    delete: true
+    rsync_opts:
+    - "--exclude=db.sqlite3"
+    - "--exclude=media"
+    - "--exclude=static"
+  run_once: true
+  
+- name: Copy db password
+  template:
+    src: templates/db_pass.j2
+    dest: /opt/apps/lmisite/src/db_pass
+    owner: www-data
+    group: www-data
+    mode: 0640
+  run_once: true
+  
+- name: Create db
+  mysql_db:
+    name: lmisite
+    encoding: utf8
+    state: present
+  
+- name: Create db user
+  mysql_user:
+    name: lmisite
+    host: "%"
+    state: present
+    password: "{{ db_pass}}"
+    priv: "lmisite.*:ALL"
+  run_once: true
+  
+- name: Install dependencies
+  pip:
+    requirements: /opt/apps/lmisite/src/requirements.txt
+    state: present
+    virtualenv: /opt/apps/lmisite/env
+  run_once: true
+
+- name: Migrate database
+  command: "/opt/apps/lmisite/env/bin/python3 /opt/apps/lmisite/src/manage.py migrate"
+  
+- name: Collect static 
+  command: "/opt/apps/lmisite/env/bin/python3 /opt/apps/lmisite/src/manage.py collectstatic --noinput" 
+
+- name: Create uWSGI config
+  file:
+    path: /etc/uwsgi/vassals/lmisite.ini
+    src: /etc/uwsgi/vassals/app.skel
+    state: link
+    
+- name: Create nginx config
+  copy:
+    src: files/nginx
+    dest: /etc/nginx/sites-enabled/lmisite
+
+- name: Issue certificates
+  shell: "certbot -m {{ letsencrypt_email }} --agree-tos --nginx -d louisemisellinteriors.co.uk -d www.louisemisellinteriors.co.uk -d test.louisemisellinteriors.co.uk -n certonly"
+  args:
+    creates: /etc/letsencrypt/live/louisemisellinteriors.co.uk
+
+- name: Reload nginx
+  service:
+    name: nginx
+    state: reloaded
+    
+- name: Reload vassal
+  command: "touch --no-dereference /etc/uwsgi/vassals/lmisite.ini"
+  args:
+    warn: true

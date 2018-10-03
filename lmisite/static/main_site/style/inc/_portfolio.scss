@@ -2,7 +2,12 @@
 @import "bar";
 
 .portfolio {
-  h1 {
+  width: 80%;
+  margin: 0 auto;
+
+  > h2 {
+    margin-top: 0;
+    font-size: 35px;
     @include bar;
     @include inline-header;
   }
@@ -14,13 +19,32 @@
       hr {
         width: 30%;
         color: $primary-colour;
+        margin: 0 auto;
       }
 
-      h2 {
+      h3 {
         text-align: center;
         margin: 0;
         padding: 0;
+        font-size: 25px;
       }
+
+      .img-box {
+          width: 100%;
+          padding-top: 66.19%;
+          position: relative;
+          overflow: hidden;
+          height: 0;
+
+          img {
+            position: absolute;
+            object-fit: cover;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+        }
     }
   }
 }

@@ -34,21 +34,23 @@
 
         &.is-active ~ .slide {
           left: $slide-width + $slide-offset - $slide-cover;
+          display: none;
         }
         &.is-active + .slide {
-          transform: translateZ(-1px);
+          display: block;
         }
       }
 
       .arrow {
-        font-size: 50px;
-        color: #000;
-        opacity: 0.7;
+        font-size: 30px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 15px 10px;
         font-weight: bold;
         position: absolute;
         top: 50%;
-        transform: translateY(-50%) translateX(-105%);
-        left: clamp($slide-offset - 1, 0%, 20%);
+        transform: translateY(-50%) translateX(-100%);
+        left: $slide-offset;
         z-index: 99;
         transition: opacity $fast-transition;
 
@@ -58,7 +60,8 @@
       }
 
       .arrow:last-of-type {
-        left: ($slide-width + $slide-offset) + 2.5;
+        left: ($slide-width + $slide-offset);
+        transform: translateY(-50%);
       }
     }
   }

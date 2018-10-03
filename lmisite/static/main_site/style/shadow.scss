@@ -1,0 +1,11 @@
+body::after {
+    $blur: 40px;
+
+    content: " ";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: $blur;
+    box-shadow: inset 0 ($blur * -1) ($blur) ($blur * -1) #000;
+}

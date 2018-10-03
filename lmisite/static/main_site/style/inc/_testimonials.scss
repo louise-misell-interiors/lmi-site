@@ -3,13 +3,32 @@
 .testimonials {
   background: $primary-colour;
   color: #fff;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
 
-  @include slider(90%, -20%);
+  @include slider(90%, -30%);
+
+  @media (max-width: $media-small) {
+    @include slider(80%, -30%);
+  }
 
   .slider {
     height: 200px;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
+
+    @media (max-width: $media-medium) {
+      height: 300px;
+    }
+
+    @media (max-width: $media-small) {
+      height: 400px;
+      width: 100%;
+    }
+
+    @media (max-width: $media-xsmall) {
+      height: 500px;
+    }
 
     .arrow {
       color: #fff !important;
@@ -18,11 +37,18 @@
     .slide {
       padding: $content-padding;
 
+      @media (max-width: $media-small) {
+        padding: $content-padding/2;
+      }
+
       .content {
-        position: absolute;
+        position: relative;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-50%) translateX(-50%);
         font-size: 25px;
+        display: inline-block;
+        left: 50%;
+        text-align: center;
 
         .by-line {
           font-weight: bold;

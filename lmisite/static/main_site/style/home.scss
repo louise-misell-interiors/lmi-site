@@ -9,7 +9,11 @@
   padding-top: $nav-height;
   margin-top: -$nav-height;
 
-  @include slider(70%, 20%);
+  @include slider(75%, 20%);
+
+  @media (max-width: $media-small) {
+    height: 60vh;
+  }
 
   .slide {
     background-size: cover;
@@ -20,5 +24,19 @@
       height: 100%;
       width: 100%;
     }
+  }
+}
+
+.about {
+  h1 {
+    @include bar;
+    @include inline-header;
+    font-weight: bold !important;
+  }
+
+  > div {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 23px;
   }
 }

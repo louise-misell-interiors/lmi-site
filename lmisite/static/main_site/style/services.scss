@@ -3,12 +3,28 @@
 
 .content {
   .steps {
+    > h2 {
+      font-size: 40px;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    .desc {
+      width: 80%;
+      margin: 0 auto;
+      font-size: 23px;
+    }
+
     padding-top: 0 !important;
 
     .step {
       padding: $content-padding $content-padding * 2;
       background: #eee;
       margin: $column-gutter;
+
+      @media (max-width: $media-small) {
+        margin: $column-gutter 0;
+      }
 
       h2 {
         text-align: center;

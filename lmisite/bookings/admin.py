@@ -23,6 +23,17 @@ class BookingQuestionInline(SortableInlineAdminMixin, admin.StackedInline):
     extra = 1
 
 
+class BookingQuestionAnswerInline(admin.StackedInline):
+    model = BookingQuestionAnswer
+    fields = (
+        ('question',),
+        ('answer',),
+    )
+    readonly_fields = ('question',)
+    extra = 0
+    max_num = 0
+
+
 @admin.register(BookingType)
 class BookingTypeAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = [BookingRuleInline, BookingQuestionInline]
@@ -30,7 +41,7 @@ class BookingTypeAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    pass
+    inlines = [BookingQuestionAnswerInline]
 
 
 class BookingInline(admin.StackedInline):

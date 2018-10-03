@@ -11,7 +11,10 @@ class Day extends Component {
             <div>
                 <h2>{dateformat(date, "ddd d")}</h2>
                 <div className="button-div">
-                    <button onClick={() => {this.props.onClick(date)}}>Select</button>
+                    <button onClick={() => {
+                        this.props.onClick(date)
+                    }}>Select
+                    </button>
                 </div>
             </div>
         );
@@ -25,6 +28,7 @@ export class DaySelect extends Component {
         this.state = {
             currentDays: [],
             loading: true,
+            error: false,
         };
 
         this.nextDays = this.nextDays.bind(this);
@@ -63,10 +67,14 @@ export class DaySelect extends Component {
             }
         }`,
             {id: this.props.type.id, day: start.toISOString().split("T")[0]})
-            .then(res => res.json())
             .then(res => self.setState({
                 currentDays: res.data.bookingType.bookingDays,
                 loading: false,
+                error: false,
+            }))
+            .catch(() => self.setState({
+                loading: false,
+                error: true,
             }));
     }
 
@@ -82,20 +90,26 @@ export class DaySelect extends Component {
         let content = null;
 
         if (!this.state.loading) {
-            if (days.length !== 0) {
-                content = [
-                    <div className="col slider-button" onClick={this.prevDays} key="prev">
-                        <i className="fas fa-chevron-left"/>
-                    </div>,
-                    days,
-                    <div className="col slider-button" onClick={this.nextDays} key="next">
-                        <i className="fas fa-chevron-right"/>
-                    </div>,
-                ];
-            } else {
-                content = <div className="col">
-                    <h3>No days available</h3>
+            if (this.state.error) {
+                 content = <div className="col">
+                    <h3>There was an error</h3>
                 </div>
+            } else {
+                if (days.length !== 0) {
+                    content = [
+                        <div className="col slider-button" onClick={this.prevDays} key="prev">
+                            <i className="fas fa-chevron-left"/>
+                        </div>,
+                        days,
+                        <div className="col slider-button" onClick={this.nextDays} key="next">
+                            <i className="fas fa-chevron-right"/>
+                        </div>,
+                    ];
+                } else {
+                    content = <div className="col">
+                        <h3>No days available</h3>
+                    </div>
+                }
             }
         } else {
             content = <div className="col">

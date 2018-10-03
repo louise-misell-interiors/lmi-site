@@ -7,7 +7,7 @@ class BookingType extends React.Component {
     render() {
         return (
             <div>
-                <h2 className="step-number"><i className={"fas "+this.props.data.icon}/></h2>
+                <h2 className="step-number"><i className={"fas " + this.props.data.icon}/></h2>
                 <h2>{this.props.data.name}</h2>
                 <p>{this.props.data.description}</p>
                 <div className="button-div">
@@ -24,6 +24,7 @@ export class BookingTypes extends React.Component {
         this.state = {
             types: [],
             loading: true,
+            error: false,
         }
     }
 
@@ -40,26 +41,36 @@ export class BookingTypes extends React.Component {
                     icon
                 } 
             }`)
-            .then(res => res.json())
             .then(res => self.setState({
                 types: res.data.bookingTypes,
-                loading: false
+                loading: false,
+                error: false,
+            }))
+            .catch(() => self.setState({
+                loading: false,
+                error: true,
             }));
     }
 
     render() {
         let types = null;
         if (!this.state.loading) {
-            types = this.state.types.map(type =>
-                <div className="col button-col" key={type.id}>
-                    <BookingType data={type} onClick={() => {
-                        this.props.onSelect(type)
-                    }}/>
+            if (this.state.error) {
+                types = <div className="col">
+                    <h2>There was an error</h2>
                 </div>
-            );
+            } else {
+                types = this.state.types.map(type =>
+                    <div className="col button-col" key={type.id}>
+                        <BookingType data={type} onClick={() => {
+                            this.props.onSelect(type)
+                        }}/>
+                    </div>
+                );
+            }
         } else {
             types = <div className="col">
-                <Loader />
+                <Loader/>
             </div>
         }
 

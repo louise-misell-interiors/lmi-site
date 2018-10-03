@@ -107,6 +107,16 @@ class Booking(models.Model):
         return f"{self.type.name} with {self.customer.name}"
 
 
+class BookingQuestionAnswer(models.Model):
+    booking = models.ForeignKey(Booking, related_name='booking_question_answers', on_delete=models.CASCADE)
+    question = models.ForeignKey(BookingQuestion, related_name='answers', on_delete=models.CASCADE)
+
+    answer = models.TextField()
+
+    def __str__(self):
+        return f"{self.booking}: {self.question}"
+
+
 class Config(SingletonModel):
     google_credentials = models.TextField()
 

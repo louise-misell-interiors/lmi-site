@@ -264,7 +264,7 @@ class CreateBooking(graphene.Mutation):
         booking_times = get_booking_times(date, booking_type)[date]
 
         if time not in booking_times:
-            return CreateBooking(ok=False, error=["Unavailable booking time"])
+            return CreateBooking(ok=False, error=validation_error_to_graphene([('time', ["Unavailable booking time"])]))
 
         booking = models.Booking()
 
@@ -292,7 +292,48 @@ class CreateBooking(graphene.Mutation):
             booking.full_clean()
         except ValidationError as e:
             return CreateBooking(ok=False, error=validation_error_to_graphene(e))
+
+        seen_questions = []
+        booking_question_answers = []
+        for question in questions:
+            try:
+                booking_question = models.BookingQuestion.objects.get(id=question.id)
+            except models.BookingQuestion.DoesNotExist:
+                return CreateBooking(
+                    ok=False,
+                    error=validation_error_to_graphene([('question', ['Question doesn\'t exist'])])
+                )
+
+            if booking_question.required and len(question.value.strip()) == 0:
+                return CreateBooking(
+                    ok=False,
+                    error=validation_error_to_graphene([(question.id, ['This field is required'])])
+                )
+            seen_questions.append(str(question.id))
+
+            booking_question_answer = models.BookingQuestionAnswer()
+            booking_question_answer.answer = question.value
+            booking_question_answer.question = booking_question
+            booking_question_answers.append(booking_question_answer)
+
+        for question in booking_type.booking_questions.all():
+            if str(question.id) not in seen_questions:
+                return CreateBooking(
+                    ok=False,
+                    error=validation_error_to_graphene([(question.id, ['This field is required'])])
+                )
+
         booking.save()
+        for booking_question_answer in booking_question_answers:
+            booking.booking_question_answers.add(booking_question_answer, bulk=False)
+
+        questions_text = []
+        for question in questions:
+            booking_question = models.BookingQuestion.objects.get(id=question.id)
+            questions_text.append(f"{booking_question.question}:\r\n{question.value}")
+        questions_text = "\r\n".join(questions_text)
+
+        print(questions_text)
 
         subject = f"{name} has booked {booking_type.name}"
         tz = pytz.timezone(booking_type.timezone)
@@ -302,7 +343,8 @@ class CreateBooking(graphene.Mutation):
                f"Phone: {phone}" \
                f"\r\n\r\n---\r\n\r\n" \
                f"{booking_type.name}\r\n" \
-               f"Time: {time}, {booking_type.timezone}"
+               f"Time: {time}, {booking_type.timezone}\r\n" \
+               f"{questions_text}"
 
         config = SiteConfig.objects.first()
         recipients = [config.email]
@@ -313,18 +355,19 @@ class CreateBooking(graphene.Mutation):
                f"\r\n\r\n---\r\n\r\n" \
                f"Name: {name}\r\n" \
                f"Email: {email}\r\n" \
-               f"Phone: {phone}"
+               f"Phone: {phone}\r\n" \
+               f"{questions_text}"
 
         recipients = [email]
         send_mail(subject, body, config.email, recipients)
 
         insert_booking_to_calendar(booking)
 
-        return CreateBooking(ok=True, error=[])
+        return CreateBooking(ok=True)
 
 
 class Query(graphene.ObjectType):
-    booking_types = graphene.List(BookingType)
+    booking_types = graphene.NonNull(graphene.List(graphene.NonNull(BookingType)))
     booking_type = graphene.Field(
         BookingType,
         id=graphene.ID(required=True)

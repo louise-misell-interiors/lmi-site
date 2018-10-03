@@ -17,7 +17,20 @@ export const fetchGQL = (query, variables) =>
             'Accept': 'application/json',
         },
         body: JSON.stringify({query: query, variables: variables}),
-    });
+    })
+        .then(res => {
+            if (!res.ok) {
+                throw Error();
+            }
+            return res;
+        })
+        .then(res => res.json())
+        .then(res => {
+            if (typeof res.errors !== "undefined") {
+                throw Error();
+            }
+            return res
+        });
 
 class BookingApp extends Component {
     constructor(props) {

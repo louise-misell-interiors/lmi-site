@@ -25,7 +25,9 @@ export class CustomerDetails extends Component {
             name: "",
             email: "",
             phone: "",
-            loading: false,
+            loading: true,
+            error: [],
+            queryError: false,
         };
 
         this.scheduleEvent = this.scheduleEvent.bind(this);
@@ -34,10 +36,6 @@ export class CustomerDetails extends Component {
 
     componentWillMount() {
         const self = this;
-        this.setState({
-            questions: null,
-            error: null,
-        });
         fetchGQL(
             `query ($id: ID!) {
                 bookingType(id: $id) {
@@ -50,11 +48,15 @@ export class CustomerDetails extends Component {
                 }       
             }`,
             {id: this.props.type.id})
-            .then(res => res.json())
             .then(res => self.setState({
                 questions: res.data.bookingType.questions,
                 questionAnswers: {},
-            }));
+                loading: false,
+            }))
+            .catch(() => self.setState({
+                loading: false,
+                queryError: true,
+            }))
     }
 
     scheduleEvent() {
@@ -63,8 +65,10 @@ export class CustomerDetails extends Component {
             loading: true,
         });
         fetchGQL(
-            `mutation ($id: ID!, $date: Date!, $time: Time!, $name: String!, $email: String!, $phone: String!) {
-              createBooking(id: $id, date: $date, time: $time, name: $name, email: $email, phone: $phone, questions: []) {
+            `mutation ($id: ID!, $date: Date!, $time: Time!, $name: String!, $email: String!, $phone: String!,
+                       $questions: [QuestionInput!]!) {
+              createBooking(id: $id, date: $date, time: $time, name: $name, email: $email, phone: $phone,
+                            questions: $questions) {
                 ok
                 error {
                   field
@@ -79,9 +83,12 @@ export class CustomerDetails extends Component {
                 name: this.state.name,
                 email: this.state.email,
                 phone: this.state.phone,
+                questions: Object.keys(this.state.questionAnswers).map((key, i) => ({
+                    id: key,
+                    value: this.state.questionAnswers[key]
+                })),
             }
         )
-            .then(res => res.json())
             .then(res => {
                 this.setState({
                     loading: false,
@@ -94,13 +101,18 @@ export class CustomerDetails extends Component {
                     self.props.onComplete();
                 }
             })
+            .catch(() => self.setState({
+                loading: false,
+                queryError: true,
+            }))
     }
 
-    setQuestionAnswer(question, value) {
+    setQuestionAnswer(question, event) {
+        const questionAnswers = this.state.questionAnswers;
+        questionAnswers[question] = event.target.value;
+
         this.setState({
-            questionAnswers: {
-                question: value
-            }
+            questionAnswers: questionAnswers
         })
     }
 
@@ -112,81 +124,97 @@ export class CustomerDetails extends Component {
 
         let disp = null;
 
-        if (this.state.questions == null || this.state.loading) {
+        if (this.state.questions == null && this.state.loading) {
             disp = <div className="col">
                 <Loader/>
             </div>
         } else {
-            const questions = this.state.questions.map(question => {
-                let input = null;
-                if (question.questionType === "T") {
-                    input = <input type="text" placeholder={question.question} required={question.required}
-                                   onChange={val => this.setQuestionAnswer(question.id, val)}
-                                   value={this.state.questionAnswers[question.id]}/>
-                } else if (question.questionType === "M") {
-                    input = <textarea placeholder={question.question} required={question.required} rows="7"
-                                      onChange={val => this.setQuestionAnswer(question.id, val)}
-                                      value={this.state.questionAnswers[question.id]}/>
-                }
-
-                return <div className="row" key={question.id}>
-                    <div className="col">
-                        {input}
-                    </div>
+            if (this.state.queryError) {
+                disp = <div className="col">
+                    <h2>There was an error</h2>
                 </div>
-            });
-
-            let nameErrors = null;
-            let emailErrors = null;
-            let phoneErrors = null;
-            if (this.state.error !== null) {
-                let nameError = this.state.error
-                    .filter(error => error.field === "name");
-                if (nameError.length !== 0) {
-                    nameErrors = nameError[0].errors
+            } else {
+                const questions = this.state.questions.map(question => {
+                    let input = null;
+                    if (question.questionType === "T") {
+                        input = <input type="text" placeholder={question.question} required={question.required}
+                                       onChange={val => this.setQuestionAnswer(question.id, val)}
+                                       value={this.state.questionAnswers[question.id]}/>
+                    } else if (question.questionType === "M") {
+                        input = <textarea placeholder={question.question} required={question.required} rows="7"
+                                          onChange={val => this.setQuestionAnswer(question.id, val)}
+                                          value={this.state.questionAnswers[question.id]}/>
+                    }
+                    let errors = null;
+                    let error = this.state.error.filter(error => error.field === question.id);
+                    if (error.length !== 0) {
+                        errors = error[0].errors
                             .map((error, i) => <span key={i}>{error}<br/></span>);
-                }
-                let emailError = this.state.error.filter(error => error.field === "email");
-                if (emailError.length !== 0) {
-                    emailErrors = emailError[0].errors
-                        .map((error, i) => <span key={i}>{error}<br/></span>);
-                }
-                let phoneError = this.state.error.filter(error => error.field === "phone");
-                if (phoneError.length !== 0) {
-                    phoneErrors = phoneError[0].errors
-                        .map((error, i) => <span key={i}>{error}<br/></span>);
-                }
-            }
+                    }
 
-            disp = [
-                <BookingInfo type={this.props.type} time={date} key="1"/>,
-                <div className="col" key="2">
-                    <div className="row">
+                    return <div className="row" key={question.id}>
                         <div className="col">
-                            <input type="text" value={this.state.name} onChange={e => this.setState({name: e.target.value})} placeholder="Name"/>
-                            {nameErrors}
+                            {input}
+                            {errors}
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col">
-                            <input type="text" value={this.state.email} onChange={e => this.setState({email: e.target.value})} placeholder="Email"/>
-                            {emailErrors}
+                });
+
+                let nameErrors = null;
+                let emailErrors = null;
+                let phoneErrors = null;
+                if (this.state.error !== null) {
+                    let nameError = this.state.error.filter(error => error.field === "name");
+                    if (nameError.length !== 0) {
+                        nameErrors = nameError[0].errors
+                            .map((error, i) => <span key={i}>{error}<br/></span>);
+                    }
+                    let emailError = this.state.error.filter(error => error.field === "email");
+                    if (emailError.length !== 0) {
+                        emailErrors = emailError[0].errors
+                            .map((error, i) => <span key={i}>{error}<br/></span>);
+                    }
+                    let phoneError = this.state.error.filter(error => error.field === "phone");
+                    if (phoneError.length !== 0) {
+                        phoneErrors = phoneError[0].errors
+                            .map((error, i) => <span key={i}>{error}<br/></span>);
+                    }
+                }
+
+                disp = [
+                    <BookingInfo type={this.props.type} time={date} key="1"/>,
+                    <div className="col" key="2">
+                        <div className="row">
+                            <div className="col">
+                                <input type="text" value={this.state.name}
+                                       onChange={e => this.setState({name: e.target.value})} placeholder="Name"/>
+                                {nameErrors}
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col">
+                                <input type="text" value={this.state.email}
+                                       onChange={e => this.setState({email: e.target.value})} placeholder="Email"/>
+                                {emailErrors}
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col">
+                                <input type="phone" value={this.state.phone}
+                                       onChange={e => this.setState({phone: e.target.value})}
+                                       placeholder="Phone Number"/>
+                                {phoneErrors}
+                            </div>
+                        </div>
+                        {questions}
+                        <div className="row">
+                            <div className="col">
+                                <button onClick={this.scheduleEvent}>Schedule</button>
+                            </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col">
-                            <input type="phone" value={this.state.phone} onChange={e => this.setState({phone: e.target.value})} placeholder="Phone Number"/>
-                            {phoneErrors}
-                        </div>
-                    </div>
-                    {questions}
-                    <div className="row">
-                        <div className="col">
-                            <button onClick={this.scheduleEvent}>Schedule</button>
-                        </div>
-                    </div>
-                </div>
-            ];
+                ];
+            }
         }
 
         return (

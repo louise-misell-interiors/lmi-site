@@ -28,10 +28,15 @@ def design_insider(request):
     if not request.user.is_superuser:
         posts = posts.filter(draft=False)
 
+    short_posts = ShortPost.objects.all()
+    if not request.user.is_superuser:
+        short_posts = short_posts.filter(draft=False)
+
     posts1 = posts[0::3]
     posts2 = posts[1::3]
     posts3 = posts[2::3]
-    return render(request, "main_site/design_insider.html", {"posts": (posts1, posts2, posts3)})
+    return render(request, "main_site/design_insider.html",
+                  {"posts": (posts1, posts2, posts3), "short_posts": short_posts})
 
 
 def design_insider_post(request, id):

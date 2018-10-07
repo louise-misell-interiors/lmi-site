@@ -245,3 +245,17 @@ class DesignInsiderPost(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ShortPost(models.Model):
+    draft = models.BooleanField(default=False)
+    title = models.CharField(max_length=255)
+    date = models.DateField()
+    content = RichTextUploadingField(blank=True)
+
+    class Meta:
+        get_latest_by = ['-date']
+        ordering = ['-date']
+
+    def __str__(self):
+        return self.title

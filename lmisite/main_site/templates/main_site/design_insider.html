@@ -19,24 +19,50 @@
     <div class="content" itemscope itemtype="http://schema.org/Blog">
         <h1 itemprop="headline">Design Insider</h1>
         <h2>{{ config.blog_subtitle }}</h2>
-        <div class="desc" itemprop="description">
-            {{ config.blog_text|linebreaks }}
-        </div>
         <div class="row">
-            <div class="col">
-                {% for post in posts.0 %}
-                    {% include "main_site/design_insider_post_template.html" with post=post %}
+            <div class="left">
+                <div class="post desc">
+                    {{ config.blog_text|linebreaks }}
+                </div>
+                {% for post in short_posts %}
+                    <div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+                        <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>
+                        <meta itemprop="dateModified" content="{{ post.date|date:"c" }}"/>
+                        <meta itemprop="description" content="{{ post.summary }}"/>
+                        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <meta itemprop="name" content="Louise Misell"/>
+                        </span>
+                        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                            <meta itemprop="name" content="Louise Misell Interiors"/>
+                            <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+                                <link itemprop="url"
+                                      href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
+                            </span>
+                        </span>
+                        <h3 itemprop="headline">{{ post.title }}</h3>
+                        <h4>{{ post.date }}</h4>
+                        {{ post.content|safe }}
+                    </div>
                 {% endfor %}
             </div>
-            <div class="col">
-                {% for post in posts.1 %}
-                    {% include "main_site/design_insider_post_template.html" with post=post %}
-                {% endfor %}
-            </div>
-            <div class="col">
-                {% for post in posts.2 %}
-                    {% include "main_site/design_insider_post_template.html" with post=post %}
-                {% endfor %}
+            <div class="right">
+                <div class="row">
+                    <div class="col">
+                        {% for post in posts.0 %}
+                            {% include "main_site/design_insider_post_template.html" with post=post %}
+                        {% endfor %}
+                    </div>
+                    <div class="col">
+                        {% for post in posts.1 %}
+                            {% include "main_site/design_insider_post_template.html" with post=post %}
+                        {% endfor %}
+                    </div>
+                    <div class="col">
+                        {% for post in posts.2 %}
+                            {% include "main_site/design_insider_post_template.html" with post=post %}
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

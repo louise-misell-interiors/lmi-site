@@ -58,6 +58,10 @@ class SiteConfigAdmin(SingletonModelAdmin):
 class DesignInsiderPost(admin.ModelAdmin):
     pass
 
+@admin.register(ShortPost)
+class DesignInsiderPost(admin.ModelAdmin):
+    pass
+
 
 admin.site.site_header = "Louise Misell Interiors"
 admin.site.site_title = "Louise Misell Interiors"

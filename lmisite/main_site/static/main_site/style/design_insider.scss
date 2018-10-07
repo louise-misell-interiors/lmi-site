@@ -1,7 +1,7 @@
 @import "inc/variables";
 
 .content {
-  width: 70%;
+  width: 80%;
   margin: $column-gutter auto;
 
   @media (max-width: $media-medium) {
@@ -18,17 +18,25 @@
     }
   }
 
-  .desc {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+  .row {
+    .left {
+      flex-grow: 1;
+      flex-basis: 10%;
+    }
 
-    font-size: 23px;
+    .right {
+      flex-grow: 5;
+    }
   }
 }
 
 h2, h3 {
   text-align: center;
   margin-bottom: 0;
+}
+
+.desc {
+  border: $primary-colour 2px solid;
 }
 
 .post {
@@ -38,6 +46,7 @@ h2, h3 {
 
   h3, h4 {
     margin: 0;
+    text-align: center;
   }
   h3 {
     font-size: 25px;

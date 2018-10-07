@@ -2,6 +2,11 @@
   width: 70%;
   margin: 1% auto;
 }
+@media (max-width: 1200px) {
+  .content {
+    width: 95%;
+  }
+}
 @media (max-width: 800px) {
   .content {
     width: auto;

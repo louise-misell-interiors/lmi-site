@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +73,7 @@
         <counts>
           <entry key="Dockerfile" value="3" />
           <entry key="conf" value="4" />
-          <entry key="html" value="73" />
+          <entry key="html" value="74" />
           <entry key="js" value="9" />
           <entry key="json" value="5" />
           <entry key="lock" value="2" />
@@ -92,7 +89,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Dockerfile" value="24" />
-          <entry key="HTML" value="3705" />
+          <entry key="HTML" value="3718" />
           <entry key="JSON" value="6" />
           <entry key="JavaScript" value="948" />
           <entry key="PLAIN_TEXT" value="141" />
@@ -105,7 +102,7 @@
         <counts>
           <entry key="Bash" value="4" />
           <entry key="Dockerfile" value="6" />
-          <entry key="HTML" value="73" />
+          <entry key="HTML" value="74" />
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="9" />
           <entry key="PLAIN_TEXT" value="7" />
@@ -119,7 +116,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="conf" value="35" />
-          <entry key="html" value="3705" />
+          <entry key="html" value="3718" />
           <entry key="js" value="948" />
           <entry key="json" value="6" />
           <entry key="nginx" value="24" />
@@ -136,28 +133,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss">
+        <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="832">
-              <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
+            <state relative-caret-position="240">
+              <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss">
+        <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+            <state relative-caret-position="494">
+              <caret line="180" column="20" selection-start-line="180" selection-start-column="20" selection-end-line="180" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="101" column="41" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
+            <state relative-caret-position="128">
+              <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -196,17 +193,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
+            <state relative-caret-position="238">
               <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1248">
-              <caret line="78" selection-start-line="78" selection-end-line="99" selection-end-column="3" />
+            <state relative-caret-position="400">
+              <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -214,8 +211,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="39" selection-end-column="14" />
+            <state relative-caret-position="46">
+              <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -278,15 +275,12 @@
         <option value="$PROJECT_DIR$/Dockerfile.nginx" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_services.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_portfolio.scss" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/js/main.js" />
         <option value="$PROJECT_DIR$/config/nginx/django.conf" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/about.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/services.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/services.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/portfolio.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/portfolio.scss" />
@@ -310,8 +304,11 @@
         <option value="$PROJECT_DIR$/lmisite/main_site/views.py" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/models.py" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" />
       </list>
     </option>
   </component>
@@ -789,13 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="14" column="94" selection-start-line="14" selection-start-column="94" selection-end-line="14" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/services.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -959,27 +949,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
-          <caret line="78" selection-start-line="78" selection-end-line="99" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="39" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post_template.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -990,7 +959,7 @@
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -1005,10 +974,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="101" column="41" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
+        <state relative-caret-position="494">
+          <caret line="180" column="20" selection-start-line="180" selection-start-column="20" selection-end-line="180" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
         </state>
       </provider>
     </entry>

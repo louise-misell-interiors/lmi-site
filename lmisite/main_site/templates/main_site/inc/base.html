@@ -3,11 +3,19 @@
 <html lang="en">
 <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WGT5574');</script>
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WGT5574');</script>
     <!-- End Google Tag Manager -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122537706-1"></script>
@@ -18,26 +26,34 @@
     <link rel="stylesheet" href="{% static "main_site/style/style.css" %}">
     <link rel="stylesheet" href="{% static "main_site/style/shadow.css" %}">
 
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static "main_site/favicon/apple-touch-icon-57x57.png" %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "main_site/favicon/apple-touch-icon-114x114.png" %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "main_site/favicon/apple-touch-icon-72x72.png" %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static "main_site/favicon/apple-touch-icon-144x144.png" %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{% static "main_site/favicon/apple-touch-icon-60x60.png" %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static "main_site/favicon/apple-touch-icon-120x120.png" %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static "main_site/favicon/apple-touch-icon-76x76.png" %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static "main_site/favicon/apple-touch-icon-152x152.png" %}" />
-    <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-196x196.png" %}" sizes="196x196" />
-    <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-96x96.png" %}" sizes="96x96" />
-    <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-32x32.png" %}" sizes="32x32" />
-    <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-16x16.png" %}" sizes="16x16" />
-    <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-128.png" %}" sizes="128x128" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57"
+          href="{% static "main_site/favicon/apple-touch-icon-57x57.png" %}"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="{% static "main_site/favicon/apple-touch-icon-114x114.png" %}"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="{% static "main_site/favicon/apple-touch-icon-72x72.png" %}"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="{% static "main_site/favicon/apple-touch-icon-144x144.png" %}"/>
+    <link rel="apple-touch-icon-precomposed" sizes="60x60"
+          href="{% static "main_site/favicon/apple-touch-icon-60x60.png" %}"/>
+    <link rel="apple-touch-icon-precomposed" sizes="120x120"
+          href="{% static "main_site/favicon/apple-touch-icon-120x120.png" %}"/>
+    <link rel="apple-touch-icon-precomposed" sizes="76x76"
+          href="{% static "main_site/favicon/apple-touch-icon-76x76.png" %}"/>
+    <link rel="apple-touch-icon-precomposed" sizes="152x152"
+          href="{% static "main_site/favicon/apple-touch-icon-152x152.png" %}"/>
+    <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-196x196.png" %}" sizes="196x196"/>
+    <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-96x96.png" %}" sizes="96x96"/>
+    <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-32x32.png" %}" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-16x16.png" %}" sizes="16x16"/>
+    <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-128.png" %}" sizes="128x128"/>
     <meta name="application-name" content="Louise Misell Interiors"/>
-    <meta name="msapplication-TileColor" content="#FFFFFF" />
-    <meta name="msapplication-TileImage" content="{% static "main_site/favicon/mstile-144x144.png" %}" />
-    <meta name="msapplication-square70x70logo" content="{% static "main_site/favicon/mstile-70x70.png" %}" />
-    <meta name="msapplication-square150x150logo" content="{% static "main_site/favicon/mstile-150x150.png" %}" />
-    <meta name="msapplication-wide310x150logo" content="{% static "main_site/favicon/mstile-310x150.png" %}" />
-    <meta name="msapplication-square310x310logo" content="{% static "main_site/favicon/mstile-310x310.png" %}" />
+    <meta name="msapplication-TileColor" content="#FFFFFF"/>
+    <meta name="msapplication-TileImage" content="{% static "main_site/favicon/mstile-144x144.png" %}"/>
+    <meta name="msapplication-square70x70logo" content="{% static "main_site/favicon/mstile-70x70.png" %}"/>
+    <meta name="msapplication-square150x150logo" content="{% static "main_site/favicon/mstile-150x150.png" %}"/>
+    <meta name="msapplication-wide310x150logo" content="{% static "main_site/favicon/mstile-310x150.png" %}"/>
+    <meta name="msapplication-square310x310logo" content="{% static "main_site/favicon/mstile-310x310.png" %}"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -46,15 +62,17 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <meta name="p:domain_verify" content="47d6e3bc25b7c7319e37d50f06c74c81"/>
-    <meta name="msvalidate.01" content="6F0C73A426593D8B24D968C91F861B46" />
+    <meta name="msvalidate.01" content="6F0C73A426593D8B24D968C91F861B46"/>
 
     {% block header %}
     {% endblock %}
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGT5574"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGT5574"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div class="wrapper">
     <div class="nav">
@@ -66,7 +84,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="{{ home_url }}" {% if request.get_full_path == home_url %}class="is-active"{% endif %}>Home</a>
             <a href="{{ about_url }}" {% if request.get_full_path == about_url %}class="is-active"{% endif %}>About</a>
             <a href="{{ portfolio_url }}" {% if request.get_full_path == portfolio_url %}class="is-active"{% endif %}>Portfolio</a>
-            <a href="{{ design_insider_url }}" {% if request.get_full_path == design_insider_url %}class="is-active"{% endif %}>Design Insider</a>
+            <a href="{{ design_insider_url }}"
+               {% if request.get_full_path == design_insider_url %}class="is-active"{% endif %}>Design Insider</a>
         </nav>
         <div class="logo">
             <a href="{{ home_url }}">
@@ -79,7 +98,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             {% url 'contact' as contact_url %}
             <a href="{{ contact_url }}#book">Book online</a>
             <a href="{{ services_url }}" {% if request.get_full_path == services_url %}class="is-active"{% endif %}>Services</a>
-            <a href="{{ testimonials_url }}" {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
+            <a href="{{ testimonials_url }}"
+               {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
             <a href="{{ contact_url }}" {% if request.get_full_path == contact_url %}class="is-active"{% endif %}>Contact</a>
         </nav>
         <i class="fas fa-bars menu-button"></i>
@@ -99,7 +119,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="{{ config.facebook_url }}" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
                 <a href="{{ config.linkedin_url }}" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
                 <a href="{{ config.houzz_url }}" target="_blank"><i class="fab fa-houzz fa-lg"></i></a>
-                <a href="{{ config.homify_url }}"><img alt="Louise Misell Interiors on homify" src="https://www.homify.co.uk/assets/badges/standard/90x32_black.png"/></a>
+                <a href="{{ config.homify_url }}"><img alt="Louise Misell Interiors on homify"
+                                                       src="https://www.homify.co.uk/assets/badges/standard/90x32_black.png"/></a>
             </div>
         </div>
     </div>
@@ -112,7 +133,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 &copy; Louise Misell Interiors {% now "Y" %}
             </div>
             <div class="col">
-                <a href="{% if config.terms_and_conditions %}{{ config.terms_and_conditions.url }}{% endif %}">Terms &amp; Conditions</a>
+                <a href="{% if config.terms_and_conditions %}{{ config.terms_and_conditions.url }}{% endif %}">Terms
+                    &amp; Conditions</a>
             </div>
         </div>
     </div>
@@ -146,13 +168,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     "{{ config.pintrest_url }}",
     "{{ config.facebook_url }}",
     "{{ config.linkedin_url }}",
-    "{{ config.houzz_url }}"
+    "{{ config.houzz_url }}",
+    "{{ config.homify_url }}"
   ]
 }
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script async defer data-pin-hover="true" data-pin-tall="true" data-pin-round="true"
+        src="https://assets.pinterest.com/js/pinit.js"></script>
 <script src="{% static "main_site/js/main-compiled-1534880420.js" %}"></script>
 {% block scripts %}
 {% endblock %}

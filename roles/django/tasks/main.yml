@@ -15,10 +15,17 @@
     dest: /opt/apps/lmisite/src
     delete: true
     rsync_opts:
-    - "--exclude=db.sqlite3"
-    - "--exclude=media"
-    - "--exclude=static"
+    - "--exclude=/db.sqlite3"
+    - "--exclude=/media"
+    - "--exclude=/static"
   run_once: true
+
+- name: Set media permissions
+  file:
+    path: /opt/apps/lmisite/src/media
+    owner: www-data
+    group: www-data
+    recurse: true
   
 - name: Copy db password
   template:

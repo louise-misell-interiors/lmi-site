@@ -33,6 +33,7 @@ class SiteConfig(SingletonModel):
     linkedin_url = models.URLField(default="", blank=True)
     houzz_url = models.URLField(default="", blank=True)
     homify_url = models.URLField(default="", blank=True)
+    bark_url = models.URLField(default="", blank=True)
 
     email = models.EmailField(default="", blank=True)
     mobile = PhoneNumberField(blank=True)

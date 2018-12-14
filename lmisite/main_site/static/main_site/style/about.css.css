@@ -1,0 +1,54 @@
+/*
+Error: Invalid CSS after "": expected selector, was "{"
+        on line 1 of static/main_site/style/about.css.map
+
+1: {
+2: "version": 3,
+3: "mappings": "AAAA,cAAe;EACb,MAAM,EAAE,IAAI;;AAEd,iBAAkB;EAChB,MAAM,EAAE,gBAAgB;EACxB,WAAW,EAAE,eAAe;EAC5B,OAAO,EAAE,YAAY;EACrB,IAAI,EAAE,GAAG;EACT,SAAS,EAAE,gBAAgB;EAC3B,QAAQ,EAAE,QAAQ;EAClB,QAAQ,EAAE,QAAQ;;AAEpB,wBAAyB;EACvB,QAAQ,EAAE,QAAQ;EAClB,KAAK,EAAE,IAAI;EACX,IAAI,EAAE,GAAG;EACT,SAAS,EAAE,gBAAgB;EAC3B,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,EAAE;EACX,aAAa,EAAE,GAAG;EAClB,MAAM,EAAE,iBAAiB;EACzB,UAAU,EAAE,UAAU;EACtB,MAAM,EAAE,IAAI;;AAGd,IAAK;EACH,WAAW,EAAE,MAAM;;AAGrB,qCAAqC",
+4: "sources": ["about.css"],
+5: "names": [],
+6: "file": "about.css"
+
+Backtrace:
+static/main_site/style/about.css.map:1
+/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:1207:in `expected'
+/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:1137:in `expected'
+/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:1117:in `expr!'
+/usr/lib/ruby/vendor_ruby/sass/scss/static_parser.rb:20:in `parse_selector'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:427:in `visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:160:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:115:in `with_frame'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `with_base'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:160:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `map'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:169:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:181:in `with_environment'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:168:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:188:in `visit_root'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:159:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:8:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:36:in `css_tree'
+/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:381:in `_render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:298:in `render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:492:in `update_stylesheet'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:209:in `each'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/usr/lib/ruby/vendor_ruby/sass/plugin.rb:82:in `update_stylesheets'
+/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:336:in `watch_or_update'
+/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:51:in `process_result'
+/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:52:in `parse'
+/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:19:in `parse!'
+/usr/bin/scss:8:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"\": expected selector, was \"{\"\A         on line 1 of static/main_site/style/about.css.map\A \A 1: {\A 2: \"version\": 3,\A 3: \"mappings\": \"AAAA,cAAe;EACb,MAAM,EAAE,IAAI;;AAEd,iBAAkB;EAChB,MAAM,EAAE,gBAAgB;EACxB,WAAW,EAAE,eAAe;EAC5B,OAAO,EAAE,YAAY;EACrB,IAAI,EAAE,GAAG;EACT,SAAS,EAAE,gBAAgB;EAC3B,QAAQ,EAAE,QAAQ;EAClB,QAAQ,EAAE,QAAQ;;AAEpB,wBAAyB;EACvB,QAAQ,EAAE,QAAQ;EAClB,KAAK,EAAE,IAAI;EACX,IAAI,EAAE,GAAG;EACT,SAAS,EAAE,gBAAgB;EAC3B,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,EAAE;EACX,aAAa,EAAE,GAAG;EAClB,MAAM,EAAE,iBAAiB;EACzB,UAAU,EAAE,UAAU;EACtB,MAAM,EAAE,IAAI;;AAGd,IAAK;EACH,WAAW,EAAE,MAAM;;AAGrB,qCAAqC\",\A 4: \"sources\": [\"about.css\"],\A 5: \"names\": [],\A 6: \"file\": \"about.css\""; }

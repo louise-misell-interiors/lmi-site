@@ -260,11 +260,11 @@ textarea, input, button, select {
   font-family: inherit; }
 
 a {
-  color: #000;
+  color: #2D76C4;
   transition: color .2s;
   text-decoration: none; }
   a:hover {
-    color: #2D76C4; }
+    color: #1a4471; }
 
 hr {
   width: 30%;

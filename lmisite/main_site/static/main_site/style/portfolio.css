@@ -12,7 +12,8 @@
   .row .col h2, .row .col h3 {
     text-align: center;
     margin: 0;
-    padding: 0; }
+    padding: 0;
+    color: #000; }
   .row .col a {
     text-decoration: none; }
     .row .col a .img-box {

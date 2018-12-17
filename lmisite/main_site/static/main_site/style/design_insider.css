@@ -25,7 +25,8 @@ h2, h3 {
 .post {
   background: #eee;
   padding: 20px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  color: #000; }
   .post h3, .post h4 {
     margin: 0;
     text-align: center; }

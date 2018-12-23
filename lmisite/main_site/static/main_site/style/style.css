@@ -96,9 +96,10 @@
     @media (max-width: 700px) {
       .nav .logo {
         order: 1;
-        height: 50px; }
+        height: 60px; }
         .nav .logo img {
-          transform: none; } }
+          transform: none;
+          height: auto; } }
   .nav .nav-left, .nav .nav-right {
     flex: 2 1;
     display: flex;

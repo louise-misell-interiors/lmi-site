@@ -60,10 +60,11 @@
 
     @media (max-width: $media-xsmall) {
       order: 1;
-      height: $nav-height/3;
+      height: $nav-height/2.5;
 
       img {
         transform: none;
+        height: auto;
       }
     }
   }

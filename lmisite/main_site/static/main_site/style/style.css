@@ -96,7 +96,7 @@
     @media (max-width: 700px) {
       .nav .logo {
         order: 1;
-        height: 60px; }
+        height: 75px; }
         .nav .logo img {
           transform: none;
           height: auto; } }

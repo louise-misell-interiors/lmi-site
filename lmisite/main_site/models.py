@@ -15,8 +15,8 @@ def compress_img(image, new_width=1500):
         output = io.BytesIO()
         if img.mode == 'RGBA':
             background = Img.new("RGB", image.size, (255, 255, 255))
-            background.paste(image, image.split()[-1])
-            image = background
+            background.paste(img, img.split()[-1])
+            img = background
         img.save(output, format='JPEG', quality=80, optimise=True)
         output.seek(0)
         return InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % image.name.split('.')[0], 'image/jpeg',

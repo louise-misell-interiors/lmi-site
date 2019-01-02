@@ -24,12 +24,12 @@ textarea, input, button, select {
 }
 
 a {
-  color: #000;
+  color: $primary-colour;
   transition: color .2s;
   text-decoration: none;
 
   &:hover {
-    color: $primary-colour;
+    color: darken($primary-colour, 20%);
   }
 }
 

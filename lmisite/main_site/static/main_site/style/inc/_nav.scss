@@ -33,6 +33,10 @@
     margin-top: 0;
   }
 
+  @media (max-width: $media-xsmall) {
+      height: $nav-height/3;
+  }
+
   .logo {
     width: $logo-width;
     min-width: $logo-width/2;
@@ -56,10 +60,11 @@
 
     @media (max-width: $media-xsmall) {
       order: 1;
-      height: $nav-height/1.3;
+      height: $nav-height/2;
 
       img {
         transform: none;
+        height: auto;
       }
     }
   }

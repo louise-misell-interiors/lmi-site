@@ -95,6 +95,11 @@
     margin-top: 0;
   }
 }
+@media (max-width: 700px) {
+  .nav {
+    height: 50px;
+  }
+}
 .nav .logo {
   width: 200px;
   min-width: 100px;
@@ -117,10 +122,11 @@
 @media (max-width: 700px) {
   .nav .logo {
     order: 1;
-    height: 115.3846153846px;
+    height: 75px;
   }
   .nav .logo img {
     transform: none;
+    height: auto;
   }
 }
 .nav .nav-left, .nav .nav-right {
@@ -325,12 +331,12 @@ textarea, input, button, select {
 }
 
 a {
-  color: #000;
+  color: #2D76C4;
   transition: color 0.2s;
   text-decoration: none;
 }
 a:hover {
-  color: #2D76C4;
+  color: #1a4471;
 }
 
 hr {

@@ -5,18 +5,86 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/style.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_bar.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_forms.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_hamburger.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_icons.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_nav.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_variables.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/design_insider.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/home.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/portfolio.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/style.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_bar.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_forms.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_hamburger.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_icons.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_nav.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_portfolio.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_services.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_slider.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_testimonials.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_variables.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/about.css.map.mapc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/about.css.mapc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/about.cssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/about.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/contact.css.mapc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/contact.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/design_insider.css.mapc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/design_insider.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/home.css.mapc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/home.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/portfolio.css.mapc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/portfolio.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/project.css.mapc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/project.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/services.css.mapc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/services.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/shadow.css.mapc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/shadow.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/style.css.mapc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/style.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/testimonials.css.mapc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/a2a71a50236d44060eb74326740ea0623f7984aa/testimonials.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_bar.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_forms.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_hamburger.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_icons.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_nav.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_portfolio.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_services.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_slider.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_testimonials.scssc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lmisite/main_site/.sass-cache/bd8dbb480df74d722377754aaec36c7f3a3ac483/_variables.scssc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/about.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/about.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/about.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/about.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/contact.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/contact.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/contact.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/contact.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_portfolio.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_portfolio.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/portfolio.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/portfolio.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/portfolio.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/portfolio.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/portfolio.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/portfolio.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/services.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/services.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/services.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/services.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/shadow.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/shadow.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/shadow.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/shadow.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/testimonials.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/testimonials.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/testimonials.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/testimonials.css.map" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,20 +157,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="422">
+              <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="176">
+              <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -112,15 +180,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="112">
               <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="31" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -231,10 +290,10 @@
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.scss" />
       </list>
     </option>
   </component>
@@ -564,7 +623,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1522394876726</updated>
-      <workItem from="1546424934259" duration="2071000" />
+      <workItem from="1546424934259" duration="2234000" />
     </task>
     <servers />
   </component>
@@ -574,13 +633,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2071000" />
+    <option name="totallyTimeSpent" value="2234000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1600" height="881" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15483871" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15483871" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -610,13 +669,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="12" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deploy.sh" />
     <entry file="file://$PROJECT_DIR$/kubes/nginx.yml">
       <provider selected="true" editor-type-id="text-editor">
@@ -910,13 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
@@ -931,10 +976,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-746" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="176">
+          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
         </state>
       </provider>
     </entry>

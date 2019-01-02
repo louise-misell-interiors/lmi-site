@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["shadow.scss"],"names":[],"mappings":"AAAA;EAGI;EACA;EACA;EACA;EACA;EACA,QAPO;EAQP","file":"shadow.css"}
+{
+"version": 3,
+"mappings": "AAAA,WAAY;EAGR,OAAO,EAAE,GAAG;EACZ,QAAQ,EAAE,KAAK;EACf,MAAM,EAAE,CAAC;EACT,IAAI,EAAE,CAAC;EACP,KAAK,EAAE,CAAC;EACR,MAAM,EAPC,IAAI;EAQX,UAAU,EAAE,6BAA8C",
+"sources": ["shadow.scss"],
+"names": [],
+"file": "shadow.css"
+}

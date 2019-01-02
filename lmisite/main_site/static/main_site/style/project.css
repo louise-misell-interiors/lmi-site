@@ -35,7 +35,8 @@
   bottom: -4px;
 }
 .col .imgs {
-  height: 70vh;
+  padding-bottom: 59.994%;
+  position: relative;
 }
 .col .imgs .slider {
   height: 100%;
@@ -76,7 +77,7 @@
   font-weight: bold;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%) translateX(-100%);
+  transform: translateY(-50%);
   left: 5%;
   z-index: 99;
   transition: opacity 0.2s;
@@ -85,8 +86,16 @@
   opacity: 1;
 }
 .col .imgs .slider .slider-inner .arrow:last-of-type {
-  left: 95%;
+  right: 5%;
+  left: unset;
   transform: translateY(-50%);
+}
+.col .imgs .slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 .col .imgs .slider .slide {
   overflow: hidden;

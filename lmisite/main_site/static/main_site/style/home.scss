@@ -5,24 +5,34 @@
 @import "inc/portfolio";
 
 .main-slider {
-  height: 85vh;
   padding-top: $nav-height;
   margin-top: -$nav-height;
 
-  @include slider(75%, 20%);
+  .main-slider-inner {
+    $width: 60%;
 
-  @media (max-width: $media-small) {
-    height: 60vh;
-  }
+    padding-bottom: ($width/100%) * 49.995%;
+    position: relative;
 
-  .slide {
-    background-size: cover;
-    background-position: 50% 50%;
+    @include slider($width, 20%);
 
-    img {
-      object-fit: cover;
-      height: 100%;
-      width: 100%;
+    .slider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      .slide {
+        background-size: cover;
+        background-position: 50% 50%;
+
+        img {
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+        }
+      }
     }
   }
 }

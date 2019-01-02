@@ -17,15 +17,17 @@
 
 {% block content %}
     <div class="main-slider">
-        <div class="slider">
-            <div class="slider-inner">
-                <span class="arrow"><i class="fas fa-chevron-left"></i></span>
-                {% for img in slider_imgs %}
-                    <div class="slide{% if forloop.first %} is-active{% endif %}">
-                        <img data-src="{{ img.image.url }}" alt="{{ img.alt_text }}">
-                    </div>
-                {% endfor %}
-                <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+        <div class="main-slider-inner">
+            <div class="slider">
+                <div class="slider-inner">
+                    <span class="arrow"><i class="fas fa-chevron-left"></i></span>
+                    {% for img in slider_imgs %}
+                        <div class="slide{% if forloop.first %} is-active{% endif %}">
+                            <img data-src="{{ img.image.url }}" alt="{{ img.alt_text }}">
+                        </div>
+                    {% endfor %}
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </div>
             </div>
         </div>
     </div>

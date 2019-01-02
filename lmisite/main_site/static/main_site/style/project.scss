@@ -31,11 +31,19 @@
 
   .imgs {
     @include slider(90%, 0%);
-    height: 70vh;
+    padding-bottom: 59.994%;
+    position: relative;
 
     .slider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
       .slide {
         overflow: hidden;
+
         img {
           object-fit: cover;
           object-position: 50% 50%;

@@ -49,7 +49,7 @@
         font-weight: bold;
         position: absolute;
         top: 50%;
-        transform: translateY(-50%) translateX(-100%);
+        transform: translateY(-50%);
         left: $slide-offset;
         z-index: 99;
         transition: opacity $fast-transition;
@@ -60,7 +60,8 @@
       }
 
       .arrow:last-of-type {
-        left: ($slide-width + $slide-offset);
+        right: $slide-offset;
+        left: unset;
         transform: translateY(-50%);
       }
     }

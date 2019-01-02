@@ -34,7 +34,32 @@
         <meta itemprop="dateModified" content="{{ post.date|date:"c" }}" />
         <meta itemprop="description" content="{{ post.summary }}" />
         <div class="row post-content">
-            <div class="col" itemprop="articleBody">
+            <div class="left">
+                <div class="post desc">
+                    {{ config.blog_text|linebreaks }}
+                </div>
+                {% for short_post in short_posts %}
+                    <div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+                        <meta itemprop="datePublished" content="{{ short_post.date|date:"c" }}"/>
+                        <meta itemprop="dateModified" content="{{ short_post.date|date:"c" }}"/>
+                        <meta itemprop="description" content="{{ short_post.summary }}"/>
+                        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <meta itemprop="name" content="Louise Misell"/>
+                        </span>
+                        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                            <meta itemprop="name" content="Louise Misell Interiors"/>
+                            <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+                                <link itemprop="url"
+                                      href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
+                            </span>
+                        </span>
+                        <h3 itemprop="headline">{{ short_post.title }}</h3>
+                        <h4>{{ short_post.date }}</h4>
+                        {{ short_post.content|safe }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="right" itemprop="articleBody">
                 {{ post.content|safe }}
             </div>
         </div>

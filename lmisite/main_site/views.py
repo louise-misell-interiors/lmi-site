@@ -41,7 +41,12 @@ def design_insider(request):
 
 def design_insider_post(request, id):
     post = get_object_or_404(DesignInsiderPost, id=id)
-    return render(request, "main_site/design_insider_post.html", {"post": post})
+
+    short_posts = ShortPost.objects.all()
+    if not request.user.is_superuser:
+        short_posts = short_posts.filter(draft=False)
+    
+    return render(request, "main_site/design_insider_post.html", {"post": post, "short_posts": short_posts})
 
 
 def about(request):

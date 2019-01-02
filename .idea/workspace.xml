@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lmisite/main_site/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +71,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="278">
@@ -97,10 +99,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lmisite/main_site/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="37" column="59" lean-forward="true" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
               <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="27" column="32" selection-start-line="20" selection-start-column="43" selection-end-line="46" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -114,20 +134,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post_template.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="22" column="19" selection-start-line="4" selection-start-column="8" selection-end-line="22" selection-end-column="19" />
+            <state relative-caret-position="198">
+              <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -203,18 +214,18 @@
         <option value="$PROJECT_DIR$/lmisite/bookings/schema.py" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_nav.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/admin.py" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/views.py" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/models.py" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/project.html" />
-        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/inc/base.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/index.html" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/home.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/project.scss" />
         <option value="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/inc/_slider.scss" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/views.py" />
+        <option value="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html" />
       </list>
     </option>
   </component>
@@ -382,70 +393,6 @@
               <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
               <item name="lmisite" type="462c0819:PsiDirectoryNode" />
               <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lmi-site" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
-              <item name="lmisite" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lmi-site" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
-              <item name="lmisite" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lmi-site" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
-              <item name="lmisite" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-              <item name="inc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lmi-site" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
-              <item name="lmisite" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-              <item name="design_insider.scss" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="lmi-site" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
-              <item name="lmisite" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-              <item name="home.scss" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="lmi-site" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
-              <item name="lmisite" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-              <item name="project.scss" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="lmi-site" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lmi-site" type="462c0819:PsiDirectoryNode" />
-              <item name="lmisite" type="462c0819:PsiDirectoryNode" />
-              <item name="main_site" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -564,7 +511,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1522394876726</updated>
-      <workItem from="1546424934259" duration="2874000" />
+      <workItem from="1546424934259" duration="4516000" />
     </task>
     <servers />
   </component>
@@ -574,7 +521,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2874000" />
+    <option name="totallyTimeSpent" value="4516000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1600" height="881" extended-state="6" />
@@ -846,31 +793,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1024">
           <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -935,6 +861,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
           <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="27" column="32" selection-start-line="20" selection-start-column="43" selection-end-line="46" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="37" column="59" lean-forward="true" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider_post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
         </state>
       </provider>
     </entry>

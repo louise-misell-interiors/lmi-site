@@ -130,7 +130,7 @@
 .testimonials .slider .slider-inner .arrow {
   font-size: 30px;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 15px 10px;
   font-weight: bold;
   position: absolute;
@@ -183,7 +183,7 @@
   .testimonials .slider .slider-inner .arrow {
     font-size: 30px;
     color: #fff;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 15px 10px;
     font-weight: bold;
     position: absolute;
@@ -347,7 +347,7 @@
 .main-slider .main-slider-inner .slider .slider-inner .arrow {
   font-size: 30px;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 15px 10px;
   font-weight: bold;
   position: absolute;

@@ -1,4 +1,5 @@
 @import "inc/variables";
+@import "inc/bar";
 
 .content {
   width: 80%;
@@ -13,6 +14,16 @@
   }
 
   .post-content {
+    .right > h1 {
+      text-align: center;
+      font-size: 45px;
+      margin-top: 15px;
+      margin-bottom: 0;
+
+      @include inline-header;
+      @include bar;
+    }
+
     img {
       max-width: unset !important;
     }

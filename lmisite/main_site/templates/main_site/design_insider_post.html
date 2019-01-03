@@ -29,7 +29,6 @@
                 <link itemprop="url" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}" />
             </span>
         </span>
-        <h1 itemprop="headline">{{ post.title }}</h1>
         <meta itemprop="datePublished" content="{{ post.date|date:"c" }}" />
         <meta itemprop="dateModified" content="{{ post.date|date:"c" }}" />
         <meta itemprop="description" content="{{ post.summary }}" />
@@ -60,6 +59,7 @@
                 {% endfor %}
             </div>
             <div class="right" itemprop="articleBody">
+                <h1 itemprop="headline">{{ post.title }}</h1>
                 {{ post.content|safe }}
             </div>
         </div>

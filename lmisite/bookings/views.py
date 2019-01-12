@@ -3,6 +3,8 @@ from django.conf import settings
 import json
 import google_auth_oauthlib.flow
 import google.oauth2.credentials
+from graphene_django.views import GraphQLView
+import sentry_sdk
 from .models import *
 import requests
 
@@ -89,3 +91,16 @@ def get_credentials():
             client_id=data['client_id'], client_secret=data['client_secret'], scopes=data['scopes'])
     except json.JSONDecodeError:
         return None
+
+
+class SentryGraphQLView(GraphQLView):
+    def execute_graphql_request(self, *args, **kwargs):
+        """Extract any exceptions and send them to Sentry"""
+        result = super().execute_graphql_request(*args, **kwargs)
+        if result.errors:
+            for error in result.errors:
+                try:
+                    raise error.original_error
+                except Exception as e:
+                    sentry_sdk.capture_exception(e)
+        return result

@@ -333,8 +333,6 @@ class CreateBooking(graphene.Mutation):
             questions_text.append(f"{booking_question.question}:\r\n{question.value}")
         questions_text = "\r\n".join(questions_text)
 
-        print(questions_text)
-
         subject = f"{name} has booked {booking_type.name}"
         tz = pytz.timezone(booking_type.timezone)
         time = time.astimezone(tz=tz).strftime("%I:%M%p %a %d %b %Y")

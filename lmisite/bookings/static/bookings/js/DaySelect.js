@@ -28,7 +28,6 @@ export class DaySelect extends Component {
         this.state = {
             currentDays: [],
             loading: true,
-            error: false,
         };
 
         this.nextDays = this.nextDays.bind(this);
@@ -70,12 +69,7 @@ export class DaySelect extends Component {
             .then(res => self.setState({
                 currentDays: res.data.bookingType.bookingDays,
                 loading: false,
-                error: false,
             }))
-            .catch(() => self.setState({
-                loading: false,
-                error: true,
-            }));
     }
 
 
@@ -90,26 +84,20 @@ export class DaySelect extends Component {
         let content = null;
 
         if (!this.state.loading) {
-            if (this.state.error) {
-                 content = <div className="col">
-                    <h3>There was an error</h3>
-                </div>
+            if (days.length !== 0) {
+                content = [
+                    <div className="col slider-button" onClick={this.prevDays} key="prev">
+                        <i className="fas fa-chevron-left"/>
+                    </div>,
+                    days,
+                    <div className="col slider-button" onClick={this.nextDays} key="next">
+                        <i className="fas fa-chevron-right"/>
+                    </div>,
+                ];
             } else {
-                if (days.length !== 0) {
-                    content = [
-                        <div className="col slider-button" onClick={this.prevDays} key="prev">
-                            <i className="fas fa-chevron-left"/>
-                        </div>,
-                        days,
-                        <div className="col slider-button" onClick={this.nextDays} key="next">
-                            <i className="fas fa-chevron-right"/>
-                        </div>,
-                    ];
-                } else {
-                    content = <div className="col">
-                        <h3>No days available</h3>
-                    </div>
-                }
+                content = <div className="col">
+                    <h3>No days available</h3>
+                </div>
             }
         } else {
             content = <div className="col">

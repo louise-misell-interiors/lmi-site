@@ -20,7 +20,6 @@ export class TimeSelect extends Component {
         this.state = {
             currentTimes: [],
             loading: true,
-            error: false,
         };
     }
 
@@ -43,12 +42,7 @@ export class TimeSelect extends Component {
             .then(res => self.setState({
                 currentTimes: res.data.bookingType.bookingTimes,
                 loading: false,
-                error: false,
             }))
-            .catch(() => self.setState({
-                loading: false,
-                error: true,
-            }));
     }
 
 
@@ -63,17 +57,9 @@ export class TimeSelect extends Component {
         let content = null;
 
         if (!this.state.loading) {
-            if (this.state.error) {
-                content = <div className="row">
-                    <div className="col">
-                        <h3>There was an error</h3>
-                    </div>
-                </div>
-            } else {
-                content = <div className="times">
-                    {times}
-                </div>
-            }
+            content = <div className="times">
+                {times}
+            </div>
         } else {
             content = <div className="row">
                 <div className="col">

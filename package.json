@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@sentry/browser": "^4.5.0",
     "babel-cli": "^6.26",
     "babel-core": "^6.26",
     "babel-env": "^2.4",

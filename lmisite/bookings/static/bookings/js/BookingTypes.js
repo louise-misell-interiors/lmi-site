@@ -24,7 +24,6 @@ export class BookingTypes extends React.Component {
         this.state = {
             types: [],
             loading: true,
-            error: false,
         }
     }
 
@@ -44,30 +43,19 @@ export class BookingTypes extends React.Component {
             .then(res => self.setState({
                 types: res.data.bookingTypes,
                 loading: false,
-                error: false,
             }))
-            .catch(() => self.setState({
-                loading: false,
-                error: true,
-            }));
     }
 
     render() {
         let types = null;
         if (!this.state.loading) {
-            if (this.state.error) {
-                types = <div className="col">
-                    <h2>There was an error</h2>
+            types = this.state.types.map(type =>
+                <div className="col button-col" key={type.id}>
+                    <BookingType data={type} onClick={() => {
+                        this.props.onSelect(type)
+                    }}/>
                 </div>
-            } else {
-                types = this.state.types.map(type =>
-                    <div className="col button-col" key={type.id}>
-                        <BookingType data={type} onClick={() => {
-                            this.props.onSelect(type)
-                        }}/>
-                    </div>
-                );
-            }
+            );
         } else {
             types = <div className="col">
                 <Loader/>

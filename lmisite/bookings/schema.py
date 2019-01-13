@@ -36,9 +36,15 @@ def get_calendar_events(start_date: datetime.date, end_date: datetime.date):
             events = filter(lambda e: e.get("status", "") == 'confirmed' and e.get('kind', '') == 'calendar#event', events.get('items', []))
             for event in events:
                 start = event['start'].get('dateTime')
-                if start:
+                end = event['end'].get('dateTime')
+                if start and end:
                     start = timezone.make_naive(dateutil.parser.parse(start)).date()
-                    out[start].append(event)
+                    end = timezone.make_naive(dateutil.parser.parse(end)).date()
+                    cur_date = start
+                    while cur_date <= end:
+                        if out.get(cur_date) is not None:
+                            out[cur_date].append(event)
+                        cur_date += datetime.timedelta(hours=24)
 
     return out
 
@@ -119,10 +125,10 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
                         continue
 
                     start_time = timezone.make_naive(timezone.make_aware(
-                        datetime.datetime.combine(date, rule.start_time), tz)\
+                        datetime.datetime.combine(date, rule.start_time), tz)
                         .astimezone(pytz.utc))
                     end_time = timezone.make_naive(timezone.make_aware(
-                        datetime.datetime.combine(date, rule.end_time), tz)\
+                        datetime.datetime.combine(date, rule.end_time), tz)
                         .astimezone(pytz.utc))
                     if not (start_time <= cur_time and end_time >= (cur_time + booking.length)):
                         continue
@@ -130,6 +136,7 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
                     passes_rules = True
             if not passes_rules:
                 valid = False
+            print(cur_time, valid)
 
             if valid:
                 if booking.max_events_per_day is not None and len(bookings_on_day) >= booking.max_events_per_day:
@@ -346,7 +353,7 @@ class CreateBooking(graphene.Mutation):
 
         config = SiteConfig.objects.first()
         recipients = [config.email]
-        send_mail(subject, body, email, recipients)
+        send_mail(subject, body, 'noreply@noreply.louisemisellinteriors.co.uk', recipients)
 
         subject = f"Conformation of {booking_type.name} with Louise"
         body = f"You have successfully booked {booking_type.name} with Louise at {time}, {booking_type.timezone}" \
@@ -357,7 +364,7 @@ class CreateBooking(graphene.Mutation):
                f"{questions_text}"
 
         recipients = [email]
-        send_mail(subject, body, config.email, recipients)
+        send_mail(subject, body, 'noreply@noreply.louisemisellinteriors.co.uk', recipients)
 
         insert_booking_to_calendar(booking)
 

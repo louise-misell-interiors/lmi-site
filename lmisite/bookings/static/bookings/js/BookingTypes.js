@@ -24,6 +24,7 @@ export class BookingTypes extends React.Component {
         this.state = {
             types: [],
             loading: true,
+            queryError: null
         }
     }
 
@@ -44,9 +45,14 @@ export class BookingTypes extends React.Component {
                 types: res.data.bookingTypes,
                 loading: false,
             }))
+            .catch(err => this.setState({
+                queryError: err,
+            }))
     }
 
     render() {
+        if (this.state.queryError) throw this.state.queryError;
+
         let types = null;
         if (!this.state.loading) {
             types = this.state.types.map(type =>

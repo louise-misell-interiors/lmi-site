@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import dateformat from 'dateformat';
 import {Loader} from "./Loader";
 import {fetchGQL} from "./main";
 
@@ -9,7 +8,7 @@ class BookingInfo extends Component {
             <div className="col">
                 <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.whilstBookingMessage}</p>
-                <h3>{dateformat(this.props.time, "ddd dd mmmm yyyy hh:MM TT")}</h3>
+                <h3>{this.props.time.format("dddd Do MMMM Y h:mm A")}</h3>
             </div>
         )
     }
@@ -27,6 +26,7 @@ export class CustomerDetails extends Component {
             phone: "",
             loading: true,
             error: [],
+            queryError: null
         };
 
         this.scheduleEvent = this.scheduleEvent.bind(this);
@@ -52,6 +52,9 @@ export class CustomerDetails extends Component {
                 questionAnswers: {},
                 loading: false,
             }))
+            .catch(err => this.setState({
+                queryError: err,
+            }))
     }
 
     scheduleEvent() {
@@ -73,8 +76,8 @@ export class CustomerDetails extends Component {
             }`,
             {
                 id: this.props.type.id,
-                date: this.props.date.toISOString().split("T")[0],
-                time: this.props.time.toISOString().split("T")[1].split(".")[0],
+                date: this.props.date.format("Y-MM-DD"),
+                time: this.props.time.format("HH:mm:ss"),
                 name: this.state.name,
                 email: this.state.email,
                 phone: this.state.phone,
@@ -96,6 +99,9 @@ export class CustomerDetails extends Component {
                     self.props.onComplete();
                 }
             })
+            .catch(err => this.setState({
+                queryError: err,
+            }))
     }
 
     setQuestionAnswer(question, event) {
@@ -108,14 +114,17 @@ export class CustomerDetails extends Component {
     }
 
     render() {
-        const date = new Date(this.props.date);
-        date.setHours(this.props.time.getHours());
-        date.setMinutes(this.props.time.getMinutes());
-        date.setSeconds(this.props.time.getSeconds());
+        if (this.state.queryError) throw this.state.queryError;
+
+        const date = this.props.date.clone();
+        date.hours(this.props.time.hours());
+        date.minutes(this.props.time.minutes());
+        date.seconds(this.props.time.seconds());
+        date.milliseconds(this.props.time.milliseconds());
 
         let disp = null;
 
-        if (this.state.questions == null && this.state.loading) {
+        if (this.state.loading) {
             disp = <div className="col">
                 <Loader/>
             </div>

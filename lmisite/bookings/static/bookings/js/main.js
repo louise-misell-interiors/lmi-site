@@ -14,7 +14,6 @@ class GraphQLError extends Error {
     constructor(result,...args) {
         super(...args);
         this.result = result;
-        Error.captureStackTrace(this, GraphQLError);
     }
 }
 

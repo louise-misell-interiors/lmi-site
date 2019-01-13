@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import dateformat from 'dateformat';
+import moment from 'moment';
 import {fetchGQL} from "./main";
 import {Loader} from "./Loader";
 
@@ -7,7 +7,7 @@ class Time extends Component {
     render() {
         return (
             <div className="time">
-                <button onClick={this.props.onClick}>{dateformat(this.props.time, "hh:MM TT")}</button>
+                <button onClick={this.props.onClick}>{this.props.time.format("hh:mm A")}</button>
             </div>
         );
     }
@@ -20,6 +20,7 @@ export class TimeSelect extends Component {
         this.state = {
             currentTimes: [],
             loading: true,
+            queryError: null
         };
     }
 
@@ -38,19 +39,23 @@ export class TimeSelect extends Component {
                     bookingTimes(date: $day)
                 }
             }`,
-            {id: this.props.type.id, day: start.toISOString().split("T")[0]})
+            {id: this.props.type.id, day: start.format("Y-MM-DD")})
             .then(res => self.setState({
-                currentTimes: res.data.bookingType.bookingTimes,
+                currentTimes: res.data.bookingType.bookingTimes.map(time => moment.utc(time, "HH:mm:ss")),
                 loading: false,
+            }))
+            .catch(err => this.setState({
+                queryError: err,
             }))
     }
 
 
     render() {
+        if (this.state.queryError) throw this.state.queryError;
+
         const times = this.state.currentTimes.map((time, i) => {
-            const parsedTime = new Date('1970-01-01T' + time + 'Z');
-            return <Time time={parsedTime} key={i} onClick={() => {
-                this.props.onSelect(parsedTime)
+            return <Time time={time} key={i} onClick={() => {
+                this.props.onSelect(time)
             }}/>
         });
 

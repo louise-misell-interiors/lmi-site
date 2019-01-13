@@ -173,7 +173,12 @@ LOGGING = {
 FILE_UPLOAD_PERMISSIONS = 0o644
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'front.mailu'
+EMAIL_HOST = 'mail.fluidmedia.wales'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'noreply@noreply.louisemisellinteriors.co.uk'
+EMAIL_HOST_PASSWORD = '7fpB4892fQ7EFDX9aNPY5HZ3jur#Mz3Y'
+EMAIL_USE_SSL = True
+
 
 GRAPHENE = {
     'SCHEMA': 'bookings.schema.schema'

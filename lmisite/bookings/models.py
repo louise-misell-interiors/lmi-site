@@ -49,7 +49,6 @@ class BookingRule(models.Model):
     start_time = models.TimeField(default=datetime.time())
     end_time = models.TimeField(default=datetime.time())
 
-    recurring = models.BooleanField(help_text="If recurring then End Date has no meaning")
     start_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
 
@@ -63,6 +62,10 @@ class BookingRule(models.Model):
 
     def __str__(self):
         return "#" + str(self.pk)
+
+    @property
+    def recurring(self):
+        return self.end_date is None
 
     class Meta:
         ordering = ['order']

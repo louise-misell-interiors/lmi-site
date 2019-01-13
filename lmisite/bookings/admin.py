@@ -8,7 +8,7 @@ class BookingRuleInline(SortableInlineAdminMixin, admin.StackedInline):
     model = BookingRule
     fields = (
         ('start_time', 'end_time'),
-        ('recurring', 'start_date', 'end_date'),
+        ('start_date', 'end_date'),
         ('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'),
     )
     extra = 1

@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
-import dateformat from 'dateformat';
+import moment from 'moment';
 import {fetchGQL} from "./main";
 import {Loader} from "./Loader";
 
 class Day extends Component {
     render() {
-        const date = new Date(this.props.date);
-
         return (
             <div>
-                <h2>{dateformat(date, "ddd d")}</h2>
+                <h2>{this.props.date.date.format("ddd Do")}</h2>
                 <div className="button-div">
                     <button onClick={() => {
-                        this.props.onClick(date)
+                        this.props.onClick(this.props.date.date)
                     }}>Select
                     </button>
                 </div>
@@ -28,6 +26,7 @@ export class DaySelect extends Component {
         this.state = {
             currentDays: [],
             loading: true,
+            queryError: null
         };
 
         this.nextDays = this.nextDays.bind(this);
@@ -35,21 +34,21 @@ export class DaySelect extends Component {
     }
 
     componentWillMount() {
-        this.getNewDays(new Date());
+        this.getNewDays(moment.utc());
     }
 
     nextDays() {
         if (this.state.currentDays.length !== 0) {
-            const lastDay = new Date(this.state.currentDays[this.state.currentDays.length - 1]);
-            lastDay.setDate(lastDay.getDate() + 1);
+            const lastDay = this.state.currentDays[this.state.currentDays.length - 1].clone();
+            lastDay.add('1', 'd');
             this.getNewDays(lastDay)
         }
     }
 
     prevDays() {
         if (this.state.currentDays.length !== 0) {
-            const firstDay = new Date(this.state.currentDays[0]);
-            firstDay.setDate(firstDay.getDate() - 5);
+            const firstDay = this.state.currentDays[0].clone();
+            firstDay.subtract(5, 'd');
             this.getNewDays(firstDay)
         }
     }
@@ -65,15 +64,20 @@ export class DaySelect extends Component {
                 bookingDays(start: $day, num: 5)
             }
         }`,
-            {id: this.props.type.id, day: start.toISOString().split("T")[0]})
+            {id: this.props.type.id, day: start.format("Y-MM-DD")})
             .then(res => self.setState({
-                currentDays: res.data.bookingType.bookingDays,
+                currentDays: res.data.bookingType.bookingDays.map(day => moment.utc(day, "Y-MM-DD")),
                 loading: false,
+            }))
+            .catch(err => this.setState({
+                queryError: err,
             }))
     }
 
 
     render() {
+        if (this.state.queryError) throw this.state.queryError;
+
         const self = this;
         const days = this.state.currentDays.map((day, i) =>
             <div className="col button-col" key={i}>

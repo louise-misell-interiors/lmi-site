@@ -9,6 +9,7 @@
     "babel-preset-es2015": "^6.24",
     "babelrc-rollup": "^3.0",
     "dateformat": "^3.0",
+    "moment": "^2.23.0",
     "react": "^16.4",
     "react-dom": "^16.4",
     "rollup": "^0.66",

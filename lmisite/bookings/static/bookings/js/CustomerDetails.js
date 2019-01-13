@@ -8,7 +8,7 @@ class BookingInfo extends Component {
             <div className="col">
                 <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.whilstBookingMessage}</p>
-                <h3>{this.props.time.format("dddd Do MMMM Y h:mm A")}</h3>
+                <h3>{this.props.time.clone().local().format("dddd Do MMMM Y h:mm A")}</h3>
             </div>
         )
     }

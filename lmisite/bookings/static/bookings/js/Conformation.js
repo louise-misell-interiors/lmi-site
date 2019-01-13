@@ -7,7 +7,7 @@ class BookingInfo extends Component {
             <div className="col">
                 <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.afterBookingMessage}</p>
-                <h3>{dateformat(this.props.time, "ddd dd mmmm yyyy hh:MM TT")}</h3>
+                <h3>{this.props.time.clone().local().format("dddd Do MMMM Y h:mm A")}</h3>
             </div>
         )
     }
@@ -15,10 +15,11 @@ class BookingInfo extends Component {
 
 export class Conformation extends Component {
     render() {
-        const date = new Date(this.props.date);
-        date.setHours(this.props.time.getHours());
-        date.setMinutes(this.props.time.getMinutes());
-        date.setSeconds(this.props.time.getSeconds());
+        const date = this.props.date.clone();
+        date.hours(this.props.time.hours());
+        date.minutes(this.props.time.minutes());
+        date.seconds(this.props.time.seconds());
+        date.milliseconds(this.props.time.milliseconds());
 
         return (
             <div>

@@ -7,7 +7,7 @@ class Time extends Component {
     render() {
         return (
             <div className="time">
-                <button onClick={this.props.onClick}>{this.props.time.format("hh:mm A")}</button>
+                <button onClick={this.props.onClick}>{this.props.time.clone().local().format("hh:mm A")}</button>
             </div>
         );
     }
@@ -73,12 +73,10 @@ export class TimeSelect extends Component {
             </div>
         }
 
-        const date = new Date(this.props.date);
-
         return (
             <div className="back-wrapper">
                 <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
-                <h1>{date.toDateString()}</h1>
+                <h1>{this.props.date.clone().local().format("dddd Do Y")}</h1>
                 <p>{this.props.type.name}</p>
                 <hr/>
                 <h2>Select a time</h2>

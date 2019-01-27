@@ -10,4 +10,5 @@ class ContactForm(forms.Form):
 
 
 class NewsletterForm(forms.Form):
+    name = forms.CharField(label='Your name', widget=forms.TextInput(attrs={'placeholder': 'Your name'}))
     email = forms.EmailField(label='Your email', widget=forms.EmailInput(attrs={'placeholder': 'Your email'}))

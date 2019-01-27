@@ -40,11 +40,13 @@ def design_insider(request):
         form = NewsletterForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
+            name = form.cleaned_data['name']
 
             matching_entries = NewsletterEntry.objects.filter(email=email)
             if len(matching_entries) == 0:
                 entry = NewsletterEntry()
                 entry.email = email
+                entry.name = name
                 entry.save()
 
             return render(request, "main_site/design_insider.html",
@@ -62,8 +64,27 @@ def design_insider_post(request, id):
     short_posts = ShortPost.objects.all()
     if not request.user.is_superuser:
         short_posts = short_posts.filter(draft=False)
-    
-    return render(request, "main_site/design_insider_post.html", {"post": post, "short_posts": short_posts})
+
+    if request.method == "POST":
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            name = form.cleaned_data['name']
+
+            matching_entries = NewsletterEntry.objects.filter(email=email)
+            if len(matching_entries) == 0:
+                entry = NewsletterEntry()
+                entry.email = email
+                entry.name = name
+                entry.save()
+
+            return render(request, "main_site/design_insider_post.html",
+                          {"post": post, "short_posts": short_posts, "form": form, "sent": True})
+    else:
+        form = NewsletterForm()
+
+    return render(request, "main_site/design_insider_post.html",
+                  {"post": post, "short_posts": short_posts, "form": form})
 
 
 def about(request):
@@ -134,4 +155,4 @@ def contact(request):
     else:
         form = ContactForm()
 
-    return render(request, "main_site/contact.html", {'form': form, 'sent': False })
+    return render(request, "main_site/contact.html", {'form': form, 'sent': False})

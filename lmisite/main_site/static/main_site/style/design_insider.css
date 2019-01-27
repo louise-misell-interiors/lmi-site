@@ -1,74 +1,68 @@
 .content {
   width: 80%;
-  margin: 1% auto;
-}
-@media (max-width: 1200px) {
-  .content {
-    width: 95%;
-  }
-}
-@media (max-width: 800px) {
-  .content {
-    width: auto;
-  }
-}
-.content .post-content .right > h1 {
-  text-align: center;
-  font-size: 45px;
-  margin-top: 0;
-  margin-bottom: 15px;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
-  position: relative;
-}
-.content .post-content .right > h1::after {
-  position: absolute;
-  width: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 0;
-  content: "";
-  border-radius: 2px;
-  border: solid #2D76C4 1px;
-  transition: width 0.2s;
-  bottom: -4px;
-}
-.content .post-content img {
-  max-width: unset !important;
-}
-.content .row .left {
-  flex-grow: 1;
-  flex-basis: 10%;
-}
-.content .row .right {
-  flex-grow: 5;
-}
+  margin: 1% auto; }
+  @media (max-width: 1200px) {
+    .content {
+      width: 95%; } }
+  @media (max-width: 800px) {
+    .content {
+      width: auto; } }
+  .content .post-content .right > h1 {
+    text-align: center;
+    font-size: 45px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative; }
+    .content .post-content .right > h1::after {
+      position: absolute;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 0;
+      content: "";
+      border-radius: 2px;
+      border: solid #2D76C4 1px;
+      transition: width 0.2s;
+      bottom: -4px; }
+  .content .post-content img {
+    max-width: unset !important; }
+  .content .row .col {
+    flex-grow: 1;
+    flex-basis: 10%; }
+  .content .row .main-col {
+    flex-grow: 5; }
 
 h2, h3 {
   text-align: center;
-  margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
-.desc {
-  border: #2D76C4 2px solid;
-}
+.desc, .newsletter {
+  border: #2D76C4 2px solid; }
+
+.newsletter i {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0 0 10px;
+  text-align: center;
+  display: block; }
+.newsletter input, .newsletter button {
+  padding: 7px 15px;
+  margin: 2px 0; }
 
 .post {
   background: #eee;
   padding: 20px;
   margin-bottom: 20px;
-  color: #000;
-}
-.post h3, .post h4 {
-  margin: 0;
-  text-align: center;
-}
-.post h3 {
-  font-size: 25px;
-}
-.post img {
-  margin-top: 20px;
-}
+  color: #000; }
+  .post h3, .post h4 {
+    margin: 0;
+    text-align: center; }
+  .post h3 {
+    font-size: 25px; }
+  .post img {
+    margin-top: 20px; }
 
 /*# sourceMappingURL=design_insider.css.map */

@@ -4,36 +4,37 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block header %}
-    <link rel="stylesheet" href="{%  static "main_site/style/design_insider.css" %}">
+    <link rel="stylesheet" href="{% static "main_site/style/design_insider.css" %}">
 
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="article"/>
     <meta property="og:title" content="{{ post.title }} | Louise Misell Interiors">
     <meta property="og:description" content="{{ prost.summary }}">
-    <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% if post.image %}{{ post.image.url }}{% endif %}">
+    <meta property="og:image"
+          content="http://louisemisellinteriors.co.uk/{% if post.image %}{{ post.image.url }}{% endif %}">
 
     <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'design_insider_post' post.id %}">
 {% endblock %}
 
 {% block content %}
-<div class="content" itemscope itemtype="http://schema.org/BlogPosting">
-        <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' post.id %}" />
+    <div class="content" itemscope itemtype="http://schema.org/BlogPosting">
+        <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' post.id %}"/>
         {% if post.image %}
-            <link itemprop="image" href="{{ post.image.url }}" />
+            <link itemprop="image" href="{{ post.image.url }}"/>
         {% endif %}
         <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-            <meta itemprop="name" content="Louise Misell" />
+            <meta itemprop="name" content="Louise Misell"/>
         </span>
         <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-            <meta itemprop="name" content="Louise Misell Interiors" />
+            <meta itemprop="name" content="Louise Misell Interiors"/>
             <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-                <link itemprop="url" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}" />
+                <link itemprop="url" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
             </span>
         </span>
-        <meta itemprop="datePublished" content="{{ post.date|date:"c" }}" />
-        <meta itemprop="dateModified" content="{{ post.date|date:"c" }}" />
-        <meta itemprop="description" content="{{ post.summary }}" />
+        <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>
+        <meta itemprop="dateModified" content="{{ post.date|date:"c" }}"/>
+        <meta itemprop="description" content="{{ post.summary }}"/>
         <div class="row post-content">
-            <div class="left">
+            <div class="col">
                 <div class="post desc">
                     {{ config.blog_text|linebreaks }}
                 </div>
@@ -58,9 +59,52 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="right" itemprop="articleBody">
+            <div class="col main-col" itemprop="articleBody">
                 <h1 itemprop="headline">{{ post.title }}</h1>
                 {{ post.content|safe }}
+            </div>
+            <div class="col">
+                <div class="post newsletter">
+                    <i class="fas fa-envelope-open"></i>
+                    <h3>Subscribe to my blog</h3>
+                    <hr>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {% if sent %}
+                            <div class="row">
+                                <div class="col">
+                                    <h4>Thank you, your email has been subscribed</h4>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {{ form.non_field_errors }}
+                        <div class="row">
+                            <div class="col">
+                                {{ form.name.errors }}
+                                {{ form.name }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {{ form.email.errors }}
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    I won't bombard you with emails, absolutely no spam, and you can unsubscribe
+                                    at any time.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit">Sign up</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

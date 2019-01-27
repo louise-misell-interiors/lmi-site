@@ -264,10 +264,11 @@ class ShortPost(models.Model):
 
 
 class NewsletterEntry(models.Model):
+    name = models.CharField(max_length=255)
     email = models.EmailField()
 
     class Meta:
         verbose_name_plural = "Newsletter entries"
 
     def __str__(self):
-        return self.email
+        return self.name

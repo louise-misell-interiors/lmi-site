@@ -261,3 +261,13 @@ class ShortPost(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class NewsletterEntry(models.Model):
+    email = models.EmailField()
+
+    class Meta:
+        verbose_name_plural = "Newsletter entries"
+
+    def __str__(self):
+        return self.email

@@ -35,8 +35,25 @@ def design_insider(request):
     posts1 = posts[0::3]
     posts2 = posts[1::3]
     posts3 = posts[2::3]
+
+    if request.method == "POST":
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+
+            matching_entries = NewsletterEntry.objects.filter(email=email)
+            if len(matching_entries) == 0:
+                entry = NewsletterEntry()
+                entry.email = email
+                entry.save()
+
+            return render(request, "main_site/design_insider.html",
+                          {"posts": (posts1, posts2, posts3), "short_posts": short_posts, "form": form, "sent": True})
+    else:
+        form = NewsletterForm()
+
     return render(request, "main_site/design_insider.html",
-                  {"posts": (posts1, posts2, posts3), "short_posts": short_posts})
+                  {"posts": (posts1, posts2, posts3), "short_posts": short_posts, "form": form})
 
 
 def design_insider_post(request, id):

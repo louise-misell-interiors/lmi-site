@@ -55,11 +55,17 @@ class SiteConfigAdmin(SingletonModelAdmin):
 
 
 @admin.register(DesignInsiderPost)
-class DesignInsiderPost(admin.ModelAdmin):
+class DesignInsiderPostAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(ShortPost)
-class DesignInsiderPost(admin.ModelAdmin):
+class ShortPostAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(NewsletterEntry)
+class NewsletterEntryAdmin(admin.ModelAdmin):
     pass
 
 

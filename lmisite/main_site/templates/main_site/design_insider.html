@@ -24,6 +24,32 @@
                 <div class="post desc">
                     {{ config.blog_text|linebreaks }}
                 </div>
+                <div class="post desc">
+                    <h3>Sign up for my newsletter</h3>
+                    <hr>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {% if sent %}
+                            <div class="row">
+                                <div class="col">
+                                    <h4>Thank you, your email has been added to the newsletter</h4>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="row">
+                            <div class="col">
+                                {{ form.non_field_errors }}
+                                {{ form.email.errors }}
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 {% for post in short_posts %}
                     <div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
                         <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>

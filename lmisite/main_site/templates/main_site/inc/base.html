@@ -76,7 +76,7 @@
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div class="wrapper">
-    <div class="nav">
+    <div class="nav" role="navigation">
         <nav class="nav-left">
             {% url 'index' as home_url %}
             {% url 'about' as about_url %}
@@ -88,9 +88,9 @@
             <a href="{{ design_insider_url }}"
                {% if request.get_full_path == design_insider_url %}class="is-active"{% endif %}>Design Insider</a>
         </nav>
-        <div class="logo">
-            <a href="{{ home_url }}">
-                <img data-pin-nopin="true" src="{% static "main_site/img/logo.png" %}" alt="Interior designer Cardiff">
+        <div class="logo" role="presentation">
+            <a href="{{ home_url }}" aria-label="Go home">
+                <img data-pin-nopin="true" src="{% static "main_site/img/logo.png" %}" alt="Interior designer Cardiff" role="presentation">
             </a>
         </div>
         <nav class="nav-right">

@@ -14,14 +14,22 @@
   }
 
   .post-content {
-    .right > h1 {
-      text-align: center;
-      font-size: 45px;
-      margin-top: 0;
-      margin-bottom: 15px;
+    .main-col {
+      @media (max-width: $media-small) {
+        order: -1;
+      }
 
-      @include inline-header;
-      @include bar;
+      > h1 {
+        text-align: center;
+        font-size: 45px;
+        margin-top: 0;
+        margin-bottom: 15px;
+
+        @include inline-header;
+        @include bar;
+        left: unset;
+        transform: unset;
+      }
     }
 
     img {

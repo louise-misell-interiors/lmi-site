@@ -1,5 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700');
-@import url('https://use.fontawesome.com/releases/v5.1.0/css/all.css');
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Condensed Bold'), local('OpenSansCondensed-Bold'), url(../fonts/OpenSansCondensed-Light.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Open Sans Condensed Bold'), local('OpenSansCondensed-Bold'), url(../fonts/OpenSansCondensed-LightItalic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Condensed Bold'), local('OpenSansCondensed-Bold'), url(../fonts/OpenSansCondensed-Bold.ttf) format('truetype');
+}
 
 * {
   box-sizing: border-box;

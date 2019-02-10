@@ -65,47 +65,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="post newsletter">
-                    <i class="fas fa-envelope-open"></i>
-                    <h3>Subscribe to my blog</h3>
-                    <hr>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        {% if sent %}
-                            <div class="row">
-                                <div class="col">
-                                    <h4>Thank you, your email has been subscribed</h4>
-                                </div>
-                            </div>
-                        {% endif %}
-                        {{ form.non_field_errors }}
-                        <div class="row">
-                            <div class="col">
-                                {{ form.name.errors }}
-                                {{ form.name }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                {{ form.email.errors }}
-                                {{ form.email }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <p>
-                                    I won't bombard you with emails, absolutely no spam, and you can unsubscribe
-                                    at any time.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <button type="submit">Sign up</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                {% include "main_site/newsletter_form.html" with form=form %}
             </div>
         </div>
     </div>

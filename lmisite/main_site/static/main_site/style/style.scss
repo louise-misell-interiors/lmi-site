@@ -193,6 +193,13 @@ img {
       }
     }
 
+    .large-logos {
+      @extend .logos;
+      img {
+        max-height: $nav-height;
+      }
+    }
+
     .socials {
       display: flex;
       justify-content: center;

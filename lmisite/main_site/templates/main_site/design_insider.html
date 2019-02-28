@@ -19,11 +19,23 @@
     <div class="content" itemscope itemtype="http://schema.org/Blog">
         <h1 itemprop="headline">Design Insider</h1>
         <h2>{{ config.blog_subtitle }}</h2>
-        <div class="row">
+        <div class="row jump-links">
+            <div class="col">
+                <a href="#short-posts">Short posts</a>
+            </div>
+            <div class="col">
+                <a href="#main-posts">Main posts</a>
+            </div>
+            <div class="col">
+                <a href="#newsletter">Newsletter</a>
+            </div>
+        </div>
+        <div class="row blog">
             <div class="col">
                 <div class="post desc">
                     {{ config.blog_text|linebreaks }}
                 </div>
+                <div id="short-posts"></div>
                 {% for post in short_posts %}
                     <div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
                         <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>
@@ -45,13 +57,13 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="col main-col">
+            <div class="col main-col" id="main-posts">
                 <div class="row">
                     <div class="col">
-                        {% for post in posts.0 %}
-                            {% include "main_site/design_insider_post_template.html" with post=post %}
-                        {% endfor %}
+                        {% include "main_site/design_insider_post_template.html" with post=posts.0 %}
                     </div>
+                </div>
+                <div class="row">
                     <div class="col">
                         {% for post in posts.1 %}
                             {% include "main_site/design_insider_post_template.html" with post=post %}
@@ -62,9 +74,14 @@
                             {% include "main_site/design_insider_post_template.html" with post=post %}
                         {% endfor %}
                     </div>
+                    <div class="col">
+                        {% for post in posts.3 %}
+                            {% include "main_site/design_insider_post_template.html" with post=post %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col" id="newsletter">
                 {% include "main_site/newsletter_form.html" with form=form %}
             </div>
         </div>

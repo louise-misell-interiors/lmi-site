@@ -32,9 +32,10 @@ def design_insider(request):
     if not request.user.is_superuser:
         short_posts = short_posts.filter(draft=False)
 
-    posts1 = posts[0::3]
-    posts2 = posts[1::3]
-    posts3 = posts[2::3]
+    big_post = posts[0]
+    posts1 = posts[1::3]
+    posts2 = posts[2::3]
+    posts3 = posts[3::3]
 
     if request.method == "POST":
         form = NewsletterForm(request.POST)
@@ -50,12 +51,12 @@ def design_insider(request):
                 entry.save()
 
             return render(request, "main_site/design_insider.html",
-                          {"posts": (posts1, posts2, posts3), "short_posts": short_posts, "form": form, "sent": True})
+                          {"posts": (big_post, posts1, posts2, posts3), "short_posts": short_posts, "form": form, "sent": True})
     else:
         form = NewsletterForm()
 
     return render(request, "main_site/design_insider.html",
-                  {"posts": (posts1, posts2, posts3), "short_posts": short_posts, "form": form})
+                  {"posts": (big_post, posts1, posts2, posts3), "short_posts": short_posts, "form": form})
 
 
 def design_insider_post(request, id):

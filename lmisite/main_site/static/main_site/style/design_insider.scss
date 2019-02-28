@@ -47,6 +47,18 @@
       flex-grow: 5;
     }
   }
+
+  .jump-links, .blog {
+    padding: 0 !important;
+  }
+
+  .jump-links {
+    display: none;
+    
+    @media (max-width: $media-small) {
+      display: flex;
+    }
+  }
 }
 
 h2, h3 {

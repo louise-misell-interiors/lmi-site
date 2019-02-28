@@ -39,6 +39,13 @@
     flex-basis: 10%; }
   .content .row .main-col {
     flex-grow: 5; }
+  .content .jump-links, .content .blog {
+    padding: 0 !important; }
+  .content .jump-links {
+    display: none; }
+    @media (max-width: 800px) {
+      .content .jump-links {
+        display: flex; } }
 
 h2, h3 {
   text-align: center;

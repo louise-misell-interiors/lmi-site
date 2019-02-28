@@ -5,6 +5,7 @@ class BookingInfo extends Component {
     render() {
         return (
             <div className="col">
+                <h2 className="step-number"><i className={"fas " + this.props.type.icon}/></h2>
                 <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.afterBookingMessage}</p>
                 <h3>{this.props.time.clone().local().format("dddd Do MMMM Y h:mm A")}</h3>

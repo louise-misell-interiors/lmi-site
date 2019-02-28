@@ -6,9 +6,11 @@ class BookingInfo extends Component {
     render() {
         return (
             <div className="col">
+                <h2 className="step-number"><i className={"fas " + this.props.type.icon}/></h2>
                 <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.whilstBookingMessage}</p>
                 <h3>{this.props.time.clone().local().format("dddd Do MMMM Y h:mm A")}</h3>
+                <button onClick={this.props.onSchedule}>Schedule</button>
             </div>
         )
     }
@@ -144,7 +146,7 @@ export class CustomerDetails extends Component {
                 let error = this.state.error.filter(error => error.field === question.id);
                 if (error.length !== 0) {
                     errors = error[0].errors
-                        .map((error, i) => <span key={i}>{error}<br/></span>);
+                        .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
                 }
 
                 return <div className="row" key={question.id}>
@@ -162,22 +164,22 @@ export class CustomerDetails extends Component {
                 let nameError = this.state.error.filter(error => error.field === "name");
                 if (nameError.length !== 0) {
                     nameErrors = nameError[0].errors
-                        .map((error, i) => <span key={i}>{error}<br/></span>);
+                        .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
                 }
                 let emailError = this.state.error.filter(error => error.field === "email");
                 if (emailError.length !== 0) {
                     emailErrors = emailError[0].errors
-                        .map((error, i) => <span key={i}>{error}<br/></span>);
+                        .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
                 }
                 let phoneError = this.state.error.filter(error => error.field === "phone");
                 if (phoneError.length !== 0) {
                     phoneErrors = phoneError[0].errors
-                        .map((error, i) => <span key={i}>{error}<br/></span>);
+                        .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
                 }
             }
 
             disp = [
-                <BookingInfo type={this.props.type} time={date} key="1"/>,
+                <BookingInfo type={this.props.type} time={date} key="1" onSchedule={this.scheduleEvent}/>,
                 <div className="col" key="2">
                     <div className="row">
                         <div className="col">
@@ -202,11 +204,6 @@ export class CustomerDetails extends Component {
                         </div>
                     </div>
                     {questions}
-                    <div className="row">
-                        <div className="col">
-                            <button onClick={this.scheduleEvent}>Schedule</button>
-                        </div>
-                    </div>
                 </div>
             ];
         }

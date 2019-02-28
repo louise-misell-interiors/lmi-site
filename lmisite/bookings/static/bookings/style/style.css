@@ -1,72 +1,60 @@
 h1, h2, h5, p {
   padding: 15px;
-  margin: 0;
-}
+  margin: 0; }
 
 h2, h5, p {
-  padding: 5px;
-}
+  padding: 5px; }
 
 p, h1, h2, h5 {
   text-align: center;
-  width: 100%;
-}
+  width: 100%; }
 
 h2.step-number {
   font-size: 50px;
   font-weight: bold;
-  margin: 0;
-}
+  margin: 0; }
 
 .row .col {
   background: #eee;
-  margin: 1%;
-}
-.row .col span {
-  text-align: left;
-  width: 100%;
-  display: inline-block;
-}
-.row .col.button-col {
-  position: relative;
-  padding-bottom: 90px;
-}
-.row .col.button-col .button-div {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-}
-.row .col.slider-button {
-  flex-grow: 0;
-  background: 0;
-  font-size: 30px;
-  position: relative;
-}
-.row .col.slider-button i {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
+  margin: 1%; }
+  .row .col span {
+    text-align: left;
+    width: 100%;
+    display: inline-block; }
+    .row .col span.error {
+      color: #dd1010; }
+  .row .col.button-col {
+    position: relative;
+    padding-bottom: 90px; }
+    .row .col.button-col .button-div {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px; }
+  .row .col.slider-button {
+    flex-grow: 0;
+    background: 0;
+    font-size: 30px;
+    position: relative; }
+    .row .col.slider-button i {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%); }
 
 .back-wrapper {
-  position: relative;
-}
+  position: relative; }
 
 .back-button {
   position: absolute;
   left: 20px;
   top: 10px;
-  font-size: 35px;
-}
+  font-size: 35px; }
 
 .times {
   width: 50%;
   padding: 10px;
-  margin: 0 auto;
-}
-.times .time {
-  padding: 10px 0;
-}
+  margin: 0 auto; }
+  .times .time {
+    padding: 10px 0; }
 
 /*# sourceMappingURL=style.css.map */

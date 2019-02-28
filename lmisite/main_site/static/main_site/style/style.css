@@ -380,15 +380,17 @@ img {
     padding: 20px 0; }
     .wrapper .pre-footer .row {
       align-items: center; }
-    .wrapper .pre-footer .logos img {
+    .wrapper .pre-footer .logos img, .wrapper .pre-footer .large-logos img {
       margin: 0 12.5px;
       max-height: 75px;
       min-height: 37.5px;
       vertical-align: middle;
       max-width: 100%; }
       @media (max-width: 1200px) {
-        .wrapper .pre-footer .logos img {
+        .wrapper .pre-footer .logos img, .wrapper .pre-footer .large-logos img {
           max-height: 37.5px; } }
+    .wrapper .pre-footer .large-logos img {
+      max-height: 150px; }
     .wrapper .pre-footer .socials {
       display: flex;
       justify-content: center; }

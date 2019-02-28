@@ -72,10 +72,6 @@
       color: #000;
       @include bar;
 
-      //&::after {
-      //  width: 0;
-      //  opacity: 0;
-      //}
 
       &:hover::after {
         width: 100%;
@@ -85,10 +81,6 @@
     
     @media (max-width: $media-small) {
       display: flex;
-
-      .col:not(.title) {
-        flex-basis: auto !important;
-      }
     }
   }
 }

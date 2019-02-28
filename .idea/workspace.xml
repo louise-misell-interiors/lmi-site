@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/.sass-cache/9e4c99486ecb8b53dec30c791386624cf4922559/design_insider.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/.sass-cache/9e4c99486ecb8b53dec30c791386624cf4922559/design_insider.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.css" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html" afterDir="false" />
@@ -59,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="62" column="17" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
+            <state relative-caret-position="304">
+              <caret line="82" column="20" selection-start-line="82" selection-start-column="20" selection-end-line="82" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -104,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+            <state relative-caret-position="192">
+              <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -639,7 +636,7 @@
       <workItem from="1548584814046" duration="1419000" />
       <workItem from="1548591185186" duration="1599000" />
       <workItem from="1549016532187" duration="2084000" />
-      <workItem from="1551358322983" duration="6114000" />
+      <workItem from="1551358322983" duration="6422000" />
     </task>
     <servers />
   </component>
@@ -649,7 +646,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32413000" />
+    <option name="totallyTimeSpent" value="32721000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1600" height="881" extended-state="6" />
@@ -1027,15 +1024,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/templates/main_site/design_insider.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        <state relative-caret-position="192">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/static/main_site/style/design_insider.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="62" column="17" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
+        <state relative-caret-position="304">
+          <caret line="82" column="20" selection-start-line="82" selection-start-column="20" selection-end-line="82" selection-end-column="20" />
         </state>
       </provider>
     </entry>

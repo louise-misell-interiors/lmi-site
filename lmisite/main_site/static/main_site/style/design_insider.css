@@ -73,9 +73,7 @@
         opacity: 1; }
     @media (max-width: 800px) {
       .content .jump-links {
-        display: flex; }
-        .content .jump-links .col:not(.title) {
-          flex-basis: auto !important; } }
+        display: flex; } }
 
 h2, h3 {
   text-align: center;

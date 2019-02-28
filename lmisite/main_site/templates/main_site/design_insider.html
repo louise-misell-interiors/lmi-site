@@ -64,21 +64,20 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        {% for post in posts.1 %}
+                    {% for post in posts.1 %}
+                        <div class="col">
                             {% include "main_site/design_insider_post_template.html" with post=post %}
-                        {% endfor %}
-                    </div>
-                    <div class="col">
-                        {% for post in posts.2 %}
-                            {% include "main_site/design_insider_post_template.html" with post=post %}
-                        {% endfor %}
-                    </div>
-                    <div class="col">
-                        {% for post in posts.3 %}
-                            {% include "main_site/design_insider_post_template.html" with post=post %}
-                        {% endfor %}
-                    </div>
+                        </div>
+                        {% if forloop.last %}
+                            {% for i in posts.2 %}
+                            <div class="col"></div>
+                            {% endfor %}
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:3 %}
+                            </div>
+                            <div class="row">
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
             <div class="col" id="newsletter">

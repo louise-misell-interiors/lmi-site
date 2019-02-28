@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from .models import *
 from .forms import *
+import math
 import bookings.models as booking_models
 
 
@@ -33,9 +34,8 @@ def design_insider(request):
         short_posts = short_posts.filter(draft=False)
 
     big_post = posts[0]
-    posts1 = posts[1::3]
-    posts2 = posts[2::3]
-    posts3 = posts[3::3]
+    posts = posts[1:]
+    extra = range((math.ceil(len(posts) / 3) * 3) - len(posts))
 
     if request.method == "POST":
         form = NewsletterForm(request.POST)
@@ -51,12 +51,12 @@ def design_insider(request):
                 entry.save()
 
             return render(request, "main_site/design_insider.html",
-                          {"posts": (big_post, posts1, posts2, posts3), "short_posts": short_posts, "form": form, "sent": True})
+                          {"posts": (big_post, posts, extra), "short_posts": short_posts, "form": form, "sent": True})
     else:
         form = NewsletterForm()
 
     return render(request, "main_site/design_insider.html",
-                  {"posts": (big_post, posts1, posts2, posts3), "short_posts": short_posts, "form": form})
+                  {"posts": (big_post, posts, extra), "short_posts": short_posts, "form": form})
 
 
 def design_insider_post(request, id):

@@ -236,6 +236,7 @@ class DesignInsiderPost(models.Model):
     image_alt = models.CharField(verbose_name="Image alt text", max_length=255, blank=True)
     summary = models.TextField(blank=True)
     content = RichTextUploadingField(blank=True)
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
         get_latest_by = ['-date']

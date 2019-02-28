@@ -55,7 +55,7 @@ class SiteConfigAdmin(SingletonModelAdmin):
 
 
 @admin.register(DesignInsiderPost)
-class DesignInsiderPostAdmin(admin.ModelAdmin):
+class DesignInsiderPostAdmin(SortableAdminMixin, admin.ModelAdmin):
     pass
 
 

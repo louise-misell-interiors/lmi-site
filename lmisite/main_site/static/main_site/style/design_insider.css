@@ -43,6 +43,18 @@
     flex-basis: 10%; }
   .content .row .main-col {
     flex-grow: 5; }
+    .content .row .main-col a {
+      display: block;
+      height: 100%; }
+      .content .row .main-col a .post {
+        height: 100%;
+        display: flex;
+        flex-direction: column; }
+        .content .row .main-col a .post .image {
+          flex-grow: 1;
+          display: flex;
+          justify-content: center;
+          flex-direction: column; }
   .content .blog {
     padding: 0 !important; }
   .content .jump-links {

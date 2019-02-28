@@ -15,6 +15,10 @@
 
   .post-content {
     .main-col {
+      background: #eee;
+      padding: 0;
+      margin: 1%;
+
       @media (max-width: $media-small) {
         order: -1;
       }
@@ -48,15 +52,43 @@
     }
   }
 
-  .jump-links, .blog {
+  .blog {
     padding: 0 !important;
   }
 
   .jump-links {
     display: none;
+    background: #eee;
+    border: #fff 7px solid;
+    padding: $column-gutter !important;
+
+    h3 {
+      margin: 0;
+    }
+
+    a {
+      margin: 0 5px;
+      text-decoration: none;
+      color: #000;
+      @include bar;
+
+      //&::after {
+      //  width: 0;
+      //  opacity: 0;
+      //}
+
+      &:hover::after {
+        width: 100%;
+        opacity: 1;
+      }
+    }
     
     @media (max-width: $media-small) {
       display: flex;
+
+      .col:not(.title) {
+        flex-basis: auto !important;
+      }
     }
   }
 }

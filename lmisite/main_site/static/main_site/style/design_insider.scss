@@ -61,20 +61,20 @@
             display: flex;
             justify-content: center;
             flex-direction: column;
+          }
 
-            a {
-              color: #000;
-              background: #ddd;
-              border: $primary-colour 2px solid;
-              padding: 10px;
+          a {
+            color: #000;
+            background: #ddd;
+            border: $primary-colour 2px solid;
+            padding: 10px;
 
-              align-self: center;
-              text-transform: uppercase;
+            align-self: center;
+            text-transform: uppercase;
 
-              &:hover {
-                background: #000;
-                color: #fff;
-              }
+            &:hover {
+              background: #000;
+              color: #fff;
             }
           }
         }

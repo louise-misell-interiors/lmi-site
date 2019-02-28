@@ -50,7 +50,7 @@
         height: 100%;
         display: flex;
         flex-direction: column; }
-        .content .row .main-col a .post .image {
+        .content .row .main-col a .post .title {
           flex-grow: 1;
           display: flex;
           justify-content: center;

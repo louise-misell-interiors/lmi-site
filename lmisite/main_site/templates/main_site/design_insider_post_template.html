@@ -16,12 +16,12 @@
             </span>
         </span>
         {% if post.image %}
-            <div class="image">
                 <link itemprop="image" href="{{ post.image.url }}">
                 <img data-src="{{ post.image.url }}" alt="{{ post.image_alt }}">
-            </div>
         {% endif %}
-        <h3 itemprop="headline">{{ post.title }}</h3>
-        <h4>{{ post.date }}</h4>
+        <div class="title">
+            <h3 itemprop="headline">{{ post.title }}</h3>
+            <h4>{{ post.date }}</h4>
+        </div>
     </div>
 </a>

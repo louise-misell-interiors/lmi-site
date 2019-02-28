@@ -1,28 +1,27 @@
 {% load static %}
 
-<a href="{% url 'design_insider_post' post.id %}">
-    <div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-        <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' post.id %}" />
-        <meta itemprop="datePublished" content="{{ post.date|date:"c" }}" />
-        <meta itemprop="dateModified" content="{{ post.date|date:"c" }}" />
-        <meta itemprop="description" content="{{ post.summary }}" />
-        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-            <meta itemprop="name" content="Louise Misell" />
+<div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' post.id %}" />
+    <meta itemprop="datePublished" content="{{ post.date|date:"c" }}" />
+    <meta itemprop="dateModified" content="{{ post.date|date:"c" }}" />
+    <meta itemprop="description" content="{{ post.summary }}" />
+    <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <meta itemprop="name" content="Louise Misell" />
+    </span>
+    <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+        <meta itemprop="name" content="Louise Misell Interiors" />
+        <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+            <link itemprop="url" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}" />
         </span>
-        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-            <meta itemprop="name" content="Louise Misell Interiors" />
-            <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-                <link itemprop="url" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}" />
-            </span>
-        </span>
-        {% if post.image %}
-                <link itemprop="image" href="{{ post.image.url }}">
-                <img data-src="{{ post.image.url }}" alt="{{ post.image_alt }}">
-        {% endif %}
-        <div class="title">
-            <h3 itemprop="headline">{{ post.title }}</h3>
-            <h4>{{ post.date }}</h4>
-            <p>{{ post.summary }}</p>
-        </div>
+    </span>
+    {% if post.image %}
+            <link itemprop="image" href="{{ post.image.url }}">
+            <img data-src="{{ post.image.url }}" alt="{{ post.image_alt }}">
+    {% endif %}
+    <div class="title">
+        <h3 itemprop="headline">{{ post.title }}</h3>
+        <h4>{{ post.date }}</h4>
+        <p>{{ post.summary }}</p>
+        <a href="{% url 'design_insider_post' post.id %}">Read more</a>
     </div>
-</a>
+</div>

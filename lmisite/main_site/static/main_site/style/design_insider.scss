@@ -50,9 +50,6 @@
     .main-col {
       flex-grow: 5;
 
-      a {
-        display: block;
-        height: 100%;
 
         .post {
           height: 100%;
@@ -64,9 +61,23 @@
             display: flex;
             justify-content: center;
             flex-direction: column;
+
+            a {
+              color: #000;
+              background: #ddd;
+              border: $primary-colour 2px solid;
+              padding: 10px;
+
+              align-self: center;
+              text-transform: uppercase;
+
+              &:hover {
+                background: #000;
+                color: #fff;
+              }
+            }
           }
         }
-      }
     }
   }
 

@@ -4,9 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/lmisite/bookings/schema.py" line="271" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/lmisite/main_site/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lmisite/main_site/models.py" afterDir="false" />
-    </list>
+    <list default="true" id="b9257259-c025-479d-a738-fc717bda7840" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +58,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="559">
@@ -72,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lmisite/main_site/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="57" column="49" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
+            <state relative-caret-position="-538">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -638,7 +636,7 @@
       <workItem from="1548584814046" duration="1419000" />
       <workItem from="1548591185186" duration="1599000" />
       <workItem from="1549016532187" duration="2084000" />
-      <workItem from="1551358322983" duration="10083000" />
+      <workItem from="1551358322983" duration="10439000" />
     </task>
     <servers />
   </component>
@@ -648,7 +646,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36382000" />
+    <option name="totallyTimeSpent" value="36738000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1600" height="881" extended-state="6" />
@@ -1024,13 +1022,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lmisite/main_site/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="57" column="49" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lmisite/main_site/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="559">
@@ -1038,6 +1029,13 @@
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lmisite/main_site/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-538">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
         </state>
       </provider>
     </entry>

@@ -239,8 +239,7 @@ class DesignInsiderPost(models.Model):
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
-        get_latest_by = ['-date']
-        ordering = ['-date']
+        ordering = ['order']
 
     def save(self, *args, **kwargs):
         self.image = compress_img(self.image)

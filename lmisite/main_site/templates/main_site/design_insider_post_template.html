@@ -15,13 +15,13 @@
                 <link itemprop="url" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}" />
             </span>
         </span>
-        <h3 itemprop="headline">{{ post.title }}</h3>
-        <h4>{{ post.date }}</h4>
         {% if post.image %}
             <div class="image">
                 <link itemprop="image" href="{{ post.image.url }}">
                 <img data-src="{{ post.image.url }}" alt="{{ post.image_alt }}">
             </div>
         {% endif %}
+        <h3 itemprop="headline">{{ post.title }}</h3>
+        <h4>{{ post.date }}</h4>
     </div>
 </a>

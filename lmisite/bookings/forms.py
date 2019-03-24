@@ -3,7 +3,6 @@ from django.utils.safestring import mark_safe
 from django.template.loader import render_to_string
 from .models import *
 from . import views
-import json
 
 
 class AuthWidget(forms.Widget):

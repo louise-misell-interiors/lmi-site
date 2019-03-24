@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from .models import *
 from .forms import *
+from . import instagram
 import math
 import requests
 import json
@@ -26,6 +27,17 @@ def config(request):
     return render(request, "main_site/config.js", content_type="application/javascript")
 
 
+def get_instagram_credentials():
+    config = models.SiteConfig.objects.first()
+    try:
+        data = json.loads(config.google_credentials)
+        return google.oauth2.credentials.Credentials(
+            token=data['token'], refresh_token=data['refresh_token'], token_uri=data['token_uri'],
+            client_id=data['client_id'], client_secret=data['client_secret'], scopes=data['scopes'])
+    except json.JSONDecodeError:
+        return None
+
+
 def get_instagram_feed():
     resp = requests.get(f"https://api.instagram.com/v1/users/self/media/recent/?access_token=7175062577.e237e22.5b023451999e42a4ad3477dfc8032d43")
     resp.raise_for_status()
@@ -42,11 +54,12 @@ def design_insider(request):
     if not request.user.is_superuser:
         short_posts = short_posts.filter(draft=False)
 
-    big_post = posts[0]
+    big_post = posts[0] if len(posts) > 0 else None
     posts = posts[1:]
     extra = range((math.ceil(len(posts) / 3) * 3) - len(posts))
 
-    instagram = get_instagram_feed()
+    config = models.SiteConfig.objects.first()
+    instagram_feed = instagram.get_user_feed(config.instagram_url)[:6]
 
     if request.method == "POST":
         form = NewsletterForm(request.POST)
@@ -62,17 +75,20 @@ def design_insider(request):
                 entry.save()
 
             return render(request, "main_site/design_insider.html",
-                          {"posts": (big_post, posts, extra), "instagram": instagram, "short_posts": short_posts,
+                          {"posts": (big_post, posts, extra), "instagram": instagram_feed, "short_posts": short_posts,
                            "form": form, "sent": True})
     else:
         form = NewsletterForm()
 
     return render(request, "main_site/design_insider.html",
-                  {"posts": (big_post, posts, extra), "short_posts": short_posts, "form": form, "instagram": instagram})
+                  {"posts": (big_post, posts, extra), "short_posts": short_posts, "form": form, "instagram": instagram_feed})
 
 
 def design_insider_post(request, id):
     post = get_object_or_404(DesignInsiderPost, id=id)
+
+    config = models.SiteConfig.objects.first()
+    instagram_feed = instagram.get_user_feed(config.instagram_url)[:6]
 
     short_posts = ShortPost.objects.all()
     if not request.user.is_superuser:
@@ -92,12 +108,12 @@ def design_insider_post(request, id):
                 entry.save()
 
             return render(request, "main_site/design_insider_post.html",
-                          {"post": post, "instagram": instagram, "short_posts": short_posts, "form": form, "sent": True})
+                          {"post": post, "instagram": instagram_feed, "short_posts": short_posts, "form": form, "sent": True})
     else:
         form = NewsletterForm()
 
     return render(request, "main_site/design_insider_post.html",
-                  {"post": post, "instagram": instagram, "short_posts": short_posts, "form": form})
+                  {"post": post, "instagram": instagram_feed, "short_posts": short_posts, "form": form})
 
 
 def about(request):

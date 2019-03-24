@@ -60,7 +60,9 @@
             <div class="col main-col" id="main-posts">
                 <div class="row">
                     <div class="col">
-                        {% include "main_site/design_insider_post_template.html" with post=posts.0 %}
+                        {% if posts.0 %}
+                            {% include "main_site/design_insider_post_template.html" with post=posts.0 %}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="row">

@@ -1,7 +1,7 @@
 <div class="post">
     {% for item in feed %}
         <a href="{{ item.link }}">
-            <img src="{{ item.images.standard_resolution.url }}" alt="">
+            <img src="{{ item.thumbnail_src }}" alt="">
         </a>
     {% endfor %}
 </div>

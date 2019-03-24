@@ -1,0 +1,7 @@
+<div class="post">
+    {% for item in feed %}
+        <a href="{{ item.link }}">
+            <img src="{{ item.images.standard_resolution.url }}" alt="">
+        </a>
+    {% endfor %}
+</div>

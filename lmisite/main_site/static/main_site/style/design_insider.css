@@ -7,17 +7,16 @@
   @media (max-width: 800px) {
     .content {
       width: auto; } }
-  .content .post-content .main-col {
+  @media (max-width: 800px) {
+    .content .post-content .main-col {
+      order: -1; } }
+  .content .post-content .main-col > div {
     background: #eee;
     padding: 0;
     margin: 1%; }
-    @media (max-width: 800px) {
-      .content .post-content .main-col {
-        order: -1; } }
-    .content .post-content .main-col > h1 {
+    .content .post-content .main-col > div > h1 {
       text-align: center;
       font-size: 45px;
-      margin-top: 0;
       margin-bottom: 15px;
       display: inline-block;
       left: 50%;
@@ -25,7 +24,7 @@
       position: relative;
       left: unset;
       transform: unset; }
-      .content .post-content .main-col > h1::after {
+      .content .post-content .main-col > div > h1::after {
         position: absolute;
         width: 100%;
         left: 50%;
@@ -53,13 +52,17 @@
         justify-content: center;
         flex-direction: column; }
       .content .row .main-col .post a {
+        color: #000; }
+        .content .row .main-col .post a:hover {
+          color: #000; }
+      .content .row .main-col .post a.read-more {
         color: #000;
         background: #ddd;
         border: #2D76C4 2px solid;
         padding: 10px;
         align-self: center;
         text-transform: uppercase; }
-        .content .row .main-col .post a:hover {
+        .content .row .main-col .post a.read-more:hover {
           background: #000;
           color: #fff; }
   .content .blog {

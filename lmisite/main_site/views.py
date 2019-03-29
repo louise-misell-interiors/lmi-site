@@ -27,24 +27,6 @@ def config(request):
     return render(request, "main_site/config.js", content_type="application/javascript")
 
 
-def get_instagram_credentials():
-    config = models.SiteConfig.objects.first()
-    try:
-        data = json.loads(config.google_credentials)
-        return google.oauth2.credentials.Credentials(
-            token=data['token'], refresh_token=data['refresh_token'], token_uri=data['token_uri'],
-            client_id=data['client_id'], client_secret=data['client_secret'], scopes=data['scopes'])
-    except json.JSONDecodeError:
-        return None
-
-
-def get_instagram_feed():
-    resp = requests.get(f"https://api.instagram.com/v1/users/self/media/recent/?access_token=7175062577.e237e22.5b023451999e42a4ad3477dfc8032d43")
-    resp.raise_for_status()
-    data = resp.json()
-    return data["data"]
-
-
 def design_insider(request):
     posts = DesignInsiderPost.objects.all()
     if not request.user.is_superuser:
@@ -58,7 +40,7 @@ def design_insider(request):
     posts = posts[1:]
     extra = range((math.ceil(len(posts) / 3) * 3) - len(posts))
 
-    config = models.SiteConfig.objects.first()
+    config = SiteConfig.objects.first()
     instagram_feed = instagram.get_user_feed(config.instagram_url)[:6]
 
     if request.method == "POST":
@@ -87,7 +69,7 @@ def design_insider(request):
 def design_insider_post(request, id):
     post = get_object_or_404(DesignInsiderPost, id=id)
 
-    config = models.SiteConfig.objects.first()
+    config = SiteConfig.objects.first()
     instagram_feed = instagram.get_user_feed(config.instagram_url)[:6]
 
     short_posts = ShortPost.objects.all()

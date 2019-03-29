@@ -39,5 +39,4 @@ def get_user_feed(user):
     nodes = [n for n in (n['node'] for n in resp['data']['user']['edge_owner_to_timeline_media']['edges'])
              if not n['is_video']]
 
-    print(json.dumps(nodes[0], indent=4, sort_keys=True))
     return nodes

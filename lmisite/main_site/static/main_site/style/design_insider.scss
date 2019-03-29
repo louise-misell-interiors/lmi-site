@@ -15,24 +15,26 @@
 
   .post-content {
     .main-col {
-      background: #eee;
-      padding: 0;
-      margin: 1%;
 
       @media (max-width: $media-small) {
         order: -1;
       }
 
-      > h1 {
-        text-align: center;
-        font-size: 45px;
-        margin-top: 0;
-        margin-bottom: 15px;
+      > div {
+        background: #eee;
+        padding: 0;
+        margin: 1%;
 
-        @include inline-header;
-        @include bar;
-        left: unset;
-        transform: unset;
+        > h1 {
+          text-align: center;
+          font-size: 45px;
+          margin-bottom: 15px;
+
+          @include inline-header;
+          @include bar;
+          left: unset;
+          transform: unset;
+        }
       }
     }
 
@@ -64,6 +66,13 @@
           }
 
           a {
+            color: #000;
+            &:hover {
+              color: #000;
+            }
+          }
+
+          a.read-more {
             color: #000;
             background: #ddd;
             border: $primary-colour 2px solid;

@@ -60,8 +60,10 @@
                 {% endfor %}
             </div>
             <div class="col main-col" itemprop="articleBody">
-                <h1 itemprop="headline">{{ post.title }}</h1>
-                {{ post.content|safe }}
+                <div>
+                    <h1 itemprop="headline">{{ post.title }}</h1>
+                    {{ post.content|safe }}
+                </div>
             </div>
             <div class="col">
                 {% include "main_site/newsletter_form.html" with form=form %}

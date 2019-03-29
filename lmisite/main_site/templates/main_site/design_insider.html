@@ -84,7 +84,9 @@
             </div>
             <div class="col" id="newsletter">
                 {% include "main_site/newsletter_form.html" with form=form %}
-                {% include "main_site/instagram_feed.html" with feed=instagram %}
+                {% if debug %}
+                    {% include "main_site/instagram_feed.html" with feed=instagram %}
+                {% endif %}
             </div>
         </div>
     </div>

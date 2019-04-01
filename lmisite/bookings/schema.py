@@ -355,8 +355,8 @@ class CreateBooking(graphene.Mutation):
         recipients = [config.email]
         send_mail(subject, body, 'noreply@noreply.louisemisellinteriors.co.uk', recipients)
 
-        subject = f"Conformation of {booking_type.name} with Louise"
-        body = f"You have successfully booked {booking_type.name} with Louise at {time}, {booking_type.timezone}" \
+        subject = f"Confirmation of {booking_type.name} with Louise"
+        body = f"You have successfully booked a {booking_type.name} with Louise at {time} ({booking_type.timezone})" \
                f"\r\n\r\n---\r\n\r\n" \
                f"Name: {name}\r\n" \
                f"Email: {email}\r\n" \

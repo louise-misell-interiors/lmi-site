@@ -15,6 +15,10 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('config.js', views.config, name='config.js'),
 
+    path('facebook/authorise', views.authorise, name='authorise'),
+    path('facebook/oauth', views.oauth, name='oauth'),
+    path('facebook/deauth', views.deauthorise, name='deauthorise'),
+
 
     path('sitemap.xml', sitemap,  {'sitemaps': SITEMAP, 'template_name': 'main_site/sitemap.xml'},
          name='django.contrib.sitemaps.views.sitemap')

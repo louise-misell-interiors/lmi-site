@@ -1,0 +1,10 @@
+{% load static %}
+{% if is_signed_in %}
+    <select name="{{ name }}" {{ attrs }}>
+        {% for v in values %}
+            <option value="{{ v.id }}" {% if v.id == value %}selected{% endif %}>{{ v.name }}</option>
+        {% endfor %}
+    </select>
+{% else %}
+    Please sign in first
+{% endif %}

@@ -136,7 +136,6 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
                     passes_rules = True
             if not passes_rules:
                 valid = False
-            print(cur_time, valid)
 
             if valid:
                 if booking.max_events_per_day is not None and len(bookings_on_day) >= booking.max_events_per_day:

@@ -1,7 +1,8 @@
 <div class="post">
+    <h2>Instagram</h2>
     {% for item in feed %}
-        <a href="{{ item.link }}">
-            <img src="{{ item.thumbnail_src }}" alt="">
+        <a href="{{ item.permalink }}">
+            <img src="{{ item.media_url }}" alt="{{ item.caption }}" title="{{ item.caption }}">
         </a>
     {% endfor %}
 </div>

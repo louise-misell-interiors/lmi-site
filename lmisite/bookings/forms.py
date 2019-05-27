@@ -22,11 +22,11 @@ class AuthWidget(forms.Widget):
 
 
 class ConfigForm(forms.ModelForm):
-    auth = forms.Field(widget=AuthWidget)
+    auth = forms.Field(widget=AuthWidget, required=False)
 
     def save(self, commit=True):
         return super().save(commit=commit)
 
     class Meta:
-        fields = '__all__'
+        fields = ['auth']
         model = Config

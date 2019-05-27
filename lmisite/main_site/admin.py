@@ -2,6 +2,7 @@ from django.contrib import admin
 from solo.admin import SingletonModelAdmin
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from .models import *
+from .forms import *
 
 
 class ProjectBeforeImageInline(SortableInlineAdminMixin, admin.TabularInline):
@@ -51,7 +52,7 @@ class MainSliderImageAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 @admin.register(SiteConfig)
 class SiteConfigAdmin(SingletonModelAdmin):
-    pass
+    form = ConfigForm
 
 
 @admin.register(DesignInsiderPost)

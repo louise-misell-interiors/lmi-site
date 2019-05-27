@@ -1,13 +1,18 @@
 import itertools
+import google_auth_oauthlib.flow
 from django.core.mail import send_mail
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.conf import settings
 from .models import *
-from .forms import *
+from . import forms
 from . import instagram
 import math
 import requests
 import json
 import bookings.models as booking_models
+
+CLIENT_SECRETS_FILE = "facebook_client_secret.json"
+SCOPES = ['instagram_basic', 'pages_show_list']
 
 
 def index(request):
@@ -40,11 +45,10 @@ def design_insider(request):
     posts = posts[1:]
     extra = range((math.ceil(len(posts) / 3) * 3) - len(posts))
 
-    config = SiteConfig.objects.first()
-    instagram_feed = instagram.get_user_feed(config.instagram_url)[:6]
+    instagram_feed = instagram.get_user_feed()[:6]
 
     if request.method == "POST":
-        form = NewsletterForm(request.POST)
+        form = forms.NewsletterForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
             name = form.cleaned_data['name']
@@ -60,7 +64,7 @@ def design_insider(request):
                           {"posts": (big_post, posts, extra), "instagram": instagram_feed, "short_posts": short_posts,
                            "form": form, "sent": True})
     else:
-        form = NewsletterForm()
+        form = forms.NewsletterForm()
 
     return render(request, "main_site/design_insider.html",
                   {"posts": (big_post, posts, extra), "short_posts": short_posts, "form": form, "instagram": instagram_feed})
@@ -69,15 +73,14 @@ def design_insider(request):
 def design_insider_post(request, id):
     post = get_object_or_404(DesignInsiderPost, id=id)
 
-    config = SiteConfig.objects.first()
-    instagram_feed = instagram.get_user_feed(config.instagram_url)[:6]
+    instagram_feed = instagram.get_user_feed()[:6]
 
     short_posts = ShortPost.objects.all()
     if not request.user.is_superuser:
         short_posts = short_posts.filter(draft=False)
 
     if request.method == "POST":
-        form = NewsletterForm(request.POST)
+        form = forms.NewsletterForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
             name = form.cleaned_data['name']
@@ -92,7 +95,7 @@ def design_insider_post(request, id):
             return render(request, "main_site/design_insider_post.html",
                           {"post": post, "instagram": instagram_feed, "short_posts": short_posts, "form": form, "sent": True})
     else:
-        form = NewsletterForm()
+        form = forms.NewsletterForm()
 
     return render(request, "main_site/design_insider_post.html",
                   {"post": post, "instagram": instagram_feed, "short_posts": short_posts, "form": form})
@@ -167,3 +170,70 @@ def contact(request):
         form = ContactForm()
 
     return render(request, "main_site/contact.html", {'form': form, 'sent': False})
+
+
+def authorise(request):
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        CLIENT_SECRETS_FILE, scopes=SCOPES)
+
+    uri = request.build_absolute_uri(reverse('oauth'))
+    if not settings.DEBUG:
+        uri = uri.replace("http://", "https://")
+    flow.redirect_uri = uri
+
+    authorization_url, state = flow.authorization_url(
+        access_type='offline',
+        prompt='consent',
+        include_granted_scopes='true')
+
+    request.session['state'] = state
+    request.session['redirect'] = request.META.get('HTTP_REFERER')
+
+    return redirect(authorization_url)
+
+
+def oauth(request):
+    state = request.session['state']
+
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        CLIENT_SECRETS_FILE, scopes=SCOPES, state=state)
+    uri = request.build_absolute_uri(reverse('oauth'))
+    if not settings.DEBUG:
+        uri = uri.replace("http://", "https://")
+    flow.redirect_uri = uri
+
+    flow.fetch_token(code=request.GET.get("code"))
+
+    credentials = flow.credentials
+    config = SiteConfig.objects.first()
+    config.facebook_token = credentials_to_json(credentials)
+    config.save()
+
+    return redirect(request.session['redirect'])
+
+
+def deauthorise(request):
+    credentials = get_credentials()
+
+    if credentials is not None:
+        requests.delete('https://graph.facebook.com.com/v3.3/{user-id}/permissions',
+                        params={'access_token': credentials})
+
+        config = SiteConfig.objects.first()
+        config.google_credentials = ""
+        config.save()
+
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+def credentials_to_json(credentials):
+    return json.dumps({'token': credentials.token})
+
+
+def get_credentials():
+    config = SiteConfig.objects.first()
+    try:
+        data = json.loads(config.facebook_token)
+        return data['token']
+    except json.JSONDecodeError:
+        return None

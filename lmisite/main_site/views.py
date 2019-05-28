@@ -219,7 +219,7 @@ def deauthorise(request):
                         params={'access_token': credentials})
 
         config = SiteConfig.objects.first()
-        config.google_credentials = ""
+        config.facebook_token = ""
         config.save()
 
     return redirect(request.META.get('HTTP_REFERER'))

@@ -202,11 +202,10 @@ def oauth(request):
         uri = uri.replace("http://", "https://")
     flow.redirect_uri = uri
 
-    flow.fetch_token(code=request.GET.get("code"))
+    token = flow.fetch_token(code=request.GET.get("code"))
 
-    credentials = flow.credentials
     config = SiteConfig.objects.first()
-    config.facebook_token = credentials_to_json(credentials)
+    config.facebook_token = credentials_to_json(token)
     config.save()
 
     return redirect(request.session['redirect'])
@@ -227,7 +226,7 @@ def deauthorise(request):
 
 
 def credentials_to_json(credentials):
-    return json.dumps({'token': credentials.token})
+    return json.dumps({'token': credentials['access_token']})
 
 
 def get_credentials():

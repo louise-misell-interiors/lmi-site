@@ -215,7 +215,7 @@ def deauthorise(request):
     credentials = get_credentials()
 
     if credentials is not None:
-        requests.delete('https://graph.facebook.com.com/v3.3/{user-id}/permissions',
+        requests.delete('https://graph.facebook.com/v3.3/{user-id}/permissions',
                         params={'access_token': credentials})
 
         config = SiteConfig.objects.first()

@@ -1,5 +1,6 @@
 <div class="post">
-    <h2>Instagram</h2>
+    <h3>Follow me on Instagram</h3>
+    <h4><a href="{{ config.instagram_url }}">@louise_m_interiors</a></h4>
     {% for item in feed %}
         <a href="{{ item.permalink }}">
             <img src="{{ item.media_url }}" alt="{{ item.caption }}" title="{{ item.caption }}">

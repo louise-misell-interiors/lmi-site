@@ -139,7 +139,7 @@ def testimonials(request):
 
 def contact(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
+        form = forms.ContactForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['your_name']
             email = form.cleaned_data['your_email']
@@ -167,7 +167,7 @@ def contact(request):
 
             return render(request, "main_site/contact.html", {'form': form, 'sent': True})
     else:
-        form = ContactForm()
+        form = forms.ContactForm()
 
     return render(request, "main_site/contact.html", {'form': form, 'sent': False})
 

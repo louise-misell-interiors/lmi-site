@@ -17,6 +17,6 @@ def get_user_feed():
     r.raise_for_status()
     media = r.json()["instagram_business_account"]["media"]["data"]
 
-    media = list(filter(lambda m: m["media_type"] == "IMAGE", media))
+    media = list(filter(lambda m: m["media_type"] in ("IMAGE", "CAROUSEL_ALBUM"), media))
 
     return media

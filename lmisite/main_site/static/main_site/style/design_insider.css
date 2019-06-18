@@ -35,7 +35,7 @@
         border: solid #2D76C4 1px;
         transition: width 0.2s;
         bottom: -4px; }
-  .content .post-content img {
+  .content .post-content .main-col img {
     max-width: unset !important; }
   .content .row .col {
     flex-grow: 1;

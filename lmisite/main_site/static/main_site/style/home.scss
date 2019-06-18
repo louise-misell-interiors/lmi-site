@@ -8,6 +8,8 @@
   padding-top: $nav-height;
   margin-top: -$nav-height;
 
+  background: $background-colour;
+
   .main-slider-inner {
     $width: 60%;
 
@@ -38,6 +40,9 @@
 }
 
 .about {
+  background: $background-colour-dark;
+  color: $light-text-colour;
+
   h1 {
     @include bar;
     @include inline-header;
@@ -46,7 +51,9 @@
 
   > div {
     width: 80%;
+    text-align: center;
+    max-width: 700px;
     margin: 0 auto;
-    font-size: 23px;
+    font-size: 27px;
   }
 }

@@ -33,9 +33,11 @@
     </div>
     <div class="content">
         <div class="about">
-            <h1>{{ config.home_subtitle }}</h1>
             <div>
                 {{ config.home_text|linebreaks }}
+                <p>
+                    <a href="{% url 'about' %}">Read more</a>
+                </p>
             </div>
         </div>
         <div class="services">

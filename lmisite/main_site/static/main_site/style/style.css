@@ -2,17 +2,22 @@
   font-family: 'Open Sans Condensed';
   font-style: normal;
   font-weight: 300;
-  src: local("Open Sans Condensed Bold"), local("OpenSansCondensed-Bold"), url(../fonts/OpenSansCondensed-Light.ttf) format("truetype"); }
+  src: local("Open Sans Condensed"), local("OpenSansCondensed"), url(../fonts/OpenSansCondensed-Light.ttf) format("truetype"); }
 @font-face {
   font-family: 'Open Sans Condensed';
   font-style: italic;
   font-weight: 300;
-  src: local("Open Sans Condensed Bold"), local("OpenSansCondensed-Bold"), url(../fonts/OpenSansCondensed-LightItalic.ttf) format("truetype"); }
+  src: local("Open Sans Condensed Italic"), local("OpenSansCondensed-Italic"), url(../fonts/OpenSansCondensed-LightItalic.ttf) format("truetype"); }
 @font-face {
   font-family: 'Open Sans Condensed';
   font-style: normal;
   font-weight: 700;
   src: local("Open Sans Condensed Bold"), local("OpenSansCondensed-Bold"), url(../fonts/OpenSansCondensed-Bold.ttf) format("truetype"); }
+@font-face {
+  font-family: 'Baskerville';
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/Baskerville.ttf) format("truetype"); }
 * {
   box-sizing: border-box; }
 
@@ -79,64 +84,31 @@
 
 .nav {
   height: 150px;
-  background: #fff;
-  margin: 25px 0;
-  padding: 0 25px;
+  background: #e5f0f2;
+  padding: 25px;
+  padding-bottom: 0;
+  margin-bottom: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center; }
-  @media (max-width: 1200px) {
-    .nav {
-      flex-wrap: wrap;
-      margin-top: 0; } }
-  @media (max-width: 700px) {
-    .nav {
-      height: 50px; } }
   .nav .logo {
-    width: 200px;
-    min-width: 100px; }
+    height: 100%;
+    padding-bottom: 25px;
+    padding-left: calc(10vw - 25px); }
     .nav .logo img {
       max-width: 100%;
       max-height: 100%;
       pointer-events: all; }
-    @media (max-width: 1200px) {
-      .nav .logo {
-        order: 1;
-        width: 100%;
-        text-align: center; }
-        .nav .logo img {
-          height: 50px; } }
-    @media (max-width: 700px) {
-      .nav .logo {
-        order: 1;
-        height: 75px; }
-        .nav .logo img {
-          transform: none;
-          height: auto; } }
-  .nav .nav-left, .nav .nav-right {
-    flex: 2 1;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-evenly; }
-    @media (max-width: 1200px) {
-      .nav .nav-left, .nav .nav-right {
-        height: auto;
-        order: 2;
-        flex-basis: 100%; }
-        .nav .nav-left a, .nav .nav-right a {
-          font-size: 30px; } }
-    @media (max-width: 700px) {
-      .nav .nav-left, .nav .nav-right {
-        padding: 5px 0;
-        width: 100%; } }
-    .nav .nav-left a, .nav .nav-right a {
-      margin: 0 5px;
+  .nav nav {
+    transform: translateY(-12.5px);
+    display: flex; }
+    .nav nav a {
+      margin: 0 15px;
       text-decoration: none;
       color: #000;
-      font-size: 35px;
+      font-size: 20px;
       position: relative; }
-      .nav .nav-left a::after, .nav .nav-right a::after {
+      .nav nav a::after {
         position: absolute;
         width: 100%;
         left: 50%;
@@ -147,14 +119,23 @@
         border: solid #2D76C4 1px;
         transition: width 0.2s;
         bottom: -4px; }
-      .nav .nav-left a::after, .nav .nav-right a::after {
+      .nav nav a::after {
         width: 0;
         opacity: 0; }
-      .nav .nav-left a:not(.is-active):hover::after, .nav .nav-right a:not(.is-active):hover::after {
+      .nav nav a:not(.is-active):hover::after {
         width: 100%;
         opacity: 1; }
-      .nav .nav-left a.is-active, .nav .nav-right a.is-active {
+      .nav nav a.is-active {
         color: #2D76C4; }
+      .nav nav a::before {
+        content: "";
+        border-right: 1px solid #2D76C4;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -15px; }
+      .nav nav a:last-of-type::before {
+        display: none; }
   @media (max-width: 700px) {
     .nav .nav-left {
       position: absolute;
@@ -268,7 +249,7 @@ body {
   margin: 0;
   padding: 0;
   font-size: 19px;
-  font-family: "Open Sans Condensed", Helvetica, Arial, sans-serif; }
+  font-family: "Baskerville", serif; }
 
 textarea, input, button, select {
   font-family: inherit; }

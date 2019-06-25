@@ -90,7 +90,7 @@
   display: grid;
   justify-content: space-between;
   align-items: center;
-  grid-template-columns: 10vw 150px 1fr 1vw; }
+  grid-template-columns: 10vw 150px 1fr 10vw; }
   .nav .logo {
     height: 100%;
     grid-column: 2; }

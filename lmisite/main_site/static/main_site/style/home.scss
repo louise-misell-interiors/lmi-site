@@ -7,7 +7,7 @@
   padding-top: $nav-height;
   margin-top: -$nav-height;
 
-  background: $background-colour;
+  //background: $background-colour;
 
   .main-slider-inner {
     $width: 60%;
@@ -44,16 +44,16 @@
   margin: $content-padding 0;
   position: relative;
 
-  &::before {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: -$content-padding;
-    left: 0;
-    right: 0;
-    height: $content-padding;
-    background: $background-colour;
-  }
+  //&::before {
+  //  content: " ";
+  //  display: block;
+  //  position: absolute;
+  //  top: -$content-padding;
+  //  left: 0;
+  //  right: 0;
+  //  height: $content-padding;
+  //  background: $background-colour;
+  //}
 
   h1 {
     @include bar;

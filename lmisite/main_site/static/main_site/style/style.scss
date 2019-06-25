@@ -19,18 +19,18 @@
 @font-face {
   font-family: 'Baskerville';
   font-style: normal;
-  font-weight: 700;
   src: url(../fonts/Baskerville.ttf) format('truetype');
 }
 
 * {
   box-sizing: border-box;
+  font-size-adjust: 0.5;
 }
 
 @import "inc/variables";
 @import "inc/hamburger";
 @import "inc/nav";
-@import "inc/icons";
+@import "inc/instagram";
 @import "inc/forms";
 @import "inc/bar";
 
@@ -186,11 +186,16 @@ img {
 
   .pre-footer {
     padding: 20px 0;
-    .row {
-      align-items: center;
-    }
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 
     .logos {
+      display: grid;
+      grid-auto-columns: 1fr;
+      grid-auto-flow: column;
+      justify-items: center;
+
       img {
         margin: 0 $content-padding/2;
         max-height: $nav-height/2;

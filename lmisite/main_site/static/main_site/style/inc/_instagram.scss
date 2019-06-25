@@ -1,0 +1,29 @@
+@import "variables";
+
+.instagram {
+  padding: $content-padding;
+  background: $background-colour;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  h2 {
+    text-align: center;
+
+    a {
+      color: $background-colour-dark;
+
+      &:hover {
+        color: lighten($background-colour-dark, 20%);
+      }
+    }
+  }
+
+  > div {
+    width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12vw, 1fr));
+    align-items: center;
+    grid-gap: $content-padding/2;
+  }
+}

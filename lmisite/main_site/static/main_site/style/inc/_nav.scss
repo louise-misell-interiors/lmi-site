@@ -27,7 +27,7 @@
   display: grid;
   justify-content: space-between;
   align-items: center;
-  grid-template-columns: 10vw $nav-height 1fr;
+  grid-template-columns: 10vw $nav-height 1fr 10vw;
 
   .logo {
     height: 100%;
@@ -44,8 +44,10 @@
   nav {
     transform: translateY(-$content-padding/2);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, auto));
     grid-column: 3;
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
+    justify-content: end;
 
     a {
       $link-margin: 15px;

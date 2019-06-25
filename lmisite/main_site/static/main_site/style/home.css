@@ -18,7 +18,7 @@
       height: 0;
       content: "";
       border-radius: 2px;
-      border: solid #336666 1px;
+      border: solid #335470 1px;
       transition: width 0.2s;
       bottom: -4px; }
   .services .row .col {
@@ -49,7 +49,7 @@
           height: 0;
           content: "";
           border-radius: 2px;
-          border: solid #336666 1px;
+          border: solid #335470 1px;
           transition: width 0.2s;
           bottom: -4px; }
         .services .row .col ul li::after {
@@ -64,7 +64,7 @@
             height: 0;
             content: "";
             border-radius: 2px;
-            border: solid #336666 1px;
+            border: solid #335470 1px;
             transition: width 0.2s;
             top: -4px; }
           .services .row .col ul li:first-of-type::before {
@@ -77,7 +77,7 @@
           bottom: 20px; }
 
 .testimonials {
-  background: #336666;
+  background: #335470;
   color: #fff;
   padding: 25px;
   display: flex;
@@ -98,8 +98,7 @@
 
 .main-slider {
   padding-top: 150px;
-  margin-top: -150px;
-  background: #e5f0f2; }
+  margin-top: -150px; }
   .main-slider .main-slider-inner {
     padding-bottom: 29.997%;
     position: relative; }
@@ -161,19 +160,10 @@
           width: 100%; }
 
 .about {
-  background: #336666;
-  color: #c4dfe6;
+  background: #335470;
+  color: #e5f0f2;
   margin: 25px 0;
   position: relative; }
-  .about::before {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: -25px;
-    left: 0;
-    right: 0;
-    height: 25px;
-    background: #e5f0f2; }
   .about h1 {
     position: relative;
     display: inline-block;
@@ -188,7 +178,7 @@
       height: 0;
       content: "";
       border-radius: 2px;
-      border: solid #336666 1px;
+      border: solid #335470 1px;
       transition: width 0.2s;
       bottom: -4px; }
   .about > div {

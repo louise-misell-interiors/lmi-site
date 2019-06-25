@@ -25,9 +25,10 @@
   padding: $content-padding;
   padding-bottom: 0;
   margin-bottom: $content-padding;
-  display: flex;
+  display: grid;
   justify-content: space-between;
   align-items: center;
+  grid-template-columns: 10vw $nav-height 1fr;
 
   //@media (max-width: $media-medium) {
   //  flex-wrap: wrap;
@@ -40,8 +41,7 @@
 
   .logo {
     height: 100%;
-    padding-bottom: $content-padding;
-    padding-left: calc(10vw - #{$content-padding});
+    grid-column: 2;
 
     img {
       max-width: 100%;
@@ -87,7 +87,9 @@
     //  width: 100%;
     //}
     transform: translateY(-$content-padding/2);
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, auto));
+    grid-column: 3;
 
     a {
       $link-margin: 15px;
@@ -95,6 +97,10 @@
       text-decoration: none;
       color: #000;
       font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
 
       @include bar;
 
@@ -109,7 +115,7 @@
       }
 
       &.is-active {
-        color: $primary-colour;
+        color: $background-colour-dark;
       }
 
       &::before {

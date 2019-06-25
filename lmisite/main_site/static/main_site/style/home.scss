@@ -42,6 +42,19 @@
 .about {
   background: $background-colour-dark;
   color: $light-text-colour;
+  margin: $content-padding 0;
+  position: relative;
+
+  &::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: -$content-padding;
+    left: 0;
+    right: 0;
+    height: $content-padding;
+    background: $background-colour;
+  }
 
   h1 {
     @include bar;
@@ -55,5 +68,10 @@
     max-width: 700px;
     margin: 0 auto;
     font-size: 27px;
+  }
+
+  p a {
+    border: 2px $light-text-colour solid;
+    padding: 10px;
   }
 }

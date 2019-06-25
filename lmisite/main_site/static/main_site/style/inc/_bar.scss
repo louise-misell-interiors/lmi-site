@@ -14,7 +14,7 @@
     height: 0;
     content: "";
     border-radius: $nav-link-bar-size;
-    border: solid $primary-colour $nav-link-bar-size / 2;
+    border: solid $background-colour-dark $nav-link-bar-size / 2;
     transition: width $fast-transition;
 }
 

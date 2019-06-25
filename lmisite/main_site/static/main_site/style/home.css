@@ -18,7 +18,7 @@
       height: 0;
       content: "";
       border-radius: 2px;
-      border: solid #2D76C4 1px;
+      border: solid #336666 1px;
       transition: width 0.2s;
       bottom: -4px; }
   .services .row .col {
@@ -49,7 +49,7 @@
           height: 0;
           content: "";
           border-radius: 2px;
-          border: solid #2D76C4 1px;
+          border: solid #336666 1px;
           transition: width 0.2s;
           bottom: -4px; }
         .services .row .col ul li::after {
@@ -64,7 +64,7 @@
             height: 0;
             content: "";
             border-radius: 2px;
-            border: solid #2D76C4 1px;
+            border: solid #336666 1px;
             transition: width 0.2s;
             top: -4px; }
           .services .row .col ul li:first-of-type::before {
@@ -221,7 +221,7 @@
       height: 0;
       content: "";
       border-radius: 2px;
-      border: solid #2D76C4 1px;
+      border: solid #336666 1px;
       transition: width 0.2s;
       bottom: -4px; }
   .portfolio .row .col {
@@ -316,7 +316,18 @@
 
 .about {
   background: #336666;
-  color: #c4dfe6; }
+  color: #c4dfe6;
+  margin: 25px 0;
+  position: relative; }
+  .about::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: -25px;
+    left: 0;
+    right: 0;
+    height: 25px;
+    background: #e5f0f2; }
   .about h1 {
     position: relative;
     display: inline-block;
@@ -331,7 +342,7 @@
       height: 0;
       content: "";
       border-radius: 2px;
-      border: solid #2D76C4 1px;
+      border: solid #336666 1px;
       transition: width 0.2s;
       bottom: -4px; }
   .about > div {
@@ -340,5 +351,8 @@
     max-width: 700px;
     margin: 0 auto;
     font-size: 27px; }
+  .about p a {
+    border: 2px #c4dfe6 solid;
+    padding: 10px; }
 
 /*# sourceMappingURL=home.css.map */

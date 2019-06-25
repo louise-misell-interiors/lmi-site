@@ -88,25 +88,31 @@
   padding: 25px;
   padding-bottom: 0;
   margin-bottom: 25px;
-  display: flex;
+  display: grid;
   justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+  grid-template-columns: 10vw 150px 1fr; }
   .nav .logo {
     height: 100%;
-    padding-bottom: 25px;
-    padding-left: calc(10vw - 25px); }
+    grid-column: 2; }
     .nav .logo img {
       max-width: 100%;
       max-height: 100%;
       pointer-events: all; }
   .nav nav {
     transform: translateY(-12.5px);
-    display: flex; }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, auto));
+    grid-column: 3; }
     .nav nav a {
       margin: 0 15px;
       text-decoration: none;
       color: #000;
       font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
       position: relative; }
       .nav nav a::after {
         position: absolute;
@@ -116,7 +122,7 @@
         height: 0;
         content: "";
         border-radius: 2px;
-        border: solid #2D76C4 1px;
+        border: solid #336666 1px;
         transition: width 0.2s;
         bottom: -4px; }
       .nav nav a::after {
@@ -126,7 +132,7 @@
         width: 100%;
         opacity: 1; }
       .nav nav a.is-active {
-        color: #2D76C4; }
+        color: #336666; }
       .nav nav a::before {
         content: "";
         border-right: 1px solid #2D76C4;
@@ -255,11 +261,11 @@ textarea, input, button, select {
   font-family: inherit; }
 
 a {
-  color: #2D76C4;
+  color: #c4dfe6;
   transition: color .2s;
   text-decoration: none; }
   a:hover {
-    color: #1a4471; }
+    color: white; }
 
 hr {
   width: 30%;
@@ -341,7 +347,7 @@ img {
       height: 0;
       content: "";
       border-radius: 2px;
-      border: solid #2D76C4 1px;
+      border: solid #336666 1px;
       transition: width 0.2s;
       bottom: -4px; }
   .wrapper .content > div {
@@ -387,7 +393,7 @@ img {
           height: 0;
           content: "";
           border-radius: 2px;
-          border: solid #2D76C4 1px;
+          border: solid #336666 1px;
           transition: width 0.2s;
           bottom: -4px; }
         .wrapper .pre-footer .socials a::after {

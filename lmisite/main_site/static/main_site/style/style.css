@@ -85,8 +85,7 @@
 .nav {
   height: 150px;
   background: #e5f0f2;
-  padding: 25px;
-  padding-bottom: 0;
+  padding: 25px 25px 0;
   margin-bottom: 25px;
   display: grid;
   justify-content: space-between;
@@ -107,7 +106,7 @@
     .nav nav a {
       margin: 0 15px;
       text-decoration: none;
-      color: #000;
+      color: #336666;
       font-size: 20px;
       display: flex;
       justify-content: center;
@@ -132,7 +131,7 @@
         width: 100%;
         opacity: 1; }
       .nav nav a.is-active {
-        color: #336666; }
+        color: #55aaaa; }
       .nav nav a::before {
         content: "";
         border-right: 1px solid #2D76C4;
@@ -266,6 +265,10 @@ a {
   text-decoration: none; }
   a:hover {
     color: white; }
+
+a.button {
+  border: 2px #c4dfe6 solid;
+  padding: 10px; }
 
 hr {
   width: 30%;

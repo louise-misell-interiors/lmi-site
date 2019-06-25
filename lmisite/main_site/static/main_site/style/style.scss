@@ -55,6 +55,11 @@ a {
   }
 }
 
+a.button {
+  border: 2px $light-text-colour solid;
+  padding: 10px;
+}
+
 hr {
   width: 30%;
   border: 1px solid $primary-colour;

@@ -36,7 +36,7 @@
             <div>
                 {{ config.home_text|linebreaks }}
                 <p>
-                    <a href="{% url 'about' %}">Read more</a>
+                    <a href="{% url 'about' %}" class="button">Read more</a>
                 </p>
             </div>
         </div>
@@ -67,52 +67,22 @@
                 </div>
         </div>
         <div class="testimonials">
-            <div class="slider">
-                <div class="slider-inner">
-                    <span class="arrow"><i class="fas fa-chevron-left"></i></span>
-                    {% for testimonial in testimonials %}
-                        <div class="slide{% if forloop.first %} is-active{% endif %}">
-                            <div class="content" itemscope itemtype="https://schema.org/Review">
-                                <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
-                                <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
-                                {% if testimonial.related_project %}
-                                    <link itemprop="itemReviewed"
-                                          href="{% url 'project' testimonial.related_project.id %}">
-                                {% else %}
-                                    <link itemprop="itemReviewed" href="{% url 'contact' %}">
-                                {% endif %}
-                                {% if testimonial.image %}
-                                    <link itemprop="image" href="{{ testimonial.image.url }}"/>
-                                {% endif %}
-                            </div>
-                        </div>
-                    {% endfor %}
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                </div>
+            <div class="content" itemscope itemtype="https://schema.org/Review">
+                <blockquote itemprop="reviewBody">{{ testimonials.0.text }}</blockquote>
+                <span class="by-line" itemprop="author">{{ testimonials.0.client }}</span>
+                {% if testimonials.0.related_project %}
+                    <link itemprop="itemReviewed"
+                          href="{% url 'project' testimonials.0.related_project.id %}">
+                {% else %}
+                    <link itemprop="itemReviewed" href="{% url 'contact' %}">
+                {% endif %}
+                {% if testimonials.0.image %}
+                    <link itemprop="image" href="{{ testimonials.0.image.url }}"/>
+                {% endif %}
+                <p>
+                    <a href="{% url 'testimonials' %}" class="button">More testimonials</a>
+                </p>
             </div>
-        </div>
-        <div class="portfolio">
-            <h2>Recent projects</h2>
-            <div class="row">
-                {% for project in projects %}
-                    <div class="col" itemscope itemtype="https://schema.org/CreativeWork">
-                        <link itemprop="url" href="{% url 'project' project.id %}"/>
-                        <a href="{% url 'project' project.id %}">
-                            <div class="img-box">
-                                <link itemprop="image" href="{% if project.image %}{{ project.image.url }}{% endif %}">
-                                <img data-src="{% if project.image %}{{ project.image.url }}{% endif %}"
-                                     alt="{{ project.image_alt_text }}">
-                            </div>
-                            <h3 itemprop="headline">{{ project.name }}</h3>
-                            <hr>
-                        </a>
-                    </div>
-                    {% if forloop.counter|divisibleby:4 %}
-                        </div>
-                        <div class="row">
-                    {% endif %}
-                {% endfor %}
-                </div>
         </div>
     </div>
 {% endblock %}

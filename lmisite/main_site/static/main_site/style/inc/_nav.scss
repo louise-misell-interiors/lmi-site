@@ -22,22 +22,12 @@
 .nav {
   height: $nav-height;
   background: $background-colour;
-  padding: $content-padding;
-  padding-bottom: 0;
+  padding: $content-padding $content-padding 0;
   margin-bottom: $content-padding;
   display: grid;
   justify-content: space-between;
   align-items: center;
   grid-template-columns: 10vw $nav-height 1fr;
-
-  //@media (max-width: $media-medium) {
-  //  flex-wrap: wrap;
-  //  margin-top: 0;
-  //}
-  //
-  //@media (max-width: $media-xsmall) {
-  //    height: $nav-height/3;
-  //}
 
   .logo {
     height: 100%;
@@ -49,43 +39,9 @@
 
       pointer-events: all;
     }
-
-    //@media (max-width: $media-medium) {
-    //  order: 1;
-    //  width: 100%;
-    //  text-align: center;
-    //
-    //  img {
-    //    height: $nav-height/3;
-    //  }
-    //}
-    //
-    //@media (max-width: $media-xsmall) {
-    //  order: 1;
-    //  height: $nav-height/2;
-    //
-    //  img {
-    //    transform: none;
-    //    height: auto;
-    //  }
-    //}
   }
 
   nav {
-    //@media (max-width: $media-medium) {
-    //  height: auto;
-    //  order: 2;
-    //  flex-basis: 100%;
-    //
-    //  a {
-    //    font-size: 30px;
-    //  }
-    //}
-    //
-    //@media (max-width: $media-xsmall) {
-    //  padding: 5px 0;
-    //  width: 100%;
-    //}
     transform: translateY(-$content-padding/2);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, auto));
@@ -95,7 +51,7 @@
       $link-margin: 15px;
       margin: 0 $link-margin;
       text-decoration: none;
-      color: #000;
+      color: $background-colour-dark;
       font-size: 20px;
       display: flex;
       justify-content: center;
@@ -115,7 +71,7 @@
       }
 
       &.is-active {
-        color: $background-colour-dark;
+        color: lighten($background-colour-dark, 20%);
       }
 
       &::before {

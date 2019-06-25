@@ -2,7 +2,6 @@
 @import "inc/slider";
 @import "inc/services";
 @import "inc/testimonials";
-@import "inc/portfolio";
 
 .main-slider {
   padding-top: $nav-height;
@@ -68,10 +67,5 @@
     max-width: 700px;
     margin: 0 auto;
     font-size: 27px;
-  }
-
-  p a {
-    border: 2px $light-text-colour solid;
-    padding: 10px;
   }
 }

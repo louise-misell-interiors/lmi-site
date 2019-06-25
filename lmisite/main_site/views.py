@@ -5,7 +5,6 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.conf import settings
 from .models import *
 from . import forms
-from . import instagram
 import math
 import requests
 import json
@@ -45,8 +44,6 @@ def design_insider(request):
     posts = posts[1:]
     extra = range((math.ceil(len(posts) / 3) * 3) - len(posts))
 
-    instagram_feed = instagram.get_user_feed()[:6]
-
     if request.method == "POST":
         form = forms.NewsletterForm(request.POST)
         if form.is_valid():
@@ -61,19 +58,16 @@ def design_insider(request):
                 entry.save()
 
             return render(request, "main_site/design_insider.html",
-                          {"posts": (big_post, posts, extra), "instagram": instagram_feed, "short_posts": short_posts,
-                           "form": form, "sent": True})
+                          {"posts": (big_post, posts, extra), "short_posts": short_posts, "form": form, "sent": True})
     else:
         form = forms.NewsletterForm()
 
     return render(request, "main_site/design_insider.html",
-                  {"posts": (big_post, posts, extra), "short_posts": short_posts, "form": form, "instagram": instagram_feed})
+                  {"posts": (big_post, posts, extra), "short_posts": short_posts, "form": form})
 
 
 def design_insider_post(request, id):
     post = get_object_or_404(DesignInsiderPost, id=id)
-
-    instagram_feed = instagram.get_user_feed()[:6]
 
     short_posts = ShortPost.objects.all()
     if not request.user.is_superuser:
@@ -93,12 +87,12 @@ def design_insider_post(request, id):
                 entry.save()
 
             return render(request, "main_site/design_insider_post.html",
-                          {"post": post, "instagram": instagram_feed, "short_posts": short_posts, "form": form, "sent": True})
+                          {"post": post, "short_posts": short_posts, "form": form, "sent": True})
     else:
         form = forms.NewsletterForm()
 
     return render(request, "main_site/design_insider_post.html",
-                  {"post": post, "instagram": instagram_feed, "short_posts": short_posts, "form": form})
+                  {"post": post, "short_posts": short_posts, "form": form})
 
 
 def about(request):

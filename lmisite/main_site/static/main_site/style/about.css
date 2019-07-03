@@ -1,30 +1,26 @@
 .content > div {
   margin: 0 5%; }
-
-.content > div h1 {
-  margin: unset !important;
-  font-weight: bold !important;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
-  position: relative;
-  position: relative; }
-
-.content > div h1::after {
-  position: absolute;
-  width: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 0;
-  content: "";
-  border-radius: 2px;
-  border: solid #2D76C4 1px;
-  transition: width 0.2s;
-  bottom: -4px; }
+  .content > div h1 {
+    margin: unset !important;
+    font-weight: bold !important;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    position: relative; }
+    .content > div h1::after {
+      position: absolute;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 0;
+      content: "";
+      border-radius: 2px;
+      border: solid #2D76C4 1px;
+      transition: width 0.2s;
+      bottom: -4px; }
 
 .row {
   align-items: center; }
-
-/*# sourceMappingURL=about.css.map */
 
 /*# sourceMappingURL=about.css.map */

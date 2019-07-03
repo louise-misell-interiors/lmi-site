@@ -41,19 +41,17 @@
             </div>
         </div>
         <div class="services">
-            <h2>How can I help with your project?</h2>
-            <div class="row">
                 {% for service in services %}
-                    <div class="col" itemscope itemtype="https://schema.org/Service">
+                    <div itemscope itemtype="https://schema.org/Service">
                         <h3 class="step-number"><i class="fas {{ service.icon }}"></i></h3>
                         <h3 itemprop="name">{{ service.name }}</h3>
                         <link itemprop="url" href="{% url 'services' %}"/>
-                        <ul itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">
+                        <div itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">
                             {% for s in service.service_summaries.all %}
-                                <li itemprop="itemListElement">{{ s.text }}</li>
+                                <span itemprop="itemListElement">{{ s.text }}</span>
                             {% endfor %}
-                            <li><a href="{% url 'services' %}">Find out more</a></li>
-                        </ul>
+                        </div>
+                        <a href="{% url 'services' %}" class="button">Find out more</a>
                         <meta itemprop="description" content="{{ service.description }}">
                         <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                             <meta itemprop="price" content="{{ service.price }}"/>
@@ -64,7 +62,6 @@
                         <div class="row">
                     {% endif %}
                 {% endfor %}
-                </div>
         </div>
         <div class="testimonials">
             <div class="content" itemscope itemtype="https://schema.org/Review">
@@ -83,6 +80,16 @@
                     <a href="{% url 'testimonials' %}" class="button">More testimonials</a>
                 </p>
             </div>
+        </div>
+    </div>
+    <div class="instagram">
+        <h2>Follow me on instagram <a href="{{ config.instagram_url }}">@louise_m_interiors</a></h2>
+        <div>
+            {% for item in instagram %}
+                <a href="{{ item.permalink }}">
+                    <img src="{{ item.media_url }}" alt="{{ item.caption }}" title="{{ item.caption }}">
+                </a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

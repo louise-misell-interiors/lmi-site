@@ -108,13 +108,17 @@ class Service(models.Model):
         (OTHER, "Other")
     )
     type = models.CharField(max_length=1, choices=TYPES, default=MAIN)
-    icon = models.CharField(max_length=255)
+    image = models.ImageField(blank=True)
     description = models.TextField(blank=True)
     price = models.CharField(max_length=255, default="", blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
         ordering = ['order']
+
+    def save(self, *args, **kwargs):
+        self.image = compress_img(self.image)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

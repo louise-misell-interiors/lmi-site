@@ -101,36 +101,26 @@
     </div>
     {% block content %}
     {% endblock %}
-    <div class="instagram">
-        <h2>Follow me on Instagram <a href="{{ config.instagram_url }}">@louise_m_interiors</a></h2>
-        <div>
-            {% for item in instagram %}
-                <a href="{{ item.permalink }}">
-                    <img src="{{ item.media_url }}" alt="{{ item.caption }}" title="{{ item.caption }}">
-                </a>
-            {% endfor %}
-        </div>
-    </div>
     <div class="pre-footer">
-            <div class="logos">
-                <img src="{% static "main_site/img/cag-logo.png" %}" alt="City & Guilds logo">
-                <img src="{% static "main_site/img/baid-logo.png" %}" alt="British Academy of Interior Design logo">
-                <a href="http://www.fsb.org.uk" title="Visit FSB's website">
-                    <img src="{% static "main_site/img/fsb-logo.png" %}" alt="Federation of Small Businesses logo">
-                </a>
-            </div>
             <div class="socials">
                 <a href="{{ config.instagram_url }}" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="{{ config.twitter_url }}" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
-                <a href="{{ config.pintrest_url }}" target="_blank"><i class="fab fa-pinterest fa-lg"></i></a>
-                <a href="{{ config.facebook_url }}" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
-                <a href="{{ config.linkedin_url }}" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+                <a href="{{ config.pintrest_url }}" target="_blank"><i class="fab fa-pinterest-p fa-lg"></i></a>
+                <a href="{{ config.facebook_url }}" target="_blank"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="{{ config.linkedin_url }}" target="_blank"><i class="fab fa-linkedin-in fa-lg"></i></a>
                 <a href="{{ config.houzz_url }}" target="_blank"><i class="fab fa-houzz fa-lg"></i></a>
-                <a href="{{ config.homify_url }}"><img alt="Louise Misell Interiors on homify"
-                                                       src="https://www.homify.co.uk/assets/badges/standard/90x32_black.png"/></a>
             </div>
-            <div>
-                <img src="{% static "main_site/img/CLA_Finalist_1.jpg" %}" alt="Cardiff Life Awards Finalst">
+            <div class="logos">
+                <div>
+                    <img src="{% static "main_site/img/cag-logo.png" %}" alt="City & Guilds logo">
+                    <img src="{% static "main_site/img/baid-logo.png" %}" alt="British Academy of Interior Design logo">
+                    <a href="http://www.fsb.org.uk" title="Visit FSB's website">
+                        <img src="{% static "main_site/img/fsb-logo.png" %}" alt="Federation of Small Businesses logo">
+                    </a>
+                </div>
+                <div class="cla">
+                    <img src="{% static "main_site/img/CLA_Finalist_1.jpg" %}" alt="Cardiff Life Awards Finalst">
+                </div>
             </div>
     </div>
     <div class="footer">

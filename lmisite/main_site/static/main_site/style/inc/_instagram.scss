@@ -2,9 +2,9 @@
 
 .instagram {
   padding: $content-padding;
-  background: $background-colour;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
 
   h2 {
@@ -22,8 +22,21 @@
   > div {
     width: 80vw;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12vw, 1fr));
+    grid-template-columns: repeat(3, 40vmin);
+    justify-content: center;
     align-items: center;
     grid-gap: $content-padding/2;
+    grid-auto-rows: 40vmin;
+
+    a {
+      width: 100%;
+      height: 100%;
+
+      img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
   }
 }

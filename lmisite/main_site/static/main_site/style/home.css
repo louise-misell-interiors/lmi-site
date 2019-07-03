@@ -1,185 +1,78 @@
-.services {
-  width: 80%;
-  margin: 0 auto;
-  padding-top: 0 !important;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-auto-rows: minmax(min-content, max-content);
-  grid-gap: 1%; }
-  .services div {
-    padding: 25px;
-    background: #e5f0f2;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center; }
-    .services div h3 {
-      text-align: center;
-      margin: 12.5px 0;
-      font-size: 25px; }
-      .services div h3.step-number {
-        font-size: 50px;
-        font-weight: bold;
-        margin: 0; }
-    .services div div {
-      list-style: none;
-      display: grid;
-      padding: 0;
-      grid-auto-rows: minmax(min-content, max-content); }
-      .services div div span {
-        text-align: center;
-        padding: 10px 0;
-        margin-bottom: 8px;
-        position: relative; }
-        .services div div span::after {
-          position: absolute;
-          width: 100%;
-          left: 50%;
-          transform: translateX(-50%);
-          height: 0;
-          content: "";
-          border-radius: 2px;
-          border: solid #335470 1px;
-          transition: width 0.2s;
-          bottom: -4px; }
-        .services div div span::after {
-          width: 30%; }
-        .services div div span:first-of-type {
-          position: relative; }
-          .services div div span:first-of-type::before {
-            position: absolute;
-            width: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 0;
-            content: "";
-            border-radius: 2px;
-            border: solid #335470 1px;
-            transition: width 0.2s;
-            top: -4px; }
-          .services div div span:first-of-type::before {
-            width: 30%; }
-    .services div a {
-      font-size: 22px;
-      border-color: #335470;
-      color: #335470;
-      display: inline-block;
-      margin: 10px; }
+/*
+Error: Undefined variable: "$background-colour-darkq".
+        on line 72 of home.scss
 
-.testimonials {
-  background: #335470;
-  color: #fff;
-  padding: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-  @media (max-width: 800px) {
-    .testimonials {
-      padding: 12.5px; } }
-  .testimonials .content {
-    font-size: 25px;
-    text-align: center;
-    width: 80vw; }
-    .testimonials .content .by-line {
-      font-weight: bold;
-      text-align: center;
-      display: inline-block;
-      width: 100%; }
-  .testimonials a {
-    font-size: 22px; }
+67:   align-items: center;
+68:   background: $background-colour;
+69: 
+70:   div {
+71:     width: 80%;
+72:     background: $background-colour-darkq
+73: 
+74:     p {
+75:       text-align: center;
+76:       font-size: 25px;
+77:       max-width: 1000px;
 
-.main-slider {
-  padding-top: 150px;
-  margin-top: -150px; }
-  .main-slider .main-slider-inner {
-    padding-bottom: 29.997%;
-    position: relative; }
-    .main-slider .main-slider-inner .slider {
-      height: 100%;
-      width: 100%;
-      overflow: hidden; }
-      .main-slider .main-slider-inner .slider .slider-inner {
-        perspective: 5px;
-        transform-style: preserve-3d;
-        width: 100%;
-        height: 100%;
-        position: relative; }
-        .main-slider .main-slider-inner .slider .slider-inner .slide {
-          position: absolute;
-          width: 60%;
-          height: 100%;
-          transform: translateZ(-2px);
-          left: -20%;
-          transition: height 0.5s, transform 0.5s, left 0.5s; }
-          .main-slider .main-slider-inner .slider .slider-inner .slide.is-active {
-            left: 20%;
-            transform: translateY(0) translateZ(0); }
-          .main-slider .main-slider-inner .slider .slider-inner .slide.is-active ~ .slide {
-            left: 60%;
-            display: none; }
-          .main-slider .main-slider-inner .slider .slider-inner .slide.is-active + .slide {
-            display: block; }
-        .main-slider .main-slider-inner .slider .slider-inner .arrow {
-          font-size: 30px;
-          color: #fff;
-          background-color: rgba(0, 0, 0, 0.4);
-          padding: 15px 10px;
-          font-weight: bold;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          left: 20%;
-          z-index: 99;
-          transition: opacity 0.2s; }
-          .main-slider .main-slider-inner .slider .slider-inner .arrow:hover {
-            opacity: 1; }
-        .main-slider .main-slider-inner .slider .slider-inner .arrow:last-of-type {
-          right: 20%;
-          left: unset;
-          transform: translateY(-50%); }
-    .main-slider .main-slider-inner .slider {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0; }
-      .main-slider .main-slider-inner .slider .slide {
-        background-size: cover;
-        background-position: 50% 50%; }
-        .main-slider .main-slider-inner .slider .slide img {
-          object-fit: cover;
-          height: 100%;
-          width: 100%; }
-
-.about {
-  background: #335470;
-  color: #e5f0f2;
-  margin: 25px 0;
-  position: relative; }
-  .about h1 {
-    position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
-    font-weight: bold !important; }
-    .about h1::after {
-      position: absolute;
-      width: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 0;
-      content: "";
-      border-radius: 2px;
-      border: solid #335470 1px;
-      transition: width 0.2s;
-      bottom: -4px; }
-  .about > div {
-    width: 80vw;
-    text-align: center;
-    margin: 0 auto;
-    font-size: 27px;
-    line-height: 1.5; }
-    .about > div a {
-      font-size: 22px; }
-
-/*# sourceMappingURL=home.css.map */
+Backtrace:
+home.scss:72
+/usr/lib/ruby/vendor_ruby/sass/script/tree/variable.rb:49:in `_perform'
+/usr/lib/ruby/vendor_ruby/sass/script/tree/node.rb:58:in `perform'
+/usr/lib/ruby/vendor_ruby/sass/script/tree/list_literal.rb:63:in `block in _perform'
+/usr/lib/ruby/vendor_ruby/sass/script/tree/list_literal.rb:63:in `map'
+/usr/lib/ruby/vendor_ruby/sass/script/tree/list_literal.rb:63:in `_perform'
+/usr/lib/ruby/vendor_ruby/sass/script/tree/node.rb:58:in `perform'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:397:in `visit_prop'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:160:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:115:in `with_frame'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `with_base'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:160:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:433:in `block (2 levels) in visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:433:in `map'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:433:in `block in visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:181:in `with_environment'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:431:in `visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:160:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:115:in `with_frame'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `with_base'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:160:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:433:in `block (2 levels) in visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:433:in `map'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:433:in `block in visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:181:in `with_environment'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:431:in `visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:160:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:115:in `with_frame'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `with_base'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:160:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `map'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:169:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:181:in `with_environment'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:168:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:188:in `visit_root'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:159:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:8:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:36:in `css_tree'
+/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:381:in `_render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:298:in `render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:387:in `run'
+/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:63:in `process_result'
+/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:52:in `parse'
+/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:19:in `parse!'
+/usr/bin/sass:8:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$background-colour-darkq\".\A         on line 72 of home.scss\A \A 67:   align-items: center;\A 68:   background: $background-colour;\A 69: \A 70:   div {\A 71:     width: 80%;\A 72:     background: $background-colour-darkq\A 73: \A 74:     p {\A 75:       text-align: center;\A 76:       font-size: 25px;\A 77:       max-width: 1000px;"; }

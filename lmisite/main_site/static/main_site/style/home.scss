@@ -39,7 +39,7 @@
 .about {
   background: $background-colour-dark;
   color: $light-text-colour;
-  margin: $content-padding 0;
+  margin-top: $content-padding;
   position: relative;
 
   h1 {
@@ -52,11 +52,30 @@
     width: 80vw;
     text-align: center;
     margin: 0 auto;
-    font-size: 27px;
+    font-size: 30px;
     line-height: 1.5;
 
     a {
       font-size: 22px;
+    }
+  }
+}
+
+.desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: $background-colour;
+
+  div {
+    width: 80%;
+    background: $background-colour-darkq
+
+    p {
+      text-align: center;
+      font-size: 25px;
+      max-width: 1000px;
+      margin: $content-padding/2 0;
     }
   }
 }

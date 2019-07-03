@@ -73,7 +73,7 @@
       }
 
       &.is-active {
-        color: lighten($background-colour-dark, 20%);
+        color: darken($background-colour-dark, 10%);
       }
 
       &::before {

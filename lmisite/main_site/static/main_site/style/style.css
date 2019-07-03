@@ -18,8 +18,7 @@
   font-style: normal;
   src: url(../fonts/Baskerville.ttf) format("truetype"); }
 * {
-  box-sizing: border-box;
-  font-size-adjust: 0.5; }
+  box-sizing: border-box; }
 
 .hamburger {
   display: inline-block;
@@ -133,7 +132,7 @@
         width: 100%;
         opacity: 1; }
       .nav nav a.is-active {
-        color: #5788b2; }
+        color: #233a4d; }
       .nav nav a::before {
         content: "";
         border-right: 1px solid #2D76C4;
@@ -391,7 +390,7 @@ img {
       grid-auto-columns: 1fr; }
       .wrapper .pre-footer .socials a {
         margin: 0 5px;
-        font-size: 22px;
+        font-size: 18px;
         color: #fff;
         background: #335470;
         width: 40px;
@@ -399,9 +398,12 @@ img {
         text-align: center;
         border-radius: 50%;
         padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: relative; }
         .wrapper .pre-footer .socials a i {
-          vertical-align: -.07em; }
+          line-height: 1; }
         .wrapper .pre-footer .socials a::after {
           position: absolute;
           width: 100%;

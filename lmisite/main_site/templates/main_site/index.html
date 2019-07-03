@@ -23,7 +23,7 @@
                     <span class="arrow"><i class="fas fa-chevron-left"></i></span>
                     {% for img in slider_imgs %}
                         <div class="slide{% if forloop.counter == 2 %} is-active{% endif %}">
-                            <img data-src="{{ img.image.url }}" alt="{{ img.alt_text }}">
+                            <img data-src="{{ img.image.url }}" alt="{{ img.alt_text }}" data-pin-nopin="true">
                         </div>
                     {% endfor %}
                     <span class="arrow"><i class="fas fa-chevron-right"></i></span>
@@ -40,10 +40,24 @@
                 </p>
             </div>
         </div>
+        <div class="desc">
+            <div>
+                <p>
+                    I can help you with your project
+                </p>
+                <p>
+                    I offer a full range of interior design services and can help with anything from choosing paint colours
+                    to a complete redesign of your home. I specialise in space planning to make your space work practically
+                    for you, and will work with you to help you define your interiors style. I come to you and will travel
+                    across South Wales including Cardiff, Swansea, Newport, Penarth, Cowbridge, The Vale of Glamorgan and
+                    surrounding areas.
+                </p>
+            </div>
+        </div>
         <div class="services">
                 {% for service in services %}
                     <div itemscope itemtype="https://schema.org/Service">
-                        <h3 class="step-number"><i class="fas {{ service.icon }}"></i></h3>
+                        {% if service.image %}<img src="{{ service.image.url }}" alt="{{ service.name }}">{% endif %}
                         <h3 itemprop="name">{{ service.name }}</h3>
                         <link itemprop="url" href="{% url 'services' %}"/>
                         <div itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">
@@ -57,10 +71,6 @@
                             <meta itemprop="price" content="{{ service.price }}"/>
                         </span>
                     </div>
-                    {% if forloop.counter|divisibleby:4 %}
-                        </div>
-                        <div class="row">
-                    {% endif %}
                 {% endfor %}
         </div>
         <div class="testimonials">

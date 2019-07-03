@@ -87,6 +87,7 @@
             {% url 'index' as home_url %}
             {% url 'about' as about_url %}
             {% url 'portfolio' as portfolio_url %}
+            {% url 'testimonials' as tesimonials_url %}
             {% url 'design_insider' as blog_url %}
             {% url 'services' as services_url %}
             {% url 'contact' as contact_url %}
@@ -95,6 +96,7 @@
             <a href="{{ services_url }}" {% if request.get_full_path == services_url %}class="is-active"{% endif %}>Services</a>
             <a href="{{ portfolio_url }}" {% if request.get_full_path == portfolio_url %}class="is-active"{% endif %}>Portfolio</a>
             <a href="{{ blog_url }}" {% if request.get_full_path == blog_url %}class="is-active"{% endif %}>Blog</a>
+            <a href="{{ testimonials_url }}" {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
             <a href="{{ contact_url }}" {% if request.get_full_path == contact_url %}class="is-active"{% endif %}>Contact</a>
         </nav>
         <i class="fas fa-bars menu-button"></i>
@@ -176,7 +178,7 @@
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script async defer data-pin-hover="true" data-pin-tall="true" data-pin-round="true"
+<script async defer data-pin-hover="true" data-pin-tall="true"
         src="https://assets.pinterest.com/js/pinit.js"></script>
 <script src="{% static "main_site/js/main-compiled-1534880420.js" %}"></script>
 {% block scripts %}

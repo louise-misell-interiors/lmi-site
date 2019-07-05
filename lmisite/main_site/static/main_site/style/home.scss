@@ -65,14 +65,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: $background-colour;
+  background-image: linear-gradient(rgba($background-colour,.6), rgba($background-colour,.6)), url(../img/desc.jpg);
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
 
   div {
     width: 80%;
-    background: $background-colour-darkq
+    border: 2px solid $background-colour-dark;
+    padding: $content-padding;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    h3 {
+      font-size: 30px;
+      margin: $content-margin;
+      text-transform: uppercase;
+    }
 
     p {
-      text-align: center;
       font-size: 25px;
       max-width: 1000px;
       margin: $content-padding/2 0;

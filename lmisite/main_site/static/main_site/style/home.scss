@@ -4,8 +4,7 @@
 @import "inc/testimonials";
 
 .main-slider {
-  padding-top: $nav-height;
-  margin-top: -$nav-height;
+  margin-top: $content-padding;
 
   .main-slider-inner {
     $width: 60%;
@@ -42,12 +41,6 @@
   margin-top: $content-padding;
   position: relative;
 
-  h1 {
-    @include bar;
-    @include inline-header;
-    font-weight: bold !important;
-  }
-
   > div {
     width: 80vw;
     text-align: center;
@@ -69,7 +62,6 @@
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
-  position: relative;
 
   div {
     width: 80%;

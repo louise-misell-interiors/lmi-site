@@ -88,8 +88,7 @@
     font-size: 22px; }
 
 .main-slider {
-  padding-top: 150px;
-  margin-top: -150px; }
+  margin-top: 25px; }
   .main-slider .main-slider-inner {
     padding-bottom: 29.997%;
     position: relative; }
@@ -155,23 +154,6 @@
   color: #e5f0f2;
   margin-top: 25px;
   position: relative; }
-  .about h1 {
-    position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
-    font-weight: bold !important; }
-    .about h1::after {
-      position: absolute;
-      width: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 0;
-      content: "";
-      border-radius: 2px;
-      border: solid #335470 1px;
-      transition: width 0.2s;
-      bottom: -4px; }
   .about > div {
     width: 80vw;
     text-align: center;
@@ -188,8 +170,7 @@
   background-image: linear-gradient(rgba(229, 240, 242, 0.6), rgba(229, 240, 242, 0.6)), url(../img/desc.jpg);
   background-position: center;
   background-attachment: fixed;
-  background-size: cover;
-  position: relative; }
+  background-size: cover; }
   .desc div {
     width: 80%;
     border: 2px solid #335470;

@@ -85,7 +85,6 @@
   height: 150px;
   background: #e5f0f2;
   padding: 25px 25px 0;
-  margin-bottom: 25px;
   display: grid;
   justify-content: space-between;
   align-items: center;
@@ -348,8 +347,6 @@ img {
         width: auto;
         margin: 0 5%; } }
     .wrapper .content > div h1 {
-      margin-top: 20px;
-      margin-bottom: 45px;
       text-align: center;
       font-size: 45px;
       font-weight: normal; }

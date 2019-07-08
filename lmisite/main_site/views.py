@@ -23,7 +23,7 @@ def index(request):
         testimonials = testimonials.filter(draft=False)
         services = services.filter(draft=False)
     return render(request, "main_site/index.html",
-                  {"testimonials": testimonials, "slider_imgs": slider_imgs, "projects": projects,
+                  {"testimonial": testimonials.first(), "slider_imgs": slider_imgs, "projects": projects,
                    "services": services})
 
 
@@ -97,9 +97,11 @@ def design_insider_post(request, id):
 
 def about(request):
     sections = AboutSection.objects.all()
+    testimonials = Testimonial.objects.filter(featured=True)
     if not request.user.is_superuser:
         sections = sections.filter(draft=False)
-    return render(request, "main_site/about.html", {"sections": sections})
+        testimonials = testimonials.filter(draft=False)
+    return render(request, "main_site/about.html", {"sections": sections, "testimonial": testimonials.first()})
 
 
 def portfolio(request):

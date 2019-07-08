@@ -1,22 +1,49 @@
-@import "inc/bar";
+@import "inc/variables";
+@import "inc/testimonials";
 
-.content {
+.header {
+  background-image: linear-gradient(rgba($background-colour,.4), rgba($background-colour,.4)), url(../img/about.jpg);
+  background-position: 0 110%;
+  background-attachment: fixed;
+  background-size: cover;
+
+  h1 {
+    margin: 150px 0;
+    color: $dark-text-colour;
+  }
+}
+
+.about {
+  background: $background-colour;
+  color: $dark-text-colour;
+  position: relative;
+
   > div {
-    margin: 0 5%;
+    width: 80vw;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 30px;
+    line-height: 1.5;
 
-    h1 {
-      margin: unset !important;
-      font-weight: bold !important;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
-      position: relative;
-
-      @include bar;
+    a {
+      font-size: 22px;
+      color: $dark-text-colour;
+      border-color: $dark-text-colour;
     }
   }
 }
 
-.row {
+.bio {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+
+  > img {
+    max-width: 300px;
+  }
+
+  p {
+    width: 80vw;
+    text-align: center;
+  }
 }

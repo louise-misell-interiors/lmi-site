@@ -79,7 +79,7 @@
                 <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
                 {% if testimonial.related_project %}
                     <link itemprop="itemReviewed"
-                          href="{% url 'project' testimonials.related_project.id %}">
+                          href="{% url 'project' testimonial.related_project.id %}">
                 {% else %}
                     <link itemprop="itemReviewed" href="{% url 'contact' %}">
                 {% endif %}

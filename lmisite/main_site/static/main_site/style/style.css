@@ -254,7 +254,8 @@ a {
 
 a.button {
   border: 2px #e5f0f2 solid;
-  padding: 10px; }
+  padding: 10px;
+  cursor: pointer; }
 
 hr {
   width: 30%;

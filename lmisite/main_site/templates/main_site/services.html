@@ -17,40 +17,38 @@
 
 {% block content %}
     <div class="content">
-        <h1>Services</h1>
-        <div class="steps">
-            <h2>How can I help with your project?</h2>
+        <div class="header">
+            <h1>Services</h1>
             <div class="desc">
                 {{ config.services_text|linebreaks }}
             </div>
+        </div>
+        <div class="bar">
+            <a href="{% url 'contact' %}" class="button">Book a free introductory chat here</a>
+        </div>
+        <div class="services">
             {% for service in services %}
-                <div class="row">
-                    {% for s in service %}
-                        {% if s %}
-                            <div class="step col" itemscope itemtype="https://schema.org/Service">
-                                <h2 class="step-number"><i class="fas {{ s.icon }}"></i></h2>
-                                <h2 itemprop="name">{{ s.name }}</h2>
-                                <span itemprop="description">
-                                  {{ s.description|linebreaks }}
-                                </span>
-                                <span itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">
-                                    {% for summary in s.service_summaries.all %}
-                                        <meta itemprop="itemListElement" content="{{ summary.text }}"/>
-                                    {% endfor %}
-                                </span>
-                                {% if s.price %}
-                                    <h2 itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                                        Cost: <span itemprop="price">{{ s.price }}</span>
-                                    </h2>
-                                {% endif %}
-                                {% if forloop.parentloop.first %}
-                                    <h3><a href="{% url 'contact' %}#book">Book online here</a></h3>
-                                {% elif forloop.last %}
-                                    <h3><a href="{% url 'contact' %}">Get in touch here</a></h3>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                <div class="service" itemscope itemtype="https://schema.org/Service">
+                    {% if service.image %}
+                        <img src="{{ service.image.url }}" alt="{{ service.name }}">
+                    {% endif %}
+                    <h2 itemprop="name">{{ service.name }}</h2>
+                    <span itemprop="description" class="description">
+                      {{ service.description|linebreaks }}
+                    </span>
+                    <span itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog" style="display: none;">
+                        {% for summary in service.service_summaries.all %}
+                            <meta itemprop="itemListElement" content="{{ summary.text }}"/>
+                        {% endfor %}
+                    </span>
+                    {% if service.price %}
+                        <h2 class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            Cost: <span itemprop="price">{{ service.price }}</span>
+                            {% if forloop.first %}
+                                <a href="{% url 'contact' %}" class="button">Book here</a>
+                            {% endif %}
+                        </h2>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>

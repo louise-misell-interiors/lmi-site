@@ -122,7 +122,7 @@ def services(request):
     if not request.user.is_superuser:
         services_m = services_m.filter(draft=False)
         services_o = services_o.filter(draft=False)
-    services = list(itertools.zip_longest(services_m, services_o))
+    services = list(itertools.chain(services_m, services_o))
     return render(request, "main_site/services.html", {"services": services})
 
 

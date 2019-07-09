@@ -32,7 +32,7 @@
                                 <img src="{{ item.image.url }}" alt="{{ item.image_alt_text }}">
                             {% endif %}
                             {% if item.hover_image %}
-                                <img class="hover" src="{{ item.hover_image.url }}" alt="{{ item.hover_image_alt_text }}">
+                                <img class="hover" src="{{ item.hover_image.url }}" alt="{{ item.hover_image_alt_text }}" data-pin-nopin="true">
                             {% endif %}
                         {% elif item.type == "T" %}
                             {{ item.text|linebreaks }}

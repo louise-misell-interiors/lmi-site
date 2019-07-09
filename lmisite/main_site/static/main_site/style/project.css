@@ -117,7 +117,8 @@
       bottom: 0;
       left: 0;
       right: 0;
-      opacity: 0; }
+      opacity: 0;
+      pointer-events: none; }
     .content:not(.old) .grid .type-I:hover img.hover {
       opacity: 1; }
 

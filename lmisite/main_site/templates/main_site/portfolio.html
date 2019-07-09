@@ -19,23 +19,27 @@
 
 {% block content %}
     <div class="content">
-        <h1>Portfolio</h1>
+        <div class="header">
+            <h1>Portfolio</h1>
+        </div>
         <div class="desc">
             {{ config.portfolio_text|linebreaks }}
         </div>
-        <div class="row">
+        <div class="projects">
             {% for project in projects %}
-                <div class="col" itemscope itemtype="https://schema.org/CreativeWork">
+                <div class="project" itemscope itemtype="https://schema.org/CreativeWork">
                     <link itemprop="url" href="{% url 'project' project.id %}"/>
                     <a href="{% url 'project' project.id %}">
                         <div class="img-box">
                             <link itemprop="image" href="{% if project.image %}{{ project.image.url }}{% endif %}">
                             <img data-src="{% if project.image %}{{ project.image.url }}{% endif %}"
                                  alt="{{ project.image_alt_text }}">
+                            <div class="show">
+                                <h2 itemprop="headline">{{ project.name }}</h2>
+                                <hr>
+                                <h3>{{ project.area }}</h3>
+                            </div>
                         </div>
-                        <h2 itemprop="headline">{{ project.name }}</h2>
-                        <hr>
-                        <h3>{{ project.area }}</h3>
                         <meta itemprop="text" content="{{ project.breif }}">
                         <meta itemprop="text" content="{{ project.outcome }}">
                         {% for img in project.before_images.all %}
@@ -52,13 +56,6 @@
                         {% endfor %}
                     </a>
                 </div>
-                {% if forloop.counter|divisibleby:4 %}
-                    </div>
-                    <div class="row">
-                {% endif %}
-            {% endfor %}
-            {% for i in projects|length|mod:4|range %}
-                <div class="col"></div>
             {% endfor %}
             </div>
     </div>

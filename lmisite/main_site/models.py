@@ -157,6 +157,33 @@ class Project(models.Model):
         return self.name
 
 
+class ProjectItem(models.Model):
+    project = models.ForeignKey(Project, related_name='items', on_delete=models.CASCADE)
+    TEXT = 'T'
+    IMAGE = 'I'
+    TYPES = (
+        (TEXT, "Text"),
+        (IMAGE, "Image")
+    )
+    type = models.CharField(max_length=1, choices=TYPES, default=TEXT)
+    image = models.ImageField(blank=True)
+    image_alt_text = models.CharField(max_length=255, blank=True)
+    hover_image = models.ImageField(blank=True)
+    hover_image_alt_text = models.CharField(max_length=255, blank=True)
+    text = models.TextField(blank=True)
+    width = models.PositiveIntegerField(default=1)
+    height = models.PositiveIntegerField(default=1)
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+
+    class Meta:
+        ordering = ['order']
+
+    def save(self, *args, **kwargs):
+        self.image = compress_img(self.image)
+        self.hover_image = compress_img(self.hover_image)
+        super().save(*args, **kwargs)
+
+
 class ProjectBeforeImage(models.Model):
     project = models.ForeignKey(Project, related_name='before_images', on_delete=models.CASCADE)
     image = models.ImageField(blank=True)

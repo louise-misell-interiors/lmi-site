@@ -15,9 +15,20 @@ class ProjectAfterImageInline(SortableInlineAdminMixin, admin.TabularInline):
     extra = 3
 
 
+class ProjectItemInline(SortableInlineAdminMixin, admin.StackedInline):
+    model = ProjectItem
+    fields = (
+        ('type',),
+        ('image', 'image_alt_text', 'hover_image','hover_image_alt_text',),
+        ('text',),
+        ('width', 'height',),
+    )
+    extra = 3
+
+
 @admin.register(Project)
 class ProjectAdmin(SortableAdminMixin, admin.ModelAdmin):
-    inlines = [ProjectBeforeImageInline, ProjectAfterImageInline]
+    inlines = [ProjectItemInline]
 
 
 class ServiceSummaryInline(SortableInlineAdminMixin, admin.TabularInline):

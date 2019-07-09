@@ -259,7 +259,7 @@ a.button {
 
 hr {
   width: 30%;
-  border: 1px solid #2D76C4;
+  border: 1px solid #335470;
   height: 0; }
 
 blockquote {
@@ -323,23 +323,10 @@ img {
   .wrapper .content > h1 {
     text-align: center;
     font-size: 45px;
-    margin-top: 15px;
-    margin-bottom: 0;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
     position: relative; }
-    .wrapper .content > h1::after {
-      position: absolute;
-      width: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 0;
-      content: "";
-      border-radius: 2px;
-      border: solid #335470 1px;
-      transition: width 0.2s;
-      bottom: -4px; }
   .wrapper .content > div {
     padding: 25px; }
     @media (max-width: 800px) {

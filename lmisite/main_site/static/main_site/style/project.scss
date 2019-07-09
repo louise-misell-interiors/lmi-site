@@ -1,55 +1,110 @@
 @import "inc/slider";
 @import "inc/bar";
 
-.row:first-of-type {
-  padding-bottom: 0 !important;
-}
-
-.row.credits {
-  padding: 0 50px !important;
-
-  & .col {
-    padding: 0 2vw !important;
-    text-align: right;
-  }
-}
-
-.row.text {
-  font-size: 20px;
-  padding-top: 0 !important;
-  padding-bottom: $content-padding*2 !important;
-}
-
-.col {
-  h2 {
-    font-size: 35px;
-    margin: 0 0 $nav-link-bar-size * 2 + $content-padding;
-
-    display: inline-block;
-    @include bar;
+.content.old {
+  .row:first-of-type {
+    padding-bottom: 0 !important;
   }
 
-  .imgs {
-    @include slider(90%, 0%);
-    padding-bottom: 59.994%;
-    position: relative;
+  .row.credits {
+    padding: 0 50px !important;
 
-    .slider {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
+    & .col {
+      padding: 0 2vw !important;
+      text-align: right;
+    }
+  }
 
-      .slide {
-        overflow: hidden;
+  .row.text {
+    font-size: 20px;
+    padding-top: 0 !important;
+    padding-bottom: $content-padding*2 !important;
+  }
 
-        img {
-          object-fit: cover;
-          object-position: 50% 50%;
-          width: 100%;
-          height: 100%;
+  .col {
+    h2 {
+      font-size: 35px;
+      margin: 0 0 $nav-link-bar-size * 2 + $content-padding;
+
+      display: inline-block;
+      @include bar;
+    }
+
+    .imgs {
+      @include slider(90%, 0%);
+      padding-bottom: 59.994%;
+      position: relative;
+
+      .slider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        .slide {
+          overflow: hidden;
+
+          img {
+            object-fit: cover;
+            object-position: 50% 50%;
+            width: 100%;
+            height: 100%;
+          }
         }
+      }
+    }
+  }
+}
+
+.content:not(.old) {
+  .header {
+    background: $background-colour-dark;
+
+    h1 {
+      margin: 50px 0;
+      color: $light-text-colour;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: 1fr;
+    grid-auto-flow: row dense;
+    grid-gap: $content-padding;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    margin: 0 auto;
+
+    p {
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .type-I {
+      align-self: stretch;
+      justify-self: stretch;
+      position: relative;
+
+      img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+
+      img.hover {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+      }
+
+      &:hover img.hover {
+        opacity: 1;
       }
     }
   }

@@ -1,23 +1,20 @@
-.row:first-of-type {
+.content.old .row:first-of-type {
   padding-bottom: 0 !important; }
-
-.row.credits {
+.content.old .row.credits {
   padding: 0 50px !important; }
-  .row.credits .col {
+  .content.old .row.credits .col {
     padding: 0 2vw !important;
     text-align: right; }
-
-.row.text {
+.content.old .row.text {
   font-size: 20px;
   padding-top: 0 !important;
   padding-bottom: 50px !important; }
-
-.col h2 {
+.content.old .col h2 {
   font-size: 35px;
   margin: 0 0 29px;
   display: inline-block;
   position: relative; }
-  .col h2::after {
+  .content.old .col h2::after {
     position: absolute;
     width: 100%;
     left: 50%;
@@ -28,35 +25,35 @@
     border: solid #335470 1px;
     transition: width 0.2s;
     bottom: -4px; }
-.col .imgs {
+.content.old .col .imgs {
   padding-bottom: 59.994%;
   position: relative; }
-  .col .imgs .slider {
+  .content.old .col .imgs .slider {
     height: 100%;
     width: 100%;
     overflow: hidden; }
-    .col .imgs .slider .slider-inner {
+    .content.old .col .imgs .slider .slider-inner {
       perspective: 5px;
       transform-style: preserve-3d;
       width: 100%;
       height: 100%;
       position: relative; }
-      .col .imgs .slider .slider-inner .slide {
+      .content.old .col .imgs .slider .slider-inner .slide {
         position: absolute;
         width: 90%;
         height: 100%;
         transform: translateZ(-2px);
         left: -85%;
         transition: height 0.5s, transform 0.5s, left 0.5s; }
-        .col .imgs .slider .slider-inner .slide.is-active {
+        .content.old .col .imgs .slider .slider-inner .slide.is-active {
           left: 5%;
           transform: translateY(0) translateZ(0); }
-        .col .imgs .slider .slider-inner .slide.is-active ~ .slide {
+        .content.old .col .imgs .slider .slider-inner .slide.is-active ~ .slide {
           left: 95%;
           display: none; }
-        .col .imgs .slider .slider-inner .slide.is-active + .slide {
+        .content.old .col .imgs .slider .slider-inner .slide.is-active + .slide {
           display: block; }
-      .col .imgs .slider .slider-inner .arrow {
+      .content.old .col .imgs .slider .slider-inner .arrow {
         font-size: 30px;
         color: #fff;
         background-color: rgba(0, 0, 0, 0.4);
@@ -68,24 +65,60 @@
         left: 5%;
         z-index: 99;
         transition: opacity 0.2s; }
-        .col .imgs .slider .slider-inner .arrow:hover {
+        .content.old .col .imgs .slider .slider-inner .arrow:hover {
           opacity: 1; }
-      .col .imgs .slider .slider-inner .arrow:last-of-type {
+      .content.old .col .imgs .slider .slider-inner .arrow:last-of-type {
         right: 5%;
         left: unset;
         transform: translateY(-50%); }
-  .col .imgs .slider {
+  .content.old .col .imgs .slider {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0; }
-    .col .imgs .slider .slide {
+    .content.old .col .imgs .slider .slide {
       overflow: hidden; }
-      .col .imgs .slider .slide img {
+      .content.old .col .imgs .slider .slide img {
         object-fit: cover;
         object-position: 50% 50%;
         width: 100%;
         height: 100%; }
+
+.content:not(.old) .header {
+  background: #335470; }
+  .content:not(.old) .header h1 {
+    margin: 50px 0;
+    color: #e5f0f2; }
+.content:not(.old) .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 1fr;
+  grid-auto-flow: row dense;
+  grid-gap: 25px;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  margin: 0 auto; }
+  .content:not(.old) .grid p {
+    font-size: 30px;
+    text-align: center; }
+  .content:not(.old) .grid .type-I {
+    align-self: stretch;
+    justify-self: stretch;
+    position: relative; }
+    .content:not(.old) .grid .type-I img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%; }
+    .content:not(.old) .grid .type-I img.hover {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0; }
+    .content:not(.old) .grid .type-I:hover img.hover {
+      opacity: 1; }
 
 /*# sourceMappingURL=project.css.map */

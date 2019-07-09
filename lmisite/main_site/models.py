@@ -244,7 +244,6 @@ class Testimonial(models.Model):
     draft = models.BooleanField(default=False)
     text = models.TextField()
     image = models.ImageField(blank=True)
-    image_alt_text = models.CharField(max_length=255, blank=True)
     client = models.CharField(max_length=255)
     featured = models.BooleanField(default=False, verbose_name="Featured on home page")
     not_on_testimonials = models.BooleanField(default=False, verbose_name="Not displayed on testimonials page")

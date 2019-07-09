@@ -268,11 +268,13 @@ blockquote {
     content: '\275D';
     font-size: 50px;
     line-height: 0.7; }
+  blockquote::before {
+    margin-right: 5px; }
   blockquote::after {
     content: '\275E';
     vertical-align: top;
-    float: right;
-    line-height: 1.1; }
+    line-height: 1.1;
+    margin-left: 5px; }
 
 img {
   max-width: 100%;

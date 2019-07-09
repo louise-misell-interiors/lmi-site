@@ -75,11 +75,15 @@ blockquote {
     line-height: 0.7;
   }
 
+  &::before {
+    margin-right: 5px;
+  }
+
   &::after {
     content: '\275E';
     vertical-align: top;
-    float: right;
     line-height: 1.1;
+    margin-left: 5px;
   }
 }
 

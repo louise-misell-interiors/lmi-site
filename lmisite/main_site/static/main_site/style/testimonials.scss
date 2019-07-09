@@ -1,37 +1,72 @@
 @import "inc/variables";
 
-.desc {
-  width: 80%;
-  margin: 0 auto;
-  font-size: 23px;
-}
+.content {
+  header {
+    background-image: linear-gradient(rgba($background-colour, .4), rgba($background-colour, .4)), url(../img/desc.jpg);
+    background-position: 0 center;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 25px;
 
-.row {
-  align-items: center;
-
-  @media (max-width: $media-small) {
-    padding: $content-padding !important;
+    h1 {
+      margin: 150px 0;
+      text-align: center;
+      color: $dark-text-colour;
+    }
   }
 
-  img {
-    max-height: 30vh;
-    margin: 0 auto;
-    display: block;
+  .desc {
+    width: 80%;
+    font-size: 23px;
   }
 
-  blockquote {
-    font-size: 25px;
-  }
+  div.testimonial {
+    align-items: center;
+    color: $dark-text-colour;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 23px;
+    padding: 50px 0;
 
-  .by-line, h3 {
-    font-weight: bold;
-    text-align: center;
-    display: inline-block;
-    width: 100%;
-    margin: 0;
-  }
+    .by-line, blockquote {
+      width: 80vw;
+      max-width: 1000px;
+    }
 
-  .by-line {
-    font-size: 25px;
+    .by-line {
+      font-weight: bold;
+      text-align: right;
+      display: inline-block;
+      width: 100%;
+      margin: 0;
+      font-size: 25px;
+    }
+
+    blockquote {
+      line-height: 1.5;
+    }
+
+    a.button {
+      margin-top: $content-margin;
+    }
+
+    &:nth-of-type(3n+2) {
+      background-image: linear-gradient(rgba($background-colour-dark, .7), rgba($background-colour-dark, .7)), var(--background);
+      background-position: 0 center;
+      background-attachment: fixed;
+      background-size: cover;
+      padding: 150px 0;
+      color: $light-text-colour;
+    }
+
+    &:nth-of-type(3n+1) {
+      background: $background-colour-dark;
+      color: $light-text-colour;
+    }
+
+    &:nth-of-type(3n) {
+      background: $background-colour;
+    }
   }
 }

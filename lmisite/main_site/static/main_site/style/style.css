@@ -324,7 +324,7 @@ img {
   height: 100vh; }
   .wrapper .content > h1 {
     text-align: center;
-    font-size: 45px;
+    font-size: 60px;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
@@ -338,7 +338,7 @@ img {
         margin: 0 5%; } }
     .wrapper .content > div h1 {
       text-align: center;
-      font-size: 45px;
+      font-size: 60px;
       font-weight: normal; }
   .wrapper .pre-footer {
     padding: 20px 0;

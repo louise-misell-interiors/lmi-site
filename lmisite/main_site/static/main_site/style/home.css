@@ -15,11 +15,8 @@
     .services div h3 {
       text-align: center;
       margin: 12.5px 0;
-      font-size: 25px; }
-      .services div h3.step-number {
-        font-size: 50px;
-        font-weight: bold;
-        margin: 0; }
+      font-size: 25px;
+      font-weight: normal; }
     .services div div {
       list-style: none;
       display: grid;
@@ -182,7 +179,8 @@
     .desc div h3 {
       font-size: 30px;
       margin: 20px;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      font-weight: normal; }
     .desc div p {
       font-size: 25px;
       max-width: 1000px;

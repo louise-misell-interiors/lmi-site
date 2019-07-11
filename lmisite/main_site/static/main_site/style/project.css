@@ -87,9 +87,15 @@
 
 .content:not(.old) .header {
   background: #335470; }
-  .content:not(.old) .header h1 {
-    margin: 50px 0;
+  .content:not(.old) .header h1, .content:not(.old) .header h2, .content:not(.old) .header h3 {
     color: #e5f0f2; }
+  .content:not(.old) .header h1 {
+    margin-top: 50px;
+    margin-bottom: 0; }
+  .content:not(.old) .header h2, .content:not(.old) .header h3 {
+    text-align: center; }
+  .content:not(.old) .header hr {
+    border-color: #e5f0f2; }
 .content:not(.old) .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

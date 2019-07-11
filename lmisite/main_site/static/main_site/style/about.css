@@ -21,7 +21,7 @@
     font-size: 22px; }
 
 .header {
-  background-image: linear-gradient(rgba(229, 240, 242, 0.4), rgba(229, 240, 242, 0.4)), url(../img/about.jpg);
+  background-image: linear-gradient(rgba(229, 240, 242, 0.6), rgba(229, 240, 242, 0.6)), url(../img/about.jpg);
   background-position: 0 110%;
   background-attachment: fixed;
   background-size: cover; }

@@ -2,15 +2,14 @@
 @import "inc/bar";
 
 .content {
-  width: 80%;
-  margin: $column-gutter auto;
+  header {
+    background: $background-colour-dark;
+    padding: $content-padding;
 
-  @media (max-width: $media-medium) {
-    width: 95%;
-  }
-
-  @media (max-width: $media-small) {
-    width: auto;
+    h1, h2 {
+      text-align: center;
+      color: $light-text-colour;
+    }
   }
 
   .post-content {

@@ -1,13 +1,5 @@
 .content header {
-  background-image: linear-gradient(rgba(229, 240, 242, 0.4), rgba(229, 240, 242, 0.4)), url(../img/desc.jpg);
-  background-position: 0 center;
-  background-attachment: fixed;
-  background-size: cover;
-  padding: 25px; }
-  .content header h1 {
-    margin: 150px 0;
-    text-align: center;
-    color: #335470; }
+  background-image: url(../img/testimonials.jpg); }
 .content .desc {
   width: 80%;
   font-size: 23px; }
@@ -32,17 +24,35 @@
   .content div.testimonial blockquote {
     line-height: 1.5; }
   .content div.testimonial a.button {
-    margin-top: 20px; }
+    margin-top: 20px;
+    align-self: center;
+    color: #335470;
+    border-color: #335470; }
   .content div.testimonial:nth-of-type(3n+2) {
-    background-image: linear-gradient(rgba(51, 84, 112, 0.7), rgba(51, 84, 112, 0.7)), var(--background);
+    background-image: var(--background);
     background-position: 0 center;
     background-attachment: fixed;
     background-size: cover;
-    padding: 150px 0;
-    color: #e5f0f2; }
+    padding: 150px 0; }
+    .content div.testimonial:nth-of-type(3n+2) div {
+      color: #000;
+      background: linear-gradient(rgba(229, 240, 242, 0.7), rgba(229, 240, 242, 0.7));
+      padding: 25px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      font-family: "Raleway", sans-serif; }
+      .content div.testimonial:nth-of-type(3n+2) div blockquote {
+        font-style: normal; }
+      .content div.testimonial:nth-of-type(3n+2) div a.button {
+        background: #335470;
+        color: #e5f0f2; }
   .content div.testimonial:nth-of-type(3n+1) {
     background: #335470;
     color: #e5f0f2; }
+    .content div.testimonial:nth-of-type(3n+1) a.button {
+      color: #e5f0f2;
+      border-color: #e5f0f2; }
   .content div.testimonial:nth-of-type(3n) {
     background: #e5f0f2; }
 

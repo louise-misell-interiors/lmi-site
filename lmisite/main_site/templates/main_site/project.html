@@ -21,11 +21,15 @@
             {% if project.image %}
               <link itemprop="image" href="{{ project.image.url }}">
             {% endif %}
-            <div class="header">
-                <h1 itemprop="headline">{{ project.name }}</h1>
-                <h2>{{ project.area }}</h2>
-{#                <hr>#}
-                <h3>Hover to see the before picture</h3>
+            <header {% if project.image %}style="--background: url({{ project.image.url }});"{% endif %}>
+                <div>
+                    <h1 itemprop="headline">{{ project.name }}</h1>
+                    <h2>{{ project.area }}</h2>
+                    <h3>[hover to see the 'before' picture]</h3>
+                </div>
+            </header>
+            <div class="credits">
+                {{ project.photography_credits }}
             </div>
             <div class="grid">
                 {% for item in project.items.all %}
@@ -111,4 +115,5 @@
 {% endblock %}
 {% block scripts %}
     <script src="{% static "main_site/js/project.js" %}"></script>
+    <script async defer data-pin-tall="true" data-pin-hover="true" src="https://assets.pinterest.com/js/pinit.js"></script>
 {% endblock %}

@@ -2,17 +2,7 @@
 
 .content {
   header {
-    background-image: linear-gradient(rgba($background-colour, .4), rgba($background-colour, .4)), url(../img/desc.jpg);
-    background-position: 0 center;
-    background-attachment: fixed;
-    background-size: cover;
-    padding: 25px;
-
-    h1 {
-      margin: 150px 0;
-      text-align: center;
-      color: $dark-text-colour;
-    }
+    background-image: url(../img/testimonials.jpg);
   }
 
   .desc {
@@ -49,20 +39,46 @@
 
     a.button {
       margin-top: $content-margin;
+      align-self: center;
+      color: $dark-text-colour;
+      border-color: $dark-text-colour;
     }
 
     &:nth-of-type(3n+2) {
-      background-image: linear-gradient(rgba($background-colour-dark, .7), rgba($background-colour-dark, .7)), var(--background);
+      background-image: var(--background);
       background-position: 0 center;
       background-attachment: fixed;
       background-size: cover;
       padding: 150px 0;
-      color: $light-text-colour;
+
+      div {
+        color: #000;
+        background: linear-gradient(rgba($background-colour, .7), rgba($background-colour, .7));
+        padding: $content-padding;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        font-family: "Raleway", sans-serif;
+
+        blockquote {
+          font-style: normal;
+        }
+
+        a.button {
+          background: $background-colour-dark;
+          color: $light-text-colour;
+        }
+      }
     }
 
     &:nth-of-type(3n+1) {
       background: $background-colour-dark;
       color: $light-text-colour;
+
+      a.button {
+        color: $light-text-colour;
+        border-color: $light-text-colour;
+      }
     }
 
     &:nth-of-type(3n) {

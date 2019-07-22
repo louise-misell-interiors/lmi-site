@@ -2,9 +2,14 @@
 @import "inc/bar";
 
 .content {
-  header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .header {
     background: $background-colour-dark;
     padding: $content-padding;
+    align-self: stretch;
 
     h1, h2 {
       text-align: center;
@@ -12,112 +17,142 @@
     }
   }
 
-  .post-content {
-    .main-col {
+  .blog {
+    width: 80vw;
+    display: grid;
+    grid-template-columns: 7fr 2fr;
+    grid-gap: $content-padding;
 
-      @media (max-width: $media-small) {
-        order: -1;
+    > .post:nth-child(1) {
+      background-image: var(--background);
+      background-position: center;
+      background-attachment: fixed;
+      background-size: cover;
+      grid-row: 1;
+      grid-column: 1;
+      padding: 150px $content-padding;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      grid-column-end: span 2;
+
+      img, p {
+        display: none;
       }
 
       > div {
-        background: #eee;
-        padding: 0;
-        margin: 1%;
+        background-image: linear-gradient(rgba($background-colour, .7), rgba($background-colour, .7));
+        color: $dark-text-colour;
+        padding: $content-padding $content-padding*2;
+        max-width: 400px;
 
-        > h1 {
-          text-align: center;
-          font-size: 45px;
-          margin-bottom: 15px;
+        a {
+          color: $dark-text-colour;
+        }
 
-          @include inline-header;
-          @include bar;
-          left: unset;
-          transform: unset;
+        h3, h4 {
+          margin: 10px;
+        }
+
+        h3 {
+          font-size: 35px;
+        }
+
+        h4 {
+          margin-bottom: 30px;
         }
       }
-
-      img {
-        max-width: unset !important;
-      }
-    }
-  }
-
-  .row {
-    .col {
-      flex-grow: 1;
-      flex-basis: 10%;
     }
 
-    .main-col {
-      flex-grow: 5;
+    > .posts, > .side {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: auto;
+      grid-gap: $content-padding;
+      align-self: start;
+      justify-self: stretch;
+    }
 
+    > .posts {
+      .post {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-gap: $content-padding;
+        padding-left: 0;
+        align-items: center;
 
-        .post {
+        > * {
+          align-self: stretch;
+        }
+
+        img {
           height: 100%;
+          width: 100%;
+          object-fit: cover;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+
+        > div {
+          grid-column: 2;
           display: flex;
           flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-between;
 
-          .title {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-          }
-
-          a {
-            color: #000;
-            &:hover {
-              color: #000;
-            }
-          }
-
-          a.read-more {
-            color: #000;
-            background: #ddd;
-            border: $primary-colour 2px solid;
-            padding: 10px;
-
+          .button {
             align-self: center;
-            text-transform: uppercase;
-
-            &:hover {
-              background: #000;
-              color: #fff;
-            }
           }
         }
-    }
-  }
 
-  .blog {
-    padding: 0 !important;
-  }
+        > a:first-of-type {
+          position: relative;
 
-  .jump-links {
-    display: none;
-    background: #eee;
-    border: #fff 7px solid;
-    padding: $column-gutter !important;
+          &::before {
+            content: "";
+            height: 0;
+            padding-bottom: 100%;
+            display: block;
+          }
+        }
 
-    h3 {
-      margin: 0;
-    }
+        a {
+          color: $dark-text-colour;
+        }
 
-    a {
-      margin: 0 5px;
-      text-decoration: none;
-      color: #000;
-      @include bar;
+        .title {
+          background: $background-colour-dark;
+          color: $light-text-colour;
+          padding: ($content-padding / 2);
+          padding-right: $content-padding;
+          margin-top: $content-padding;
+          transform: translateX(-5vw);
+          display: inline-block;
+          font-family: "Raleway", sans-serif;
 
+          > * {
+            text-align: left;
+          }
 
-      &:hover::after {
-        width: 100%;
-        opacity: 1;
+          h3 {
+            margin-bottom: $content-padding / 2;
+            font-size: 22px;
+          }
+        }
+
+        .button {
+          background: $background-colour;
+          border: none;
+        }
       }
     }
-    
-    @media (max-width: $media-small) {
-      display: flex;
+
+    > .side {
+      text-align: center;
     }
   }
 }
@@ -127,29 +162,12 @@ h2, h3 {
   margin-bottom: 0;
 }
 
-.desc, .newsletter {
-  border: $primary-colour 2px solid;
-}
-
 .newsletter {
-  i {
-    font-size: 50px;
-    font-weight: bold;
-    margin: 0 0 10px;
-    text-align: center;
-    display: block;
-  }
-
-   input, button {
-     padding: 7px 15px;
-     margin: 2px 0;
-   }
+  border: $background-colour-dark 2px solid;
 }
 
 .post {
-  background: #eee;
   padding: 20px;
-  margin-bottom: 20px;
   color: #000;
 
   h3, h4 {
@@ -161,7 +179,62 @@ h2, h3 {
     font-size: 25px;
   }
 
+  span {
+    display: none;
+  }
+}
+
+.newsletter {
+  font-family: "Raleway", sans-serif;
+  font-size: 17px;
+
+  i {
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0 0 10px;
+    text-align: center;
+    display: block;
+  }
+
+  input, button {
+    padding: 7px 15px;
+    margin: 2px 0;
+  }
+
+  h3 {
+    background: $background-colour-dark;
+    color: $light-text-colour;
+    padding: $content-padding/2;
+    margin-bottom: $content-margin;
+    font-size: 22px;
+  }
+}
+
+.blog-post {
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    align-self: flex-start;
+    text-align: left;
+  }
+
+  h4 {
+    display: inline-block;
+    font-family: "Raleway", sans-serif;
+    align-self: flex-start;
+    margin: 0;
+    font-style: italic;
+  }
+
   img {
-    margin-top: 20px;
+    padding: $content-padding 0;
+    display: block;
+  }
+
+  .content {
+    max-width: 1000px;
   }
 }

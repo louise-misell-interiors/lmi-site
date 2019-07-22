@@ -28,16 +28,18 @@
         {% for testimonial in testimonials %}
             <div class="testimonial" itemscope itemtype="https://schema.org/Review"
                  {% if testimonial.image %}style="--background: url({{ testimonial.image.url }})"{% endif %}>
-                    <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
-                    <h2 class="by-line" itemprop="author">{{ testimonial.client }}</h2>
-                    {% if testimonial.related_project %}
-                        <a itemprop="itemReviewed" class="button" href="{% url 'project' testimonial.related_project.id %}">
-                            See project
-                        </a>
-                    {% else %}
-                        <link itemprop="itemReviewed" href="{% url 'contact' %}">
-                    {% endif %}
-                    {% if testimonial.image %}<link itemprop="image" href="{{ testimonial.image.url }}">{% endif %}
+                    <div>
+                        <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
+                        <h2 class="by-line" itemprop="author">{{ testimonial.client }}</h2>
+                        {% if testimonial.related_project %}
+                            <a itemprop="itemReviewed" class="button" href="{% url 'project' testimonial.related_project.id %}">
+                                See project
+                            </a>
+                        {% else %}
+                            <link itemprop="itemReviewed" href="{% url 'contact' %}">
+                        {% endif %}
+                        {% if testimonial.image %}<link itemprop="image" href="{{ testimonial.image.url }}">{% endif %}
+                    </div>
             </div>
         {% endfor %}
     </div>

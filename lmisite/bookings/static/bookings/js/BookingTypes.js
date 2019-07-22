@@ -6,19 +6,16 @@ import {Loader} from "./Loader";
 class BookingType extends React.Component {
     render() {
         return (
-            <div>
-                <h2 className="step-number"><i className={"fas " + this.props.data.icon}/></h2>
-                <h2>{this.props.data.name}</h2>
+            <div className="box BookingType">
+                <h3>{this.props.data.name}</h3>
                 <p>{this.props.data.description}</p>
-                <div className="button-div">
-                    <button onClick={this.props.onClick}>Book</button>
-                </div>
+                <button onClick={this.props.onClick}>Book</button>
             </div>
         );
     }
 }
 
-export class BookingTypes extends React.Component {
+export class BookingTypes extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -56,26 +53,21 @@ export class BookingTypes extends React.Component {
         let types = null;
         if (!this.state.loading) {
             types = this.state.types.map(type =>
-                <div className="col button-col" key={type.id}>
-                    <BookingType data={type} onClick={() => {
-                        this.props.onSelect(type)
-                    }}/>
-                </div>
+                <BookingType data={type} key={type.id} onClick={() => {
+                    this.props.onSelect(type)
+                }}/>
             );
         } else {
-            types = <div className="col">
-                <Loader/>
-            </div>
+            types = <Loader/>
         }
 
         return (
-            <div>
-                <h1>Book an appointment with me</h1>
-                <hr/>
-                <div className="row">
+            <React.Fragment>
+                <h2>Book an appointment with me</h2>
+                <div className="BookingTypes">
                     {types}
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

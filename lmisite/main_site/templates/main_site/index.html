@@ -47,7 +47,7 @@
                 </h3>
                 <p>
                     I offer a full range of interior design services and can help with anything from choosing paint colours
-                    to a complete redesign of your home. I specialise in space planning to make your space work practically
+                    to a complete redesign of your home or commercial space. I specialise in space planning to make your space work practically
                     for you, and will work with you to help you define your interiors style. I come to you and will travel
                     across South Wales including Cardiff, Swansea, Newport, Penarth, Cowbridge, The Vale of Glamorgan and
                     surrounding areas.
@@ -57,15 +57,17 @@
         <div class="services">
                 {% for service in services %}
                     <div itemscope itemtype="https://schema.org/Service">
-                        {% if service.image %}<img src="{{ service.image.url }}" alt="{{ service.name }}">{% endif %}
                         <h3 itemprop="name">{{ service.name }}</h3>
+                        {% if service.image %}<img src="{{ service.image.url }}" alt="{{ service.name }}">{% endif %}
                         <link itemprop="url" href="{% url 'services' %}"/>
-                        <div itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">
-                            {% for s in service.service_summaries.all %}
-                                <span itemprop="itemListElement">{{ s.text }}</span>
-                            {% endfor %}
+                        <div>
+                            <div itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">
+                                {% for s in service.service_summaries.all %}
+                                    <span itemprop="itemListElement">{{ s.text }}</span>
+                                {% endfor %}
+                            </div>
+                            <a href="{% url 'services' %}" class="button">Find out more</a>
                         </div>
-                        <a href="{% url 'services' %}" class="button">Find out more</a>
                         <meta itemprop="description" content="{{ service.description }}">
                         <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                             <meta itemprop="price" content="{{ service.price }}"/>
@@ -100,6 +102,13 @@
                     <img src="{{ item.media_url }}" alt="{{ item.caption }}" title="{{ item.caption }}">
                 </a>
             {% endfor %}
+        </div>
+    </div>
+    <div class="as-seen-on">
+        <h2>As seen in</h2>
+        <div>
+            <img src="{% static 'main_site/img/cardiff-life.png' %}" alt="BBC logo">
+            <img src="{% static 'main_site/img/BBC.png' %}" alt="BBC logo">
         </div>
     </div>
 {% endblock %}

@@ -66,7 +66,6 @@ class SiteConfig(SingletonModel):
 
     blog_title = models.CharField(max_length=255, blank=True)
     blog_description = models.TextField(blank=True)
-    blog_subtitle = models.CharField(max_length=255, blank=True)
     blog_text = models.TextField(blank=True)
 
     services_title = models.CharField(max_length=255, blank=True)
@@ -111,6 +110,7 @@ class Service(models.Model):
     image = models.ImageField(blank=True)
     description = models.TextField(blank=True)
     price = models.CharField(max_length=255, default="", blank=True)
+    button_text = models.CharField(max_length=255, default="", blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:

@@ -17,6 +17,42 @@
 
 {% block content %}
     <div class="content" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="blog">
+            <div class="blog-post">
+                <h1 itemprop="headline">{{ post.title }}</h1>
+                <h4>Published {{ post.date }}</h4>
+                <div class="content">
+                    {{ post.content|safe }}
+                </div>
+            </div>
+            <div class="side">
+                <div class="post desc">
+                    <img src="{% static 'main_site/img/louise-head.jpg' %}" alt="">
+                    {{ config.blog_text|linebreaks }}
+                </div>
+                {% include "main_site/newsletter_form.html" with form=form %}
+                {% for post in short_posts %}
+                    <div class="post short" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+                        <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>
+                        <meta itemprop="dateModified" content="{{ post.date|date:"c" }}"/>
+                        <meta itemprop="description" content="{{ post.summary }}"/>
+                        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                <meta itemprop="name" content="Louise Misell"/>
+                            </span>
+                        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                                <meta itemprop="name" content="Louise Misell Interiors"/>
+                                <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+                                    <link itemprop="url"
+                                          href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
+                                </span>
+                            </span>
+                        <h3 itemprop="headline">{{ post.title }}</h3>
+                        <h4>{{ post.date }}</h4>
+                        {{ post.content|safe }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
         <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' post.id %}"/>
         {% if post.image %}
             <link itemprop="image" href="{{ post.image.url }}"/>
@@ -33,42 +69,5 @@
         <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>
         <meta itemprop="dateModified" content="{{ post.date|date:"c" }}"/>
         <meta itemprop="description" content="{{ post.summary }}"/>
-        <div class="row post-content">
-            <div class="col">
-                <div class="post desc">
-                    {{ config.blog_text|linebreaks }}
-                </div>
-                {% for short_post in short_posts %}
-                    <div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-                        <meta itemprop="datePublished" content="{{ short_post.date|date:"c" }}"/>
-                        <meta itemprop="dateModified" content="{{ short_post.date|date:"c" }}"/>
-                        <meta itemprop="description" content="{{ short_post.summary }}"/>
-                        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-                            <meta itemprop="name" content="Louise Misell"/>
-                        </span>
-                        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-                            <meta itemprop="name" content="Louise Misell Interiors"/>
-                            <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-                                <link itemprop="url"
-                                      href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
-                            </span>
-                        </span>
-                        <h3 itemprop="headline">{{ short_post.title }}</h3>
-                        <h4>{{ short_post.date }}</h4>
-                        {{ short_post.content|safe }}
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="col main-col" itemprop="articleBody">
-                <div>
-                    <h1 itemprop="headline">{{ post.title }}</h1>
-                    {{ post.content|safe }}
-                </div>
-            </div>
-            <div class="col">
-                {% include "main_site/newsletter_form.html" with form=form %}
-                {% include "main_site/instagram_feed.html" with feed=instagram %}
-            </div>
-        </div>
     </div>
 {% endblock %}

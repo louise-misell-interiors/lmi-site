@@ -89,16 +89,13 @@ class BookingApp extends Component {
     render() {
         if (this.state.error) {
             return (
-                <div>
-                <h1>Sorry, there was an error</h1>
-                <hr/>
-                <div className="row">
-                    <div className="col">
-                        <p>Please contact Louise using the email above</p>
+                <React.Fragment>
+                    <h2>Sorry, there was an error</h2>
+                    <div className="box">
+                        <p>Please contact Louise using the email below</p>
                         <a onClick={() => Sentry.showReportDialog()}>Report feedback</a>
                     </div>
-                </div>
-            </div>
+                </React.Fragment>
             );
         } else {
             let disp = null;
@@ -139,5 +136,5 @@ Sentry.init({
  dsn: "https://b147c96f835d46178e4690cbe872a4d7@sentry.io/1370209"
 });
 
-const domContainer = document.querySelector('#wrapper');
+const domContainer = document.querySelector('#booking-wrapper');
 ReactDom.render(<BookingApp/>, domContainer);

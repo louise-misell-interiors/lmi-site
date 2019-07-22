@@ -4,9 +4,9 @@
 {% block title %}{{ config.contact_title }}{% endblock %}
 
 {% block header %}
-    <link rel="stylesheet" href="{%  static "main_site/style/contact.css" %}">
+    <link rel="stylesheet" href="{% static "main_site/style/contact.css" %}">
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="website"/>
     <meta property="og:title" content="{{ config.contact_title }} | Louise Misell Interiors">
     <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
     <meta property="og:description" content="{{ config.contact_description }}">
@@ -16,87 +16,83 @@
 {% endblock %}
 
 {% block content %}
-<div class="content">
-        <h1>Please tell me about your project</h1>
+    <div class="content">
+        <header>
+            <h1>Contact</h1>
+        </header>
+        <div class="desc">
+            <p>
+                Spicy jalapeno bacon ipsum dolor amet salami doner shank filet mignon. Sausage ham hock ball tip,
+                short loin venison andouille tail. Short ribs doner prosciutto pig burgdoggen swine ground round
+                t-bone turducken sirloin short loin. Pig fatback tail short loin kielbasa buffalo t-bone beef ribs
+                porchetta tongue swine frankfurter. Ham short loin chuck pancetta. Sirloin capicola pork belly
+                venison. T-bone meatball kielbasa buffalo, tenderloin strip steak leberkas meatloaf burgdoggen rump
+                pig.
+            </p>
+        </div>
         <div class="contact-details" itemscope itemtype="http://schema.org/LocalBusiness">
-            <link itemprop="image" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}" />
+            <link itemprop="image" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
             <meta itemprop="name" content="Louise Misell Interiors">
             <meta itemprop="description" content="{{ config.home_description }}">
             <link itemprop="url" href="{% url 'index' %}">
-            <h2>Do you have any questions? Or would you like to have a chat about your project?
-                Please contact me using any of the below:</h2>
-            <div class="row">
-                <div class="col">
-                    <h3>Phone</h3>
-                    <meta itemprop="telephone" content="{{ config.phone.as_e164 }}">
-                    <meta itemprop="telephone" content="{{ config.mobile.as_e164 }}">
-                    <p><a href="tel:{{ config.phone.as_e164 }}">{{ config.phone.as_national }}</a></p>
-                    <p><a href="tel:{{ config.mobile.as_e164 }}">{{ config.mobile.as_national }}</a></p>
-                </div>
-                <div class="col">
-                    <h3>Email</h3>
-                    <p><a href="mailto:{{ config.email }}" itemprop="email">{{ config.email }}</a></p>
-                </div>
-                <div class="col" itemprop="address">
-                    <h3>Address</h3>
-                    {{ config.address|linebreaks }}
-                </div>
-                <div class="col">
-                    <h3><a href="#book">Book online</a></h3>
-                    <p><a href="#book">Click here</a> to book online</p>
-                </div>
+            <div class="calendar" id="booking-wrapper">
             </div>
-        </div>
-        <div class="form">
-            <h2>Or please send me a message and I'll contact you:</h2>
-            <form action="" method="post">
-                {% if sent %}
-                    <div class="row">
-                        <div class="col">
-                            <h4>Thank you, your message has been sent.</h4>
-                        </div>
-                    </div>
-                {% endif %}
+            <div class="form">
+                <h2>Or send me a message and I'll contact you:</h2>
+                <form action="" method="post">
+                    {% if sent %}
+                        <h4>Thank you, your message has been sent.</h4>
+                    {% endif %}
 
-                {% csrf_token %}
-                {{ form.non_field_errors }}
-                <div class="row">
-                    <div class="col">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div>
                         {{ form.your_name.errors }}
-                    </div>
-                    <div class="col">
-                        {{ form.your_email.errors }}
-                    </div>
-                    <div class="col">
-                        {{ form.your_phone.errors }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
                         {{ form.your_name }}
                     </div>
-                    <div class="col">
+                    <div>
+                        {{ form.your_email.errors }}
                         {{ form.your_email }}
                     </div>
-                    <div class="col">
+                    <div>
+                        {{ form.your_phone.errors }}
                         {{ form.your_phone }}
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
+                    <div>
                         {{ form.message.errors }}
                         {{ form.message }}
                     </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="details">
+                <h3>Phone:
+                    <a href="tel:{{ config.phone.as_e164 }}">{{ config.phone.as_national }}</a>
+                    Mobile:
+                    <a href="tel:{{ config.mobile.as_e164 }}">{{ config.mobile.as_national }}</a>
+                </h3>
+                <meta itemprop="telephone" content="{{ config.phone.as_e164 }}">
+                <meta itemprop="telephone" content="{{ config.mobile.as_e164 }}">
+                <h3>Email: <a href="mailto:{{ config.email }}" itemprop="email">{{ config.email }}</a></h3>
+                <h3>Address:</h3>
+                <div class="address" itemprop="address">
+                    {{ config.address|linebreaks }}
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <button type="submit">Submit</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
-        <div class="calendar" id="book">
-            <iframe src="{% url "bookings:index" %}" frameborder="0"></iframe>
+        <div class="desc">
+            <p>
+                Spicy jalapeno bacon ipsum dolor amet salami doner shank filet mignon. Sausage ham hock ball tip,
+                short loin venison andouille tail. Short ribs doner prosciutto pig burgdoggen swine ground round
+                t-bone turducken sirloin short loin. Pig fatback tail short loin kielbasa buffalo t-bone beef ribs
+                porchetta tongue swine frankfurter. Ham short loin chuck pancetta. Sirloin capicola pork belly
+                venison. T-bone meatball kielbasa buffalo, tenderloin strip steak leberkas meatloaf burgdoggen rump
+                pig.
+            </p>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static "bookings/js/main_production.js" %}"></script>
 {% endblock %}

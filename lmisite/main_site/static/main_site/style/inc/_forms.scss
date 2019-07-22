@@ -5,8 +5,7 @@ input, textarea, button {
   border: none;
   padding: 15px;
   font-size: 20px;
-  border-radius: 4px;
-  box-shadow: 0 0 2px opacify($primary-colour, 0.2);
+  background: $background-colour;
 
   @media (max-width: $media-small) {
     margin: 0;
@@ -14,7 +13,10 @@ input, textarea, button {
 }
 
 button {
-  color: #fff;
-  background: $primary-colour;
+  color: $light-text-colour;
+  background: $background-colour-dark;
   font-size: 20px;
+  width: auto;
+  justify-self: center;
+  min-width: 30%;
 }

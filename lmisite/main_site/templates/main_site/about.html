@@ -19,15 +19,12 @@
 
 {% block content %}
     <div class="content">
-        <div class="header">
-            <h1>About Louise Misell</h1>
-        </div>
+        <header>
+            <h1>About Louise</h1>
+        </header>
         <div class="about">
             <div>
                 {{ config.home_text|linebreaks }}
-                <p>
-                    <a href="{% url 'about' %}" class="button">Read more</a>
-                </p>
             </div>
         </div>
         <div class="bio" itemscope itemtype="http://schema.org/Person">

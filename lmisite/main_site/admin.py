@@ -19,7 +19,7 @@ class ProjectItemInline(SortableInlineAdminMixin, admin.StackedInline):
     model = ProjectItem
     fields = (
         ('type',),
-        ('image', 'image_alt_text', 'hover_image','hover_image_alt_text',),
+        ('image', 'image_alt_text', 'hover_image', 'hover_image_alt_text',),
         ('text',),
         ('width', 'height',),
     )

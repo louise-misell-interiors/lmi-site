@@ -6,9 +6,11 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  font-family: "Raleway", sans-serif;
 
   h2 {
     text-align: center;
+    font-weight: normal;
 
     a {
       color: $background-colour-dark;

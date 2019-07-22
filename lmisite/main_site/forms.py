@@ -76,7 +76,7 @@ class ConfigForm(forms.ModelForm):
                   'home_title', 'home_subtitle', 'home_description', 'home_text',
                   'about_title', 'about_description',
                   'portfolio_title', 'portfolio_description', 'portfolio_text',
-                  'blog_title', 'blog_subtitle', 'blog_description', 'blog_text',
+                  'blog_title', 'blog_description', 'blog_text',
                   'services_title', 'services_description', 'services_text',
                   'contact_title', 'contact_description',
                   'testimonials_title', 'testimonials_description', 'testimonials_text')

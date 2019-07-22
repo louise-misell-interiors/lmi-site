@@ -1,6 +1,7 @@
 {% load static %}
 
-<div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+<div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting"
+     {% if post.image %}style="--background: url({{ post.image.url }})"{% endif %}>
     <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' post.id %}" />
     <meta itemprop="datePublished" content="{{ post.date|date:"c" }}" />
     <meta itemprop="dateModified" content="{{ post.date|date:"c" }}" />
@@ -20,10 +21,12 @@
             <img data-src="{{ post.image.url }}" alt="{{ post.image_alt }}">
         </a>
     {% endif %}
-    <div class="title">
-        <h3 itemprop="headline"><a href="{% url 'design_insider_post' post.id %}">{{ post.title }}</a></h3>
-        <h4>{{ post.date }}</h4>
+    <div>
+        <div class="title">
+            <h3 itemprop="headline">{{ post.title }}</h3>
+            <h4>{{ post.date }}</h4>
+        </div>
         <p>{{ post.summary }}</p>
+    <a href="{% url 'design_insider_post' post.id %}" class="button">Read more</a>
     </div>
-    <a href="{% url 'design_insider_post' post.id %}" class="read-more">Read more</a>
 </div>

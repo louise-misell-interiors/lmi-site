@@ -17,13 +17,11 @@
 
 {% block content %}
     <div class="content">
-        <div class="header">
+        <header>
             <h1>Services</h1>
-            <div class="desc">
-                {{ config.services_text|linebreaks }}
-            </div>
-        </div>
+        </header>
         <div class="bar">
+                {{ config.services_text|linebreaks }}
             <a href="{% url 'contact' %}" class="button">Book a free introductory chat here</a>
         </div>
         <div class="services">
@@ -36,20 +34,29 @@
                     <span itemprop="description" class="description">
                       {{ service.description|linebreaks }}
                     </span>
-                    <span itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog" style="display: none;">
+                    {% if service.price %}
+                        <h2 class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <span itemprop="price">{{ service.price }}</span>
+                            {% if service.button_text %}
+                                <a href="{% url 'contact' %}" class="button">
+                                    <span>{{ service.button_text }}</span>
+                                </a>
+                            {% endif %}
+                        </h2>
+                    {% endif %}
+                    <span itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog"
+                          style="display: none;">
                         {% for summary in service.service_summaries.all %}
                             <meta itemprop="itemListElement" content="{{ summary.text }}"/>
                         {% endfor %}
                     </span>
-                    {% if service.price %}
-                        <h2 class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            Cost: <span itemprop="price">{{ service.price }}</span>
-                            {% if forloop.first %}
-                                <a href="{% url 'contact' %}" class="button">Book here</a>
-                            {% endif %}
-                        </h2>
-                    {% endif %}
                 </div>
+                {% if not forloop.last %}
+                    <div class="line">
+                        <hr>
+                        <hr>
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>

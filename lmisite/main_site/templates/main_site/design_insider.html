@@ -17,77 +17,39 @@
 
 {% block content %}
     <div class="content" itemscope itemtype="http://schema.org/Blog">
-        <header>
-            <h1 itemprop="headline">Design Insider</h1>
-            <h2>{{ config.blog_subtitle }}</h2>
-        </header>
-        <div class="row jump-links">
-            <div class="col">
-                <a href="#short-posts">Design news and latest finds</a>
+        <div class="blog">
+            {% include "main_site/design_insider_post_template.html" with post=posts.0 %}
+            <div class="posts">
+                {% for post in posts|slice:"1:" %}
+                    {% include "main_site/design_insider_post_template.html" with post=post %}
+                {% endfor %}
             </div>
-            <div class="col">
-                <a href="#main-posts">Blog posts</a>
-            </div>
-            <div class="col">
-                <a href="#newsletter">Sign up for my newsletter</a>
-            </div>
-        </div>
-        <div class="row blog">
-            <div class="col">
+            <div class="side">
                 <div class="post desc">
+                    <img src="{% static 'main_site/img/louise-head.jpg' %}" alt="">
                     {{ config.blog_text|linebreaks }}
                 </div>
-                <div id="short-posts">
+                {% include "main_site/newsletter_form.html" with form=form %}
                 {% for post in short_posts %}
-                    <div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+                    <div class="post short" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
                         <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>
                         <meta itemprop="dateModified" content="{{ post.date|date:"c" }}"/>
                         <meta itemprop="description" content="{{ post.summary }}"/>
                         <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-                            <meta itemprop="name" content="Louise Misell"/>
-                        </span>
-                        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-                            <meta itemprop="name" content="Louise Misell Interiors"/>
-                            <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-                                <link itemprop="url"
-                                      href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
+                                <meta itemprop="name" content="Louise Misell"/>
                             </span>
-                        </span>
+                        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                                <meta itemprop="name" content="Louise Misell Interiors"/>
+                                <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+                                    <link itemprop="url"
+                                          href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
+                                </span>
+                            </span>
                         <h3 itemprop="headline">{{ post.title }}</h3>
                         <h4>{{ post.date }}</h4>
                         {{ post.content|safe }}
                     </div>
                 {% endfor %}
-                </div>
-            </div>
-            <div class="col main-col" id="main-posts">
-                <div class="row">
-                    <div class="col">
-                        {% if posts.0 %}
-                            {% include "main_site/design_insider_post_template.html" with post=posts.0 %}
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="row">
-                    {% for post in posts.1 %}
-                        <div class="col">
-                            {% include "main_site/design_insider_post_template.html" with post=post %}
-                        </div>
-                        {% if forloop.last %}
-                            {% for i in posts.2 %}
-                            <div class="col"></div>
-                            {% endfor %}
-                        {% endif %}
-                        {% if forloop.counter|divisibleby:3 %}
-                            </div>
-                            <div class="row">
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="col" id="newsletter">
-                {% include "main_site/newsletter_form.html" with form=form %}
-                {% include "main_site/instagram_feed.html" with feed=instagram %}
             </div>
         </div>
     </div>

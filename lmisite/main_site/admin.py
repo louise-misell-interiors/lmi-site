@@ -41,16 +41,6 @@ class ServiceAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = [ServiceSummaryInline]
 
 
-class AboutImageInline(SortableInlineAdminMixin, admin.TabularInline):
-    model = AboutSectionImage
-    extra = 3
-
-
-@admin.register(AboutSection)
-class AboutAdmin(SortableAdminMixin, admin.ModelAdmin):
-    inlines = [AboutImageInline]
-
-
 @admin.register(Testimonial)
 class TestimonialAdmin(SortableAdminMixin, admin.ModelAdmin):
     pass

@@ -34,7 +34,7 @@
     <div class="content">
         <div class="about">
             <div>
-                {{ config.home_text|linebreaks }}
+                {{ config.home_about_text|linebreaks }}
                 <p>
                     <a href="{% url 'about' %}" class="button">Read more</a>
                 </p>
@@ -45,20 +45,14 @@
                 <h3>
                     How can I help?
                 </h3>
-                <p>
-                    I offer a full range of interior design services and can help with anything from choosing paint colours
-                    to a complete redesign of your home or commercial space. I specialise in space planning to make your space work practically
-                    for you, and will work with you to help you define your interiors style. I come to you and will travel
-                    across South Wales including Cardiff, Swansea, Newport, Penarth, Cowbridge, The Vale of Glamorgan and
-                    surrounding areas.
-                </p>
+                {{ config.home_help_text|linebreaks }}
             </div>
         </div>
         <div class="services">
                 {% for service in services %}
                     <div itemscope itemtype="https://schema.org/Service">
                         <h3 itemprop="name">{{ service.name }}</h3>
-                        {% if service.image %}<img src="{{ service.image.url }}" alt="{{ service.name }}">{% endif %}
+                        {% if service.home_page_image %}<img src="{{ service.home_page_image.url }}" alt="{{ service.name }}">{% endif %}
                         <link itemprop="url" href="{% url 'services' %}"/>
                         <div>
                             <div itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog">

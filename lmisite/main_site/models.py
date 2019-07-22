@@ -55,10 +55,13 @@ class SiteConfig(SingletonModel):
     home_title = models.CharField(max_length=255, blank=True)
     home_description = models.TextField(blank=True)
     home_subtitle = models.CharField(max_length=255, blank=True)
-    home_text = models.TextField(blank=True)
+    home_about_text = models.TextField(blank=True)
+    home_help_text = models.TextField(blank=True, verbose_name="Home how can I help text")
 
     about_title = models.CharField(max_length=255, blank=True)
     about_description = models.TextField(blank=True)
+    about_mission_statement = models.TextField(blank=True)
+    about_text = RichTextUploadingField(blank=True)
 
     portfolio_title = models.CharField(max_length=255, blank=True)
     portfolio_description = models.TextField(blank=True)
@@ -74,6 +77,8 @@ class SiteConfig(SingletonModel):
 
     contact_title = models.CharField(max_length=255, blank=True)
     contact_description = models.TextField(blank=True)
+    contact_text_1 = models.TextField(blank=True)
+    contact_text_2 = models.TextField(blank=True)
 
     testimonials_title = models.CharField(max_length=255, blank=True)
     testimonials_description = models.TextField(blank=True)
@@ -108,6 +113,7 @@ class Service(models.Model):
     )
     type = models.CharField(max_length=1, choices=TYPES, default=MAIN)
     image = models.ImageField(blank=True)
+    home_page_image = models.ImageField(blank=True)
     description = models.TextField(blank=True)
     price = models.CharField(max_length=255, default="", blank=True)
     button_text = models.CharField(max_length=255, default="", blank=True)
@@ -200,34 +206,6 @@ class ProjectBeforeImage(models.Model):
 
 class ProjectAfterImage(models.Model):
     project = models.ForeignKey(Project, related_name='after_images', on_delete=models.CASCADE)
-    image = models.ImageField(blank=True)
-    alt_text = models.CharField(max_length=255, blank=True)
-    order = models.PositiveIntegerField(default=0, blank=True, null=False)
-
-    class Meta:
-        ordering = ['order']
-
-    def save(self, *args, **kwargs):
-        self.image = compress_img(self.image)
-        super().save(*args, **kwargs)
-
-
-class AboutSection(models.Model):
-    draft = models.BooleanField(default=False)
-    name = models.CharField(max_length=255)
-    heading = models.CharField(max_length=255, default="", blank=True)
-    text = models.TextField()
-    order = models.PositiveIntegerField(default=0, blank=True, null=False)
-
-    class Meta:
-        ordering = ['order']
-
-    def __str__(self):
-        return self.name
-
-
-class AboutSectionImage(models.Model):
-    section = models.ForeignKey(AboutSection, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(blank=True)
     alt_text = models.CharField(max_length=255, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)

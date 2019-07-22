@@ -21,14 +21,7 @@
             <h1>Contact</h1>
         </header>
         <div class="desc">
-            <p>
-                Spicy jalapeno bacon ipsum dolor amet salami doner shank filet mignon. Sausage ham hock ball tip,
-                short loin venison andouille tail. Short ribs doner prosciutto pig burgdoggen swine ground round
-                t-bone turducken sirloin short loin. Pig fatback tail short loin kielbasa buffalo t-bone beef ribs
-                porchetta tongue swine frankfurter. Ham short loin chuck pancetta. Sirloin capicola pork belly
-                venison. T-bone meatball kielbasa buffalo, tenderloin strip steak leberkas meatloaf burgdoggen rump
-                pig.
-            </p>
+            {{ config.contact_text_1|linebreaks }}
         </div>
         <div class="contact-details" itemscope itemtype="http://schema.org/LocalBusiness">
             <link itemprop="image" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
@@ -82,12 +75,7 @@
         </div>
         <div class="desc">
             <p>
-                Spicy jalapeno bacon ipsum dolor amet salami doner shank filet mignon. Sausage ham hock ball tip,
-                short loin venison andouille tail. Short ribs doner prosciutto pig burgdoggen swine ground round
-                t-bone turducken sirloin short loin. Pig fatback tail short loin kielbasa buffalo t-bone beef ribs
-                porchetta tongue swine frankfurter. Ham short loin chuck pancetta. Sirloin capicola pork belly
-                venison. T-bone meatball kielbasa buffalo, tenderloin strip steak leberkas meatloaf burgdoggen rump
-                pig.
+                {{ config.contact_text_2|linebreaks }}
             </p>
         </div>
     </div>

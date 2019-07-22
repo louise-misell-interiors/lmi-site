@@ -48,26 +48,28 @@ def handle_newsletter(request):
         directory = googleapiclient.discovery.build(NEWSLETTER_API_SERVICE_NAME, NEWSLETTER_API_VERSION,
                                                     credentials=creds)
 
-        matching_entries = NewsletterEntry.objects.filter(email=email)
-        if len(matching_entries) == 0:
-            entry = NewsletterEntry()
-            entry.email = email
-            entry.name = name
-            entry.save()
-        else:
-            entry = matching_entries.first()
-            entry.name = name
-            entry.save()
+        members_resp = directory.members().list(groupKey=config.newsletter_group_id, includeDerivedMembership=False)\
+            .execute()
+        members = members_resp.get('members', [])
+        while members_resp.get("nextPageToken") is not None:
+            members_resp = directory.members()\
+                .list(groupKey=config.newsletter_group_id, includeDerivedMembership=False,
+                      pageToken=members_resp.get("nextPageToken"))\
+                .execute()
+            members.extend(members_resp.get('members', []))
 
-        members = directory.members().list(groupKey=config.newsletter_group_id, includeDerivedMembership=False)\
-            .execute().get('members', [])
         if email in map(lambda m: m["email"], members):
             return form
-        directory.members().insert(groupKey=config.newsletter_group_id, body={
+        member = directory.members().insert(groupKey=config.newsletter_group_id, body={
             "delivery_settings": "ALL_MAIL",
             "role": "MEMBER",
             "email": email
         }).execute()
+
+        entry = NewsletterEntry()
+        entry.name = name
+        entry.google_id = member.get("id", "")
+        entry.save()
     return form
 
 

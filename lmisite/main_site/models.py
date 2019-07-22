@@ -278,11 +278,11 @@ class ShortPost(models.Model):
 
 
 class NewsletterEntry(models.Model):
+    google_id = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
-    email = models.EmailField()
 
     class Meta:
         verbose_name_plural = "Newsletter entries"
 
     def __str__(self):
-        return self.name
+        return self.google_id

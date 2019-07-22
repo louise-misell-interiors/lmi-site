@@ -18,7 +18,9 @@
 {% block content %}
     <div class="content" itemscope itemtype="http://schema.org/Blog">
         <div class="blog">
-            {% include "main_site/design_insider_post_template.html" with post=posts.0 %}
+            {% if posts.0 %}
+                {% include "main_site/design_insider_post_template.html" with post=posts.0 %}
+            {% endif %}
             <div class="posts">
                 {% for post in posts|slice:"1:" %}
                     {% include "main_site/design_insider_post_template.html" with post=post %}

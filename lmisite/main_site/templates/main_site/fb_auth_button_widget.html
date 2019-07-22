@@ -1,8 +1,8 @@
 {% load static %}
 {% if is_signed_in %}
-    <a href="{% url 'deauthorise' %}">Sign out</a>
+    <a href="{% url 'fb_deauthorise' %}">Sign out</a>
 {% else %}
-    <a href="{% url "authorise" %}">
+    <a href="{% url "fb_authorise" %}">
         <img src="{% static "main_site/img/facebook_login.png" %}" alt="" height="50">
     </a>
 {% endif %}

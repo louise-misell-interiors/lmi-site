@@ -29,6 +29,9 @@ class SiteConfig(SingletonModel):
     facebook_token = models.TextField(blank=True, default="")
     facebook_page_id = models.CharField(max_length=255, blank=True, default="")
 
+    newsletter_credentials = models.TextField(blank=True, default="")
+    newsletter_group_id = models.CharField(max_length=255, blank=True, default="")
+
     instagram_url = models.URLField(default="", blank=True)
     twitter_url = models.URLField(default="", blank=True)
     pintrest_url = models.URLField(default="", blank=True)

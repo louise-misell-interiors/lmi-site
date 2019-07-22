@@ -1,17 +1,23 @@
 import itertools
 import google_auth_oauthlib.flow
+import google.oauth2.credentials
+import googleapiclient.discovery
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.conf import settings
 from .models import *
 from . import forms
-import math
 import requests
 import json
 import bookings.models as booking_models
 
-CLIENT_SECRETS_FILE = "facebook_client_secret.json"
-SCOPES = ['instagram_basic', 'pages_show_list']
+FB_CLIENT_SECRETS_FILE = "facebook_client_secret.json"
+FB_SCOPES = ['instagram_basic', 'pages_show_list']
+NEWSLETTER_CLIENT_SECRETS_FILE = "newsletter_client_secret.json"
+NEWSLETTER_SCOPES = ['https://www.googleapis.com/auth/admin.directory.group.member',
+                     'https://www.googleapis.com/auth/admin.directory.group.readonly']
+NEWSLETTER_API_SERVICE_NAME = 'admin'
+NEWSLETTER_API_VERSION = 'directory_v1'
 
 
 def index(request):
@@ -31,6 +37,40 @@ def config(request):
     return render(request, "main_site/config.js", content_type="application/javascript")
 
 
+def handle_newsletter(request):
+    form = forms.NewsletterForm(request.POST)
+    if form.is_valid():
+        email = form.cleaned_data['email']
+        name = form.cleaned_data['name']
+
+        config = SiteConfig.objects.first()
+        creds = get_newsletter_credentials()
+        directory = googleapiclient.discovery.build(NEWSLETTER_API_SERVICE_NAME, NEWSLETTER_API_VERSION,
+                                                    credentials=creds)
+
+        matching_entries = NewsletterEntry.objects.filter(email=email)
+        if len(matching_entries) == 0:
+            entry = NewsletterEntry()
+            entry.email = email
+            entry.name = name
+            entry.save()
+        else:
+            entry = matching_entries.first()
+            entry.name = name
+            entry.save()
+
+        members = directory.members().list(groupKey=config.newsletter_group_id, includeDerivedMembership=False)\
+            .execute().get('members', [])
+        if email in map(lambda m: m["email"], members):
+            return form
+        directory.members().insert(groupKey=config.newsletter_group_id, body={
+            "delivery_settings": "ALL_MAIL",
+            "role": "MEMBER",
+            "email": email
+        }).execute()
+    return form
+
+
 def design_insider(request):
     posts = DesignInsiderPost.objects.all()
     if not request.user.is_superuser:
@@ -41,20 +81,9 @@ def design_insider(request):
         short_posts = short_posts.filter(draft=False)
 
     if request.method == "POST":
-        form = forms.NewsletterForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            name = form.cleaned_data['name']
-
-            matching_entries = NewsletterEntry.objects.filter(email=email)
-            if len(matching_entries) == 0:
-                entry = NewsletterEntry()
-                entry.email = email
-                entry.name = name
-                entry.save()
-
-            return render(request, "main_site/design_insider.html",
-                          {"posts": posts, "short_posts": short_posts, "form": form, "sent": True})
+        form = handle_newsletter(request)
+        return render(request, "main_site/design_insider.html",
+                      {"posts": posts, "short_posts": short_posts, "form": form, "sent": True})
     else:
         form = forms.NewsletterForm()
 
@@ -70,20 +99,9 @@ def design_insider_post(request, id):
         short_posts = short_posts.filter(draft=False)
 
     if request.method == "POST":
-        form = forms.NewsletterForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            name = form.cleaned_data['name']
-
-            matching_entries = NewsletterEntry.objects.filter(email=email)
-            if len(matching_entries) == 0:
-                entry = NewsletterEntry()
-                entry.email = email
-                entry.name = name
-                entry.save()
-
-            return render(request, "main_site/design_insider_post.html",
-                          {"post": post, "short_posts": short_posts, "form": form, "sent": True})
+        form = handle_newsletter(request)
+        return render(request, "main_site/design_insider_post.html",
+                      {"post": post, "short_posts": short_posts, "form": form, "sent": True})
     else:
         form = forms.NewsletterForm()
 
@@ -92,12 +110,10 @@ def design_insider_post(request, id):
 
 
 def about(request):
-    sections = AboutSection.objects.all()
     testimonials = Testimonial.objects.filter(featured=True)
     if not request.user.is_superuser:
-        sections = sections.filter(draft=False)
         testimonials = testimonials.filter(draft=False)
-    return render(request, "main_site/about.html", {"sections": sections, "testimonial": testimonials.first()})
+    return render(request, "main_site/about.html", {"testimonial": testimonials.first()})
 
 
 def portfolio(request):
@@ -164,11 +180,11 @@ def contact(request):
     return render(request, "main_site/contact.html", {'form': form, 'sent': False})
 
 
-def authorise(request):
+def fb_authorise(request):
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-        CLIENT_SECRETS_FILE, scopes=SCOPES)
+        FB_CLIENT_SECRETS_FILE, scopes=FB_SCOPES)
 
-    uri = request.build_absolute_uri(reverse('oauth'))
+    uri = request.build_absolute_uri(reverse('fb_oauth'))
     if not settings.DEBUG:
         uri = uri.replace("http://", "https://")
     flow.redirect_uri = uri
@@ -184,12 +200,12 @@ def authorise(request):
     return redirect(authorization_url)
 
 
-def oauth(request):
+def fb_oauth(request):
     state = request.session['state']
 
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-        CLIENT_SECRETS_FILE, scopes=SCOPES, state=state)
-    uri = request.build_absolute_uri(reverse('oauth'))
+        FB_CLIENT_SECRETS_FILE, scopes=FB_SCOPES, state=state)
+    uri = request.build_absolute_uri(reverse('fb_oauth'))
     if not settings.DEBUG:
         uri = uri.replace("http://", "https://")
     flow.redirect_uri = uri
@@ -197,14 +213,14 @@ def oauth(request):
     token = flow.fetch_token(code=request.GET.get("code"))
 
     config = SiteConfig.objects.first()
-    config.facebook_token = credentials_to_json(token)
+    config.facebook_token = fb_credentials_to_json(token)
     config.save()
 
     return redirect(request.session['redirect'])
 
 
-def deauthorise(request):
-    credentials = get_credentials()
+def fb_deauthorise(request):
+    credentials = get_fb_credentials()
 
     if credentials is not None:
         requests.delete('https://graph.facebook.com/v3.3/{user-id}/permissions',
@@ -217,14 +233,93 @@ def deauthorise(request):
     return redirect(request.META.get('HTTP_REFERER'))
 
 
-def credentials_to_json(credentials):
+def fb_credentials_to_json(credentials):
     return json.dumps({'token': credentials['access_token']})
 
 
-def get_credentials():
+def get_fb_credentials():
     config = SiteConfig.objects.first()
+    if config is None:
+        return None
     try:
         data = json.loads(config.facebook_token)
         return data['token']
+    except json.JSONDecodeError:
+        return None
+
+
+def newsletter_authorise(request):
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        NEWSLETTER_CLIENT_SECRETS_FILE, scopes=NEWSLETTER_SCOPES)
+
+    uri = request.build_absolute_uri(reverse('newsletter_oauth'))
+    if not settings.DEBUG:
+        uri = uri.replace("http://", "https://")
+    flow.redirect_uri = uri
+
+    authorization_url, state = flow.authorization_url(
+        access_type='offline',
+        prompt='consent',
+        include_granted_scopes='true')
+
+    request.session['state'] = state
+    request.session['redirect'] = request.META.get('HTTP_REFERER')
+
+    return redirect(authorization_url)
+
+
+def newsletter_oauth(request):
+    state = request.session['state']
+
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        NEWSLETTER_CLIENT_SECRETS_FILE, scopes=NEWSLETTER_SCOPES, state=state)
+    uri = request.build_absolute_uri(reverse('newsletter_oauth'))
+    if not settings.DEBUG:
+        uri = uri.replace("http://", "https://")
+    flow.redirect_uri = uri
+
+    flow.fetch_token(code=request.GET.get("code"))
+
+    credentials = flow.credentials
+    config = SiteConfig.objects.first()
+    config.newsletter_credentials = newsletter_credentials_to_json(credentials)
+    config.save()
+
+    return redirect(request.session['redirect'])
+
+
+def newsletter_deauthorise(request):
+    credentials = get_newsletter_credentials()
+
+    if credentials is not None:
+        requests.post('https://accounts.google.com/o/oauth2/revoke',
+                      params={'token': credentials.token},
+                      headers={'content-type': 'application/x-www-form-urlencoded'})
+
+        config = SiteConfig.objects.first()
+        config.newsletter_credentials = ""
+        config.save()
+
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+def newsletter_credentials_to_json(credentials):
+    return json.dumps({'token': credentials.token,
+                       'refresh_token': credentials.refresh_token,
+                       'token_uri': credentials.token_uri,
+                       'client_id': credentials.client_id,
+                       'client_secret': credentials.client_secret,
+                       'scopes': credentials.scopes})
+
+
+def get_newsletter_credentials():
+    config = SiteConfig.objects.first()
+    if config is None:
+        return None
+    try:
+        data = json.loads(config.newsletter_credentials)
+        return google.oauth2.credentials.Credentials(
+            token=data['token'], refresh_token=data['refresh_token'], token_uri=data['token_uri'],
+            client_id=data['client_id'], client_secret=data['client_secret'], scopes=data['scopes'])
     except json.JSONDecodeError:
         return None

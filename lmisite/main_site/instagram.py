@@ -4,7 +4,7 @@ import requests
 
 
 def get_user_feed():
-    creds = views.get_credentials()
+    creds = views.get_fb_credentials()
     if creds is None:
         return []
 

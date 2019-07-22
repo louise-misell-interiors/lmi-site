@@ -15,9 +15,13 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('config.js', views.config, name='config.js'),
 
-    path('facebook/authorise', views.authorise, name='authorise'),
-    path('facebook/oauth', views.oauth, name='oauth'),
-    path('facebook/deauth', views.deauthorise, name='deauthorise'),
+    path('facebook/authorise', views.fb_authorise, name='fb_authorise'),
+    path('facebook/oauth', views.fb_oauth, name='fb_oauth'),
+    path('facebook/deauth', views.fb_deauthorise, name='fb_deauthorise'),
+
+    path('newsletter/authorise', views.newsletter_authorise, name='newsletter_authorise'),
+    path('newsletter/oauth', views.newsletter_oauth, name='newsletter_oauth'),
+    path('newsletter/deauth', views.newsletter_deauthorise, name='newsletter_deauthorise'),
 
 
     path('sitemap.xml', sitemap,  {'sitemaps': SITEMAP, 'template_name': 'main_site/sitemap.xml'},

@@ -1,5 +1,6 @@
 node_modules
 client_secret.json
+newsletter_client_secret.json
 facebook_client_secret.json
 
 # Created by https://www.gitignore.io/api/django,pycharm

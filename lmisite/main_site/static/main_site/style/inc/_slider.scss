@@ -36,8 +36,32 @@
           left: $slide-width + $slide-offset - $slide-cover;
           display: none;
         }
+
         &.is-active + .slide {
           display: block;
+        }
+
+        img {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+
+        .slide-text {
+          position: absolute;
+          z-index: 1;
+          left: 50%;
+          top: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          background: linear-gradient(rgba($background-colour, .6), rgba($background-colour, .6));
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          border: 2px solid $background-colour-dark;
+          padding: $content-padding;
         }
       }
 

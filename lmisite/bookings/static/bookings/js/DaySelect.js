@@ -6,8 +6,8 @@ import {Loader} from "./Loader";
 class Day extends Component {
     render() {
         return (
-            <div>
-                <h2>{this.props.date.clone().local().format("ddd Do")}</h2>
+            <div className="Day">
+                <h3>{this.props.date.clone().local().format("ddd Do")}</h3>
                 <div className="button-div">
                     <button onClick={() => {
                         this.props.onClick(this.props.date)
@@ -80,46 +80,34 @@ export class DaySelect extends Component {
 
         const self = this;
         const days = this.state.currentDays.map((day, i) =>
-            <div className="col button-col" key={i}>
-                <Day date={day} onClick={self.props.onSelect}/>
-            </div>
+            <Day date={day} onClick={self.props.onSelect}/>
         );
 
         let content = null;
 
         if (!this.state.loading) {
             if (days.length !== 0) {
-                content = [
-                    <div className="col slider-button" onClick={this.prevDays} key="prev">
-                        <i className="fas fa-chevron-left"/>
-                    </div>,
-                    days,
-                    <div className="col slider-button" onClick={this.nextDays} key="next">
-                        <i className="fas fa-chevron-right"/>
-                    </div>,
-                ];
+                content = <div className="DaySelect">
+                    <i className="fas fa-chevron-left" onClick={this.prevDays}/>
+                    {days}
+                    <i className="fas fa-chevron-right" onClick={this.nextDays}/>
+                </div>;
             } else {
-                content = <div className="col">
-                    <h3>No days available</h3>
-                </div>
+                content = <h3>No days available</h3>
             }
         } else {
-            content = <div className="col">
-                <Loader/>
-            </div>
+            content = <Loader/>
         }
 
         return (
-            <div className="back-wrapper">
+            <React.Fragment>
                 <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
-                <h1>{this.props.type.name}</h1>
+                <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.description}</p>
                 <hr/>
                 <h2>Select a day</h2>
-                <div className="row">
-                    {content}
-                </div>
-            </div>
+                {content}
+            </React.Fragment>
         );
     }
 }

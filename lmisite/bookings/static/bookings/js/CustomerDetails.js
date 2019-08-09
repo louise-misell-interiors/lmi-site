@@ -5,11 +5,10 @@ import {fetchGQL} from "./main";
 class BookingInfo extends Component {
     render() {
         return (
-            <div className="col">
-                <h2 className="step-number"><i className={"fas " + this.props.type.icon}/></h2>
+            <div className="BookingInfo">
                 <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.whilstBookingMessage}</p>
-                <h3>{this.props.time.clone().local().format("dddd Do MMMM Y h:mm A")}</h3>
+                <h3>{this.props.time.clone().local().format("dddd Do MMMM Y h:mm\xa0A")}</h3>
                 <button onClick={this.props.onSchedule}>Schedule</button>
             </div>
         )
@@ -127,9 +126,7 @@ export class CustomerDetails extends Component {
         let disp = null;
 
         if (this.state.loading) {
-            disp = <div className="col">
-                <Loader/>
-            </div>
+            disp = <Loader/>
         } else {
             const questions = this.state.questions.map(question => {
                 let input = null;
@@ -149,11 +146,9 @@ export class CustomerDetails extends Component {
                         .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
                 }
 
-                return <div className="row" key={question.id}>
-                    <div className="col">
+                return <div key={question.id}>
                         {input}
                         {errors}
-                    </div>
                 </div>
             });
 
@@ -178,45 +173,37 @@ export class CustomerDetails extends Component {
                 }
             }
 
-            disp = [
-                <BookingInfo type={this.props.type} time={date} key="1" onSchedule={this.scheduleEvent}/>,
-                <div className="col" key="2">
-                    <div className="row">
-                        <div className="col">
+            disp = <div className="CustomerDetails">
+                <BookingInfo type={this.props.type} time={date} key="1" onSchedule={this.scheduleEvent}/>
+                <div className="Form">
+                    <div>
                             <input type="text" value={this.state.name}
                                    onChange={e => this.setState({name: e.target.value})} placeholder="Name"/>
                             {nameErrors}
-                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col">
+                    <div>
                             <input type="text" value={this.state.email}
                                    onChange={e => this.setState({email: e.target.value})} placeholder="Email"/>
                             {emailErrors}
-                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col">
+                    <div>
                             <input type="phone" value={this.state.phone}
                                    onChange={e => this.setState({phone: e.target.value})}
                                    placeholder="Phone Number"/>
                             {phoneErrors}
-                        </div>
                     </div>
                     {questions}
                 </div>
-            ];
+            </div>;
         }
 
         return (
-            <div className="back-wrapper">
+            <React.Fragment>
                 <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
-                <h1>Your details</h1>
+                <h2>Your details</h2>
                 <hr/>
-                <div className="row">
-                    {disp}
-                </div>
-            </div>
+                {disp}
+            </React.Fragment>
         )
     }
 }

@@ -60,14 +60,17 @@
         .content .contact-details .form .errorlist li {
           list-style: none; }
     .content .contact-details .calendar {
-      font-family: "Raleway", sans-serif; }
-      .content .contact-details .calendar h2 {
+      font-family: "Raleway", sans-serif;
+      position: relative; }
+      .content .contact-details .calendar > h2:first-of-type {
         min-height: 2.2em;
         display: flex;
         flex-direction: column;
         justify-content: center; }
       .content .contact-details .calendar h2, .content .contact-details .calendar h3 {
         font-family: "Baskerville", serif; }
+      .content .contact-details .calendar p {
+        text-align: center; }
       .content .contact-details .calendar .box {
         display: flex;
         flex-direction: column;
@@ -84,9 +87,46 @@
         display: flex;
         flex-direction: column;
         align-items: center; }
+      .content .contact-details .calendar .back-button {
+        position: absolute;
+        top: calc(1.1em + 27px); }
       .content .contact-details .calendar .BookingTypes {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         grid-gap: 25px; }
+      .content .contact-details .calendar .DaySelect {
+        display: grid;
+        grid-template-columns: auto repeat(5, 1fr) auto;
+        grid-gap: 25px;
+        align-items: center; }
+        .content .contact-details .calendar .DaySelect .Day {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-self: stretch;
+          text-align: center; }
+      .content .contact-details .calendar .TimeSelect {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-gap: 25px; }
+      .content .contact-details .calendar .BookingInfo {
+        display: grid;
+        grid-auto-rows: auto;
+        grid-gap: 25px;
+        padding: 25px 0;
+        text-align: center; }
+        .content .contact-details .calendar .BookingInfo p, .content .contact-details .calendar .BookingInfo h2, .content .contact-details .calendar .BookingInfo h3 {
+          margin: 0; }
+      .content .contact-details .calendar .CustomerDetails {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 25px;
+        padding: 25px 0;
+        align-items: start; }
+        .content .contact-details .calendar .CustomerDetails .Form {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-auto-rows: 1fr;
+          grid-gap: 25px; }
 
 /*# sourceMappingURL=contact.css.map */

@@ -6,9 +6,9 @@ import {Loader} from "./Loader";
 class Time extends Component {
     render() {
         return (
-            <div className="time">
-                <button onClick={this.props.onClick}>{this.props.time.clone().local().format("hh:mm A")}</button>
-            </div>
+            <button className="Time" onClick={this.props.onClick}>
+                {this.props.time.clone().local().format("hh:mm A")}
+            </button>
         );
     }
 }
@@ -62,26 +62,22 @@ export class TimeSelect extends Component {
         let content = null;
 
         if (!this.state.loading) {
-            content = <div className="times">
+            content = <div className="TimeSelect">
                 {times}
             </div>
         } else {
-            content = <div className="row">
-                <div className="col">
-                    <Loader/>
-                </div>
-            </div>
+            content = <Loader/>
         }
 
         return (
-            <div className="back-wrapper">
+            <React.Fragment>
                 <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
-                <h1>{this.props.date.clone().local().format("dddd Do Y")}</h1>
+                <h2>{this.props.date.clone().local().format("dddd Do Y")}</h2>
                 <p>{this.props.type.name}</p>
                 <hr/>
                 <h2>Select a time</h2>
                 {content}
-            </div>
+            </React.Fragment>
         );
     }
 }

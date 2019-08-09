@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import dateformat from 'dateformat';
 
 class BookingInfo extends Component {
     render() {
         return (
-            <div className="col">
-                <h2 className="step-number"><i className={"fas " + this.props.type.icon}/></h2>
+            <div className="BookingInfo">
                 <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.afterBookingMessage}</p>
                 <h3>{this.props.time.clone().local().format("dddd Do MMMM Y h:mm A")}</h3>
@@ -23,13 +21,11 @@ export class Conformation extends Component {
         date.milliseconds(this.props.time.milliseconds());
 
         return (
-            <div>
+            <React.Fragment>
                 <h1>Thank you</h1>
                 <hr/>
-                <div className="row">
-                    <BookingInfo type={this.props.type} time={date}/>
-                </div>
-            </div>
+                <BookingInfo type={this.props.type} time={date}/>
+            </React.Fragment>
         )
     }
 }

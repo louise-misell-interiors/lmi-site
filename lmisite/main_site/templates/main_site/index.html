@@ -23,6 +23,11 @@
                     <span class="arrow"><i class="fas fa-chevron-left"></i></span>
                     {% for img in slider_imgs %}
                         <div class="slide{% if forloop.counter == 2 %} is-active{% endif %}">
+                            {% if forloop.counter == 2 %}
+                                <div class="slide-text">
+                                    <h1>Welcome to Louise Misell Interiors</h1>
+                                </div>
+                            {% endif %}
                             <img data-src="{{ img.image.url }}" alt="{{ img.alt_text }}" data-pin-nopin="true">
                         </div>
                     {% endfor %}

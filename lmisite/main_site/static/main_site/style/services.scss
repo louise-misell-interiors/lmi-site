@@ -45,6 +45,14 @@ header {
       align-items: center;
       grid-column-gap: $content-padding;
 
+      .colour-block {
+        grid-column: 1 / 3;
+        grid-row: 1 / 4;
+        background-color: $background-colour;
+        align-self: stretch;
+        z-index: -1;
+      }
+
       img {
         grid-column: 1;
         grid-row: 1 / 4;
@@ -55,7 +63,12 @@ header {
         grid-row: 1;
         font-family: Raleway, sans-serif;
         text-align: center;
-        margin: 0 0 $content-padding;
+        margin: $content-padding $content-padding $content-padding/2;
+        color: $dark-text-colour;
+        border: 2px solid $background-colour-dark;
+        align-self: center;
+        justify-self: center;
+        padding: $content-padding/2 $content-padding;
       }
 
       .description {
@@ -77,6 +90,7 @@ header {
 
       .price {
         grid-column: 2;
+        grid-row: 3;
 
         align-self: stretch;
         padding: 0 $content-padding;

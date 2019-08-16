@@ -30,6 +30,7 @@
                     {% if service.image %}
                         <img src="{{ service.image.url }}" alt="{{ service.name }}">
                     {% endif %}
+                    <div class="colour-block"></div>
                     <h2 itemprop="name">{{ service.name }}</h2>
                     <span itemprop="description" class="description">
                       {{ service.description|linebreaks }}

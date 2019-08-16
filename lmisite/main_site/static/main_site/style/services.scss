@@ -56,16 +56,19 @@ header {
       img {
         grid-column: 1;
         grid-row: 1 / 4;
+        align-self: stretch;
+        justify-self: stretch;
+        object-fit: cover;
       }
 
       h2:first-of-type {
         grid-column: 2;
         grid-row: 1;
-        font-family: Raleway, sans-serif;
+        font-family: Baskerville, serif;
         text-align: center;
         margin: $content-padding $content-padding $content-padding/2;
-        color: $dark-text-colour;
-        border: 2px solid $background-colour-dark;
+        color: $light-text-colour;
+        background: rgba($background-colour-dark, .7);
         align-self: center;
         justify-self: center;
         padding: $content-padding/2 $content-padding;
@@ -78,6 +81,8 @@ header {
         text-align: center;
         justify-self: center;
         max-width: 700px;
+        font-size: 17px;
+        line-height: 1.4;
 
         p:first-of-type {
           margin-top: 0;

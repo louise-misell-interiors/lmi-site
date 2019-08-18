@@ -222,11 +222,19 @@ class ProjectAfterImage(models.Model):
 
 
 class Testimonial(models.Model):
+    HOME_PAGE = 'H'
+    ABOUT_PAGE = 'H'
+    FEATURED_ON = (
+        ('', '---'),
+        (HOME_PAGE, 'Home page'),
+        (ABOUT_PAGE, 'About page'),
+    )
+
     draft = models.BooleanField(default=False)
     text = models.TextField()
     image = models.ImageField(blank=True)
     client = models.CharField(max_length=255)
-    featured = models.BooleanField(default=False, verbose_name="Featured on home page")
+    featured_on = models.CharField(blank=True, null=True, choices=FEATURED_ON)
     not_on_testimonials = models.BooleanField(default=False, verbose_name="Not displayed on testimonials page")
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     related_project = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=True, null=True)

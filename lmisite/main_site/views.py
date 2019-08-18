@@ -22,7 +22,7 @@ NEWSLETTER_API_VERSION = 'directory_v1'
 
 def index(request):
     slider_imgs = MainSliderImage.objects.all()
-    testimonials = Testimonial.objects.filter(featured=True)
+    testimonials = Testimonial.objects.filter(featured_on=Testimonial.HOME_PAGE)
     projects = Project.objects.filter(draft=False)[:4]
     services = Service.objects.filter(type=Service.MAIN)
     if not request.user.is_superuser:
@@ -112,7 +112,7 @@ def design_insider_post(request, id):
 
 
 def about(request):
-    testimonials = Testimonial.objects.filter(featured=True)
+    testimonials = Testimonial.objects.filter(featured_on=Testimonial.ABOUT_PAGE)
     if not request.user.is_superuser:
         testimonials = testimonials.filter(draft=False)
     return render(request, "main_site/about.html", {"testimonial": testimonials.first()})

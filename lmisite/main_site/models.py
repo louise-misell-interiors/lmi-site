@@ -223,7 +223,7 @@ class ProjectAfterImage(models.Model):
 
 class Testimonial(models.Model):
     HOME_PAGE = 'H'
-    ABOUT_PAGE = 'H'
+    ABOUT_PAGE = 'A'
     FEATURED_ON = (
         ('', '---'),
         (HOME_PAGE, 'Home page'),
@@ -234,7 +234,7 @@ class Testimonial(models.Model):
     text = models.TextField()
     image = models.ImageField(blank=True)
     client = models.CharField(max_length=255)
-    featured_on = models.CharField(blank=True, null=True, choices=FEATURED_ON)
+    featured_on = models.CharField(blank=True, null=True, choices=FEATURED_ON, max_length=1)
     not_on_testimonials = models.BooleanField(default=False, verbose_name="Not displayed on testimonials page")
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     related_project = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=True, null=True)

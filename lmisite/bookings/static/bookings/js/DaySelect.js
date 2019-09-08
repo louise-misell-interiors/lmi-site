@@ -7,7 +7,7 @@ class Day extends Component {
     render() {
         return (
             <div>
-                <h2>{this.props.date.clone().local().format("ddd Do")}</h2>
+                <h2>{this.props.date.clone().local().format("ddd Do MMMM")}</h2>
                 <div className="button-div">
                     <button onClick={() => {
                         this.props.onClick(this.props.date)

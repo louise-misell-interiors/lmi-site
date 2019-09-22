@@ -33,7 +33,8 @@ def get_calendar_events(start_date: datetime.date, end_date: datetime.date):
                       timeMax=datetime.datetime.combine(end_date, datetime.time.max).isoformat() + 'Z')\
                 .execute()
 
-            events = filter(lambda e: e.get("status", "") == 'confirmed' and e.get('kind', '') == 'calendar#event', events.get('items', []))
+            events = filter(lambda e: e.get("status", "") == 'confirmed' and e.get('kind', '') == 'calendar#event' and not e.get("creator", {}).get("email", "").endswith("@import.calendar.google.com"),
+              events.get('items', []))
             for event in events:
                 start = event['start'].get('dateTime')
                 end = event['end'].get('dateTime')

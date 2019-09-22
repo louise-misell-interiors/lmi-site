@@ -6,36 +6,53 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0016_auto_20180507_0745'),
-    ]
+    dependencies = [("main_site", "0016_auto_20180507_0745")]
 
     operations = [
         migrations.CreateModel(
-            name='AboutSection',
+            name="AboutSection",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('heading', models.CharField(blank=True, default='', max_length=255)),
-                ('text', models.TextField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("heading", models.CharField(blank=True, default="", max_length=255)),
+                ("text", models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='AboutSectionImage',
+            name="AboutSectionImage",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='')),
-                ('section', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='main_site.Project')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="")),
+                (
+                    "section",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="images",
+                        to="main_site.Project",
+                    ),
+                ),
             ],
         ),
         migrations.RenameField(
-            model_name='projectafterimage',
-            old_name='property',
-            new_name='project',
+            model_name="projectafterimage", old_name="property", new_name="project"
         ),
         migrations.RenameField(
-            model_name='projectbeforeimage',
-            old_name='property',
-            new_name='project',
+            model_name="projectbeforeimage", old_name="property", new_name="project"
         ),
     ]

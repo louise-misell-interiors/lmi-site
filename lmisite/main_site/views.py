@@ -1,6 +1,6 @@
 import itertools
 import google_auth_oauthlib.flow
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.conf import settings
 from .models import *
@@ -12,7 +12,7 @@ import json
 import bookings.models as booking_models
 
 CLIENT_SECRETS_FILE = "facebook_client_secret.json"
-SCOPES = ['instagram_basic', 'pages_show_list']
+SCOPES = ["instagram_basic", "pages_show_list"]
 
 
 def index(request):
@@ -23,9 +23,16 @@ def index(request):
     if not request.user.is_superuser:
         testimonials = testimonials.filter(draft=False)
         services = services.filter(draft=False)
-    return render(request, "main_site/index.html",
-                  {"testimonials": testimonials, "slider_imgs": slider_imgs, "projects": projects,
-                   "services": services})
+    return render(
+        request,
+        "main_site/index.html",
+        {
+            "testimonials": testimonials,
+            "slider_imgs": slider_imgs,
+            "projects": projects,
+            "services": services,
+        },
+    )
 
 
 def config(request):
@@ -50,8 +57,8 @@ def design_insider(request):
     if request.method == "POST":
         form = forms.NewsletterForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            name = form.cleaned_data['name']
+            email = form.cleaned_data["email"]
+            name = form.cleaned_data["name"]
 
             matching_entries = NewsletterEntry.objects.filter(email=email)
             if len(matching_entries) == 0:
@@ -60,14 +67,30 @@ def design_insider(request):
                 entry.name = name
                 entry.save()
 
-            return render(request, "main_site/design_insider.html",
-                          {"posts": (big_post, posts, extra), "instagram": instagram_feed, "short_posts": short_posts,
-                           "form": form, "sent": True})
+            return render(
+                request,
+                "main_site/design_insider.html",
+                {
+                    "posts": (big_post, posts, extra),
+                    "instagram": instagram_feed,
+                    "short_posts": short_posts,
+                    "form": form,
+                    "sent": True,
+                },
+            )
     else:
         form = forms.NewsletterForm()
 
-    return render(request, "main_site/design_insider.html",
-                  {"posts": (big_post, posts, extra), "short_posts": short_posts, "form": form, "instagram": instagram_feed})
+    return render(
+        request,
+        "main_site/design_insider.html",
+        {
+            "posts": (big_post, posts, extra),
+            "short_posts": short_posts,
+            "form": form,
+            "instagram": instagram_feed,
+        },
+    )
 
 
 def design_insider_post(request, id):
@@ -82,8 +105,8 @@ def design_insider_post(request, id):
     if request.method == "POST":
         form = forms.NewsletterForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            name = form.cleaned_data['name']
+            email = form.cleaned_data["email"]
+            name = form.cleaned_data["name"]
 
             matching_entries = NewsletterEntry.objects.filter(email=email)
             if len(matching_entries) == 0:
@@ -92,13 +115,30 @@ def design_insider_post(request, id):
                 entry.name = name
                 entry.save()
 
-            return render(request, "main_site/design_insider_post.html",
-                          {"post": post, "instagram": instagram_feed, "short_posts": short_posts, "form": form, "sent": True})
+            return render(
+                request,
+                "main_site/design_insider_post.html",
+                {
+                    "post": post,
+                    "instagram": instagram_feed,
+                    "short_posts": short_posts,
+                    "form": form,
+                    "sent": True,
+                },
+            )
     else:
         form = forms.NewsletterForm()
 
-    return render(request, "main_site/design_insider_post.html",
-                  {"post": post, "instagram": instagram_feed, "short_posts": short_posts, "form": form})
+    return render(
+        request,
+        "main_site/design_insider_post.html",
+        {
+            "post": post,
+            "instagram": instagram_feed,
+            "short_posts": short_posts,
+            "form": form,
+        },
+    )
 
 
 def about(request):
@@ -134,70 +174,75 @@ def testimonials(request):
     testimonials = Testimonial.objects.filter(not_on_testimonials=False)
     if not request.user.is_superuser:
         testimonials = testimonials.filter(draft=False)
-    return render(request, "main_site/testimonials.html", {"testimonials": testimonials})
+    return render(
+        request, "main_site/testimonials.html", {"testimonials": testimonials}
+    )
 
 
 def contact(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = forms.ContactForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['your_name']
-            email = form.cleaned_data['your_email']
-            phone = form.cleaned_data['your_phone']
-            message = form.cleaned_data['message']
+            name = form.cleaned_data["your_name"]
+            email = form.cleaned_data["your_email"]
+            phone = form.cleaned_data["your_phone"]
+            message = form.cleaned_data["message"]
 
             subject = f"{name} has sent a message on your website"
             body = f"Name: {name}\r\nEmail: {email}\r\nPhone: {phone}\r\n\r\n---\r\n\r\n{message}"
 
             config = SiteConfig.objects.first()
             recipients = [config.email]
-            send_mail(subject, body, email, recipients)
+            message = EmailMessage(subject, body, to=recipients, reply_to=[email])
+            if message.send(fail_silently=True):
+                matching_customers = booking_models.Customer.objects.filter(email=email)
+                if len(matching_customers) > 0:
+                    customer = matching_customers.first()
+                else:
+                    customer = booking_models.Customer()
+                    customer.email = email
+                customer.name = name
+                customer.phone = phone
 
-            matching_customers = booking_models.Customer.objects.filter(email=email)
-            if len(matching_customers) > 0:
-                customer = matching_customers.first()
-            else:
-                customer = booking_models.Customer()
-                customer.email = email
-            customer.name = name
-            customer.phone = phone
+                customer.full_clean()
+                customer.save()
 
-            customer.full_clean()
-            customer.save()
-
-            return render(request, "main_site/contact.html", {'form': form, 'sent': True})
+                return render(
+                    request, "main_site/contact.html", {"form": form, "sent": True}
+                )
     else:
         form = forms.ContactForm()
 
-    return render(request, "main_site/contact.html", {'form': form, 'sent': False})
+    return render(request, "main_site/contact.html", {"form": form, "sent": False})
 
 
 def authorise(request):
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-        CLIENT_SECRETS_FILE, scopes=SCOPES)
+        CLIENT_SECRETS_FILE, scopes=SCOPES
+    )
 
-    uri = request.build_absolute_uri(reverse('oauth'))
+    uri = request.build_absolute_uri(reverse("oauth"))
     if not settings.DEBUG:
         uri = uri.replace("http://", "https://")
     flow.redirect_uri = uri
 
     authorization_url, state = flow.authorization_url(
-        access_type='offline',
-        prompt='consent',
-        include_granted_scopes='true')
+        access_type="offline", prompt="consent", include_granted_scopes="true"
+    )
 
-    request.session['state'] = state
-    request.session['redirect'] = request.META.get('HTTP_REFERER')
+    request.session["state"] = state
+    request.session["redirect"] = request.META.get("HTTP_REFERER")
 
     return redirect(authorization_url)
 
 
 def oauth(request):
-    state = request.session['state']
+    state = request.session["state"]
 
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-        CLIENT_SECRETS_FILE, scopes=SCOPES, state=state)
-    uri = request.build_absolute_uri(reverse('oauth'))
+        CLIENT_SECRETS_FILE, scopes=SCOPES, state=state
+    )
+    uri = request.build_absolute_uri(reverse("oauth"))
     if not settings.DEBUG:
         uri = uri.replace("http://", "https://")
     flow.redirect_uri = uri
@@ -208,31 +253,33 @@ def oauth(request):
     config.facebook_token = credentials_to_json(token)
     config.save()
 
-    return redirect(request.session['redirect'])
+    return redirect(request.session["redirect"])
 
 
 def deauthorise(request):
     credentials = get_credentials()
 
     if credentials is not None:
-        requests.delete('https://graph.facebook.com/v3.3/{user-id}/permissions',
-                        params={'access_token': credentials})
+        requests.delete(
+            "https://graph.facebook.com/v3.3/{user-id}/permissions",
+            params={"access_token": credentials},
+        )
 
         config = SiteConfig.objects.first()
         config.facebook_token = ""
         config.save()
 
-    return redirect(request.META.get('HTTP_REFERER'))
+    return redirect(request.META.get("HTTP_REFERER"))
 
 
 def credentials_to_json(credentials):
-    return json.dumps({'token': credentials['access_token']})
+    return json.dumps({"token": credentials["access_token"]})
 
 
 def get_credentials():
     config = SiteConfig.objects.first()
     try:
         data = json.loads(config.facebook_token)
-        return data['token']
+        return data["token"]
     except json.JSONDecodeError:
         return None

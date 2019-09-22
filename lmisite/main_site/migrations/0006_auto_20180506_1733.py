@@ -5,33 +5,31 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0005_siteconfig'),
-    ]
+    dependencies = [("main_site", "0005_siteconfig")]
 
     operations = [
         migrations.AddField(
-            model_name='siteconfig',
-            name='facebook_url',
-            field=models.URLField(default=''),
+            model_name="siteconfig",
+            name="facebook_url",
+            field=models.URLField(default=""),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='houzz_url',
-            field=models.URLField(default=''),
+            model_name="siteconfig",
+            name="houzz_url",
+            field=models.URLField(default=""),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='linkedin_url',
-            field=models.URLField(default=''),
+            model_name="siteconfig",
+            name="linkedin_url",
+            field=models.URLField(default=""),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='pintrest_url',
-            field=models.URLField(default=''),
+            model_name="siteconfig",
+            name="pintrest_url",
+            field=models.URLField(default=""),
             preserve_default=False,
         ),
     ]

@@ -5,18 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0012_bookingquestion_question_type'),
-    ]
+    dependencies = [("bookings", "0012_bookingquestion_question_type")]
 
     operations = [
-        migrations.RemoveField(
-            model_name='booking',
-            name='address',
-        ),
+        migrations.RemoveField(model_name="booking", name="address"),
         migrations.AlterField(
-            model_name='customer',
-            name='email',
+            model_name="customer",
+            name="email",
             field=models.EmailField(max_length=254, unique=True),
         ),
     ]

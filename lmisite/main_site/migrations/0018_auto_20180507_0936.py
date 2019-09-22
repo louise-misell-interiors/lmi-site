@@ -6,14 +6,16 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0017_auto_20180507_0925'),
-    ]
+    dependencies = [("main_site", "0017_auto_20180507_0925")]
 
     operations = [
         migrations.AlterField(
-            model_name='aboutsectionimage',
-            name='section',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='main_site.AboutSection'),
-        ),
+            model_name="aboutsectionimage",
+            name="section",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="images",
+                to="main_site.AboutSection",
+            ),
+        )
     ]

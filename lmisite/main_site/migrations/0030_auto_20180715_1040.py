@@ -6,26 +6,26 @@ import tinymce.models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0029_auto_20180709_1826'),
-    ]
+    dependencies = [("main_site", "0029_auto_20180709_1826")]
 
     operations = [
         migrations.CreateModel(
-            name='DesignInsiderPost',
+            name="DesignInsiderPost",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('date', models.DateField()),
-                ('content', tinymce.models.HTMLField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("date", models.DateField()),
+                ("content", tinymce.models.HTMLField()),
             ],
-            options={
-                'ordering': ['-date'],
-                'get_latest_by': ['-date'],
-            },
+            options={"ordering": ["-date"], "get_latest_by": ["-date"]},
         ),
-        migrations.RemoveField(
-            model_name='siteconfig',
-            name='calendly_url',
-        ),
+        migrations.RemoveField(model_name="siteconfig", name="calendly_url"),
     ]

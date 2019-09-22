@@ -6,7 +6,7 @@ from . import views
 
 
 class AuthWidget(forms.Widget):
-    template_name = 'bookings/auth_button_widget.html'
+    template_name = "bookings/auth_button_widget.html"
 
     def render(self, name, value, attrs=None, **kwargs):
         is_signed_in = False
@@ -15,9 +15,7 @@ class AuthWidget(forms.Widget):
         if creds is not None and creds.scopes == views.SCOPES:
             is_signed_in = True
 
-        context = {
-            'is_signed_in': is_signed_in
-        }
+        context = {"is_signed_in": is_signed_in}
         return mark_safe(render_to_string(self.template_name, context))
 
 
@@ -28,5 +26,5 @@ class ConfigForm(forms.ModelForm):
         return super().save(commit=commit)
 
     class Meta:
-        fields = ['auth']
+        fields = ["auth"]
         model = Config

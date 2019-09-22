@@ -5,79 +5,77 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0039_siteconfig_about_description'),
-    ]
+    dependencies = [("main_site", "0039_siteconfig_about_description")]
 
     operations = [
         migrations.AddField(
-            model_name='siteconfig',
-            name='about_title',
+            model_name="siteconfig",
+            name="about_title",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='blog_subtitle',
+            model_name="siteconfig",
+            name="blog_subtitle",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='blog_text',
+            model_name="siteconfig",
+            name="blog_text",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='blog_title',
+            model_name="siteconfig",
+            name="blog_title",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='contact_title',
+            model_name="siteconfig",
+            name="contact_title",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='home_subtitle',
+            model_name="siteconfig",
+            name="home_subtitle",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='home_text',
+            model_name="siteconfig",
+            name="home_text",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='home_title',
+            model_name="siteconfig",
+            name="home_title",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='portfolio_text',
+            model_name="siteconfig",
+            name="portfolio_text",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='portfolio_title',
+            model_name="siteconfig",
+            name="portfolio_title",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='services_text',
+            model_name="siteconfig",
+            name="services_text",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='services_title',
+            model_name="siteconfig",
+            name="services_title",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='testimonials_text',
+            model_name="siteconfig",
+            name="testimonials_text",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='testimonials_title',
+            model_name="siteconfig",
+            name="testimonials_title",
             field=models.CharField(blank=True, max_length=255),
         ),
     ]

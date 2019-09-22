@@ -5,19 +5,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0040_auto_20180821_1449'),
-    ]
+    dependencies = [("main_site", "0040_auto_20180821_1449")]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='area',
+            model_name="project",
+            name="area",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='price_range',
+            model_name="siteconfig",
+            name="price_range",
             field=models.CharField(blank=True, max_length=255),
         ),
     ]

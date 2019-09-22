@@ -4,8 +4,17 @@ from django.db import migrations, models
 
 
 def reorder(apps, schema_editor):
-    models = ['AboutSection', 'AboutSectionImage', 'MainSliderImage', 'Project', 'ProjectAfterImage',
-              'ProjectBeforeImage', 'Service', 'ServiceSummary', 'Testimonial']
+    models = [
+        "AboutSection",
+        "AboutSectionImage",
+        "MainSliderImage",
+        "Project",
+        "ProjectAfterImage",
+        "ProjectBeforeImage",
+        "Service",
+        "ServiceSummary",
+        "Testimonial",
+    ]
 
     for m in models:
         model = apps.get_model("main_site", m)
@@ -18,90 +27,76 @@ def reorder(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0019_siteconfig_calendly_url'),
-    ]
+    dependencies = [("main_site", "0019_siteconfig_calendly_url")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='aboutsection',
-            options={'ordering': ['order']},
+            name="aboutsection", options={"ordering": ["order"]}
         ),
         migrations.AlterModelOptions(
-            name='aboutsectionimage',
-            options={'ordering': ['order']},
+            name="aboutsectionimage", options={"ordering": ["order"]}
         ),
         migrations.AlterModelOptions(
-            name='mainsliderimage',
-            options={'ordering': ['order']},
+            name="mainsliderimage", options={"ordering": ["order"]}
+        ),
+        migrations.AlterModelOptions(name="project", options={"ordering": ["order"]}),
+        migrations.AlterModelOptions(
+            name="projectafterimage", options={"ordering": ["order"]}
         ),
         migrations.AlterModelOptions(
-            name='project',
-            options={'ordering': ['order']},
+            name="projectbeforeimage", options={"ordering": ["order"]}
+        ),
+        migrations.AlterModelOptions(name="service", options={"ordering": ["order"]}),
+        migrations.AlterModelOptions(
+            name="servicesummary",
+            options={"ordering": ["order"], "verbose_name_plural": "Serivce Summaries"},
         ),
         migrations.AlterModelOptions(
-            name='projectafterimage',
-            options={'ordering': ['order']},
-        ),
-        migrations.AlterModelOptions(
-            name='projectbeforeimage',
-            options={'ordering': ['order']},
-        ),
-        migrations.AlterModelOptions(
-            name='service',
-            options={'ordering': ['order']},
-        ),
-        migrations.AlterModelOptions(
-            name='servicesummary',
-            options={'ordering': ['order'], 'verbose_name_plural': 'Serivce Summaries'},
-        ),
-        migrations.AlterModelOptions(
-            name='testimonial',
-            options={'ordering': ['order']},
+            name="testimonial", options={"ordering": ["order"]}
         ),
         migrations.AddField(
-            model_name='aboutsection',
-            name='order',
+            model_name="aboutsection",
+            name="order",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='aboutsectionimage',
-            name='order',
+            model_name="aboutsectionimage",
+            name="order",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='mainsliderimage',
-            name='order',
+            model_name="mainsliderimage",
+            name="order",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='project',
-            name='order',
+            model_name="project",
+            name="order",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='projectafterimage',
-            name='order',
+            model_name="projectafterimage",
+            name="order",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='projectbeforeimage',
-            name='order',
+            model_name="projectbeforeimage",
+            name="order",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='service',
-            name='order',
+            model_name="service",
+            name="order",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='servicesummary',
-            name='order',
+            model_name="servicesummary",
+            name="order",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='testimonial',
-            name='order',
+            model_name="testimonial",
+            name="order",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.RunPython(reorder),

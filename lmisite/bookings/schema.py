@@ -21,22 +21,41 @@ def get_calendar_events(start_date: datetime.date, end_date: datetime.date):
         date += datetime.timedelta(days=1)
     if creds is not None:
         calendar = googleapiclient.discovery.build(
-            API_SERVICE_NAME, API_VERSION, credentials=creds)
+            API_SERVICE_NAME, API_VERSION, credentials=creds
+        )
 
         calendars = calendar.calendarList().list().execute()
-        calendars = filter(lambda c: c.get("selected", False), calendars.get('items', []))
+        calendars = filter(
+            lambda c: c.get("selected", False), calendars.get("items", [])
+        )
 
         for c in calendars:
-            events = calendar.events()\
-                .list(calendarId=c['id'], orderBy='startTime', singleEvents=True,
-                      timeMin=datetime.datetime.combine(start_date, datetime.time.min).isoformat() + 'Z',
-                      timeMax=datetime.datetime.combine(end_date, datetime.time.max).isoformat() + 'Z')\
+            events = (
+                calendar.events()
+                .list(
+                    calendarId=c["id"],
+                    orderBy="startTime",
+                    singleEvents=True,
+                    timeMin=datetime.datetime.combine(
+                        start_date, datetime.time.min
+                    ).isoformat()
+                    + "Z",
+                    timeMax=datetime.datetime.combine(
+                        end_date, datetime.time.max
+                    ).isoformat()
+                    + "Z",
+                )
                 .execute()
+            )
 
-            events = filter(lambda e: e.get("status", "") == 'confirmed' and e.get('kind', '') == 'calendar#event', events.get('items', []))
+            events = filter(
+                lambda e: e.get("status", "") == "confirmed"
+                and e.get("kind", "") == "calendar#event",
+                events.get("items", []),
+            )
             for event in events:
-                start = event['start'].get('dateTime')
-                end = event['end'].get('dateTime')
+                start = event["start"].get("dateTime")
+                end = event["end"].get("dateTime")
                 if start and end:
                     start = timezone.make_naive(dateutil.parser.parse(start)).date()
                     end = timezone.make_naive(dateutil.parser.parse(end)).date()
@@ -53,30 +72,37 @@ def insert_booking_to_calendar(booking: models.Booking):
     creds = get_credentials()
     if creds is not None:
         calendar = googleapiclient.discovery.build(
-            API_SERVICE_NAME, API_VERSION, credentials=creds)
+            API_SERVICE_NAME, API_VERSION, credentials=creds
+        )
 
-        calendar.events().insert(calendarId="primary", body={
-            "start": {
-                "dateTime": booking.time.isoformat(),
-                "timeZone": booking.time.tzname()
+        calendar.events().insert(
+            calendarId="primary",
+            body={
+                "start": {
+                    "dateTime": booking.time.isoformat(),
+                    "timeZone": booking.time.tzname(),
+                },
+                "end": {
+                    "dateTime": (booking.time + booking.type.length).isoformat(),
+                    "timeZone": (booking.time + booking.type.length).tzname(),
+                },
+                "summary": str(booking),
+                "attendees": [
+                    {
+                        "displayName": booking.customer.name,
+                        "responseStatus": "accepted",
+                        "email": booking.customer.email,
+                        "comment": f"Phone: {booking.customer.phone}",
+                    }
+                ],
             },
-            "end": {
-                "dateTime": (booking.time + booking.type.length).isoformat(),
-                "timeZone": (booking.time + booking.type.length).tzname()
-            },
-            "summary": str(booking),
-            "attendees": [
-                {
-                    "displayName": booking.customer.name,
-                    "responseStatus": "accepted",
-                    "email": booking.customer.email,
-                    "comment": f"Phone: {booking.customer.phone}"
-                }
-            ],
-        }, sendNotifications=True).execute()
+            sendNotifications=True,
+        ).execute()
 
 
-def get_booking_times(start_date: datetime.date, booking: models.BookingType, end_date=None):
+def get_booking_times(
+    start_date: datetime.date, booking: models.BookingType, end_date=None
+):
     if end_date is None:
         end_date = start_date
 
@@ -124,13 +150,20 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
                     if not rule.sunday and cur_time.weekday() == 6:
                         continue
 
-                    start_time = timezone.make_naive(timezone.make_aware(
-                        datetime.datetime.combine(date, rule.start_time), tz)
-                        .astimezone(pytz.utc))
-                    end_time = timezone.make_naive(timezone.make_aware(
-                        datetime.datetime.combine(date, rule.end_time), tz)
-                        .astimezone(pytz.utc))
-                    if not (start_time <= cur_time and end_time >= (cur_time + booking.length)):
+                    start_time = timezone.make_naive(
+                        timezone.make_aware(
+                            datetime.datetime.combine(date, rule.start_time), tz
+                        ).astimezone(pytz.utc)
+                    )
+                    end_time = timezone.make_naive(
+                        timezone.make_aware(
+                            datetime.datetime.combine(date, rule.end_time), tz
+                        ).astimezone(pytz.utc)
+                    )
+                    if not (
+                        start_time <= cur_time
+                        and end_time >= (cur_time + booking.length)
+                    ):
                         continue
 
                     passes_rules = True
@@ -138,29 +171,55 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
                 valid = False
 
             if valid:
-                if booking.max_events_per_day is not None and len(bookings_on_day) >= booking.max_events_per_day:
+                if (
+                    booking.max_events_per_day is not None
+                    and len(bookings_on_day) >= booking.max_events_per_day
+                ):
                     valid = False
                 else:
                     for b in bookings_on_day:
                         time = timezone.make_naive(b.time)
-                        if time <= cur_time < (
-                                time + b.type.length + max(booking.buffer_before_event, b.type.buffer_after_event)):
+                        if (
+                            time
+                            <= cur_time
+                            < (
+                                time
+                                + b.type.length
+                                + max(
+                                    booking.buffer_before_event,
+                                    b.type.buffer_after_event,
+                                )
+                            )
+                        ):
                             valid = False
-                        if time < (
-                                cur_time + booking.length + max(booking.buffer_after_event, b.type.buffer_before_event)) < (
-                                time + b.type.length):
+                        if (
+                            time
+                            < (
+                                cur_time
+                                + booking.length
+                                + max(
+                                    booking.buffer_after_event,
+                                    b.type.buffer_before_event,
+                                )
+                            )
+                            < (time + b.type.length)
+                        ):
                             valid = False
 
             if valid:
                 for b in cal_events[date]:
-                    start = b['start'].get('dateTime')
-                    end = b['end'].get('dateTime')
+                    start = b["start"].get("dateTime")
+                    end = b["end"].get("dateTime")
                     if start and end:
                         start = timezone.make_naive(dateutil.parser.parse(start))
                         end = timezone.make_naive(dateutil.parser.parse(end))
                         if start <= cur_time < (end + booking.buffer_before_event):
                             valid = False
-                        if start < (cur_time + booking.length + booking.buffer_after_event) < end:
+                        if (
+                            start
+                            < (cur_time + booking.length + booking.buffer_after_event)
+                            < end
+                        ):
                             valid = False
 
             if valid:
@@ -181,7 +240,16 @@ class BookingQuestion(DjangoObjectType):
 class BookingType(DjangoObjectType):
     class Meta:
         model = models.BookingType
-        only_fields = ('name', 'length', 'id', 'description', 'whilst_booking_message', 'after_booking_message', 'timezone', 'icon')
+        only_fields = (
+            "name",
+            "length",
+            "id",
+            "description",
+            "whilst_booking_message",
+            "after_booking_message",
+            "timezone",
+            "icon",
+        )
 
     scheduling_frequency = graphene.String()
     minimum_scheduling_notice = graphene.String()
@@ -190,17 +258,14 @@ class BookingType(DjangoObjectType):
     booking_days = graphene.List(
         graphene.types.datetime.Date,
         num=graphene.Int(default_value=5),
-        start=graphene.Date(default_value=datetime.datetime.now().date())
+        start=graphene.Date(default_value=datetime.datetime.now().date()),
     )
 
     booking_times = graphene.List(
-        graphene.types.datetime.Time,
-        date=graphene.Date(required=True)
+        graphene.types.datetime.Time, date=graphene.Date(required=True)
     )
 
-    questions = graphene.List(
-        BookingQuestion
-    )
+    questions = graphene.List(BookingQuestion)
 
     def resolve_questions(self, info):
         return self.booking_questions.all()
@@ -239,10 +304,7 @@ class QuestionInput(graphene.InputObjectType):
 
 class QuestionError(graphene.ObjectType):
     field = graphene.String(required=True)
-    errors = graphene.List(
-        graphene.String,
-        required=True
-    )
+    errors = graphene.List(graphene.String, required=True)
 
 
 def validation_error_to_graphene(error):
@@ -257,10 +319,7 @@ class CreateBooking(graphene.Mutation):
         name = graphene.String(required=True)
         email = graphene.String(required=True)
         phone = graphene.String(required=True)
-        questions = graphene.List(
-            QuestionInput,
-            required=True
-        )
+        questions = graphene.List(QuestionInput, required=True)
 
     ok = graphene.Boolean()
     error = graphene.List(QuestionError)
@@ -270,7 +329,12 @@ class CreateBooking(graphene.Mutation):
         booking_times = get_booking_times(date, booking_type)[date]
 
         if time not in booking_times:
-            return CreateBooking(ok=False, error=validation_error_to_graphene([('time', ["Unavailable booking time"])]))
+            return CreateBooking(
+                ok=False,
+                error=validation_error_to_graphene(
+                    [("time", ["Unavailable booking time"])]
+                ),
+            )
 
         booking = models.Booking()
 
@@ -307,13 +371,17 @@ class CreateBooking(graphene.Mutation):
             except models.BookingQuestion.DoesNotExist:
                 return CreateBooking(
                     ok=False,
-                    error=validation_error_to_graphene([('question', ['Question doesn\'t exist'])])
+                    error=validation_error_to_graphene(
+                        [("question", ["Question doesn't exist"])]
+                    ),
                 )
 
             if booking_question.required and len(question.value.strip()) == 0:
                 return CreateBooking(
                     ok=False,
-                    error=validation_error_to_graphene([(question.id, ['This field is required'])])
+                    error=validation_error_to_graphene(
+                        [(question.id, ["This field is required"])]
+                    ),
                 )
             seen_questions.append(str(question.id))
 
@@ -326,7 +394,9 @@ class CreateBooking(graphene.Mutation):
             if str(question.id) not in seen_questions:
                 return CreateBooking(
                     ok=False,
-                    error=validation_error_to_graphene([(question.id, ['This field is required'])])
+                    error=validation_error_to_graphene(
+                        [(question.id, ["This field is required"])]
+                    ),
                 )
 
         booking.save()
@@ -342,28 +412,36 @@ class CreateBooking(graphene.Mutation):
         subject = f"{name} has booked {booking_type.name}"
         tz = pytz.timezone(booking_type.timezone)
         time = time.astimezone(tz=tz).strftime("%I:%M%p %a %d %b %Y")
-        body = f"Name: {name}\r\n" \
-               f"Email: {email}\r\n" \
-               f"Phone: {phone}" \
-               f"\r\n\r\n---\r\n\r\n" \
-               f"{booking_type.name}\r\n" \
-               f"Time: {time}, {booking_type.timezone}\r\n" \
-               f"{questions_text}"
+        body = (
+            f"Name: {name}\r\n"
+            f"Email: {email}\r\n"
+            f"Phone: {phone}"
+            f"\r\n\r\n---\r\n\r\n"
+            f"{booking_type.name}\r\n"
+            f"Time: {time}, {booking_type.timezone}\r\n"
+            f"{questions_text}"
+        )
 
         config = SiteConfig.objects.first()
         recipients = [config.email]
-        send_mail(subject, body, 'noreply@noreply.louisemisellinteriors.co.uk', recipients)
+        send_mail(
+            subject, body, "noreply@noreply.louisemisellinteriors.co.uk", recipients
+        )
 
         subject = f"Confirmation of {booking_type.name} with Louise"
-        body = f"You have successfully booked a {booking_type.name} with Louise at {time} ({booking_type.timezone})" \
-               f"\r\n\r\n---\r\n\r\n" \
-               f"Name: {name}\r\n" \
-               f"Email: {email}\r\n" \
-               f"Phone: {phone}\r\n" \
-               f"{questions_text}"
+        body = (
+            f"You have successfully booked a {booking_type.name} with Louise at {time} ({booking_type.timezone})"
+            f"\r\n\r\n---\r\n\r\n"
+            f"Name: {name}\r\n"
+            f"Email: {email}\r\n"
+            f"Phone: {phone}\r\n"
+            f"{questions_text}"
+        )
 
         recipients = [email]
-        send_mail(subject, body, 'noreply@noreply.louisemisellinteriors.co.uk', recipients)
+        send_mail(
+            subject, body, "noreply@noreply.louisemisellinteriors.co.uk", recipients
+        )
 
         insert_booking_to_calendar(booking)
 
@@ -372,10 +450,7 @@ class CreateBooking(graphene.Mutation):
 
 class Query(graphene.ObjectType):
     booking_types = graphene.NonNull(graphene.List(graphene.NonNull(BookingType)))
-    booking_type = graphene.Field(
-        BookingType,
-        id=graphene.ID(required=True)
-    )
+    booking_type = graphene.Field(BookingType, id=graphene.ID(required=True))
 
     def resolve_booking_types(self, info):
         return models.BookingType.objects.all()

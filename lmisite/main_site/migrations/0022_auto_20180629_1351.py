@@ -5,34 +5,32 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0021_aboutsection_sub_heading'),
-    ]
+    dependencies = [("main_site", "0021_aboutsection_sub_heading")]
 
     operations = [
         migrations.AlterField(
-            model_name='aboutsectionimage',
-            name='image',
-            field=models.ImageField(blank=True, upload_to=''),
+            model_name="aboutsectionimage",
+            name="image",
+            field=models.ImageField(blank=True, upload_to=""),
         ),
         migrations.AlterField(
-            model_name='mainsliderimage',
-            name='image',
-            field=models.ImageField(blank=True, upload_to=''),
+            model_name="mainsliderimage",
+            name="image",
+            field=models.ImageField(blank=True, upload_to=""),
         ),
         migrations.AlterField(
-            model_name='projectafterimage',
-            name='image',
-            field=models.ImageField(blank=True, upload_to=''),
+            model_name="projectafterimage",
+            name="image",
+            field=models.ImageField(blank=True, upload_to=""),
         ),
         migrations.AlterField(
-            model_name='projectbeforeimage',
-            name='image',
-            field=models.ImageField(blank=True, upload_to=''),
+            model_name="projectbeforeimage",
+            name="image",
+            field=models.ImageField(blank=True, upload_to=""),
         ),
         migrations.AlterField(
-            model_name='testimonial',
-            name='image',
-            field=models.ImageField(blank=True, upload_to=''),
+            model_name="testimonial",
+            name="image",
+            field=models.ImageField(blank=True, upload_to=""),
         ),
     ]

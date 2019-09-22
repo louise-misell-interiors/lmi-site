@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0038_auto_20180816_1506'),
-    ]
+    dependencies = [("main_site", "0038_auto_20180816_1506")]
 
     operations = [
         migrations.AddField(
-            model_name='siteconfig',
-            name='about_description',
+            model_name="siteconfig",
+            name="about_description",
             field=models.TextField(blank=True),
-        ),
+        )
     ]

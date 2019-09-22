@@ -5,54 +5,52 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0022_auto_20180629_1351'),
-    ]
+    dependencies = [("main_site", "0022_auto_20180629_1351")]
 
     operations = [
         migrations.AlterField(
-            model_name='aboutsection',
-            name='order',
+            model_name="aboutsection",
+            name="order",
             field=models.PositiveIntegerField(blank=True, default=0),
         ),
         migrations.AlterField(
-            model_name='aboutsectionimage',
-            name='order',
+            model_name="aboutsectionimage",
+            name="order",
             field=models.PositiveIntegerField(blank=True, default=0),
         ),
         migrations.AlterField(
-            model_name='mainsliderimage',
-            name='order',
+            model_name="mainsliderimage",
+            name="order",
             field=models.PositiveIntegerField(blank=True, default=0),
         ),
         migrations.AlterField(
-            model_name='project',
-            name='order',
+            model_name="project",
+            name="order",
             field=models.PositiveIntegerField(blank=True, default=0),
         ),
         migrations.AlterField(
-            model_name='projectafterimage',
-            name='order',
+            model_name="projectafterimage",
+            name="order",
             field=models.PositiveIntegerField(blank=True, default=0),
         ),
         migrations.AlterField(
-            model_name='projectbeforeimage',
-            name='order',
+            model_name="projectbeforeimage",
+            name="order",
             field=models.PositiveIntegerField(blank=True, default=0),
         ),
         migrations.AlterField(
-            model_name='service',
-            name='order',
+            model_name="service",
+            name="order",
             field=models.PositiveIntegerField(blank=True, default=0),
         ),
         migrations.AlterField(
-            model_name='servicesummary',
-            name='order',
+            model_name="servicesummary",
+            name="order",
             field=models.PositiveIntegerField(blank=True, default=0),
         ),
         migrations.AlterField(
-            model_name='testimonial',
-            name='order',
+            model_name="testimonial",
+            name="order",
             field=models.PositiveIntegerField(blank=True, default=0),
         ),
     ]

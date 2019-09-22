@@ -6,27 +6,37 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0014_service'),
-    ]
+    dependencies = [("main_site", "0014_service")]
 
     operations = [
         migrations.CreateModel(
-            name='ServiceSummary',
+            name="ServiceSummary",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('text', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("text", models.CharField(max_length=255)),
             ],
         ),
         migrations.AddField(
-            model_name='service',
-            name='price',
-            field=models.CharField(default='', max_length=255),
+            model_name="service",
+            name="price",
+            field=models.CharField(default="", max_length=255),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='servicesummary',
-            name='service',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='service_summaries', to='main_site.Service'),
+            model_name="servicesummary",
+            name="service",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="service_summaries",
+                to="main_site.Service",
+            ),
         ),
     ]

@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0035_auto_20180729_1005'),
-    ]
+    dependencies = [("main_site", "0035_auto_20180729_1005")]
 
     operations = [
         migrations.AddField(
-            model_name='siteconfig',
-            name='twitter_url',
-            field=models.URLField(blank=True, default=''),
-        ),
+            model_name="siteconfig",
+            name="twitter_url",
+            field=models.URLField(blank=True, default=""),
+        )
     ]

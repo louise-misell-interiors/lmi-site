@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0016_config_google_credentials'),
-    ]
+    dependencies = [("bookings", "0016_config_google_credentials")]
 
     operations = [
         migrations.AlterField(
-            model_name='bookingrule',
-            name='end_date',
+            model_name="bookingrule",
+            name="end_date",
             field=models.DateField(blank=True, null=True),
-        ),
+        )
     ]

@@ -5,23 +5,18 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0023_auto_20180629_1356'),
-    ]
+    dependencies = [("main_site", "0023_auto_20180629_1356")]
 
     operations = [
-        migrations.RemoveField(
-            model_name='aboutsection',
-            name='sub_heading',
+        migrations.RemoveField(model_name="aboutsection", name="sub_heading"),
+        migrations.AddField(
+            model_name="siteconfig",
+            name="privacy_policy",
+            field=models.FileField(blank=True, upload_to=""),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='privacy_policy',
-            field=models.FileField(blank=True, upload_to=''),
-        ),
-        migrations.AddField(
-            model_name='siteconfig',
-            name='terms_and_conditions',
-            field=models.FileField(blank=True, upload_to=''),
+            model_name="siteconfig",
+            name="terms_and_conditions",
+            field=models.FileField(blank=True, upload_to=""),
         ),
     ]

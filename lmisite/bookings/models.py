@@ -24,7 +24,7 @@ class BookingType(models.Model):
     timezone = models.CharField(max_length=255, default="Europe/London")
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
     def clean(self):
         try:
@@ -43,7 +43,9 @@ class BookingType(models.Model):
 
 
 class BookingRule(models.Model):
-    type = models.ForeignKey(BookingType, related_name='booking_rules', on_delete=models.CASCADE)
+    type = models.ForeignKey(
+        BookingType, related_name="booking_rules", on_delete=models.CASCADE
+    )
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     start_time = models.TimeField(default=datetime.time())
@@ -68,20 +70,19 @@ class BookingRule(models.Model):
         return self.end_date is None
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
 
 class BookingQuestion(models.Model):
-    type = models.ForeignKey(BookingType, related_name='booking_questions', on_delete=models.CASCADE)
+    type = models.ForeignKey(
+        BookingType, related_name="booking_questions", on_delete=models.CASCADE
+    )
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     question = models.CharField(max_length=255)
     required = models.BooleanField()
 
-    TYPES = (
-        ("T", "One Line"),
-        ("M", "Multi-line"),
-    )
+    TYPES = (("T", "One Line"), ("M", "Multi-line"))
 
     question_type = models.CharField(max_length=1, choices=TYPES)
 
@@ -89,7 +90,7 @@ class BookingQuestion(models.Model):
         return self.question
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
 
 class Customer(models.Model):
@@ -102,8 +103,12 @@ class Customer(models.Model):
 
 
 class Booking(models.Model):
-    type = models.ForeignKey(BookingType, related_name='bookings', on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, related_name='bookings', on_delete=models.CASCADE)
+    type = models.ForeignKey(
+        BookingType, related_name="bookings", on_delete=models.CASCADE
+    )
+    customer = models.ForeignKey(
+        Customer, related_name="bookings", on_delete=models.CASCADE
+    )
     time = models.DateTimeField()
 
     def __str__(self):
@@ -111,8 +116,12 @@ class Booking(models.Model):
 
 
 class BookingQuestionAnswer(models.Model):
-    booking = models.ForeignKey(Booking, related_name='booking_question_answers', on_delete=models.CASCADE)
-    question = models.ForeignKey(BookingQuestion, related_name='answers', on_delete=models.CASCADE)
+    booking = models.ForeignKey(
+        Booking, related_name="booking_question_answers", on_delete=models.CASCADE
+    )
+    question = models.ForeignKey(
+        BookingQuestion, related_name="answers", on_delete=models.CASCADE
+    )
 
     answer = models.TextField()
 

@@ -6,72 +6,108 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0007_auto_20180506_1750'),
-    ]
+    dependencies = [("main_site", "0007_auto_20180506_1750")]
 
     operations = [
         migrations.CreateModel(
-            name='Project',
+            name="Project",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='ProjectAfterImage',
+            name="ProjectAfterImage",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='')),
-                ('property', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='after_images', to='main_site.Project')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="")),
+                (
+                    "property",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="after_images",
+                        to="main_site.Project",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='ProjectBeforeImage',
+            name="ProjectBeforeImage",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='')),
-                ('property', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='before_images', to='main_site.Project')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="")),
+                (
+                    "property",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="before_images",
+                        to="main_site.Project",
+                    ),
+                ),
             ],
         ),
         migrations.AlterField(
-            model_name='mainsliderimage',
-            name='name',
-            field=models.CharField(blank=True, default='', max_length=255),
+            model_name="mainsliderimage",
+            name="name",
+            field=models.CharField(blank=True, default="", max_length=255),
         ),
         migrations.AlterField(
-            model_name='siteconfig',
-            name='facebook_url',
-            field=models.URLField(blank=True, default=''),
+            model_name="siteconfig",
+            name="facebook_url",
+            field=models.URLField(blank=True, default=""),
         ),
         migrations.AlterField(
-            model_name='siteconfig',
-            name='houzz_url',
-            field=models.URLField(blank=True, default=''),
+            model_name="siteconfig",
+            name="houzz_url",
+            field=models.URLField(blank=True, default=""),
         ),
         migrations.AlterField(
-            model_name='siteconfig',
-            name='instagram_url',
-            field=models.URLField(blank=True, default=''),
+            model_name="siteconfig",
+            name="instagram_url",
+            field=models.URLField(blank=True, default=""),
         ),
         migrations.AlterField(
-            model_name='siteconfig',
-            name='linkedin_url',
-            field=models.URLField(blank=True, default=''),
+            model_name="siteconfig",
+            name="linkedin_url",
+            field=models.URLField(blank=True, default=""),
         ),
         migrations.AlterField(
-            model_name='siteconfig',
-            name='pintrest_url',
-            field=models.URLField(blank=True, default=''),
+            model_name="siteconfig",
+            name="pintrest_url",
+            field=models.URLField(blank=True, default=""),
         ),
         migrations.AlterField(
-            model_name='testimonial',
-            name='client',
-            field=models.CharField(blank=True, default='', max_length=255),
+            model_name="testimonial",
+            name="client",
+            field=models.CharField(blank=True, default="", max_length=255),
         ),
         migrations.AlterField(
-            model_name='testimonial',
-            name='text',
-            field=models.TextField(blank=True, default=''),
+            model_name="testimonial",
+            name="text",
+            field=models.TextField(blank=True, default=""),
         ),
     ]

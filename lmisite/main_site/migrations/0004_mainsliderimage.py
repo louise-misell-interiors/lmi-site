@@ -5,17 +5,23 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0003_testimonial_featured'),
-    ]
+    dependencies = [("main_site", "0003_testimonial_featured")]
 
     operations = [
         migrations.CreateModel(
-            name='MainSliderImage',
+            name="MainSliderImage",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('image', models.ImageField(upload_to='')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("image", models.ImageField(upload_to="")),
             ],
-        ),
+        )
     ]

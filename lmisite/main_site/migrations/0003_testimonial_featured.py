@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0002_auto_20180506_1256'),
-    ]
+    dependencies = [("main_site", "0002_auto_20180506_1256")]
 
     operations = [
         migrations.AddField(
-            model_name='testimonial',
-            name='featured',
+            model_name="testimonial",
+            name="featured",
             field=models.BooleanField(default=False),
-        ),
+        )
     ]

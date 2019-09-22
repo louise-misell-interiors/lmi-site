@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0009_auto_20180703_1846'),
-    ]
+    dependencies = [("bookings", "0009_auto_20180703_1846")]
 
     operations = [
         migrations.AddField(
-            model_name='bookingtype',
-            name='timezone',
-            field=models.CharField(default='Europe/London', max_length=255),
-        ),
+            model_name="bookingtype",
+            name="timezone",
+            field=models.CharField(default="Europe/London", max_length=255),
+        )
     ]

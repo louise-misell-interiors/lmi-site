@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0047_auto_20190127_1226'),
-    ]
+    dependencies = [("main_site", "0047_auto_20190127_1226")]
 
     operations = [
         migrations.AddField(
-            model_name='designinsiderpost',
-            name='order',
+            model_name="designinsiderpost",
+            name="order",
             field=models.PositiveIntegerField(blank=True, default=0),
-        ),
+        )
     ]

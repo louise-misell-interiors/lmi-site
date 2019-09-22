@@ -5,39 +5,37 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0027_auto_20180701_1038'),
-    ]
+    dependencies = [("main_site", "0027_auto_20180701_1038")]
 
     operations = [
         migrations.AddField(
-            model_name='aboutsectionimage',
-            name='alt_text',
+            model_name="aboutsectionimage",
+            name="alt_text",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='mainsliderimage',
-            name='alt_text',
+            model_name="mainsliderimage",
+            name="alt_text",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='project',
-            name='image_alt_text',
+            model_name="project",
+            name="image_alt_text",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='projectafterimage',
-            name='alt_text',
+            model_name="projectafterimage",
+            name="alt_text",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='projectbeforeimage',
-            name='alt_text',
+            model_name="projectbeforeimage",
+            name="alt_text",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='testimonial',
-            name='image_alt_text',
+            model_name="testimonial",
+            name="image_alt_text",
             field=models.CharField(blank=True, max_length=255),
         ),
     ]

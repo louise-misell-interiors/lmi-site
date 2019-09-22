@@ -11,16 +11,24 @@ from ckeditor_uploader.fields import RichTextUploadingField
 def compress_img(image, new_width=1500):
     if bool(image) and image.file is not None and isinstance(image.file, UploadedFile):
         img = Img.open(io.BytesIO(image.read()))
-        img.thumbnail((new_width, new_width * image.height / image.width), Img.ANTIALIAS)
+        img.thumbnail(
+            (new_width, new_width * image.height / image.width), Img.ANTIALIAS
+        )
         output = io.BytesIO()
-        if img.mode == 'RGBA':
+        if img.mode == "RGBA":
             background = Img.new("RGB", image.size, (255, 255, 255))
             background.paste(img, img.split()[-1])
             img = background
-        img.save(output, format='JPEG', quality=80, optimise=True)
+        img.save(output, format="JPEG", quality=80, optimise=True)
         output.seek(0)
-        return InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % image.name.split('.')[0], 'image/jpeg',
-                                    len(output.getvalue()), None)
+        return InMemoryUploadedFile(
+            output,
+            "ImageField",
+            "%s.jpg" % image.name.split(".")[0],
+            "image/jpeg",
+            len(output.getvalue()),
+            None,
+        )
     else:
         return image
 
@@ -46,9 +54,12 @@ class SiteConfig(SingletonModel):
     privacy_policy = models.FileField(blank=True)
     terms_and_conditions = models.FileField(blank=True)
 
-    image_slider_speed = models.PositiveIntegerField(default=5000, verbose_name="Home page image slider speed (ms)")
-    testimonials_slider_speed = \
-        models.PositiveIntegerField(default=10000, verbose_name="Home page testimonials slider speed (ms)")
+    image_slider_speed = models.PositiveIntegerField(
+        default=5000, verbose_name="Home page image slider speed (ms)"
+    )
+    testimonials_slider_speed = models.PositiveIntegerField(
+        default=10000, verbose_name="Home page testimonials slider speed (ms)"
+    )
 
     price_range = models.CharField(max_length=255, blank=True)
 
@@ -88,7 +99,7 @@ class MainSliderImage(models.Model):
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
     def save(self, *args, **kwargs):
         self.image = compress_img(self.image)
@@ -101,12 +112,9 @@ class MainSliderImage(models.Model):
 class Service(models.Model):
     draft = models.BooleanField(default=False)
     name = models.CharField(max_length=255)
-    MAIN = 'M'
-    OTHER = 'O'
-    TYPES = (
-        (MAIN, "Main"),
-        (OTHER, "Other")
-    )
+    MAIN = "M"
+    OTHER = "O"
+    TYPES = ((MAIN, "Main"), (OTHER, "Other"))
     type = models.CharField(max_length=1, choices=TYPES, default=MAIN)
     icon = models.CharField(max_length=255)
     description = models.TextField(blank=True)
@@ -114,7 +122,7 @@ class Service(models.Model):
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
     def __str__(self):
         return self.name
@@ -123,9 +131,11 @@ class Service(models.Model):
 class ServiceSummary(models.Model):
     class Meta:
         verbose_name_plural = "Serivce Summaries"
-        ordering = ['order']
+        ordering = ["order"]
 
-    service = models.ForeignKey(Service, related_name="service_summaries", on_delete=models.CASCADE)
+    service = models.ForeignKey(
+        Service, related_name="service_summaries", on_delete=models.CASCADE
+    )
     text = models.CharField(max_length=255)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
@@ -143,7 +153,7 @@ class Project(models.Model):
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
     def save(self, *args, **kwargs):
         self.image = compress_img(self.image)
@@ -154,13 +164,15 @@ class Project(models.Model):
 
 
 class ProjectBeforeImage(models.Model):
-    project = models.ForeignKey(Project, related_name='before_images', on_delete=models.CASCADE)
+    project = models.ForeignKey(
+        Project, related_name="before_images", on_delete=models.CASCADE
+    )
     image = models.ImageField(blank=True)
     alt_text = models.CharField(max_length=255, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
     def save(self, *args, **kwargs):
         self.image = compress_img(self.image)
@@ -168,13 +180,15 @@ class ProjectBeforeImage(models.Model):
 
 
 class ProjectAfterImage(models.Model):
-    project = models.ForeignKey(Project, related_name='after_images', on_delete=models.CASCADE)
+    project = models.ForeignKey(
+        Project, related_name="after_images", on_delete=models.CASCADE
+    )
     image = models.ImageField(blank=True)
     alt_text = models.CharField(max_length=255, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
     def save(self, *args, **kwargs):
         self.image = compress_img(self.image)
@@ -189,20 +203,22 @@ class AboutSection(models.Model):
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
     def __str__(self):
         return self.name
 
 
 class AboutSectionImage(models.Model):
-    section = models.ForeignKey(AboutSection, related_name='images', on_delete=models.CASCADE)
+    section = models.ForeignKey(
+        AboutSection, related_name="images", on_delete=models.CASCADE
+    )
     image = models.ImageField(blank=True)
     alt_text = models.CharField(max_length=255, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
     def save(self, *args, **kwargs):
         self.image = compress_img(self.image)
@@ -216,12 +232,16 @@ class Testimonial(models.Model):
     image_alt_text = models.CharField(max_length=255, blank=True)
     client = models.CharField(max_length=255)
     featured = models.BooleanField(default=False, verbose_name="Featured on home page")
-    not_on_testimonials = models.BooleanField(default=False, verbose_name="Not displayed on testimonials page")
+    not_on_testimonials = models.BooleanField(
+        default=False, verbose_name="Not displayed on testimonials page"
+    )
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
-    related_project = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=True, null=True)
+    related_project = models.ForeignKey(
+        Project, on_delete=models.DO_NOTHING, blank=True, null=True
+    )
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
     def save(self, *args, **kwargs):
         self.image = compress_img(self.image)
@@ -236,13 +256,15 @@ class DesignInsiderPost(models.Model):
     title = models.CharField(max_length=255)
     date = models.DateField()
     image = models.ImageField(blank=True)
-    image_alt = models.CharField(verbose_name="Image alt text", max_length=255, blank=True)
+    image_alt = models.CharField(
+        verbose_name="Image alt text", max_length=255, blank=True
+    )
     summary = models.TextField(blank=True)
     content = RichTextUploadingField(blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
     def save(self, *args, **kwargs):
         self.image = compress_img(self.image)
@@ -259,8 +281,8 @@ class ShortPost(models.Model):
     content = RichTextUploadingField(blank=True)
 
     class Meta:
-        get_latest_by = ['-date']
-        ordering = ['-date']
+        get_latest_by = ["-date"]
+        ordering = ["-date"]
 
     def __str__(self):
         return self.title

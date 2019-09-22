@@ -6,29 +6,27 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0005_auto_20180703_1744'),
-    ]
+    dependencies = [("bookings", "0005_auto_20180703_1744")]
 
     operations = [
         migrations.AlterField(
-            model_name='bookingtype',
-            name='buffer_after_event',
+            model_name="bookingtype",
+            name="buffer_after_event",
             field=models.DurationField(default=datetime.timedelta(0)),
         ),
         migrations.AlterField(
-            model_name='bookingtype',
-            name='buffer_before_event',
+            model_name="bookingtype",
+            name="buffer_before_event",
             field=models.DurationField(default=datetime.timedelta(0)),
         ),
         migrations.AlterField(
-            model_name='bookingtype',
-            name='minimum_scheduling_notice',
+            model_name="bookingtype",
+            name="minimum_scheduling_notice",
             field=models.DurationField(default=datetime.timedelta(0)),
         ),
         migrations.AlterField(
-            model_name='bookingtype',
-            name='scheduling_frequency',
+            model_name="bookingtype",
+            name="scheduling_frequency",
             field=models.DurationField(default=datetime.timedelta(0, 30)),
         ),
     ]

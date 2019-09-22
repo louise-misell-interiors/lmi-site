@@ -5,49 +5,45 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0036_siteconfig_twitter_url'),
-    ]
+    dependencies = [("main_site", "0036_siteconfig_twitter_url")]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='meta_description',
+            model_name="project",
+            name="meta_description",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='about_description',
+            model_name="siteconfig",
+            name="about_description",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='blog_description',
+            model_name="siteconfig",
+            name="blog_description",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='contact_description',
+            model_name="siteconfig",
+            name="contact_description",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='home_description',
+            model_name="siteconfig",
+            name="home_description",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='portfolio_description',
+            model_name="siteconfig",
+            name="portfolio_description",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='services_description',
+            model_name="siteconfig",
+            name="services_description",
             field=models.TextField(blank=True),
         ),
         migrations.AlterField(
-            model_name='service',
-            name='description',
-            field=models.TextField(blank=True),
+            model_name="service", name="description", field=models.TextField(blank=True)
         ),
     ]

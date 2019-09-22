@@ -5,18 +5,15 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0002_auto_20180703_1633'),
-    ]
+    dependencies = [("bookings", "0002_auto_20180703_1633")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='bookingrule',
-            options={'ordering': ['order']},
+            name="bookingrule", options={"ordering": ["order"]}
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='order',
+            model_name="bookingrule",
+            name="order",
             field=models.PositiveIntegerField(blank=True, default=0),
         ),
     ]

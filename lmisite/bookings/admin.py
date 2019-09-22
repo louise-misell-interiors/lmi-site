@@ -7,29 +7,23 @@ from .forms import *
 class BookingRuleInline(SortableInlineAdminMixin, admin.StackedInline):
     model = BookingRule
     fields = (
-        ('start_time', 'end_time'),
-        ('start_date', 'end_date'),
-        ('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'),
+        ("start_time", "end_time"),
+        ("start_date", "end_date"),
+        ("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"),
     )
     extra = 1
 
 
 class BookingQuestionInline(SortableInlineAdminMixin, admin.StackedInline):
     model = BookingQuestion
-    fields = (
-        ('question',),
-        ('question_type', 'required'),
-    )
+    fields = (("question",), ("question_type", "required"))
     extra = 1
 
 
 class BookingQuestionAnswerInline(admin.StackedInline):
     model = BookingQuestionAnswer
-    fields = (
-        ('question',),
-        ('answer',),
-    )
-    readonly_fields = ('question',)
+    fields = (("question",), ("answer",))
+    readonly_fields = ("question",)
     extra = 0
     max_num = 0
 

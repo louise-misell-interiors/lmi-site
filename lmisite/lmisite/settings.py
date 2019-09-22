@@ -17,8 +17,8 @@ from sentry_sdk.integrations.django import DjangoIntegration
 
 sentry_sdk.init(
     dsn="https://fdf3135c01e54a718279048ed654cebd@sentry.io/1370205",
-    integrations=[DjangoIntegration(transaction_style='url')],
-    send_default_pii=True
+    integrations=[DjangoIntegration(transaction_style="url")],
+    send_default_pii=True,
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qt-d9(74_5==&jku1kr&jh_tmeal+p)&s(lv30^7mpobfoch)v'
+SECRET_KEY = "qt-d9(74_5==&jku1kr&jh_tmeal+p)&s(lv30^7mpobfoch)v"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -38,68 +38,68 @@ ALLOWED_HOSTS = ["www.louisemisellinteriors.co.uk", "louisemisellinteriors.co.uk
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'solo.apps.SoloAppConfig',
-    'phonenumber_field',
-    'adminsortable2',
-    'main_site',
-    'bookings',
-    'graphene_django',
-    'django.contrib.sitemaps',
-    'ckeditor',
-    'ckeditor_uploader',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "solo.apps.SoloAppConfig",
+    "phonenumber_field",
+    "adminsortable2",
+    "main_site",
+    "bookings",
+    "graphene_django",
+    "django.contrib.sitemaps",
+    "ckeditor",
+    "ckeditor_uploader",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMidd emaileware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'lmisite.urls'
+ROOT_URLCONF = "lmisite.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'main_site.context_processor.config_processor'
-            ],
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "main_site.context_processor.config_processor",
+            ]
         },
-    },
+    }
 ]
 
-WSGI_APPLICATION = 'lmisite.wsgi.application'
+WSGI_APPLICATION = "lmisite.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 with open(os.path.join(BASE_DIR, "db_pass")) as f:
-  db_pass = f.read()
+    db_pass = f.read()
 
 DATABASES = {
-    'default': {
-        'NAME': os.getenv('DB_NAME', 'lmisite'),
-        'USER': os.getenv('DB_USER', 'lmisite'),
-        'PASSWORD': os.getenv('DB_PASS', db_pass),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'ENGINE': 'django.db.backends.mysql',
-        'PORT': '',
+    "default": {
+        "NAME": os.getenv("DB_NAME", "lmisite"),
+        "USER": os.getenv("DB_USER", "lmisite"),
+        "PASSWORD": os.getenv("DB_PASS", db_pass),
+        "HOST": os.getenv("DB_HOST", "localhost"),
+        "ENGINE": "django.db.backends.mysql",
+        "PORT": "",
     }
 }
 
@@ -108,25 +108,19 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-gb'
+LANGUAGE_CODE = "en-gb"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -138,60 +132,50 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = '/media/'
+MEDIA_URL = "/media/"
 
-PHONENUMBER_DEFAULT_REGION = 'GB'
+PHONENUMBER_DEFAULT_REGION = "GB"
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '[django] %(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "[django] %(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s"
         }
     },
-    'handlers': {
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'formatter': 'verbose'
-        },
+    "handlers": {
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+            "formatter": "verbose",
+        }
     },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'INFO',
-            'propagate': True,
-        },
+    "loggers": {
+        "django": {"handlers": ["console"], "level": "INFO", "propagate": True}
     },
 }
 
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.misell.cymru'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "mail.misell.cymru"
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'noreply@noreply.louisemisellinteriors.co.uk'
-EMAIL_HOST_PASSWORD = '7fpB4892fQ7EFDX9aNPY5HZ3jur#Mz3Y'
+EMAIL_HOST_USER = "noreply@noreply.louisemisellinteriors.co.uk"
+EMAIL_HOST_PASSWORD = "7fpB4892fQ7EFDX9aNPY5HZ3jur#Mz3Y"
 EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = "noreply@noreply.louisemisellinteriors.co.uk"
 
 
-GRAPHENE = {
-    'SCHEMA': 'bookings.schema.schema'
-}
+GRAPHENE = {"SCHEMA": "bookings.schema.schema"}
 
 CKEDITOR_UPLOAD_PATH = ""
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_BROWSE_SHOW_DIRS = True
 
 
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'full',
-        'width': 1200,
-    },
-}
+CKEDITOR_CONFIGS = {"default": {"toolbar": "full", "width": 1200}}

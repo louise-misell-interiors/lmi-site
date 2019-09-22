@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0018_auto_20180507_0936'),
-    ]
+    dependencies = [("main_site", "0018_auto_20180507_0936")]
 
     operations = [
         migrations.AddField(
-            model_name='siteconfig',
-            name='calendly_url',
+            model_name="siteconfig",
+            name="calendly_url",
             field=models.CharField(blank=True, max_length=255),
-        ),
+        )
     ]

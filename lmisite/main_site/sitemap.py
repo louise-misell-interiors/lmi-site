@@ -18,21 +18,22 @@ class ImageSitemap(Sitemap):
         latest_lastmod = None
         all_items_lastmod = True  # track if all items have a lastmod
         for item in self.paginator.page(page).object_list:
-            loc = "%s://%s%s" % (protocol, domain, self.__get('location', item))
-            priority = self.__get('priority', item)
-            lastmod = self.__get('lastmod', item)
+            loc = "%s://%s%s" % (protocol, domain, self.__get("location", item))
+            priority = self.__get("priority", item)
+            lastmod = self.__get("lastmod", item)
             if all_items_lastmod:
                 all_items_lastmod = lastmod is not None
-                if (all_items_lastmod and
-                        (latest_lastmod is None or lastmod > latest_lastmod)):
+                if all_items_lastmod and (
+                    latest_lastmod is None or lastmod > latest_lastmod
+                ):
                     latest_lastmod = lastmod
             url_info = {
-                'item': item,
-                'location': loc,
-                'lastmod': lastmod,
-                'changefreq': self.__get('changefreq', item),
-                'priority': str(priority if priority is not None else ''),
-                'images': self.get_image(protocol, domain, item),
+                "item": item,
+                "location": loc,
+                "lastmod": lastmod,
+                "changefreq": self.__get("changefreq", item),
+                "priority": str(priority if priority is not None else ""),
+                "images": self.get_image(protocol, domain, item),
             }
             urls.append(url_info)
         if all_items_lastmod and latest_lastmod:
@@ -48,20 +49,24 @@ class ProjectSitemap(ImageSitemap):
         return Project.objects.filter(draft=False)
 
     def location(self, obj):
-        return reverse('project', kwargs={'id': obj.id})
+        return reverse("project", kwargs={"id": obj.id})
 
     def get_image(self, protocol, domain, item):
         imgs = []
         for img in item.before_images.all():
-            imgs.append({
-                "loc": "%s://%s%s" % (protocol, domain, img.image.url),
-                "caption": img.alt_text
-            })
+            imgs.append(
+                {
+                    "loc": "%s://%s%s" % (protocol, domain, img.image.url),
+                    "caption": img.alt_text,
+                }
+            )
         for img in item.after_images.all():
-            imgs.append({
-                "loc":  "%s://%s%s" % (protocol, domain, img.image.url),
-                "caption": img.alt_text
-            })
+            imgs.append(
+                {
+                    "loc": "%s://%s%s" % (protocol, domain, img.image.url),
+                    "caption": img.alt_text,
+                }
+            )
         return imgs
 
 
@@ -70,20 +75,18 @@ class DesignInsiderSitemap(ImageSitemap):
         return DesignInsiderPost.objects.filter(draft=False)
 
     def location(self, obj):
-        return reverse('design_insider_post', kwargs={'id': obj.id})
+        return reverse("design_insider_post", kwargs={"id": obj.id})
 
     def get_image(self, protocol, domain, item):
         imgs = []
         if item.image:
-            imgs.append({
-                "loc": "%s://%s%s" % (protocol, domain, item.image.url)
-            })
+            imgs.append({"loc": "%s://%s%s" % (protocol, domain, item.image.url)})
         return imgs
 
 
 class TestimonialSitemap(ImageSitemap):
     def items(self):
-        return ['testimonials']
+        return ["testimonials"]
 
     def location(self, obj):
         return reverse(obj)
@@ -92,16 +95,18 @@ class TestimonialSitemap(ImageSitemap):
         imgs = []
         for testimonial in Testimonial.objects.filter(draft=False):
             if testimonial.image:
-                imgs.append({
-                    "loc": "%s://%s%s" % (protocol, domain, testimonial.image.url),
-                    "caption": testimonial.image_alt_text
-                })
+                imgs.append(
+                    {
+                        "loc": "%s://%s%s" % (protocol, domain, testimonial.image.url),
+                        "caption": testimonial.image_alt_text,
+                    }
+                )
         return imgs
 
 
 class AboutSitemap(ImageSitemap):
     def items(self):
-        return ['about']
+        return ["about"]
 
     def location(self, obj):
         return reverse(obj)
@@ -110,16 +115,19 @@ class AboutSitemap(ImageSitemap):
         imgs = []
         for about_section in AboutSectionImage.objects.filter(section__draft=False):
             if about_section.image:
-                imgs.append({
-                    "loc": "%s://%s%s" % (protocol, domain, about_section.image.url),
-                    "caption": about_section.alt_text
-                })
+                imgs.append(
+                    {
+                        "loc": "%s://%s%s"
+                        % (protocol, domain, about_section.image.url),
+                        "caption": about_section.alt_text,
+                    }
+                )
         return imgs
 
 
 class PortfolioSitemap(ImageSitemap):
     def items(self):
-        return ['portfolio']
+        return ["portfolio"]
 
     def location(self, obj):
         return reverse(obj)
@@ -128,16 +136,18 @@ class PortfolioSitemap(ImageSitemap):
         imgs = []
         for project in Project.objects.filter(draft=False):
             if project.image:
-                imgs.append({
-                    "loc": "%s://%s%s" % (protocol, domain, project.image.url),
-                    "caption": project.image_alt_text
-                })
+                imgs.append(
+                    {
+                        "loc": "%s://%s%s" % (protocol, domain, project.image.url),
+                        "caption": project.image_alt_text,
+                    }
+                )
         return imgs
 
 
 class StaticViewSitemap(Sitemap):
     def items(self):
-        return ['services', 'contact', 'design_insider']
+        return ["services", "contact", "design_insider"]
 
     def location(self, item):
         return reverse(item)

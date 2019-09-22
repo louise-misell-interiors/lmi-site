@@ -5,15 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0015_remove_config_test'),
-    ]
+    dependencies = [("bookings", "0015_remove_config_test")]
 
     operations = [
         migrations.AddField(
-            model_name='config',
-            name='google_credentials',
-            field=models.TextField(default=''),
+            model_name="config",
+            name="google_credentials",
+            field=models.TextField(default=""),
             preserve_default=False,
-        ),
+        )
     ]

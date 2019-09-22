@@ -6,19 +6,21 @@ import phonenumber_field.modelfields
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0012_auto_20180506_1914'),
-    ]
+    dependencies = [("main_site", "0012_auto_20180506_1914")]
 
     operations = [
         migrations.AlterField(
-            model_name='siteconfig',
-            name='mobile',
-            field=phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=128),
+            model_name="siteconfig",
+            name="mobile",
+            field=phonenumber_field.modelfields.PhoneNumberField(
+                blank=True, max_length=128
+            ),
         ),
         migrations.AlterField(
-            model_name='siteconfig',
-            name='phone',
-            field=phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=128),
+            model_name="siteconfig",
+            name="phone",
+            field=phonenumber_field.modelfields.PhoneNumberField(
+                blank=True, max_length=128
+            ),
         ),
     ]

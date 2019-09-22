@@ -12,11 +12,18 @@ def get_user_feed():
     if config.facebook_page_id is None or config.facebook_page_id == "":
         return []
 
-    r = requests.get(f"https://graph.facebook.com/v3.3/{config.facebook_page_id}?fields=instagram_business_account"
-                     f"{{name,media{{media_type,media_url,permalink,caption}}}}", params={"access_token": creds})
-    r.raise_for_status()
-    media = r.json()["instagram_business_account"]["media"]["data"]
+    r = requests.get(
+        f"https://graph.facebook.com/v3.3/{config.facebook_page_id}?fields=instagram_business_account"
+        f"{{name,media{{media_type,media_url,permalink,caption}}}}",
+        params={"access_token": creds},
+    )
+    if r.status_code == 200:
+        media = r.json()["instagram_business_account"]["media"]["data"]
 
-    media = list(filter(lambda m: m["media_type"] in ("IMAGE", "CAROUSEL_ALBUM"), media))
+        media = list(
+            filter(lambda m: m["media_type"] in ("IMAGE", "CAROUSEL_ALBUM"), media)
+        )
 
-    return media
+        return media
+    else:
+        return []

@@ -7,89 +7,87 @@ import django.utils.timezone
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0003_auto_20180703_1634'),
-    ]
+    dependencies = [("bookings", "0003_auto_20180703_1634")]
 
     operations = [
         migrations.AddField(
-            model_name='bookingrule',
-            name='end_date',
+            model_name="bookingrule",
+            name="end_date",
             field=models.DateField(blank=True, default=django.utils.timezone.now),
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='end_time',
+            model_name="bookingrule",
+            name="end_time",
             field=models.TimeField(default=datetime.time(0, 0)),
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='friday',
+            model_name="bookingrule",
+            name="friday",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='monday',
+            model_name="bookingrule",
+            name="monday",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='recurring',
+            model_name="bookingrule",
+            name="recurring",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='saturday',
+            model_name="bookingrule",
+            name="saturday",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='start_date',
+            model_name="bookingrule",
+            name="start_date",
             field=models.DateField(default=django.utils.timezone.now),
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='start_time',
+            model_name="bookingrule",
+            name="start_time",
             field=models.TimeField(default=datetime.time(0, 0)),
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='sunday',
+            model_name="bookingrule",
+            name="sunday",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='thursday',
+            model_name="bookingrule",
+            name="thursday",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='tuesday',
+            model_name="bookingrule",
+            name="tuesday",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='bookingrule',
-            name='wednesday',
+            model_name="bookingrule",
+            name="wednesday",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='bookingtype',
-            name='buffer_after_event',
+            model_name="bookingtype",
+            name="buffer_after_event",
             field=models.TimeField(default=datetime.time(0, 0)),
         ),
         migrations.AddField(
-            model_name='bookingtype',
-            name='buffer_before_event',
+            model_name="bookingtype",
+            name="buffer_before_event",
             field=models.TimeField(default=datetime.time(0, 0)),
         ),
         migrations.AddField(
-            model_name='bookingtype',
-            name='max_events_per_day',
+            model_name="bookingtype",
+            name="max_events_per_day",
             field=models.PositiveIntegerField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='bookingtype',
-            name='minimum_scheduling_notice',
+            model_name="bookingtype",
+            name="minimum_scheduling_notice",
             field=models.TimeField(default=datetime.time(0, 0)),
         ),
     ]

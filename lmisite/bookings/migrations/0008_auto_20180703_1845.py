@@ -5,34 +5,32 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0007_auto_20180703_1821'),
-    ]
+    dependencies = [("bookings", "0007_auto_20180703_1821")]
 
     operations = [
         migrations.AlterField(
-            model_name='bookingrule',
-            name='friday',
+            model_name="bookingrule",
+            name="friday",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='bookingrule',
-            name='monday',
+            model_name="bookingrule",
+            name="monday",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='bookingrule',
-            name='thursday',
+            model_name="bookingrule",
+            name="thursday",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='bookingrule',
-            name='tuesday',
+            model_name="bookingrule",
+            name="tuesday",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='bookingrule',
-            name='wednesday',
+            model_name="bookingrule",
+            name="wednesday",
             field=models.BooleanField(default=False),
         ),
     ]

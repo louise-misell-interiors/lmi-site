@@ -6,14 +6,17 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0028_auto_20180701_1057'),
-    ]
+    dependencies = [("main_site", "0028_auto_20180701_1057")]
 
     operations = [
         migrations.AddField(
-            model_name='testimonial',
-            name='related_project',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='main_site.Project'),
-        ),
+            model_name="testimonial",
+            name="related_project",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                to="main_site.Project",
+            ),
+        )
     ]

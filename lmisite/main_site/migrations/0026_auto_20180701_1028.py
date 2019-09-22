@@ -5,19 +5,21 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0025_auto_20180701_1026'),
-    ]
+    dependencies = [("main_site", "0025_auto_20180701_1026")]
 
     operations = [
         migrations.AddField(
-            model_name='siteconfig',
-            name='image_slider_speed',
-            field=models.PositiveIntegerField(default=5000, verbose_name='Home page image slider speed (ms)'),
+            model_name="siteconfig",
+            name="image_slider_speed",
+            field=models.PositiveIntegerField(
+                default=5000, verbose_name="Home page image slider speed (ms)"
+            ),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='testimonials_slider_speed',
-            field=models.PositiveIntegerField(default=10000, verbose_name='Home page testimonials slider speed (ms)'),
+            model_name="siteconfig",
+            name="testimonials_slider_speed",
+            field=models.PositiveIntegerField(
+                default=10000, verbose_name="Home page testimonials slider speed (ms)"
+            ),
         ),
     ]

@@ -5,19 +5,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0046_newsletterentry'),
-    ]
+    dependencies = [("main_site", "0046_newsletterentry")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='newsletterentry',
-            options={'verbose_name_plural': 'Newsletter entries'},
+            name="newsletterentry",
+            options={"verbose_name_plural": "Newsletter entries"},
         ),
         migrations.AddField(
-            model_name='newsletterentry',
-            name='name',
-            field=models.CharField(default='', max_length=255),
+            model_name="newsletterentry",
+            name="name",
+            field=models.CharField(default="", max_length=255),
             preserve_default=False,
         ),
     ]

@@ -5,13 +5,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0014_config'),
-    ]
+    dependencies = [("bookings", "0014_config")]
 
-    operations = [
-        migrations.RemoveField(
-            model_name='config',
-            name='test',
-        ),
-    ]
+    operations = [migrations.RemoveField(model_name="config", name="test")]

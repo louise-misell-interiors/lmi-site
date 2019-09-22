@@ -9,44 +9,78 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Booking',
+            name="Booking",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('time', models.DateTimeField()),
-                ('address', models.TextField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("time", models.DateTimeField()),
+                ("address", models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='BookingType',
+            name="BookingType",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('description', models.TextField()),
-                ('length', models.TimeField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("description", models.TextField()),
+                ("length", models.TimeField()),
             ],
         ),
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('phone', phonenumber_field.modelfields.PhoneNumberField(max_length=128)),
-                ('email', models.EmailField(max_length=254)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                (
+                    "phone",
+                    phonenumber_field.modelfields.PhoneNumberField(max_length=128),
+                ),
+                ("email", models.EmailField(max_length=254)),
             ],
         ),
         migrations.AddField(
-            model_name='booking',
-            name='customer',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bookings', to='bookings.Customer'),
+            model_name="booking",
+            name="customer",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="bookings",
+                to="bookings.Customer",
+            ),
         ),
         migrations.AddField(
-            model_name='booking',
-            name='type',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bookings', to='bookings.BookingType'),
+            model_name="booking",
+            name="type",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="bookings",
+                to="bookings.BookingType",
+            ),
         ),
     ]

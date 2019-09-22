@@ -6,22 +6,33 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0010_bookingtype_timezone'),
-    ]
+    dependencies = [("bookings", "0010_bookingtype_timezone")]
 
     operations = [
         migrations.CreateModel(
-            name='BookingQuestion',
+            name="BookingQuestion",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('order', models.PositiveIntegerField(blank=True, default=0)),
-                ('question', models.CharField(max_length=255)),
-                ('required', models.BooleanField()),
-                ('type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='booking_questions', to='bookings.BookingType')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("order", models.PositiveIntegerField(blank=True, default=0)),
+                ("question", models.CharField(max_length=255)),
+                ("required", models.BooleanField()),
+                (
+                    "type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="booking_questions",
+                        to="bookings.BookingType",
+                    ),
+                ),
             ],
-            options={
-                'ordering': ['order'],
-            },
-        ),
+            options={"ordering": ["order"]},
+        )
     ]

@@ -5,15 +5,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0011_bookingquestion'),
-    ]
+    dependencies = [("bookings", "0011_bookingquestion")]
 
     operations = [
         migrations.AddField(
-            model_name='bookingquestion',
-            name='question_type',
-            field=models.CharField(choices=[('T', 'One Line'), ('M', 'Multi-line')], default='T', max_length=1),
+            model_name="bookingquestion",
+            name="question_type",
+            field=models.CharField(
+                choices=[("T", "One Line"), ("M", "Multi-line")],
+                default="T",
+                max_length=1,
+            ),
             preserve_default=False,
-        ),
+        )
     ]

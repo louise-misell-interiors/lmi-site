@@ -6,23 +6,29 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0042_designinsiderpost_image_alt'),
-    ]
+    dependencies = [("main_site", "0042_designinsiderpost_image_alt")]
 
     operations = [
         migrations.CreateModel(
-            name='ShortPost',
+            name="ShortPost",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('draft', models.BooleanField(default=False)),
-                ('title', models.CharField(max_length=255)),
-                ('date', models.DateField()),
-                ('content', ckeditor_uploader.fields.RichTextUploadingField(blank=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("draft", models.BooleanField(default=False)),
+                ("title", models.CharField(max_length=255)),
+                ("date", models.DateField()),
+                (
+                    "content",
+                    ckeditor_uploader.fields.RichTextUploadingField(blank=True),
+                ),
             ],
-            options={
-                'ordering': ['-date'],
-                'get_latest_by': ['-date'],
-            },
-        ),
+            options={"ordering": ["-date"], "get_latest_by": ["-date"]},
+        )
     ]

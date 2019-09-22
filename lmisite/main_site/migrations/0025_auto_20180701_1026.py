@@ -5,19 +5,21 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0024_auto_20180701_1002'),
-    ]
+    dependencies = [("main_site", "0024_auto_20180701_1002")]
 
     operations = [
         migrations.AddField(
-            model_name='testimonial',
-            name='not_on_testimonials',
-            field=models.BooleanField(default=False, verbose_name='Not displayed on testimonials page'),
+            model_name="testimonial",
+            name="not_on_testimonials",
+            field=models.BooleanField(
+                default=False, verbose_name="Not displayed on testimonials page"
+            ),
         ),
         migrations.AlterField(
-            model_name='testimonial',
-            name='featured',
-            field=models.BooleanField(default=False, verbose_name='Featured on home page'),
+            model_name="testimonial",
+            name="featured",
+            field=models.BooleanField(
+                default=False, verbose_name="Featured on home page"
+            ),
         ),
     ]

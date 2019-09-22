@@ -5,19 +5,23 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0004_mainsliderimage'),
-    ]
+    dependencies = [("main_site", "0004_mainsliderimage")]
 
     operations = [
         migrations.CreateModel(
-            name='SiteConfig',
+            name="SiteConfig",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('instagram_url', models.URLField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("instagram_url", models.URLField()),
             ],
-            options={
-                'abstract': False,
-            },
-        ),
+            options={"abstract": False},
+        )
     ]

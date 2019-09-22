@@ -5,18 +5,15 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0015_auto_20180506_1954'),
-    ]
+    dependencies = [("main_site", "0015_auto_20180506_1954")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='servicesummary',
-            options={'verbose_name_plural': 'Serivce Summaries'},
+            name="servicesummary", options={"verbose_name_plural": "Serivce Summaries"}
         ),
         migrations.AlterField(
-            model_name='service',
-            name='price',
-            field=models.CharField(blank=True, default='', max_length=255),
+            model_name="service",
+            name="price",
+            field=models.CharField(blank=True, default="", max_length=255),
         ),
     ]

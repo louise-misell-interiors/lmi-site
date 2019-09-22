@@ -5,15 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0031_designinsiderpost_image'),
-    ]
+    dependencies = [("main_site", "0031_designinsiderpost_image")]
 
     operations = [
         migrations.AddField(
-            model_name='designinsiderpost',
-            name='summary',
-            field=models.TextField(default=''),
+            model_name="designinsiderpost",
+            name="summary",
+            field=models.TextField(default=""),
             preserve_default=False,
-        ),
+        )
     ]

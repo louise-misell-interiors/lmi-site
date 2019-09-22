@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0017_auto_20180709_1735'),
-    ]
+    dependencies = [("bookings", "0017_auto_20180709_1735")]
 
     operations = [
         migrations.AddField(
-            model_name='bookingtype',
-            name='icon',
+            model_name="bookingtype",
+            name="icon",
             field=models.CharField(blank=True, max_length=255),
-        ),
+        )
     ]

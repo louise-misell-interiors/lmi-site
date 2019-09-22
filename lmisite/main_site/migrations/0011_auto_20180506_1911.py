@@ -5,54 +5,44 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0010_testimonial_image'),
-    ]
+    dependencies = [("main_site", "0010_testimonial_image")]
 
     operations = [
         migrations.AddField(
-            model_name='siteconfig',
-            name='address',
-            field=models.TextField(blank=True, default=''),
+            model_name="siteconfig",
+            name="address",
+            field=models.TextField(blank=True, default=""),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='email',
-            field=models.EmailField(blank=True, default='', max_length=254),
+            model_name="siteconfig",
+            name="email",
+            field=models.EmailField(blank=True, default="", max_length=254),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='mobile',
-            field=models.CharField(blank=True, default='', max_length=255),
+            model_name="siteconfig",
+            name="mobile",
+            field=models.CharField(blank=True, default="", max_length=255),
         ),
         migrations.AddField(
-            model_name='siteconfig',
-            name='phone',
-            field=models.CharField(blank=True, default='', max_length=255),
+            model_name="siteconfig",
+            name="phone",
+            field=models.CharField(blank=True, default="", max_length=255),
         ),
         migrations.AlterField(
-            model_name='project',
-            name='breif',
-            field=models.TextField(),
+            model_name="project", name="breif", field=models.TextField()
         ),
         migrations.AlterField(
-            model_name='project',
-            name='name',
+            model_name="project", name="name", field=models.CharField(max_length=255)
+        ),
+        migrations.AlterField(
+            model_name="project", name="outcome", field=models.TextField()
+        ),
+        migrations.AlterField(
+            model_name="testimonial",
+            name="client",
             field=models.CharField(max_length=255),
         ),
         migrations.AlterField(
-            model_name='project',
-            name='outcome',
-            field=models.TextField(),
-        ),
-        migrations.AlterField(
-            model_name='testimonial',
-            name='client',
-            field=models.CharField(max_length=255),
-        ),
-        migrations.AlterField(
-            model_name='testimonial',
-            name='text',
-            field=models.TextField(),
+            model_name="testimonial", name="text", field=models.TextField()
         ),
     ]

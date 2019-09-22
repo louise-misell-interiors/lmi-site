@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0044_siteconfig_homify_url'),
-    ]
+    dependencies = [("main_site", "0044_siteconfig_homify_url")]
 
     operations = [
         migrations.AddField(
-            model_name='siteconfig',
-            name='bark_url',
-            field=models.URLField(blank=True, default=''),
-        ),
+            model_name="siteconfig",
+            name="bark_url",
+            field=models.URLField(blank=True, default=""),
+        )
     ]

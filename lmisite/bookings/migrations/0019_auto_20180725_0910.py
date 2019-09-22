@@ -5,19 +5,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0018_bookingtype_icon'),
-    ]
+    dependencies = [("bookings", "0018_bookingtype_icon")]
 
     operations = [
         migrations.AddField(
-            model_name='bookingtype',
-            name='after_booking_message',
+            model_name="bookingtype",
+            name="after_booking_message",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='bookingtype',
-            name='whilst_booking_message',
+            model_name="bookingtype",
+            name="whilst_booking_message",
             field=models.TextField(blank=True),
         ),
     ]

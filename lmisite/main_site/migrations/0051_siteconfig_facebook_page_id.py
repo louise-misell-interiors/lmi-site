@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0050_auto_20190527_1409'),
-    ]
+    dependencies = [("main_site", "0050_auto_20190527_1409")]
 
     operations = [
         migrations.AddField(
-            model_name='siteconfig',
-            name='facebook_page_id',
-            field=models.CharField(blank=True, default='', max_length=255),
-        ),
+            model_name="siteconfig",
+            name="facebook_page_id",
+            field=models.CharField(blank=True, default="", max_length=255),
+        )
     ]

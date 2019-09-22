@@ -5,19 +5,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0011_auto_20180506_1911'),
-    ]
+    dependencies = [("main_site", "0011_auto_20180506_1911")]
 
     operations = [
         migrations.AlterField(
-            model_name='siteconfig',
-            name='mobile',
+            model_name="siteconfig",
+            name="mobile",
             field=models.IntegerField(blank=True, default=0),
         ),
         migrations.AlterField(
-            model_name='siteconfig',
-            name='phone',
+            model_name="siteconfig",
+            name="phone",
             field=models.IntegerField(blank=True, default=0),
         ),
     ]

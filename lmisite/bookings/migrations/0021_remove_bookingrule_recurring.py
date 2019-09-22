@@ -5,13 +5,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bookings', '0020_bookingquestionanswer'),
-    ]
+    dependencies = [("bookings", "0020_bookingquestionanswer")]
 
-    operations = [
-        migrations.RemoveField(
-            model_name='bookingrule',
-            name='recurring',
-        ),
-    ]
+    operations = [migrations.RemoveField(model_name="bookingrule", name="recurring")]

@@ -6,19 +6,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('main_site', '0033_auto_20180715_1206'),
-    ]
+    dependencies = [("main_site", "0033_auto_20180715_1206")]
 
     operations = [
         migrations.AlterField(
-            model_name='designinsiderpost',
-            name='content',
+            model_name="designinsiderpost",
+            name="content",
             field=ckeditor_uploader.fields.RichTextUploadingField(blank=True),
         ),
         migrations.AlterField(
-            model_name='designinsiderpost',
-            name='summary',
+            model_name="designinsiderpost",
+            name="summary",
             field=models.TextField(blank=True),
         ),
     ]

@@ -25,9 +25,11 @@ server {
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
     add_header X-XSS-Protection "1; mode=block" always;
     add_header X-Content-Type-Options "nosniff" always;
-    add_header Content-Security-Policy "default-src https:; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://code.jquery.com https://assets.pinterest.com 'unsafe-inline'; style-src https: 'unsafe-inline'; img-src https: data:; connect-src https: wss:; object-src 'self' ; frame-src 'self' ; frame-ancestors 'self' ; form-action 'self' ; upgrade-insecure-requests; block-all-mixed-content; base-uri 'self'; report-uri https://evilben.report-uri.com/r/d/csp/enforce;" always;
-    add_header Expect-CT "enforce, max-age=0, report-uri=https://evilben.report-uri.com/r/d/ct/reportOnly" always;
+    add_header Content-Security-Policy "default-src https:; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://code.jquery.com https://assets.pinterest.com 'unsafe-inline'; style-src https: 'unsafe-inline'; img-src https: data:; connect-src https: wss:; object-src 'self' ; frame-src 'self' ; frame-ancestors 'self' ; form-action 'self' ; upgrade-insecure-requests; block-all-mixed-content; base-uri 'self'; report-uri https://theenbyperor.report-uri.com/r/d/csp/enforce;" always;
+    add_header Expect-CT "enforce, max-age=0, report-uri=https://theenbyperor.report-uri.com/r/d/ct/reportOnly" always;
     add_header Feature-Policy "usermedia 'none';" always;
+    add_header Report-To "{\"group\":\"default\",\"max_age\":31536000,\"endpoints\":[{\"url\":\"https://theenbyperor.report-uri.com/a/d/g\"}],\"include_subdomains\":true}" always;
+    add_header NEL "{\"report_to\":\"default\",\"max_age\":31536000,\"include_subdomains\":true}" always;
     
     location /static {
         alias /opt/apps/lmisite/src/static;

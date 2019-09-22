@@ -54,7 +54,7 @@
 - name: Install dependencies
   pip:
     requirements: /opt/apps/lmisite/src/requirements.txt
-    state: present
+    state: latest
     virtualenv: /opt/apps/lmisite/env
   run_once: true
 

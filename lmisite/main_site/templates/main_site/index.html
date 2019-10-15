@@ -45,7 +45,7 @@
                 </p>
             </div>
         </div>
-        <div class="desc">
+        <div class="desc" {% if config.home_help_image %}style="--background: url({{ config.home_help_image.url }});"{% endif %}>
             <div>
                 <h3>
                     How can I help?

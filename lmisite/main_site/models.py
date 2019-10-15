@@ -60,13 +60,16 @@ class SiteConfig(SingletonModel):
     home_subtitle = models.CharField(max_length=255, blank=True)
     home_about_text = models.TextField(blank=True)
     home_help_text = models.TextField(blank=True, verbose_name="Home how can I help text")
+    home_help_image = models.ImageField(blank=True, verbose_name="Home how can I help background image")
 
     about_title = models.CharField(max_length=255, blank=True)
+    about_header_image = models.ImageField(blank=True)
     about_description = models.TextField(blank=True)
     about_mission_statement = models.TextField(blank=True)
     about_text = RichTextUploadingField(blank=True)
 
     portfolio_title = models.CharField(max_length=255, blank=True)
+    portfolio_header_image = models.ImageField(blank=True)
     portfolio_description = models.TextField(blank=True)
     portfolio_text = models.TextField(blank=True)
 
@@ -75,15 +78,18 @@ class SiteConfig(SingletonModel):
     blog_text = models.TextField(blank=True)
 
     services_title = models.CharField(max_length=255, blank=True)
+    services_header_image = models.ImageField(blank=True)
     services_description = models.TextField(blank=True)
     services_text = models.TextField(blank=True)
 
     contact_title = models.CharField(max_length=255, blank=True)
+    contact_header_image = models.ImageField(blank=True)
     contact_description = models.TextField(blank=True)
     contact_text_1 = models.TextField(blank=True)
     contact_text_2 = models.TextField(blank=True)
 
     testimonials_title = models.CharField(max_length=255, blank=True)
+    testimonials_header_image = models.ImageField(blank=True)
     testimonials_description = models.TextField(blank=True)
     testimonials_text = models.TextField(blank=True)
 

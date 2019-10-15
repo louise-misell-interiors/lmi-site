@@ -19,7 +19,7 @@
 
 {% block content %}
     <div class="content">
-        <header>
+        <header {% if config.testimonials_header_image %}style="--background: url({{ config.testimonials_header_image.url }});"{% endif %}>
             <h1>Testimonials</h1>
             <div class="desc">
                 {{ config.testimonials_text|linebreaks }}

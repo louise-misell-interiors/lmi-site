@@ -120,12 +120,13 @@ class ConfigForm(forms.ModelForm):
                   'privacy_policy', 'terms_and_conditions', 'image_slider_speed', 'testimonials_slider_speed',
                   'price_range',
                   'home_title', 'home_subtitle', 'home_description', 'home_about_text', 'home_help_text',
-                  'about_title', 'about_description', 'about_mission_statement', 'about_text',
-                  'portfolio_title', 'portfolio_description', 'portfolio_text',
+                  'home_help_image',
+                  'about_title', 'about_header_image', 'about_description', 'about_mission_statement', 'about_text',
+                  'portfolio_title', 'portfolio_header_image', 'portfolio_description', 'portfolio_text',
                   'blog_title', 'blog_description', 'blog_text',
-                  'services_title', 'services_description', 'services_text',
-                  'contact_title', 'contact_description', 'contact_text_1', 'contact_text_2',
-                  'testimonials_title', 'testimonials_description', 'testimonials_text')
+                  'services_title', 'services_header_image', 'services_description', 'services_text',
+                  'contact_title', 'contact_header_image', 'contact_description', 'contact_text_1', 'contact_text_2',
+                  'testimonials_title', 'testimonials_header_image', 'testimonials_description', 'testimonials_text')
         widgets = {
             "facebook_page_id": PageWidget,
             "newsletter_group_id": NewsletterGroupWidget

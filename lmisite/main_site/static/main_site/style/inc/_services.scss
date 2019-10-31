@@ -9,7 +9,7 @@
   grid-auto-rows: minmax(min-content, max-content);
   grid-gap: $content-padding*2;
 
-  div {
+  > div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,7 +29,11 @@
     > div {
       padding: $content-padding 0;
       align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       flex-grow: 1;
+      background: #eff4f6;
 
       div {
         list-style: none;
@@ -44,14 +48,6 @@
 
           &::after {
             width: 30%;
-          }
-
-          &:first-of-type {
-            @include bar_top;
-
-            &::before {
-              width: 30%;
-            }
           }
         }
       }

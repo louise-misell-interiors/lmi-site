@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local("Raleway"), local("Raleway-Regular"), url(https://fonts.gstatic.com/s/raleway/v13/1Ptug8zYS_SKggPNyC0ITw.woff2) format("woff2");
+  src: url(https://fonts.gstatic.com/s/raleway/v13/1Ptug8zYS_SKggPNyC0ITw.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 @font-face {
   font-family: 'Baskerville';
@@ -201,11 +201,11 @@
   .instagram > div {
     width: 80vw;
     display: grid;
-    grid-template-columns: repeat(3, 40vmin);
+    grid-template-columns: repeat(4, 30vmin);
     justify-content: center;
     align-items: center;
     grid-gap: 12.5px;
-    grid-auto-rows: 40vmin; }
+    grid-auto-rows: 30vmin; }
     .instagram > div a {
       width: 100%;
       height: 100%; }
@@ -261,7 +261,8 @@ hr {
 
 blockquote {
   margin: 0;
-  font-style: italic; }
+  font-style: italic;
+  position: relative; }
   blockquote::before, blockquote::after {
     content: '\275D';
     font-size: 50px;
@@ -272,7 +273,9 @@ blockquote {
     content: '\275E';
     vertical-align: top;
     line-height: 1.1;
-    margin-left: 5px; }
+    margin-left: 5px;
+    position: absolute;
+    bottom: -25px; }
 
 img {
   max-width: 100%;
@@ -364,7 +367,7 @@ img {
     background: #e5f0f2; }
     .wrapper .pre-footer .logos {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 2fr 1fr;
       justify-items: center; }
       .wrapper .pre-footer .logos div:not(.cla) {
         display: grid;
@@ -372,13 +375,11 @@ img {
         grid-auto-flow: column;
         justify-items: center;
         grid-gap: 25px;
+        margin-left: 25px;
         align-content: center;
         align-items: center; }
         .wrapper .pre-footer .logos div:not(.cla) img {
-          height: 85px; }
-          @media (max-width: 1200px) {
-            .wrapper .pre-footer .logos div:not(.cla) img {
-              height: 42.5px; } }
+          max-height: 125px; }
       .wrapper .pre-footer .logos .cla {
         display: grid;
         grid-auto-rows: 125px;

@@ -18,7 +18,8 @@
       font-weight: bold;
       text-align: center;
       display: inline-block;
-      width: 100%; }
+      width: 100%;
+      padding: 10px 0; }
   .testimonials a {
     font-size: 22px; }
 

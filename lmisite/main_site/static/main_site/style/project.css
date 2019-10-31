@@ -113,7 +113,8 @@
     background: linear-gradient(rgba(229, 240, 242, 0.6), rgba(229, 240, 242, 0.6));
     padding: 25px; }
     .content:not(.old) header div h1, .content:not(.old) header div h2, .content:not(.old) header div h3 {
-      margin: 25px 0;
+      margin: 25px 0; }
+    .content:not(.old) header div h1, .content:not(.old) header div h2 {
       font-weight: normal; }
     .content:not(.old) header div h1 {
       margin-top: 0;
@@ -128,7 +129,7 @@
 .content:not(.old) .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-auto-rows: 30vh;
+  grid-auto-rows: 10vh;
   grid-auto-flow: row dense;
   grid-gap: 25px;
   justify-content: center;
@@ -156,6 +157,9 @@
       pointer-events: none; }
     .content:not(.old) .grid .type-I:hover img.hover {
       opacity: 1; }
+
+.projects {
+  margin: 0 auto; }
 
 .projects {
   display: grid;

@@ -24,11 +24,11 @@
   > div {
     width: 80vw;
     display: grid;
-    grid-template-columns: repeat(3, 40vmin);
+    grid-template-columns: repeat(4, 30vmin);
     justify-content: center;
     align-items: center;
     grid-gap: $content-padding/2;
-    grid-auto-rows: 40vmin;
+    grid-auto-rows: 30vmin;
 
     a {
       width: 100%;

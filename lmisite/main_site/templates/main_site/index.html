@@ -39,7 +39,7 @@
     <div class="content">
         <div class="about">
             <div>
-                {{ config.home_about_text|linebreaks }}
+                {{ config.home_about_text|safe|linebreaks }}
                 <p>
                     <a href="{% url 'about' %}" class="button">Read more</a>
                 </p>

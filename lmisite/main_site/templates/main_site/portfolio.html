@@ -24,38 +24,6 @@
         <div class="desc">
             {{ config.portfolio_text|linebreaks }}
         </div>
-        <div class="projects">
-            {% for project in projects %}
-                <div class="project" itemscope itemtype="https://schema.org/CreativeWork">
-                    <link itemprop="url" href="{% url 'project' project.id %}"/>
-                    <a href="{% url 'project' project.id %}">
-                        <div class="img-box">
-                            <link itemprop="image" href="{% if project.image %}{{ project.image.url }}{% endif %}">
-                            <img data-src="{% if project.image %}{{ project.image.url }}{% endif %}"
-                                 alt="{{ project.image_alt_text }}">
-                            <div class="show">
-                                <h2 itemprop="headline">{{ project.name }}</h2>
-                                <hr>
-                                <h3>{{ project.area }}</h3>
-                            </div>
-                        </div>
-                        <meta itemprop="text" content="{{ project.breif }}">
-                        <meta itemprop="text" content="{{ project.outcome }}">
-                        {% for img in project.before_images.all %}
-                            <span itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}"/>
-                                <meta itemprop="description" content="{{ img.alt_text }}"/>
-                            </span>
-                        {% endfor %}
-                        {% for img in project.after_images.all %}
-                            <span itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}"/>
-                                <meta itemprop="description" content="{{ img.alt_text }}"/>
-                            </span>
-                        {% endfor %}
-                    </a>
-                </div>
-            {% endfor %}
-            </div>
+        {% include 'main_site/portfolio_template.html' with projects=projects %}
     </div>
 {% endblock %}

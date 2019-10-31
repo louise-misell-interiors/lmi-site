@@ -4,13 +4,14 @@
 {% block title %}{{ project.name }}{% endblock %}
 
 {% block header %}
-    <link rel="stylesheet" href="{%  static "main_site/style/project.css" %}">
+    <link rel="stylesheet" href="{% static "main_site/style/project.css" %}">
 
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="article"/>
     <meta property="og:title" content="{{ project.name }} | Louise Misell Interiors">
     <meta property="og:description" content="{{ project.meta_description }}">
     <meta name="description" content="{{ project.meta_description }}">
-    <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% if project.image %}{{ project.image.url }}{% endif %}">
+    <meta property="og:image"
+          content="http://louisemisellinteriors.co.uk/{% if project.image %}{{ project.image.url }}{% endif %}">
 
     <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'project' project.id %}">
 {% endblock %}
@@ -19,7 +20,7 @@
     {% if request.user.is_superuser %}
         <div class="content" itemscope itemtype="https://schema.org/CreativeWork">
             {% if project.image %}
-              <link itemprop="image" href="{{ project.image.url }}">
+                <link itemprop="image" href="{{ project.image.url }}">
             {% endif %}
             <header {% if project.image %}style="--background: url({{ project.image.url }});"{% endif %}>
                 <div>
@@ -33,13 +34,15 @@
             </div>
             <div class="grid">
                 {% for item in project.items.all %}
-                    <div class="type-{{ item.type }}" style="grid-column-end: span {{ item.width }}; grid-row-end: span {{ item.height }};">
+                    <div class="type-{{ item.type }}"
+                         style="grid-column-end: span {{ item.width }}; grid-row-end: span {{ item.height }};">
                         {% if item.type == "I" %}
                             {% if item.image %}
                                 <img src="{{ item.image.url }}" alt="{{ item.image_alt_text }}">
                             {% endif %}
                             {% if item.hover_image %}
-                                <img class="hover" src="{{ item.hover_image.url }}" alt="{{ item.hover_image_alt_text }}" data-pin-nopin="true">
+                                <img class="hover" src="{{ item.hover_image.url }}"
+                                     alt="{{ item.hover_image_alt_text }}" data-pin-nopin="true">
                             {% endif %}
                         {% elif item.type == "T" %}
                             {{ item.text|linebreaks }}
@@ -47,11 +50,12 @@
                     </div>
                 {% endfor %}
             </div>
+            {% include 'main_site/portfolio_template.html' with projects=projects %}
         </div>
     {% else %}
         <div class="content old" itemscope itemtype="https://schema.org/CreativeWork">
             {% if project.image %}
-              <link itemprop="image" href="{{ project.image.url }}">
+                <link itemprop="image" href="{{ project.image.url }}">
             {% endif %}
             <h1 itemprop="headline">{{ project.name }}</h1>
             <div class="row">
@@ -62,11 +66,14 @@
                             <div class="slider-inner">
                                 <span class="arrow"><i class="fas fa-chevron-left"></i></span>
                                 {% for img in project.before_images.all %}
-                                    <div class="slide{% if forloop.first %} is-active{% endif %}" itemprop="associatedMedia"
+                                    <div class="slide{% if forloop.first %} is-active{% endif %}"
+                                         itemprop="associatedMedia"
                                          itemscope itemtype="http://schema.org/ImageObject">
-                                        <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}" />
-                                        <meta itemprop="description" content="{{ img.alt_text }}" />
-                                        <img data-src="{% if img.image %}{{ img.image.url }}{% endif %}" alt="{{ img.alt_text }}">
+                                        <link itemprop="contentUrl"
+                                              href="{% if img.image %}{{ img.image.url }}{% endif %}"/>
+                                        <meta itemprop="description" content="{{ img.alt_text }}"/>
+                                        <img data-src="{% if img.image %}{{ img.image.url }}{% endif %}"
+                                             alt="{{ img.alt_text }}">
                                     </div>
                                 {% endfor %}
                                 <span class="arrow"><i class="fas fa-chevron-right"></i></span>
@@ -81,11 +88,14 @@
                             <div class="slider-inner">
                                 <span class="arrow"><i class="fas fa-chevron-left"></i></span>
                                 {% for img in project.after_images.all %}
-                                    <div class="slide{% if forloop.first %} is-active{% endif %}" itemprop="associatedMedia"
+                                    <div class="slide{% if forloop.first %} is-active{% endif %}"
+                                         itemprop="associatedMedia"
                                          itemscope itemtype="http://schema.org/ImageObject">
-                                        <link itemprop="contentUrl" href="{% if img.image %}{{ img.image.url }}{% endif %}" />
-                                        <meta itemprop="description" content="{{ img.alt_text }}" />
-                                        <img data-src="{% if img.image %}{{ img.image.url }}{% endif %}" alt="{{ img.alt_text }}">
+                                        <link itemprop="contentUrl"
+                                              href="{% if img.image %}{{ img.image.url }}{% endif %}"/>
+                                        <meta itemprop="description" content="{{ img.alt_text }}"/>
+                                        <img data-src="{% if img.image %}{{ img.image.url }}{% endif %}"
+                                             alt="{{ img.alt_text }}">
                                     </div>
                                 {% endfor %}
                                 <span class="arrow"><i class="fas fa-chevron-right"></i></span>
@@ -115,5 +125,6 @@
 {% endblock %}
 {% block scripts %}
     <script src="{% static "main_site/js/project.js" %}"></script>
-    <script async defer data-pin-tall="true" data-pin-hover="true" src="https://assets.pinterest.com/js/pinit.js"></script>
+    <script async defer data-pin-tall="true" data-pin-hover="true"
+            src="https://assets.pinterest.com/js/pinit.js"></script>
 {% endblock %}

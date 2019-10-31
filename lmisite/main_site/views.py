@@ -127,7 +127,10 @@ def portfolio(request):
 
 def project(request, id):
     project = get_object_or_404(Project, id=id)
-    return render(request, "main_site/project.html", {"project": project})
+    projects = Project.objects.all()
+    if not request.user.is_superuser:
+        projects = projects.filter(draft=False)
+    return render(request, "main_site/project.html", {"project": project, "projects": projects})
 
 
 def services(request):

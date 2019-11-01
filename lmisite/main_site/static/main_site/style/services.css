@@ -53,6 +53,7 @@
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto 1fr auto;
     align-items: center;
+    justify-content: left;
     grid-column-gap: 25px; }
     .content .services .service .colour-block {
       grid-column: 1 / 3;
@@ -62,25 +63,26 @@
       z-index: -1; }
     .content .services .service img {
       grid-column: 1;
-      grid-row: 1 / 4; }
+      grid-row: 1 / 4;
+      align-self: stretch;
+      justify-self: stretch;
+      object-fit: cover; }
     .content .services .service h2:first-of-type {
       grid-column: 2;
       grid-row: 1;
-      font-family: Raleway, sans-serif;
+      font-family: Baskerville, serif;
       text-align: center;
-      margin: 25px 25px 12.5px;
-      color: #335470;
-      border: 2px solid #335470;
-      align-self: center;
-      justify-self: center;
+      justify-self: left;
+      margin: 25px 0 12.5px;
+      color: #e5f0f2;
+      background: rgba(51, 84, 112, 0.7);
       padding: 12.5px 25px; }
     .content .services .service .description {
       grid-column: 2;
       grid-row: 2;
       font-family: Raleway, sans-serif;
-      text-align: center;
-      justify-self: center;
-      max-width: 700px; }
+      font-size: 17px;
+      line-height: 1.4; }
       .content .services .service .description p:first-of-type {
         margin-top: 0; }
       .content .services .service .description p:last-of-type {
@@ -89,14 +91,14 @@
       grid-column: 2;
       grid-row: 3;
       align-self: stretch;
-      padding: 0 25px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       color: #335470;
       font-size: 25px;
-      font-family: Baskerville, serif; }
+      font-family: Baskerville, serif;
+      justify-self: left; }
       .content .services .service .price > span {
         text-align: center; }
       .content .services .service .price .button {

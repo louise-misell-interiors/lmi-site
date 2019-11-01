@@ -40,6 +40,7 @@
       grid-template-columns: 1fr 2fr;
       grid-template-rows: auto 1fr auto;
       align-items: center;
+      justify-content: left;
       grid-column-gap: $content-padding;
 
       .colour-block {
@@ -53,18 +54,20 @@
       img {
         grid-column: 1;
         grid-row: 1 / 4;
+        align-self: stretch;
+        justify-self: stretch;
+        object-fit: cover;
       }
 
       h2:first-of-type {
         grid-column: 2;
         grid-row: 1;
-        font-family: Raleway, sans-serif;
+        font-family: Baskerville, serif;
         text-align: center;
-        margin: $content-padding $content-padding $content-padding/2;
-        color: $dark-text-colour;
-        border: 2px solid $background-colour-dark;
-        align-self: center;
-        justify-self: center;
+        justify-self: left;
+        margin: $content-padding 0 $content-padding/2;
+        color: $light-text-colour;
+        background: rgba($background-colour-dark, .7);
         padding: $content-padding/2 $content-padding;
       }
 
@@ -72,9 +75,8 @@
         grid-column: 2;
         grid-row: 2;
         font-family: Raleway, sans-serif;
-        text-align: center;
-        justify-self: center;
-        max-width: 700px;
+        font-size: 17px;
+        line-height: 1.4;
 
         p:first-of-type {
           margin-top: 0;
@@ -90,7 +92,6 @@
         grid-row: 3;
 
         align-self: stretch;
-        padding: 0 $content-padding;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -98,6 +99,7 @@
         color: $dark-text-colour;
         font-size: 25px;
         font-family: Baskerville, serif;
+        justify-self: left;
 
         > span {
           text-align: center;

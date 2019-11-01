@@ -22,7 +22,7 @@ NEWSLETTER_API_VERSION = 'directory_v1'
 
 def index(request):
     slider_imgs = MainSliderImage.objects.all()
-    testimonials = Testimonial.objects.filter(featured=True)
+    testimonials = Testimonial.objects.filter(featured_on=Testimonial.HOME_PAGE)
     projects = Project.objects.filter(draft=False)[:4]
     services = Service.objects.filter(type=Service.MAIN)
     if not request.user.is_superuser:
@@ -112,7 +112,7 @@ def design_insider_post(request, id):
 
 
 def about(request):
-    testimonials = Testimonial.objects.filter(featured=True)
+    testimonials = Testimonial.objects.filter(featured_on=Testimonial.ABOUT_PAGE)
     if not request.user.is_superuser:
         testimonials = testimonials.filter(draft=False)
     return render(request, "main_site/about.html", {"testimonial": testimonials.first()})
@@ -136,11 +136,13 @@ def project(request, id):
 def services(request):
     services_m = Service.objects.filter(type=Service.MAIN)
     services_o = Service.objects.filter(type=Service.OTHER)
+    testimonials = Testimonial.objects.filter(featured_on=Testimonial.SERVICES_PAGE)
     if not request.user.is_superuser:
         services_m = services_m.filter(draft=False)
         services_o = services_o.filter(draft=False)
+        testimonials = testimonials.filter(draft=False)
     services = list(itertools.chain(services_m, services_o))
-    return render(request, "main_site/services.html", {"services": services})
+    return render(request, "main_site/services.html", {"services": services, "testimonial": testimonials.first()})
 
 
 def testimonials(request):
@@ -151,6 +153,10 @@ def testimonials(request):
 
 
 def contact(request):
+    testimonials = Testimonial.objects.filter(featured_on=Testimonial.CONTACT_PAGE)
+    if not request.user.is_superuser:
+        testimonials = testimonials.filter(draft=False)
+
     if request.method == 'POST':
         form = forms.ContactForm(request.POST)
         if form.is_valid():
@@ -178,11 +184,11 @@ def contact(request):
             customer.full_clean()
             customer.save()
 
-            return render(request, "main_site/contact.html", {'form': form, 'sent': True})
+            return render(request, "main_site/contact.html", {'form': form, 'sent': True, "testimonial": testimonials.first()})
     else:
         form = forms.ContactForm()
 
-    return render(request, "main_site/contact.html", {'form': form, 'sent': False})
+    return render(request, "main_site/contact.html", {'form': form, 'sent': False, "testimonial": testimonials.first()})
 
 
 def fb_authorise(request):

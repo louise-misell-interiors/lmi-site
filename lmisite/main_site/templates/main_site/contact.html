@@ -73,10 +73,23 @@
                 </div>
             </div>
         </div>
-        <div class="desc">
-            <p>
-                {{ config.contact_text_2|linebreaks }}
-            </p>
+        <div class="testimonials">
+            <div class="content" itemscope itemtype="https://schema.org/Review">
+                <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
+                <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
+                {% if testimonial.related_project %}
+                    <link itemprop="itemReviewed"
+                          href="{% url 'project' testimonial.related_project.id %}">
+                {% else %}
+                    <link itemprop="itemReviewed" href="{% url 'contact' %}">
+                {% endif %}
+                {% if testimonial.image %}
+                    <link itemprop="image" href="{{ testimonial.image.url }}"/>
+                {% endif %}
+                <p>
+                    <a href="{% url 'testimonials' %}" class="button">More testimonials</a>
+                </p>
+            </div>
         </div>
     </div>
 {% endblock %}

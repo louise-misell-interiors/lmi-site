@@ -58,15 +58,17 @@ class SiteConfig(SingletonModel):
     home_title = models.CharField(max_length=255, blank=True)
     home_description = models.TextField(blank=True)
     home_subtitle = models.CharField(max_length=255, blank=True)
-    home_about_text = models.TextField(blank=True)
+    home_about_text = RichTextUploadingField(blank=True)
     home_help_text = models.TextField(blank=True, verbose_name="Home how can I help text")
     home_help_image = models.ImageField(blank=True, verbose_name="Home how can I help background image")
 
     about_title = models.CharField(max_length=255, blank=True)
     about_header_image = models.ImageField(blank=True)
+    about_image_2 = models.ImageField(blank=True)
     about_description = models.TextField(blank=True)
-    about_mission_statement = models.TextField(blank=True)
+    about_mission_statement = RichTextUploadingField(blank=True)
     about_text = RichTextUploadingField(blank=True)
+    about_text_2 = RichTextUploadingField(blank=True)
 
     portfolio_title = models.CharField(max_length=255, blank=True)
     portfolio_header_image = models.ImageField(blank=True)
@@ -228,11 +230,23 @@ class ProjectAfterImage(models.Model):
 
 
 class Testimonial(models.Model):
+    HOME_PAGE = 'H'
+    ABOUT_PAGE = 'A'
+    SERVICES_PAGE = 'S'
+    CONTACT_PAGE = 'C'
+    FEATURED_ON = (
+        ('', '---'),
+        (HOME_PAGE, 'Home page'),
+        (ABOUT_PAGE, 'About page'),
+        (SERVICES_PAGE, 'About page'),
+        (CONTACT_PAGE, 'About page'),
+    )
+
     draft = models.BooleanField(default=False)
     text = models.TextField()
     image = models.ImageField(blank=True)
     client = models.CharField(max_length=255)
-    featured = models.BooleanField(default=False, verbose_name="Featured on home page")
+    featured_on = models.CharField(blank=True, null=True, choices=FEATURED_ON, max_length=1)
     not_on_testimonials = models.BooleanField(default=False, verbose_name="Not displayed on testimonials page")
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     related_project = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=True, null=True)

@@ -1,3 +1,28 @@
+.testimonials {
+  background: #335470;
+  color: #fff;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  @media (max-width: 800px) {
+    .testimonials {
+      padding: 12.5px; } }
+  .testimonials .content {
+    font-size: 25px;
+    text-align: center;
+    width: 80vw; }
+    .testimonials .content blockquote {
+      line-height: 1.5; }
+    .testimonials .content .by-line {
+      font-weight: bold;
+      text-align: center;
+      display: inline-block;
+      width: 100%;
+      padding: 10px 0; }
+  .testimonials a {
+    font-size: 22px; }
+
 .content .bar {
   display: flex;
   flex-direction: column;

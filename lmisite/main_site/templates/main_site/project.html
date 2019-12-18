@@ -17,111 +17,41 @@
 {% endblock %}
 
 {% block content %}
-    {% if request.user.is_superuser %}
-        <div class="content" itemscope itemtype="https://schema.org/CreativeWork">
-            {% if project.image %}
-                <link itemprop="image" href="{{ project.image.url }}">
-            {% endif %}
-            <header {% if project.image %}style="--background: url({{ project.image.url }});"{% endif %}>
-                <div>
-                    <h1 itemprop="headline">{{ project.name }}</h1>
-                    <h2>{{ project.area }}</h2>
-                    <h3>[hover to see the 'before' picture]</h3>
-                </div>
-            </header>
-            <div class="credits">
-                {{ project.photography_credits }}
+    <div class="content" itemscope itemtype="https://schema.org/CreativeWork">
+        {% if project.image %}
+            <link itemprop="image" href="{{ project.image.url }}">
+        {% endif %}
+        <header {% if project.header_image %}style="--background: url({{ project.header_image.url }});"{% endif %}>
+            <div>
+                <h1 itemprop="headline">{{ project.name }}</h1>
+                <h2>{{ project.area }}</h2>
+                <h3>hover over an image to see the 'before' picture</h3>
             </div>
-            <div class="grid">
-                {% for item in project.items.all %}
-                    <div class="type-{{ item.type }}"
-                         style="grid-column-end: span {{ item.width }}; grid-row-end: span {{ item.height }};">
-                        {% if item.type == "I" %}
-                            {% if item.image %}
-                                <img src="{{ item.image.url }}" alt="{{ item.image_alt_text }}">
-                            {% endif %}
-                            {% if item.hover_image %}
-                                <img class="hover" src="{{ item.hover_image.url }}"
-                                     alt="{{ item.hover_image_alt_text }}" data-pin-nopin="true">
-                            {% endif %}
-                        {% elif item.type == "T" %}
-                            {{ item.text|linebreaks }}
+        </header>
+        <div class="credits">
+            {{ project.photography_credits }}
+        </div>
+        <div class="grid">
+            {% for item in project.items.all %}
+                <div class="type-{{ item.type }}"
+                     style="grid-column-end: span {{ item.width }}; grid-row-end: span {{ item.height }};">
+                    {% if item.type == "I" %}
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.image_alt_text }}">
                         {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
-            {% include 'main_site/portfolio_template.html' with projects=projects %}
+                        {% if item.hover_image %}
+                            <img class="hover" src="{{ item.hover_image.url }}"
+                                 alt="{{ item.hover_image_alt_text }}" data-pin-nopin="true">
+                        {% endif %}
+                    {% elif item.type == "T" %}
+                        {{ item.text|linebreaks }}
+                    {% endif %}
+                </div>
+            {% endfor %}
         </div>
-    {% else %}
-        <div class="content old" itemscope itemtype="https://schema.org/CreativeWork">
-            {% if project.image %}
-                <link itemprop="image" href="{{ project.image.url }}">
-            {% endif %}
-            <h1 itemprop="headline">{{ project.name }}</h1>
-            <div class="row">
-                <div class="col before">
-                    <h2>Before</h2>
-                    <div class="imgs">
-                        <div class="slider">
-                            <div class="slider-inner">
-                                <span class="arrow"><i class="fas fa-chevron-left"></i></span>
-                                {% for img in project.before_images.all %}
-                                    <div class="slide{% if forloop.first %} is-active{% endif %}"
-                                         itemprop="associatedMedia"
-                                         itemscope itemtype="http://schema.org/ImageObject">
-                                        <link itemprop="contentUrl"
-                                              href="{% if img.image %}{{ img.image.url }}{% endif %}"/>
-                                        <meta itemprop="description" content="{{ img.alt_text }}"/>
-                                        <img data-src="{% if img.image %}{{ img.image.url }}{% endif %}"
-                                             alt="{{ img.alt_text }}">
-                                    </div>
-                                {% endfor %}
-                                <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col after">
-                    <h2>After</h2>
-                    <div class="imgs">
-                        <div class="slider">
-                            <div class="slider-inner">
-                                <span class="arrow"><i class="fas fa-chevron-left"></i></span>
-                                {% for img in project.after_images.all %}
-                                    <div class="slide{% if forloop.first %} is-active{% endif %}"
-                                         itemprop="associatedMedia"
-                                         itemscope itemtype="http://schema.org/ImageObject">
-                                        <link itemprop="contentUrl"
-                                              href="{% if img.image %}{{ img.image.url }}{% endif %}"/>
-                                        <meta itemprop="description" content="{{ img.alt_text }}"/>
-                                        <img data-src="{% if img.image %}{{ img.image.url }}{% endif %}"
-                                             alt="{{ img.alt_text }}">
-                                    </div>
-                                {% endfor %}
-                                <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row credits">
-                <div class="col"></div>
-                <div class="col">
-                    {{ project.photography_credits }}
-                </div>
-            </div>
-            <div class="row text">
-                <div class="col">
-                    <h2>Brief</h2>
-                    <span itemprop="text">{{ project.breif|linebreaks }}</span>
-                </div>
-                <div class="col">
-                    <h2>Outcome</h2>
-                    <span itemprop="text">{{ project.outcome|linebreaks }}</span>
-                </div>
-            </div>
-        </div>
-    {% endif %}
+        <h2>See more of my work below</h2>
+        {% include 'main_site/portfolio_template.html' with projects=projects %}
+    </div>
 {% endblock %}
 {% block scripts %}
     <script src="{% static "main_site/js/project.js" %}"></script>

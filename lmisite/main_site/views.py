@@ -10,6 +10,7 @@ from . import forms
 import requests
 import json
 import bookings.models as booking_models
+from django.db.models import Q
 
 FB_CLIENT_SECRETS_FILE = "facebook_client_secret.json"
 FB_SCOPES = ['instagram_basic', 'pages_show_list']
@@ -127,7 +128,7 @@ def portfolio(request):
 
 def project(request, id):
     project = get_object_or_404(Project, id=id)
-    projects = Project.objects.all()
+    projects = Project.objects.filter(~Q(id=id))
     if not request.user.is_superuser:
         projects = projects.filter(draft=False)
     return render(request, "main_site/project.html", {"project": project, "projects": projects})

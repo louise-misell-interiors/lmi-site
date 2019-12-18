@@ -17,3 +17,5 @@ django-ckeditor
 django-tinymce
 sentry-sdk
 phonenumbers
+beautifulsoup4
+nltk

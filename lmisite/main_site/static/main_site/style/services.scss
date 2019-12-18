@@ -28,16 +28,10 @@
     align-items: center;
     justify-content: center;
 
-    .line {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      grid-gap: $content-padding;
-    }
-
     .service {
       width: 80vw;
       display: grid;
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: 2fr 1fr;
       grid-template-rows: auto 1fr auto;
       align-items: center;
       justify-content: left;
@@ -52,7 +46,7 @@
       }
 
       img {
-        grid-column: 1;
+        grid-column: 2;
         grid-row: 1 / 4;
         align-self: stretch;
         justify-self: stretch;
@@ -60,23 +54,28 @@
       }
 
       h2:first-of-type {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 1;
         font-family: Baskerville, serif;
         text-align: center;
-        justify-self: left;
-        margin: $content-padding 0 $content-padding/2;
-        color: $light-text-colour;
-        background: rgba($background-colour-dark, .7);
-        padding: $content-padding/2 $content-padding;
+        justify-self: center;
+        margin: $content-padding*2 0 $content-padding/2;
+        padding-bottom: $content-padding/2;
+        color: $dark-text-colour;
+        text-transform: uppercase;
+        border-bottom: 2px solid $dark-text-colour;
       }
 
       .description {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 2;
         font-family: Raleway, sans-serif;
         font-size: 17px;
         line-height: 1.4;
+        margin-left: $content-padding;
+        text-align: center;
+        max-width: 700px;
+        justify-self: center;
 
         p:first-of-type {
           margin-top: 0;
@@ -88,7 +87,7 @@
       }
 
       .price {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 3;
 
         align-self: stretch;
@@ -99,7 +98,10 @@
         color: $dark-text-colour;
         font-size: 25px;
         font-family: Baskerville, serif;
-        justify-self: left;
+        justify-self: center;
+        margin-left: $content-padding;
+        margin-bottom: $content-padding*2;
+        text-align: center;
 
         > span {
           text-align: center;

@@ -17,10 +17,35 @@
 
 {% block content %}
     <div class="content" itemscope itemtype="http://schema.org/Blog">
+        {% if posts.0 %}
+            {% with post=posts.0 %}
+                <header itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting"
+                        {% if post.image %}style="--background: url({{ post.image.url }})"{% endif %}>
+                    <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' post.id %}"/>
+                    <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>
+                    <meta itemprop="dateModified" content="{{ post.date|date:"c" }}"/>
+                    <meta itemprop="description" content="{{ post.summary }}"/>
+                    <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                        <meta itemprop="name" content="Louise Misell"/>
+                    </span>
+                    <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                        <meta itemprop="name" content="Louise Misell Interiors"/>
+                        <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+                            <link itemprop="url"
+                                  href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
+                        </span>
+                    </span>
+                    <div>
+                        <div class="title">
+                            <h3 itemprop="headline">{{ post.title }}</h3>
+                            <h4>{{ post.date }}</h4>
+                        </div>
+                        <a href="{% url 'design_insider_post' post.id %}" class="button">Read more</a>
+                    </div>
+                </header>
+            {% endwith %}
+        {% endif %}
         <div class="blog">
-            {% if posts.0 %}
-                {% include "main_site/design_insider_post_template.html" with post=posts.0 %}
-            {% endif %}
             <div class="posts">
                 {% for post in posts|slice:"1:" %}
                     {% include "main_site/design_insider_post_template.html" with post=post %}
@@ -28,30 +53,34 @@
             </div>
             <div class="side">
                 <div class="post desc">
-                    <img src="{% static 'main_site/img/louise-head.jpg' %}" alt="">
+                    <img src="{% static 'main_site/img/louise-head.png' %}" alt="">
                     {{ config.blog_text|linebreaks }}
                 </div>
                 {% include "main_site/newsletter_form.html" with form=form %}
-                {% for post in short_posts %}
-                    <div class="post short" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-                        <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>
-                        <meta itemprop="dateModified" content="{{ post.date|date:"c" }}"/>
-                        <meta itemprop="description" content="{{ post.summary }}"/>
-                        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-                                <meta itemprop="name" content="Louise Misell"/>
-                            </span>
-                        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-                                <meta itemprop="name" content="Louise Misell Interiors"/>
-                                <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-                                    <link itemprop="url"
-                                          href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
+                <div class="short-posts">
+                <div>
+                    {% for post in short_posts %}
+                        <div class="post short" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+                            <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>
+                            <meta itemprop="dateModified" content="{{ post.date|date:"c" }}"/>
+                            <meta itemprop="description" content="{{ post.summary }}"/>
+                            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                    <meta itemprop="name" content="Louise Misell"/>
                                 </span>
-                            </span>
-                        <h3 itemprop="headline">{{ post.title }}</h3>
-                        <h4>{{ post.date }}</h4>
-                        {{ post.content|safe }}
-                    </div>
-                {% endfor %}
+                            <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                                    <meta itemprop="name" content="Louise Misell Interiors"/>
+                                    <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+                                        <link itemprop="url"
+                                              href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
+                                    </span>
+                                </span>
+                            <h3 itemprop="headline">{{ post.title }}</h3>
+                            <h4>{{ post.date }}</h4>
+                            {{ post.content|safe }}
+                        </div>
+                    {% endfor %}
+                </div>
+                </div>
             </div>
         </div>
     </div>

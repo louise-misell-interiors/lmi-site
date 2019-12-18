@@ -26,7 +26,7 @@
             <h3 itemprop="headline">{{ post.title }}</h3>
             <h4>{{ post.date }}</h4>
         </div>
-        <p>{{ post.summary }}</p>
+        <p>{{ post.summarize }}<br><em>...</em></p>
     <a href="{% url 'design_insider_post' post.id %}" class="button">Read more</a>
     </div>
 </div>

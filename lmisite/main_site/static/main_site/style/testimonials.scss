@@ -44,7 +44,7 @@
       border-color: $dark-text-colour;
     }
 
-    &:nth-of-type(3n+2) {
+    &.style-I {
       background-image: var(--background);
       background-position: 0 center;
       background-attachment: fixed;
@@ -71,7 +71,7 @@
       }
     }
 
-    &:nth-of-type(3n+1) {
+    &.style-D {
       background: $background-colour-dark;
       color: $light-text-colour;
 
@@ -81,7 +81,7 @@
       }
     }
 
-    &:nth-of-type(3n) {
+    &.style-L {
       background: $background-colour;
     }
   }

@@ -1,11 +1,15 @@
 from PIL import Image as Img
 import io
+import nltk.data
+from bs4 import BeautifulSoup
 from django.db import models
 from solo.models import SingletonModel
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.files.uploadedfile import UploadedFile
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from ckeditor_uploader.fields import RichTextUploadingField
+
+sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
 
 
 def compress_img(image, new_width=1500):
@@ -159,6 +163,7 @@ class Project(models.Model):
     outcome = models.TextField()
     image = models.ImageField(blank=True)
     image_alt_text = models.CharField(max_length=255, blank=True)
+    header_image = models.ImageField(blank=True)
     photography_credits = models.TextField(blank=True)
     meta_description = models.TextField(blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
@@ -238,8 +243,17 @@ class Testimonial(models.Model):
         ('', '---'),
         (HOME_PAGE, 'Home page'),
         (ABOUT_PAGE, 'About page'),
-        (SERVICES_PAGE, 'About page'),
-        (CONTACT_PAGE, 'About page'),
+        (SERVICES_PAGE, 'Services page'),
+        (CONTACT_PAGE, 'Contact page'),
+    )
+
+    LIGHT = "L"
+    DARK = "D"
+    IMAGE = "I"
+    STYLE = (
+        (LIGHT, "Light"),
+        (DARK, "Dark"),
+        (IMAGE, "Image")
     )
 
     draft = models.BooleanField(default=False)
@@ -247,6 +261,7 @@ class Testimonial(models.Model):
     image = models.ImageField(blank=True)
     client = models.CharField(max_length=255)
     featured_on = models.CharField(blank=True, null=True, choices=FEATURED_ON, max_length=1)
+    style = models.CharField(choices=STYLE, max_length=1)
     not_on_testimonials = models.BooleanField(default=False, verbose_name="Not displayed on testimonials page")
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     related_project = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=True, null=True)
@@ -278,6 +293,30 @@ class DesignInsiderPost(models.Model):
     def save(self, *args, **kwargs):
         self.image = compress_img(self.image)
         super().save(*args, **kwargs)
+
+    @property
+    def summarize(self):
+        if len(self.summary.strip()):
+            return self.summary
+
+        soup = BeautifulSoup(self.content)
+        for script in soup(["script", "style"]):
+            script.extract()  # rip it out
+        text = soup.get_text()
+        lines = (line.strip() for line in text.splitlines())
+        chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
+        text = '\n'.join(chunk for chunk in chunks if chunk)
+
+        tokens = sent_detector.tokenize(text)
+
+        target_len = 400
+        out = ""
+        for token in tokens:
+            if len(token) + len(out) > target_len:
+                break
+            out = f"{out} {token}"
+
+        return out
 
     def __str__(self):
         return self.title

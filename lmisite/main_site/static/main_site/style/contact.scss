@@ -30,7 +30,7 @@
 
   h2 {
     text-align: center;
-    font-size: 32px;
+    font-size: 40px;
     font-weight: normal;
   }
 
@@ -107,6 +107,7 @@
 
       > h2:first-of-type {
         @include h2;
+        background: $background-colour;
       }
 
       h2, h3 {
@@ -123,11 +124,14 @@
         align-items: center;
         padding: $content-padding;
         text-align: center;
-        border: 2px solid $background-colour;
+        background: $background-colour;
 
         h3 {
           margin: 0;
           font-size: 30px;
+          font-family: Baskerville, serif;
+          padding-bottom: $content-padding/2;
+          border-bottom: 2px solid $dark-text-colour;
         }
 
         p {

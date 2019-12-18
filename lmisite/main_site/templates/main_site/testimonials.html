@@ -26,7 +26,7 @@
             </div>
         </header>
         {% for testimonial in testimonials %}
-            <div class="testimonial" itemscope itemtype="https://schema.org/Review"
+            <div class="testimonial style-{{ testimonial.style }}" itemscope itemtype="https://schema.org/Review"
                  {% if testimonial.image %}style="--background: url({{ testimonial.image.url }})"{% endif %}>
                     <div>
                         <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>

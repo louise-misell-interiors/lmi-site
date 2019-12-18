@@ -6,6 +6,49 @@
   flex-direction: column;
   align-items: center;
 
+  header {
+    align-self: stretch;
+    background-image: var(--background);
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    grid-row: 1;
+    grid-column: 1;
+    padding: 50px $content-padding;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img, p {
+      display: none;
+    }
+
+    > div {
+      background-image: linear-gradient(rgba($background-colour, .7), rgba($background-colour, .7));
+      color: $dark-text-colour;
+      padding: $content-padding*3;
+
+      a {
+        background: $background-colour-dark;
+        color: $light-text-colour;
+        border: none;
+      }
+
+      h3, h4 {
+        margin: 10px;
+      }
+
+      h3 {
+        font-size: 35px;
+      }
+
+      h4 {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
   .header {
     background: $background-colour-dark;
     padding: $content-padding;
@@ -22,48 +65,6 @@
     display: grid;
     grid-template-columns: 7fr 2fr;
     grid-gap: $content-padding;
-
-    > .post:nth-child(1) {
-      background-image: var(--background);
-      background-position: center;
-      background-attachment: fixed;
-      background-size: cover;
-      grid-row: 1;
-      grid-column: 1;
-      padding: 150px $content-padding;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      grid-column-end: span 2;
-
-      img, p {
-        display: none;
-      }
-
-      > div {
-        background-image: linear-gradient(rgba($background-colour, .7), rgba($background-colour, .7));
-        color: $dark-text-colour;
-        padding: $content-padding $content-padding*2;
-        max-width: 400px;
-
-        a {
-          color: $dark-text-colour;
-        }
-
-        h3, h4 {
-          margin: 10px;
-        }
-
-        h3 {
-          font-size: 35px;
-        }
-
-        h4 {
-          margin-bottom: 30px;
-        }
-      }
-    }
 
     > .posts, > .side {
       display: grid;
@@ -103,10 +104,6 @@
           flex-direction: column;
           align-items: flex-start;
           justify-content: space-between;
-
-          .button {
-            align-self: center;
-          }
         }
 
         > a:first-of-type {
@@ -142,6 +139,14 @@
             margin-bottom: $content-padding / 2;
             font-size: 22px;
           }
+
+          h4 {
+            font-size: 17px;
+          }
+        }
+
+        p {
+          line-height: 1.5;
         }
 
         .button {
@@ -153,6 +158,47 @@
 
     > .side {
       text-align: center;
+      grid-template-rows: auto auto 1fr;
+      align-self: stretch;
+
+      .short, .desc {
+        background: $background-colour;
+        a {
+          color: $dark-text-colour;
+        }
+      }
+
+      .short-posts {
+        position: relative;
+
+        > div {
+          overflow-y: auto;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          scrollbar-width: thin;
+          scrollbar-color: $background-colour-dark $background-colour;
+
+          &::-webkit-scrollbar-thumb {
+            background: $background-colour-dark;
+          }
+
+          &::-webkit-scrollbar {
+            width: 10px;
+            background: $background-colour;
+          }
+
+          .short {
+            margin-bottom: $content-padding;
+
+            &:last-of-type {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
     }
   }
 }

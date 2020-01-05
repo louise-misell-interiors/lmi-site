@@ -174,12 +174,13 @@ LOGGING = {
 
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.fluidmedia.wales'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "mail.misell.cymru"
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'noreply@noreply.louisemisellinteriors.co.uk'
-EMAIL_HOST_PASSWORD = '7fpB4892fQ7EFDX9aNPY5HZ3jur#Mz3Y'
+EMAIL_HOST_USER = "noreply@noreply.louisemisellinteriors.co.uk"
+EMAIL_HOST_PASSWORD = "7fpB4892fQ7EFDX9aNPY5HZ3jur#Mz3Y"
 EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@noreply.louisemisellinteriors.co.uk>"
 
 
 GRAPHENE = {
@@ -195,5 +196,6 @@ CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
         'width': 1200,
+        'font_names': 'Baskerville; Raleway'
     },
 }

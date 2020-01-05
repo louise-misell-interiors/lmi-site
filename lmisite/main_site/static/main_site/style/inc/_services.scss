@@ -5,9 +5,17 @@
   width: 80%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(min-content, max-content);
-  grid-gap: $content-padding*2;
+  grid-column-gap: $content-padding*2;
+
+  @media (max-width: $media-medium) {
+      grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: $media-small) {
+      width: 100%;
+      grid-template-columns: 1fr;
+  }
 
   > div {
     display: flex;

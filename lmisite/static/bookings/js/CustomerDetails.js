@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import dateformat from 'dateformat';
 import {Loader} from "./Loader";
 import {fetchGQL} from "./main";
 
 class BookingInfo extends Component {
     render() {
         return (
-            <div className="col">
+            <div className="BookingInfo">
                 <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.whilstBookingMessage}</p>
-                <h3>{dateformat(this.props.time, "ddd dd mmmm yyyy hh:MM TT")}</h3>
+                <h3>{this.props.time.clone().local().format("dddd Do MMMM Y h:mm\xa0A")}</h3>
+                <button onClick={this.props.onSchedule}>Schedule</button>
             </div>
         )
     }
@@ -25,7 +25,9 @@ export class CustomerDetails extends Component {
             name: "",
             email: "",
             phone: "",
-            loading: false,
+            loading: true,
+            error: [],
+            queryError: null
         };
 
         this.scheduleEvent = this.scheduleEvent.bind(this);
@@ -34,10 +36,6 @@ export class CustomerDetails extends Component {
 
     componentWillMount() {
         const self = this;
-        this.setState({
-            questions: null,
-            error: null,
-        });
         fetchGQL(
             `query ($id: ID!) {
                 bookingType(id: $id) {
@@ -50,11 +48,14 @@ export class CustomerDetails extends Component {
                 }       
             }`,
             {id: this.props.type.id})
-            .then(res => res.json())
             .then(res => self.setState({
                 questions: res.data.bookingType.questions,
                 questionAnswers: {},
-            }));
+                loading: false,
+            }))
+            .catch(err => this.setState({
+                queryError: err,
+            }))
     }
 
     scheduleEvent() {
@@ -63,8 +64,10 @@ export class CustomerDetails extends Component {
             loading: true,
         });
         fetchGQL(
-            `mutation ($id: ID!, $date: Date!, $time: Time!, $name: String!, $email: String!, $phone: String!) {
-              createBooking(id: $id, date: $date, time: $time, name: $name, email: $email, phone: $phone, questions: []) {
+            `mutation ($id: ID!, $date: Date!, $time: Time!, $name: String!, $email: String!, $phone: String!,
+                       $questions: [QuestionInput!]!) {
+              createBooking(id: $id, date: $date, time: $time, name: $name, email: $email, phone: $phone,
+                            questions: $questions) {
                 ok
                 error {
                   field
@@ -74,14 +77,17 @@ export class CustomerDetails extends Component {
             }`,
             {
                 id: this.props.type.id,
-                date: this.props.date.toISOString().split("T")[0],
-                time: this.props.time.toISOString().split("T")[1].split(".")[0],
+                date: this.props.date.format("Y-MM-DD"),
+                time: this.props.time.format("HH:mm:ss"),
                 name: this.state.name,
                 email: this.state.email,
                 phone: this.state.phone,
+                questions: Object.keys(this.state.questionAnswers).map((key, i) => ({
+                    id: key,
+                    value: this.state.questionAnswers[key]
+                })),
             }
         )
-            .then(res => res.json())
             .then(res => {
                 this.setState({
                     loading: false,
@@ -94,28 +100,33 @@ export class CustomerDetails extends Component {
                     self.props.onComplete();
                 }
             })
+            .catch(err => this.setState({
+                queryError: err,
+            }))
     }
 
-    setQuestionAnswer(question, value) {
+    setQuestionAnswer(question, event) {
+        const questionAnswers = this.state.questionAnswers;
+        questionAnswers[question] = event.target.value;
+
         this.setState({
-            questionAnswers: {
-                question: value
-            }
+            questionAnswers: questionAnswers
         })
     }
 
     render() {
-        const date = new Date(this.props.date);
-        date.setHours(this.props.time.getHours());
-        date.setMinutes(this.props.time.getMinutes());
-        date.setSeconds(this.props.time.getSeconds());
+        if (this.state.queryError) throw this.state.queryError;
+
+        const date = this.props.date.clone();
+        date.hours(this.props.time.hours());
+        date.minutes(this.props.time.minutes());
+        date.seconds(this.props.time.seconds());
+        date.milliseconds(this.props.time.milliseconds());
 
         let disp = null;
 
-        if (this.state.questions == null || this.state.loading) {
-            disp = <div className="col">
-                <Loader/>
-            </div>
+        if (this.state.loading) {
+            disp = <Loader/>
         } else {
             const questions = this.state.questions.map(question => {
                 let input = null;
@@ -128,11 +139,16 @@ export class CustomerDetails extends Component {
                                       onChange={val => this.setQuestionAnswer(question.id, val)}
                                       value={this.state.questionAnswers[question.id]}/>
                 }
+                let errors = null;
+                let error = this.state.error.filter(error => error.field === question.id);
+                if (error.length !== 0) {
+                    errors = error[0].errors
+                        .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
+                }
 
-                return <div className="row" key={question.id}>
-                    <div className="col">
+                return <div key={question.id}>
                         {input}
-                    </div>
+                        {errors}
                 </div>
             });
 
@@ -140,64 +156,54 @@ export class CustomerDetails extends Component {
             let emailErrors = null;
             let phoneErrors = null;
             if (this.state.error !== null) {
-                let nameError = this.state.error
-                    .filter(error => error.field === "name");
+                let nameError = this.state.error.filter(error => error.field === "name");
                 if (nameError.length !== 0) {
                     nameErrors = nameError[0].errors
-                            .map((error, i) => <span key={i}>{error}<br/></span>);
+                        .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
                 }
                 let emailError = this.state.error.filter(error => error.field === "email");
                 if (emailError.length !== 0) {
                     emailErrors = emailError[0].errors
-                        .map((error, i) => <span key={i}>{error}<br/></span>);
+                        .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
                 }
                 let phoneError = this.state.error.filter(error => error.field === "phone");
                 if (phoneError.length !== 0) {
                     phoneErrors = phoneError[0].errors
-                        .map((error, i) => <span key={i}>{error}<br/></span>);
+                        .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
                 }
             }
 
-            disp = [
-                <BookingInfo type={this.props.type} time={date} key="1"/>,
-                <div className="col" key="2">
-                    <div className="row">
-                        <div className="col">
-                            <input type="text" value={this.state.name} onChange={e => this.setState({name: e.target.value})} placeholder="Name"/>
+            disp = <div className="CustomerDetails">
+                <BookingInfo type={this.props.type} time={date} key="1" onSchedule={this.scheduleEvent}/>
+                <div className="Form">
+                    <div>
+                            <input type="text" value={this.state.name}
+                                   onChange={e => this.setState({name: e.target.value})} placeholder="Name"/>
                             {nameErrors}
-                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col">
-                            <input type="text" value={this.state.email} onChange={e => this.setState({email: e.target.value})} placeholder="Email"/>
+                    <div>
+                            <input type="text" value={this.state.email}
+                                   onChange={e => this.setState({email: e.target.value})} placeholder="Email"/>
                             {emailErrors}
-                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col">
-                            <input type="phone" value={this.state.phone} onChange={e => this.setState({phone: e.target.value})} placeholder="Phone Number"/>
+                    <div>
+                            <input type="phone" value={this.state.phone}
+                                   onChange={e => this.setState({phone: e.target.value})}
+                                   placeholder="Phone Number"/>
                             {phoneErrors}
-                        </div>
                     </div>
                     {questions}
-                    <div className="row">
-                        <div className="col">
-                            <button onClick={this.scheduleEvent}>Schedule</button>
-                        </div>
-                    </div>
                 </div>
-            ];
+            </div>;
         }
 
         return (
-            <div className="back-wrapper">
+            <React.Fragment>
                 <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
-                <h1>Your details</h1>
+                <h2>Your details</h2>
                 <hr/>
-                <div className="row">
-                    {disp}
-                </div>
-            </div>
+                {disp}
+            </React.Fragment>
         )
     }
 }

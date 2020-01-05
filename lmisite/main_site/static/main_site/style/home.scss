@@ -11,8 +11,13 @@
 
     padding-bottom: ($width/100%) * 49.995%;
     position: relative;
+    min-height: 40vh;
 
     @include slider($width, 20%);
+
+    @media (max-width: $media-small) {
+      @include slider(95%, 20%);
+    }
 
     .slider {
       position: absolute;
@@ -76,6 +81,10 @@
     font-size: 45px;
     font-weight: normal;
     background: linear-gradient(rgba($background-colour, .6), rgba($background-colour, .6));
+
+    @media (max-width: $media-small) {
+      width: 100%;
+    }
 
     h3 {
       font-size: 30px;

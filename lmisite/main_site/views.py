@@ -1,24 +1,34 @@
 import itertools
-import google_auth_oauthlib.flow
-import google.oauth2.credentials
-import googleapiclient.discovery
-from django.core.mail import send_mail
-from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.conf import settings
-from .models import *
-from . import forms
-import requests
 import json
+
 import bookings.models as booking_models
+import django.utils.xmlutils
+import google_auth_oauthlib.flow
+import requests
+from django.conf import settings
+from django.contrib.syndication.views import Feed
+from django.core.mail import EmailMultiAlternatives
 from django.db.models import Q
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.utils import feedgenerator
+from django.utils import timezone
+from django.utils.encoding import iri_to_uri
+
+from . import forms
+from .models import *
 
 FB_CLIENT_SECRETS_FILE = "facebook_client_secret.json"
 FB_SCOPES = ['instagram_basic', 'pages_show_list']
-NEWSLETTER_CLIENT_SECRETS_FILE = "newsletter_client_secret.json"
-NEWSLETTER_SCOPES = ['https://www.googleapis.com/auth/admin.directory.group.member',
-                     'https://www.googleapis.com/auth/admin.directory.group.readonly']
-NEWSLETTER_API_SERVICE_NAME = 'admin'
-NEWSLETTER_API_VERSION = 'directory_v1'
+NEWSLETTER_CLIENT_SECRETS_FILE = "mailchimp_client_secret.json"
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 
 def index(request):
@@ -34,6 +44,12 @@ def index(request):
                    "services": services})
 
 
+def page_not_found(request, exception=None):
+    r = render(request, "main_site/404.html")
+    r.status_code = 404
+    return r
+
+
 def config(request):
     return render(request, "main_site/config.js", content_type="application/javascript")
 
@@ -42,34 +58,33 @@ def handle_newsletter(request):
     form = forms.NewsletterForm(request.POST)
     if form.is_valid():
         email = form.cleaned_data['email']
-        name = form.cleaned_data['name']
+        first_name = form.cleaned_data['first_name']
+        last_name = form.cleaned_data['last_name']
 
         config = SiteConfig.objects.first()
         creds = get_newsletter_credentials()
-        directory = googleapiclient.discovery.build(NEWSLETTER_API_SERVICE_NAME, NEWSLETTER_API_VERSION,
-                                                    credentials=creds)
-
-        members_resp = directory.members().list(groupKey=config.newsletter_group_id, includeDerivedMembership=False)\
-            .execute()
-        members = members_resp.get('members', [])
-        while members_resp.get("nextPageToken") is not None:
-            members_resp = directory.members()\
-                .list(groupKey=config.newsletter_group_id, includeDerivedMembership=False,
-                      pageToken=members_resp.get("nextPageToken"))\
-                .execute()
-            members.extend(members_resp.get('members', []))
-
-        if email in map(lambda m: m["email"], members):
-            return form
-        member = directory.members().insert(groupKey=config.newsletter_group_id, body={
-            "delivery_settings": "ALL_MAIL",
-            "role": "MEMBER",
-            "email": email
-        }).execute()
-
         entry = NewsletterEntry()
-        entry.name = name
-        entry.google_id = member.get("id", "")
+
+        if creds is not None and config.newsletter_group_id:
+            member = requests.post(f"{creds['endpoint']}/3.0/lists/{config.newsletter_group_id}/members/", headers={
+                "Authorization": f"OAuth {creds['token']}"
+            }, json={
+                "email_address": email,
+                "status": "pending",
+                "ip_signup": get_client_ip(request),
+                "source": "Website",
+                "merge_fields": {
+                    "FNAME": first_name,
+                    "LNAME": last_name
+                }
+            })
+            if member.status_code == 200:
+                data = member.json()
+                entry.mailchimp_id = data.get("id", "")
+
+        entry.first_name = first_name
+        entry.last_name = last_name
+        entry.email = email
         entry.save()
     return form
 
@@ -110,6 +125,92 @@ def design_insider_post(request, id):
 
     return render(request, "main_site/design_insider_post.html",
                   {"post": post, "short_posts": short_posts, "form": form})
+
+
+class DesignInsiderFeedType(feedgenerator.Rss201rev2Feed):
+    def rss_attributes(self):
+        return {
+            'version': self._version,
+            'xmlns:atom': 'http://www.w3.org/2005/Atom',
+            'xmlns:media': 'http://search.yahoo.com/mrss/',
+            'xmlns:content': 'http://purl.org/rss/1.0/modules/content/',
+        }
+
+    def add_item_elements(self, handler: django.utils.xmlutils.SimplerXMLGenerator, item: dict):
+        super().add_item_elements(handler, item)
+        handler.addQuickElement('content:encoded', item.get('content'))
+        image = item.get("image")
+        if image:
+            handler.startElement('media:content', {
+                "url": image.get("image"),
+                "medium": "image",
+                "isDefault": "true",
+            })
+            handler.addQuickElement("media:description", image.get("alt"))
+            handler.endElement('media:content')
+
+
+class DesignInsiderFeed(Feed):
+    feed_type = DesignInsiderFeedType
+    title = "Louise Misell Interiors blog"
+    author_name = "Louise Misell"
+    author_email = "louise@louisemisellinteriors.co.uk"
+    item_author_name = "Louise Misell"
+    item_author_email = "louise@louisemisellinteriors.co.uk"
+    description = "Updates and posts from Louise Misell Interiors"
+    request = None
+    site = None
+
+    def add_domain(self, url):
+        protocol = 'https' if self.request.is_secure() else 'http'
+        if url.startswith('//'):
+            url = '%s:%s' % (protocol, url)
+        elif not url.startswith(('http://', 'https://', 'mailto:')):
+            url = iri_to_uri('%s://%s%s' % (protocol, self.site.domain, url))
+        return url
+
+    def get_context_data(self, **kwargs):
+        self.request = kwargs.get("request")
+        self.site = kwargs.get("site")
+        return {}
+
+    def link(self):
+        return reverse('design_insider')
+
+    def feed_url(self):
+        return reverse('design_insider_rss')
+
+    def feed_copyright(self):
+        now = timezone.now()
+        return f"Copyright Louise Misell Interiors {now.year}"
+
+    def item_copyright(self):
+        now = timezone.now()
+        return f"Copyright Louise Misell Interiors {now.year}"
+
+    def items(self):
+        return DesignInsiderPost.objects.all().filter(draft=False)
+
+    def item_title(self, item: DesignInsiderPost):
+        return item.title
+
+    def item_description(self, item: DesignInsiderPost):
+        return item.summarize
+
+    def item_pubdate(self, item: DesignInsiderPost):
+        return timezone.datetime(item.date.year, item.date.month, item.date.day, 0, 0, 0)
+
+    def item_link(self, item: DesignInsiderPost):
+        return reverse('design_insider_post', kwargs={"id": item.id})
+
+    def item_extra_kwargs(self, item: DesignInsiderPost):
+        return {
+            "content": item.content,
+            "image": {
+                "image": self.add_domain(item.image.url),
+                "alt": item.image_alt
+            }
+        }
 
 
 def about(request):
@@ -161,17 +262,20 @@ def contact(request):
     if request.method == 'POST':
         form = forms.ContactForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['your_name']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['your_email']
             phone = form.cleaned_data['your_phone']
             message = form.cleaned_data['message']
 
-            subject = f"{name} has sent a message on your website"
-            body = f"Name: {name}\r\nEmail: {email}\r\nPhone: {phone}\r\n\r\n---\r\n\r\n{message}"
-
             config = SiteConfig.objects.first()
-            recipients = [config.email]
-            send_mail(subject, body, email, recipients)
+            email_msg = EmailMultiAlternatives(
+                subject=f"{first_name} has sent a message on your website",
+                body=f"Name: {first_name} {last_name}\r\nEmail: {email}\r\nPhone: {phone}\r\n\r\n---\r\n\r\n{message}",
+                to=[config.email],
+                reply_to=[email]
+            )
+            email_msg.send()
 
             matching_customers = booking_models.Customer.objects.filter(email=email)
             if len(matching_customers) > 0:
@@ -179,13 +283,37 @@ def contact(request):
             else:
                 customer = booking_models.Customer()
                 customer.email = email
-            customer.name = name
+
+                creds = get_newsletter_credentials()
+                if creds is not None and config.newsletter_group_id:
+                    member = requests.post(
+                        f"{creds['endpoint']}/3.0/lists/{config.newsletter_group_id}/members/",
+                        headers={
+                           "Authorization": f"OAuth {creds['token']}"
+                        }, json={
+                            "email_address": email,
+                            "status": "subscribed",
+                            "source": "Website",
+                            "ip_signup": get_client_ip(request),
+                            "merge_fields": {
+                                "FNAME": first_name,
+                                "LNAME": last_name,
+                            }
+                        }
+                    )
+                    if member.status_code == 200:
+                        data = member.json()
+                        customer.mailchimp_id = data.get("id", "")
+
+            customer.first_name = first_name
+            customer.last_name = last_name
             customer.phone = phone
 
             customer.full_clean()
             customer.save()
 
-            return render(request, "main_site/contact.html", {'form': form, 'sent': True, "testimonial": testimonials.first()})
+            return render(request, "main_site/contact.html",
+                          {'form': form, 'sent': True, "testimonial": testimonials.first()})
     else:
         form = forms.ContactForm()
 
@@ -261,8 +389,7 @@ def get_fb_credentials():
 
 
 def newsletter_authorise(request):
-    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-        NEWSLETTER_CLIENT_SECRETS_FILE, scopes=NEWSLETTER_SCOPES)
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(NEWSLETTER_CLIENT_SECRETS_FILE, scopes=[])
 
     uri = request.build_absolute_uri(reverse('newsletter_oauth'))
     if not settings.DEBUG:
@@ -283,18 +410,17 @@ def newsletter_authorise(request):
 def newsletter_oauth(request):
     state = request.session['state']
 
-    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-        NEWSLETTER_CLIENT_SECRETS_FILE, scopes=NEWSLETTER_SCOPES, state=state)
+    flow = \
+        google_auth_oauthlib.flow.Flow.from_client_secrets_file(NEWSLETTER_CLIENT_SECRETS_FILE, scopes=[], state=state)
     uri = request.build_absolute_uri(reverse('newsletter_oauth'))
     if not settings.DEBUG:
         uri = uri.replace("http://", "https://")
     flow.redirect_uri = uri
 
-    flow.fetch_token(code=request.GET.get("code"))
+    token = flow.fetch_token(code=request.GET.get("code"))
 
-    credentials = flow.credentials
     config = SiteConfig.objects.first()
-    config.newsletter_credentials = newsletter_credentials_to_json(credentials)
+    config.newsletter_credentials = newsletter_credentials_to_json(token)
     config.save()
 
     return redirect(request.session['redirect'])
@@ -304,10 +430,6 @@ def newsletter_deauthorise(request):
     credentials = get_newsletter_credentials()
 
     if credentials is not None:
-        requests.post('https://accounts.google.com/o/oauth2/revoke',
-                      params={'token': credentials.token},
-                      headers={'content-type': 'application/x-www-form-urlencoded'})
-
         config = SiteConfig.objects.first()
         config.newsletter_credentials = ""
         config.save()
@@ -316,12 +438,7 @@ def newsletter_deauthorise(request):
 
 
 def newsletter_credentials_to_json(credentials):
-    return json.dumps({'token': credentials.token,
-                       'refresh_token': credentials.refresh_token,
-                       'token_uri': credentials.token_uri,
-                       'client_id': credentials.client_id,
-                       'client_secret': credentials.client_secret,
-                       'scopes': credentials.scopes})
+    return json.dumps({'token': credentials['access_token']})
 
 
 def get_newsletter_credentials():
@@ -330,8 +447,17 @@ def get_newsletter_credentials():
         return None
     try:
         data = json.loads(config.newsletter_credentials)
-        return google.oauth2.credentials.Credentials(
-            token=data['token'], refresh_token=data['refresh_token'], token_uri=data['token_uri'],
-            client_id=data['client_id'], client_secret=data['client_secret'], scopes=data['scopes'])
+        token = data["token"]
+
+        r = requests.get("https://login.mailchimp.com/oauth2/metadata", headers={
+            "Authorization": f"OAuth {token}"
+        })
+        r.raise_for_status()
+        data = r.json()
+
+        return {
+            "token": token,
+            "endpoint": data["api_endpoint"]
+        }
     except json.JSONDecodeError:
         return None

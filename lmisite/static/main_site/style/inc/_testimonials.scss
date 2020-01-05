@@ -1,62 +1,36 @@
 @import "variables";
 
 .testimonials {
-  background: $primary-colour;
+  background: $background-colour-dark;
   color: #fff;
-  padding-top: 5px !important;
-  padding-bottom: 5px !important;
-
-  @include slider(90%, -30%);
+  padding: $content-padding;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media (max-width: $media-small) {
-    @include slider(80%, -30%);
+    padding: $content-padding/2;
   }
 
-  .slider {
-    height: 200px;
-    width: 90%;
-    margin: 0 auto;
+  .content {
+    font-size: 25px;
+    text-align: center;
+    width: 80vw;
 
-    @media (max-width: $media-medium) {
-      height: 300px;
+    blockquote {
+      line-height: 1.5;
     }
 
-    @media (max-width: $media-small) {
-      height: 400px;
+    .by-line {
+      font-weight: bold;
+      text-align: center;
+      display: inline-block;
       width: 100%;
+      padding: 10px 0;
     }
+  }
 
-    @media (max-width: $media-xsmall) {
-      height: 500px;
-    }
-
-    .arrow {
-      color: #fff !important;
-    }
-
-    .slide {
-      padding: $content-padding;
-
-      @media (max-width: $media-small) {
-        padding: $content-padding/2;
-      }
-
-      .content {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%) translateX(-50%);
-        font-size: 25px;
-        display: inline-block;
-        left: 50%;
-        text-align: center;
-
-        .by-line {
-          font-weight: bold;
-          text-align: center;
-          display: inline-block;
-          width: 100%;
-        }
-      }
-    }
+  a {
+    font-size: 22px;
   }
 }

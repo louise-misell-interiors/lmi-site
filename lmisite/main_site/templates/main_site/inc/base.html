@@ -96,49 +96,60 @@
             <a href="{{ services_url }}" {% if request.get_full_path == services_url %}class="is-active"{% endif %}>Services</a>
             <a href="{{ portfolio_url }}" {% if request.get_full_path == portfolio_url %}class="is-active"{% endif %}>Portfolio</a>
             <a href="{{ blog_url }}" {% if request.get_full_path == blog_url %}class="is-active"{% endif %}>Blog</a>
-            <a href="{{ testimonials_url }}" {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
+            <a href="{{ testimonials_url }}"
+               {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
             <a href="{{ contact_url }}" {% if request.get_full_path == contact_url %}class="is-active"{% endif %}>Contact</a>
         </nav>
-        <i class="fas fa-bars menu-button"></i>
+        <div class="menu-button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
     {% block content %}
     {% endblock %}
     <div class="pre-footer">
-            <div class="socials">
-                <a href="{{ config.instagram_url }}" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
-                <a href="{{ config.twitter_url }}" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
-                <a href="{{ config.pintrest_url }}" target="_blank"><i class="fab fa-pinterest-p fa-lg"></i></a>
-                <a href="{{ config.facebook_url }}" target="_blank"><i class="fab fa-facebook-f fa-lg"></i></a>
-                <a href="{{ config.linkedin_url }}" target="_blank"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                <a href="{{ config.houzz_url }}" target="_blank"><i class="fab fa-houzz fa-lg"></i></a>
+        <div class="socials">
+            <a href="{{ config.instagram_url }}" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="{{ config.twitter_url }}" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="{{ config.pintrest_url }}" target="_blank"><i class="fab fa-pinterest-p fa-lg"></i></a>
+            <a href="{{ config.facebook_url }}" target="_blank"><i class="fab fa-facebook-f fa-lg"></i></a>
+            <a href="{{ config.linkedin_url }}" target="_blank"><i class="fab fa-linkedin-in fa-lg"></i></a>
+            <a href="{{ config.houzz_url }}" target="_blank"><i class="fab fa-houzz fa-lg"></i></a>
+        </div>
+        <div class="logos">
+            <div>
+                <img src="{% static "main_site/img/cag-logo.png" %}" alt="City & Guilds logo">
+                <img src="{% static "main_site/img/baid-logo.png" %}" alt="British Academy of Interior Design logo">
+                <a href="http://www.fsb.org.uk" title="Visit FSB's website">
+                    <img src="{% static "main_site/img/fsb-logo.png" %}" alt="Federation of Small Businesses logo">
+                </a>
+                <a href="https://www.amara.com/content/interior-blog-awards">
+                    <img src="{% static "main_site/img/amara.png" %}" alt="Amara Blog Awards Finalist">
+                </a>
+                <img src="{% static 'main_site/img/cpa-finalist.png' %}" alt="Cardiff Property Awards Finalist">
             </div>
-            <div class="logos">
-                <div>
-                    <img src="{% static "main_site/img/cag-logo.png" %}" alt="City & Guilds logo">
-                    <img src="{% static "main_site/img/baid-logo.png" %}" alt="British Academy of Interior Design logo">
-                    <a href="http://www.fsb.org.uk" title="Visit FSB's website">
-                        <img src="{% static "main_site/img/fsb-logo.png" %}" alt="Federation of Small Businesses logo">
-                    </a>
-                    <a href="https://www.amara.com/content/interior-blog-awards">
-                        <img src="{% static "main_site/img/amara.png" %}" alt="Amara Blog Awards Finalist">
-                    </a>
-                </div>
-                <div class="cla">
-                    <img src="{% static "main_site/img/CLA_Finalist_1.jpg" %}" alt="Cardiff Life Awards Finalst" data-pin-nopin="true">
-                </div>
+            <div class="cla">
+                <img src="{% static "main_site/img/CLA_Finalist_1.png" %}" alt="Cardiff Life Awards Finalist"
+                     data-pin-nopin="true">
             </div>
+        </div>
     </div>
     <div class="footer">
         <div class="row">
             <div class="col">
-                <a href="{% if config.privacy_policy %}{{ config.privacy_policy.url }}{% endif %}">Privacy Policy</a>
+                <a target="_blank" href="{% if config.privacy_policy %}{{ config.privacy_policy.url }}{% endif %}">
+                    Privacy Policy
+                </a>
             </div>
             <div class="col">
                 &copy; Louise Misell Interiors {% now "Y" %}
             </div>
             <div class="col">
-                <a href="{% if config.terms_and_conditions %}{{ config.terms_and_conditions.url }}{% endif %}">Terms
-                    &amp; Conditions</a>
+                <a target="_blank"
+                   href="{% if config.terms_and_conditions %}{{ config.terms_and_conditions.url }}{% endif %}">
+                    Terms &amp; Conditions
+                </a>
             </div>
         </div>
     </div>
@@ -181,7 +192,27 @@
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="{% static "main_site/js/main-compiled-1534880420.js" %}"></script>
+<script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/0b7426adea00f73189b821c1a/cf1d49ef595f5771b1dc0d454.js");</script>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+ fbq('init', '550468805795101');
+fbq('track', 'PageView');
+</script>
+<noscript>
+ <img height="1" width="1"
+src="https://www.facebook.com/tr?id=550468805795101&ev=PageView
+&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+<script src="{% static "main_site/js/main-compiled.js" %}"></script>
 {% block scripts %}
 {% endblock %}
 </body>

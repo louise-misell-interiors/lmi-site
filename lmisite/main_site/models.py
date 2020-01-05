@@ -80,6 +80,7 @@ class SiteConfig(SingletonModel):
     portfolio_text = models.TextField(blank=True)
 
     blog_title = models.CharField(max_length=255, blank=True)
+    blog_header_image = models.ImageField(blank=True)
     blog_description = models.TextField(blank=True)
     blog_text = models.TextField(blank=True)
 
@@ -91,8 +92,8 @@ class SiteConfig(SingletonModel):
     contact_title = models.CharField(max_length=255, blank=True)
     contact_header_image = models.ImageField(blank=True)
     contact_description = models.TextField(blank=True)
-    contact_text_1 = models.TextField(blank=True)
-    contact_text_2 = models.TextField(blank=True)
+    contact_text_1 = RichTextUploadingField(blank=True)
+    contact_text_2 = RichTextUploadingField(blank=True)
 
     testimonials_title = models.CharField(max_length=255, blank=True)
     testimonials_header_image = models.ImageField(blank=True)
@@ -337,11 +338,13 @@ class ShortPost(models.Model):
 
 
 class NewsletterEntry(models.Model):
-    google_id = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
+    mailchimp_id = models.CharField(max_length=255, blank=True, null=True)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    email = models.EmailField()
 
     class Meta:
         verbose_name_plural = "Newsletter entries"
 
     def __str__(self):
-        return self.google_id
+        return f"{self.first_name} {self.last_name}"

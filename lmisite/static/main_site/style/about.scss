@@ -1,22 +1,37 @@
-@import "inc/bar";
+@import "inc/variables";
+@import "inc/testimonials";
 
-.content {
+.about {
+  background: $background-colour-dark;
+  color: $light-text-colour;
+  position: relative;
+
   > div {
-    margin: 0 5%;
-
-    h1 {
-      margin: unset !important;
-      font-weight: bold !important;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
-      position: relative;
-
-      @include bar;
-    }
+    width: 80vw;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 30px;
+    line-height: 1.5;
   }
 }
 
-.row {
+.bio {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+
+  > img {
+    max-width: 350px;
+    margin: $content-padding*2;
+  }
+
+  p {
+    width: 80vw;
+    max-width: 1300px;
+    text-align: center;
+
+    a.button {
+      font-size: 30px;
+    }
+  }
 }

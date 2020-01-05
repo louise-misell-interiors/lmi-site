@@ -1,0 +1,44 @@
+@import "variables";
+
+.instagram {
+  padding: $content-padding;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Raleway", sans-serif;
+
+  h2 {
+    text-align: center;
+    font-weight: normal;
+
+    a {
+      color: $background-colour-dark;
+
+      &:hover {
+        color: lighten($background-colour-dark, 20%);
+      }
+    }
+  }
+
+  > div {
+    width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(4, 30vmin);
+    justify-content: center;
+    align-items: center;
+    grid-gap: $content-padding/2;
+    grid-auto-rows: 30vmin;
+
+    a {
+      width: 100%;
+      height: 100%;
+
+      img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

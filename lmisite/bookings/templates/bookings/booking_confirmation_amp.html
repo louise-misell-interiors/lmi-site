@@ -1,0 +1,90 @@
+<!doctype html>
+<html ⚡4email>
+<head>
+  <meta charset="utf-8">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <style amp4email-boilerplate>body{visibility:hidden}</style>
+  <style amp-custom>
+    body {
+      background: #335470;
+      padding: 50px 15px;
+      font-family: sans-serif;
+    }
+    .emailbody {
+      max-width: 600px;
+      margin: 0 auto;
+      color: #335470;
+      background: #fff;
+    }
+
+    header {
+      background: #e5f0f2;
+      padding: 10px;
+    }
+
+    header amp-img {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    main {
+      padding: 20px 15px;
+    }
+
+    h1 {
+      background: #335470;
+      margin: 0;
+      padding: 20px 5px;
+      text-align: center;
+      color: #e5f0f2;
+    }
+
+    h3 {
+      margin-bottom: 0;
+    }
+    p {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="emailbody">
+    <header>
+      <amp-img src="https://louisemisellinteriors.co.uk/static/main_site/img/logo.png" width="350" height="263" layout="responsive"></amp-img>
+    </header>
+    <main>
+      <h1>
+        Your booking is confirmed
+      </h1>
+      <h2>
+        Hi {{ first_name }}
+      </h2>
+      <p>
+        Thank you for booking a {{ booking_type.name|lower }} with me, here are the details for your diary;
+      </p>
+      <h3>
+        Booking time
+      </h3>
+      <p>
+        {{ time }}
+      </p>
+      <h3>
+        Your email
+      </h3>
+      <p>
+        {{ email }}
+      </p>
+      <h3>
+        Your phone
+      </h3>
+      <p>
+        {{ phone }}
+      </p>
+        {% for question in questions %}
+            <h3>{{ question.question.question }}</h3>
+            <p>{{ question.answer|linebreaks }}</p>
+        {% endfor %}
+    </main>
+  </div>
+</body>
+</html>

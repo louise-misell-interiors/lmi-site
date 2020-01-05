@@ -19,8 +19,10 @@
     <div class="content" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="blog">
             <div class="blog-post">
-                <h1 itemprop="headline">{{ post.title }}</h1>
-                <h4>Published {{ post.date }}</h4>
+                <div class="title">
+                    <h1 itemprop="headline">{{ post.title }}</h1>
+                    <h4>Published {{ post.date }}</h4>
+                </div>
                 <div class="content">
                     {{ post.content|safe }}
                 </div>
@@ -31,6 +33,8 @@
                     {{ config.blog_text|linebreaks }}
                 </div>
                 {% include "main_site/newsletter_form.html" with form=form %}
+                <div class="short-posts">
+                <div>
                 {% for post in short_posts %}
                     <div class="post short" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
                         <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>
@@ -51,6 +55,8 @@
                         {{ post.content|safe }}
                     </div>
                 {% endfor %}
+                </div>
+                </div>
             </div>
         </div>
         <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' post.id %}"/>

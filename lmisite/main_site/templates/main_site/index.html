@@ -51,6 +51,9 @@
                     How can I help?
                 </h3>
                 {{ config.home_help_text|linebreaks }}
+                <p>
+                    <a href="{% url 'contact' %}" class="button dark">Book a free introductory chat here</a>
+                </p>
             </div>
         </div>
         <div class="services">
@@ -97,8 +100,8 @@
         <h2>Follow me on instagram <a href="{{ config.instagram_url }}">@louise_m_interiors</a></h2>
         <div>
             {% for item in instagram %}
-                <a href="{{ item.permalink }}">
-                    <img src="{{ item.media_url }}" alt="{{ item.caption }}" title="{{ item.caption }}">
+                <a href="{{ item.permalink }}" target="_blank">
+                    <img src="{{ item.media_url }}" title="{{ item.caption }}">
                 </a>
             {% endfor %}
         </div>

@@ -50,6 +50,11 @@ a.button {
   padding: 10px;
   cursor: pointer;
   display: inline-block;
+
+  &.dark {
+    background: $background-colour-dark;
+    border: none;
+  }
 }
 
 hr {
@@ -59,7 +64,7 @@ hr {
 }
 
 blockquote {
-  margin: 0;
+  margin: 20px 0;
   font-style: italic;
   position: relative;
 
@@ -188,12 +193,6 @@ img {
     > div {
       padding: $content-padding;
 
-      @media (max-width: $media-small) {
-        padding: 0;
-        width: auto;
-        margin: 0 5%;
-      }
-
       h1 {
         text-align: center;
         font-size: $header-font-size;
@@ -214,6 +213,10 @@ img {
       grid-template-columns: 2fr 1fr;
       justify-items: center;
 
+      @media (max-width: $media-small) {
+        grid-template-columns: 1fr;
+      }
+
       div:not(.cla) {
         display: grid;
         grid-auto-columns: 1fr;
@@ -233,6 +236,7 @@ img {
         display: grid;
         grid-auto-rows: 125px;
         justify-items: center;
+        align-items: center;
 
         img {
           max-height: 100%;

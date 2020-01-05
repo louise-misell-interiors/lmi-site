@@ -1,43 +1,116 @@
 @import "inc/variables";
+@import "inc/testimonials";
 @import "inc/bar";
 
 .content {
-  .steps {
-    > h2 {
-      font-size: 40px;
-      font-weight: normal;
-      text-align: center;
+  .bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: $background-colour-dark;
+    color: $light-text-colour;
+    text-align: center;
+    font-size: 22px;
+
+    a {
+      font-size: 30px;
+      margin: $content-margin;
     }
+  }
 
-    .desc {
-      width: 80%;
-      margin: 0 auto;
-      font-size: 23px;
-    }
+  .services {
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-rows: auto;
+    grid-gap: $content-padding*2;
+    padding: $content-padding*4 !important;
+    align-items: center;
+    justify-content: center;
 
-    padding-top: 0 !important;
+    .service {
+      width: 80vw;
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: auto 1fr auto;
+      align-items: center;
+      justify-content: left;
+      grid-column-gap: $content-padding;
 
-    .step {
-      padding: $content-padding $content-padding * 2;
-      background: #eee;
-      margin: $column-gutter;
-
-      @media (max-width: $media-small) {
-        margin: $column-gutter 0;
+      .colour-block {
+        grid-column: 1 / 3;
+        grid-row: 1 / 4;
+        background-color: $background-colour;
+        align-self: stretch;
+        z-index: -1;
       }
 
-      h2 {
-        text-align: center;
-        margin: $content-padding/2 0;
+      img {
+        grid-column: 2;
+        grid-row: 1 / 4;
+        align-self: stretch;
+        justify-self: stretch;
+        object-fit: cover;
+      }
 
-        &.step-number {
-          font-size: 50px;
-          font-weight: bold;
-          margin: 0;
+      h2:first-of-type {
+        grid-column: 1;
+        grid-row: 1;
+        font-family: Baskerville, serif;
+        text-align: center;
+        justify-self: center;
+        margin: $content-padding*2 0 $content-padding/2;
+        padding-bottom: $content-padding/2;
+        color: $dark-text-colour;
+        text-transform: uppercase;
+        border-bottom: 2px solid $dark-text-colour;
+      }
+
+      .description {
+        grid-column: 1;
+        grid-row: 2;
+        font-family: Raleway, sans-serif;
+        font-size: 17px;
+        line-height: 1.4;
+        margin-left: $content-padding;
+        text-align: center;
+        max-width: 700px;
+        justify-self: center;
+
+        p:first-of-type {
+          margin-top: 0;
         }
-        &:nth-of-type(2) {
-          display: inline-block;
-          @include bar;
+
+        p:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+
+      .price {
+        grid-column: 1;
+        grid-row: 3;
+
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: $dark-text-colour;
+        font-size: 25px;
+        font-family: Baskerville, serif;
+        justify-self: center;
+        margin-left: $content-padding;
+        margin-bottom: $content-padding*2;
+        text-align: center;
+
+        > span {
+          text-align: center;
+        }
+
+        .button {
+          margin-top: $content-margin;
+          background: $background-colour-dark;
+          border: none;
         }
       }
     }

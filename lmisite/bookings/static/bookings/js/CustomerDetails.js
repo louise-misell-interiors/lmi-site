@@ -22,7 +22,8 @@ export class CustomerDetails extends Component {
         this.state = {
             questions: null,
             questionAnswers: {},
-            name: "",
+            first_name: "",
+            last_name: "",
             email: "",
             phone: "",
             loading: true,
@@ -64,10 +65,10 @@ export class CustomerDetails extends Component {
             loading: true,
         });
         fetchGQL(
-            `mutation ($id: ID!, $date: Date!, $time: Time!, $name: String!, $email: String!, $phone: String!,
-                       $questions: [QuestionInput!]!) {
-              createBooking(id: $id, date: $date, time: $time, name: $name, email: $email, phone: $phone,
-                            questions: $questions) {
+            `mutation ($id: ID!, $date: Date!, $time: Time!, $first_name: String!, $last_name: String!, 
+            $email: String!, $phone: String!, $questions: [QuestionInput!]!) {
+              createBooking(id: $id, date: $date, time: $time, firstName: $first_name, lastName: $last_name,
+               email: $email, phone: $phone, questions: $questions) {
                 ok
                 error {
                   field
@@ -79,7 +80,8 @@ export class CustomerDetails extends Component {
                 id: this.props.type.id,
                 date: this.props.date.format("Y-MM-DD"),
                 time: this.props.time.format("HH:mm:ss"),
-                name: this.state.name,
+                first_name: this.state.first_name,
+                last_name: this.state.last_name,
                 email: this.state.email,
                 phone: this.state.phone,
                 questions: Object.keys(this.state.questionAnswers).map((key, i) => ({
@@ -152,13 +154,19 @@ export class CustomerDetails extends Component {
                 </div>
             });
 
-            let nameErrors = null;
+            let firstNameErrors = null;
+            let lastNameErrors = null;
             let emailErrors = null;
             let phoneErrors = null;
             if (this.state.error !== null) {
-                let nameError = this.state.error.filter(error => error.field === "name");
-                if (nameError.length !== 0) {
-                    nameErrors = nameError[0].errors
+                let firstNameError = this.state.error.filter(error => error.field === "first_name");
+                if (firstNameError.length !== 0) {
+                    firstNameErrors = firstNameError[0].errors
+                        .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
+                }
+                let lastNameError = this.state.error.filter(error => error.field === "last_name");
+                if (lastNameError.length !== 0) {
+                    lastNameErrors = lastNameError[0].errors
                         .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
                 }
                 let emailError = this.state.error.filter(error => error.field === "email");
@@ -177,9 +185,14 @@ export class CustomerDetails extends Component {
                 <BookingInfo type={this.props.type} time={date} key="1" onSchedule={this.scheduleEvent}/>
                 <div className="Form">
                     <div>
-                            <input type="text" value={this.state.name}
-                                   onChange={e => this.setState({name: e.target.value})} placeholder="Name"/>
-                            {nameErrors}
+                            <input type="text" value={this.state.first_name}
+                                   onChange={e => this.setState({first_name: e.target.value})} placeholder="First name"/>
+                            {firstNameErrors}
+                    </div>
+                    <div>
+                            <input type="text" value={this.state.last_name}
+                                   onChange={e => this.setState({last_name: e.target.value})} placeholder="Last name"/>
+                            {lastNameErrors}
                     </div>
                     <div>
                             <input type="text" value={this.state.email}

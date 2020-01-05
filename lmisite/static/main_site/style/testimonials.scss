@@ -1,37 +1,88 @@
 @import "inc/variables";
 
-.desc {
-  width: 80%;
-  margin: 0 auto;
-  font-size: 23px;
-}
-
-.row {
-  align-items: center;
-
-  @media (max-width: $media-small) {
-    padding: $content-padding !important;
+.content {
+  header {
+    background-image: url(../img/testimonials.jpg);
   }
 
-  img {
-    max-height: 30vh;
-    margin: 0 auto;
-    display: block;
+  .desc {
+    width: 80%;
+    font-size: 23px;
   }
 
-  blockquote {
-    font-size: 25px;
-  }
+  div.testimonial {
+    align-items: center;
+    color: $dark-text-colour;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 23px;
+    padding: 50px 0;
 
-  .by-line, h3 {
-    font-weight: bold;
-    text-align: center;
-    display: inline-block;
-    width: 100%;
-    margin: 0;
-  }
+    .by-line, blockquote {
+      width: 80vw;
+      max-width: 1000px;
+    }
 
-  .by-line {
-    font-size: 25px;
+    .by-line {
+      font-weight: bold;
+      text-align: right;
+      display: inline-block;
+      width: 100%;
+      margin: 0;
+      font-size: 25px;
+    }
+
+    blockquote {
+      line-height: 1.5;
+    }
+
+    a.button {
+      margin-top: $content-margin;
+      align-self: center;
+      color: $dark-text-colour;
+      border-color: $dark-text-colour;
+    }
+
+    &.style-I {
+      background-image: var(--background);
+      background-position: 0 center;
+      background-attachment: fixed;
+      background-size: cover;
+      padding: 150px 0;
+
+      div {
+        color: #000;
+        background: linear-gradient(rgba($background-colour, .7), rgba($background-colour, .7));
+        padding: $content-padding;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        font-family: "Raleway", sans-serif;
+
+        blockquote {
+          font-style: normal;
+        }
+
+        a.button {
+          background: $background-colour-dark;
+          color: $light-text-colour;
+        }
+      }
+    }
+
+    &.style-D {
+      background: $background-colour-dark;
+      color: $light-text-colour;
+
+      a.button {
+        color: $light-text-colour;
+        border-color: $light-text-colour;
+      }
+    }
+
+    &.style-L {
+      background: $background-colour;
+    }
   }
 }

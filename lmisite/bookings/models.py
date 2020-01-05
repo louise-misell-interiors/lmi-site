@@ -93,12 +93,14 @@ class BookingQuestion(models.Model):
 
 
 class Customer(models.Model):
-    name = models.CharField(max_length=255)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
     phone = PhoneNumberField()
     email = models.EmailField(unique=True)
+    mailchimp_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.first_name} {self.last_name}"
 
 
 class Booking(models.Model):
@@ -107,7 +109,7 @@ class Booking(models.Model):
     time = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.type.name} with {self.customer.name}"
+        return f"{self.type.name} with {str(self.customer)}"
 
 
 class BookingQuestionAnswer(models.Model):

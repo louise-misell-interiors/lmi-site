@@ -4,19 +4,20 @@ from django.template.loader import render_to_string
 from . import models
 from . import views
 import requests
-import googleapiclient.discovery
 from phonenumber_field.formfields import PhoneNumberField
 
 
 class ContactForm(forms.Form):
-    your_name = forms.CharField(label='Your name', widget=forms.TextInput(attrs={'placeholder': 'Your name'}))
+    first_name = forms.CharField(label='Your first name', widget=forms.TextInput(attrs={'placeholder': 'Your first name'}))
+    last_name = forms.CharField(label='Your last name', widget=forms.TextInput(attrs={'placeholder': 'Your last name'}))
     your_email = forms.EmailField(label='Your email', widget=forms.EmailInput(attrs={'placeholder': 'Your email'}))
     your_phone = PhoneNumberField(label='Your phone', widget=forms.TextInput(attrs={'placeholder': 'Your phone'}))
     message = forms.CharField(label='Your message', widget=forms.Textarea(attrs={'placeholder': 'Your message'}))
 
 
 class NewsletterForm(forms.Form):
-    name = forms.CharField(label='Your name', widget=forms.TextInput(attrs={'placeholder': 'Your name'}))
+    first_name = forms.CharField(label='Your first name', widget=forms.TextInput(attrs={'placeholder': 'Your first name'}))
+    last_name = forms.CharField(label='Your last name', widget=forms.TextInput(attrs={'placeholder': 'Your last name'}))
     email = forms.EmailField(label='Your email', widget=forms.EmailInput(attrs={'placeholder': 'Your email'}))
 
 
@@ -91,10 +92,12 @@ class NewsletterGroupWidget(forms.Widget):
 
         choices = []
         if is_signed_in:
-            directory = googleapiclient.discovery.build(views.NEWSLETTER_API_SERVICE_NAME, views.NEWSLETTER_API_VERSION,
-                                                        credentials=creds)
-            groups = directory.groups().list(customer='my_customer').execute().get('groups', [])
-            choices = list(map(lambda g: {"id": g["id"], "name": f"{g['name']} ({g['email']})"}, groups))
+            lists = requests.get(f"{creds['endpoint']}/3.0/lists", headers={
+                "Authorization": f"OAuth {creds['token']}"
+            })
+            lists.raise_for_status()
+            lists = lists.json()["lists"]
+            choices = list(map(lambda a: {"id": a["id"], "name": a["name"]}, lists))
 
         context = {
             'is_signed_in': is_signed_in,
@@ -124,7 +127,7 @@ class ConfigForm(forms.ModelForm):
                   'about_title', 'about_header_image', 'about_image_2', 'about_description', 'about_mission_statement',
                   'about_text', 'about_text_2',
                   'portfolio_title', 'portfolio_header_image', 'portfolio_description', 'portfolio_text',
-                  'blog_title', 'blog_description', 'blog_text',
+                  'blog_title', 'blog_header_image', 'blog_description', 'blog_text',
                   'services_title', 'services_header_image', 'services_description', 'services_text',
                   'contact_title', 'contact_header_image', 'contact_description', 'contact_text_1', 'contact_text_2',
                   'testimonials_title', 'testimonials_header_image', 'testimonials_description', 'testimonials_text')

@@ -93,28 +93,17 @@ class TestimonialSitemap(ImageSitemap):
         for testimonial in Testimonial.objects.filter(draft=False):
             if testimonial.image:
                 imgs.append({
-                    "loc": "%s://%s%s" % (protocol, domain, testimonial.image.url),
-                    "caption": testimonial.image_alt_text
+                    "loc": "%s://%s%s" % (protocol, domain, testimonial.image.url)
                 })
         return imgs
 
 
-class AboutSitemap(ImageSitemap):
+class AboutSitemap(Sitemap):
     def items(self):
         return ['about']
 
     def location(self, obj):
         return reverse(obj)
-
-    def get_image(self, protocol, domain, item):
-        imgs = []
-        for about_section in AboutSectionImage.objects.filter(section__draft=False):
-            if about_section.image:
-                imgs.append({
-                    "loc": "%s://%s%s" % (protocol, domain, about_section.image.url),
-                    "caption": about_section.alt_text
-                })
-        return imgs
 
 
 class PortfolioSitemap(ImageSitemap):

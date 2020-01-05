@@ -1,0 +1,12 @@
+Hi {{ first_name }},
+Thank you for booking a {{ booking_type.name|lower }} with me, here are the details or your diary;
+
+Booking time: {{ time }}
+Your email: {{ email }}
+Your phone: {{ phone }}
+
+{% for question in questions %}
+{{ question.question.question }}
+{{ question.answer|linebreaks }}
+
+{% endfor %}

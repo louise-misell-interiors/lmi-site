@@ -14,8 +14,8 @@
     height: 0;
     content: "";
     border-radius: $nav-link-bar-size;
-    border: solid $primary-colour $nav-link-bar-size / 2;
-    transition: width $fast-transition;
+    border: solid $background-colour-dark $nav-link-bar-size / 2;
+    transition: opacity $fast-transition, width $fast-transition;
 }
 
 @mixin bar() {

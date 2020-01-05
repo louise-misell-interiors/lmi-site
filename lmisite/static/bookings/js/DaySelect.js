@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
-import dateformat from 'dateformat';
+import moment from 'moment';
 import {fetchGQL} from "./main";
 import {Loader} from "./Loader";
 
 class Day extends Component {
     render() {
-        const date = new Date(this.props.date);
-
         return (
-            <div>
-                <h2>{dateformat(date, "ddd d")}</h2>
+            <div className="Day">
+                <h3>{this.props.date.clone().local().format("ddd Do")}</h3>
                 <div className="button-div">
-                    <button onClick={() => {this.props.onClick(date)}}>Select</button>
+                    <button onClick={() => {
+                        this.props.onClick(this.props.date)
+                    }}>Select
+                    </button>
                 </div>
             </div>
         );
@@ -25,6 +26,7 @@ export class DaySelect extends Component {
         this.state = {
             currentDays: [],
             loading: true,
+            queryError: null
         };
 
         this.nextDays = this.nextDays.bind(this);
@@ -32,21 +34,21 @@ export class DaySelect extends Component {
     }
 
     componentWillMount() {
-        this.getNewDays(new Date());
+        this.getNewDays(moment.utc());
     }
 
     nextDays() {
         if (this.state.currentDays.length !== 0) {
-            const lastDay = new Date(this.state.currentDays[this.state.currentDays.length - 1]);
-            lastDay.setDate(lastDay.getDate() + 1);
+            const lastDay = this.state.currentDays[this.state.currentDays.length - 1].clone();
+            lastDay.add('1', 'd');
             this.getNewDays(lastDay)
         }
     }
 
     prevDays() {
         if (this.state.currentDays.length !== 0) {
-            const firstDay = new Date(this.state.currentDays[0]);
-            firstDay.setDate(firstDay.getDate() - 5);
+            const firstDay = this.state.currentDays[0].clone();
+            firstDay.subtract(5, 'd');
             this.getNewDays(firstDay)
         }
     }
@@ -62,58 +64,50 @@ export class DaySelect extends Component {
                 bookingDays(start: $day, num: 5)
             }
         }`,
-            {id: this.props.type.id, day: start.toISOString().split("T")[0]})
-            .then(res => res.json())
+            {id: this.props.type.id, day: start.format("Y-MM-DD")})
             .then(res => self.setState({
-                currentDays: res.data.bookingType.bookingDays,
+                currentDays: res.data.bookingType.bookingDays.map(day => moment.utc(day, "Y-MM-DD")),
                 loading: false,
-            }));
+            }))
+            .catch(err => this.setState({
+                queryError: err,
+            }))
     }
 
 
     render() {
+        if (this.state.queryError) throw this.state.queryError;
+
         const self = this;
         const days = this.state.currentDays.map((day, i) =>
-            <div className="col button-col" key={i}>
-                <Day date={day} onClick={self.props.onSelect}/>
-            </div>
+            <Day date={day} onClick={self.props.onSelect}/>
         );
 
         let content = null;
 
         if (!this.state.loading) {
             if (days.length !== 0) {
-                content = [
-                    <div className="col slider-button" onClick={this.prevDays} key="prev">
-                        <i className="fas fa-chevron-left"/>
-                    </div>,
-                    days,
-                    <div className="col slider-button" onClick={this.nextDays} key="next">
-                        <i className="fas fa-chevron-right"/>
-                    </div>,
-                ];
+                content = <div className="DaySelect">
+                    <i className="fas fa-chevron-left" onClick={this.prevDays}/>
+                    {days}
+                    <i className="fas fa-chevron-right" onClick={this.nextDays}/>
+                </div>;
             } else {
-                content = <div className="col">
-                    <h3>No days available</h3>
-                </div>
+                content = <h3>No days available</h3>
             }
         } else {
-            content = <div className="col">
-                <Loader/>
-            </div>
+            content = <Loader/>
         }
 
         return (
-            <div className="back-wrapper">
+            <React.Fragment>
                 <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
-                <h1>{this.props.type.name}</h1>
+                <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.description}</p>
                 <hr/>
                 <h2>Select a day</h2>
-                <div className="row">
-                    {content}
-                </div>
-            </div>
+                {content}
+            </React.Fragment>
         );
     }
 }

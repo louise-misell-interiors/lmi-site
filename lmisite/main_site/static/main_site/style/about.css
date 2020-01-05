@@ -43,6 +43,9 @@
     margin: 50px; }
   .bio p {
     width: 80vw;
+    max-width: 1300px;
     text-align: center; }
+    .bio p a.button {
+      font-size: 30px; }
 
 /*# sourceMappingURL=about.css.map */

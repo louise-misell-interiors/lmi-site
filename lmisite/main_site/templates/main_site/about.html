@@ -19,6 +19,12 @@
 
 {% block content %}
     <div class="content">
+        <header {% if config.about_image_2 %}style="--background: url({{ config.about_image_2.url }});"{% endif %}>
+            <h1>Why choose me as your interior designer?</h1>
+        </header>
+        <div class="bio">
+            {{ config.about_text_2|safe }}
+        </div>
         <header {% if config.about_header_image %}style="--background: url({{ config.about_header_image.url }});"{% endif %}>
             <h1>About Louise</h1>
         </header>
@@ -34,12 +40,9 @@
             <img src="{% static 'main_site/img/louise-head.jpg' %}" alt="">
 
             {{ config.about_text|safe }}
-        </div>
-        <header {% if config.about_image_2 %}style="--background: url({{ config.about_image_2.url }});"{% endif %}>
-            <h1>Why choose me as your interior designer?</h1>
-        </header>
-        <div class="bio">
-            {{ config.about_text_2|safe }}
+            <p>
+                <a href="{% url 'contact' %}" class="button dark">Book a free introductory chat here</a>
+            </p>
         </div>
         <div class="testimonials">
             <div class="content" itemscope itemtype="https://schema.org/Review">

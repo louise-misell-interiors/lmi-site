@@ -27,6 +27,11 @@
 
   p {
     width: 80vw;
+    max-width: 1300px;
     text-align: center;
+
+    a.button {
+      font-size: 30px;
+    }
   }
 }

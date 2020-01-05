@@ -21,21 +21,16 @@
 
 .nav {
   height: $nav-height;
-  background: #fff;
-  margin: $content-padding 0;
-  padding: 0 $content-padding;
-  display: flex;
+  background: $background-colour;
+  padding: $content-padding $content-padding 0;
+  display: grid;
   justify-content: space-between;
   align-items: center;
-
-  @media (max-width: $media-medium) {
-    flex-wrap: wrap;
-    margin-top: 0;
-  }
+  grid-template-columns: 10vw $nav-height 1fr 10vw;
 
   .logo {
-    width: $logo-width;
-    min-width: $logo-width/2;
+    height: 100%;
+    grid-column: 2;
 
     img {
       max-width: 100%;
@@ -43,55 +38,26 @@
 
       pointer-events: all;
     }
-
-    @media (max-width: $media-medium) {
-      order: 1;
-      width: 100%;
-      text-align: center;
-
-      img {
-        height: $nav-height/3*2;
-      }
-    }
-
-    @media (max-width: $media-xsmall) {
-      order: 1;
-      height: $nav-height/1.3;
-
-      img {
-        transform: none;
-      }
-    }
   }
 
-  .nav-left, .nav-right {
-    flex: 2 1;
-
-    @media (max-width: $media-medium) {
-      height: auto;
-      order: 2;
-      flex-basis: 100%;
-
-      a {
-        font-size: 30px;
-      }
-    }
-
-    @media (max-width: $media-xsmall) {
-      padding: 5px 0;
-      width: 100%;
-    }
-
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-evenly;
+  nav {
+    transform: translateY(-$content-padding/2);
+    display: grid;
+    grid-column: 3;
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
+    justify-content: end;
 
     a {
-      margin: 0 5px;
+      $link-margin: 15px;
+      margin: 0 $link-margin;
       text-decoration: none;
-      color: #000;
-      font-size: 35px;
+      color: $background-colour-dark;
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
 
       @include bar;
 
@@ -106,7 +72,20 @@
       }
 
       &.is-active {
-        color: $primary-colour;
+        color: darken($background-colour-dark, 10%);
+      }
+
+      &::before {
+        content: "";
+        border-right: 1px solid $primary-colour;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -$link-margin;
+      }
+
+      &:last-of-type::before {
+        display: none;
       }
     }
   }

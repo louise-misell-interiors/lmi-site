@@ -1,4 +1,5 @@
 'use strict';
+import 'whatwg-fetch';
 import * as Sentry from '@sentry/browser';
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';

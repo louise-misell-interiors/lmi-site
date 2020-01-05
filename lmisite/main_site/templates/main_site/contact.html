@@ -21,7 +21,7 @@
             <h1>Contact</h1>
         </header>
         <div class="desc">
-            {{ config.contact_text_1|linebreaks }}
+            {{ config.contact_text_1|safe }}
         </div>
         <div class="contact-details" itemscope itemtype="http://schema.org/LocalBusiness">
             <link itemprop="image" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
@@ -40,8 +40,12 @@
                     {% csrf_token %}
                     {{ form.non_field_errors }}
                     <div>
-                        {{ form.your_name.errors }}
-                        {{ form.your_name }}
+                        {{ form.first_name.errors }}
+                        {{ form.first_name }}
+                    </div>
+                    <div>
+                        {{ form.last_name.errors }}
+                        {{ form.last_name }}
                     </div>
                     <div>
                         {{ form.your_email.errors }}
@@ -67,7 +71,7 @@
                 <meta itemprop="telephone" content="{{ config.phone.as_e164 }}">
                 <meta itemprop="telephone" content="{{ config.mobile.as_e164 }}">
                 <h3>Email: <a href="mailto:{{ config.email }}" itemprop="email">{{ config.email }}</a></h3>
-                <h3>Address:</h3>
+                <h3>Location:</h3>
                 <div class="address" itemprop="address">
                     {{ config.address|linebreaks }}
                 </div>

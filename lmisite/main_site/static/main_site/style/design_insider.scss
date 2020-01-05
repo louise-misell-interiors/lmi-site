@@ -66,6 +66,16 @@
     grid-template-columns: 7fr 2fr;
     grid-gap: $content-padding;
 
+    @media (max-width: $media-medium) {
+      width: 100vw;
+    }
+    @media (max-width: $media-small) {
+      grid-template-columns: 7fr 3fr;
+    }
+    @media (max-width: $media-xsmall) {
+      grid-template-columns: 1fr;
+    }
+
     > .posts, > .side {
       display: grid;
       grid-template-columns: 1fr;
@@ -131,6 +141,10 @@
           display: inline-block;
           font-family: "Raleway", sans-serif;
 
+          a {
+            color: $light-text-colour;
+          }
+
           > * {
             text-align: left;
           }
@@ -153,6 +167,36 @@
           background: $background-colour;
           border: none;
         }
+
+        @media (max-width: $media-small) {
+          grid-template-columns: 1fr 1fr;
+        }
+        @media (max-width: $media-xsmall) {
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 1fr;
+          padding: 0;
+
+          .title {
+            transform: none;
+            padding-right: ($content-padding / 2);
+          }
+
+          img {
+            position: relative;
+          }
+
+          > a:first-of-type {
+            &::before {
+              padding-bottom: 0;
+            }
+            grid-row: 1;
+          }
+
+          > div {
+            grid-column: 1;
+            grid-row: 2;
+          }
+        }
       }
     }
 
@@ -163,6 +207,7 @@
 
       .short, .desc {
         background: $background-colour;
+
         a {
           color: $dark-text-colour;
         }
@@ -180,6 +225,10 @@
           bottom: 0;
           scrollbar-width: thin;
           scrollbar-color: $background-colour-dark $background-colour;
+
+          @media (max-width: $media-xsmall) {
+            position: relative;
+          }
 
           &::-webkit-scrollbar-thumb {
             background: $background-colour-dark;
@@ -262,22 +311,28 @@ h2, h3 {
   flex-direction: column;
   align-items: center;
 
-  h1 {
-    align-self: flex-start;
-    text-align: left;
-  }
-
-  h4 {
-    display: inline-block;
+  .title {
     font-family: "Raleway", sans-serif;
-    align-self: flex-start;
-    margin: 0;
-    font-style: italic;
+    align-self: stretch;
+    background: $background-colour-dark;
+    color: $light-text-colour;
+    padding: $content-padding;
+
+    h1 {
+      text-align: left !important;
+      margin: 0 0 5px;
+      font-size: 40px !important;
+    }
+
+    h4 {
+      margin: 0;
+      font-style: italic;
+    }
   }
 
   img {
     padding: $content-padding 0;
-    display: block;
+    display: inline-block;
   }
 
   .content {

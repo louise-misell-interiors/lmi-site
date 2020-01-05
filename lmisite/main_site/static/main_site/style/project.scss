@@ -58,6 +58,21 @@
     width: 80vw;
     margin: 0 auto;
 
+    @media (max-width: $media-small) {
+      grid-auto-rows: auto;
+      width: 100vw;
+
+      > div {
+        grid-column-end: span 2 !important;
+      }
+    }
+
+    @media (max-width: $media-xsmall) {
+      > div {
+        grid-column-end: span 1 !important;
+      }
+    }
+
     p {
       font-size: 30px;
       text-align: center;

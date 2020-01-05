@@ -1,34 +1,59 @@
-.desc {
+.content header {
+  background-image: url(../img/testimonials.jpg); }
+.content .desc {
   width: 80%;
-  margin: 0 auto;
-  font-size: 23px;
-}
-
-.row {
+  font-size: 23px; }
+.content div.testimonial {
   align-items: center;
-}
-@media (max-width: 800px) {
-  .row {
-    padding: 25px !important;
-  }
-}
-.row img {
-  max-height: 30vh;
-  margin: 0 auto;
-  display: block;
-}
-.row blockquote {
-  font-size: 25px;
-}
-.row .by-line, .row h3 {
-  font-weight: bold;
-  text-align: center;
-  display: inline-block;
-  width: 100%;
-  margin: 0;
-}
-.row .by-line {
-  font-size: 25px;
-}
+  color: #335470;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 23px;
+  padding: 50px 0; }
+  .content div.testimonial .by-line, .content div.testimonial blockquote {
+    width: 80vw;
+    max-width: 1000px; }
+  .content div.testimonial .by-line {
+    font-weight: bold;
+    text-align: right;
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    font-size: 25px; }
+  .content div.testimonial blockquote {
+    line-height: 1.5; }
+  .content div.testimonial a.button {
+    margin-top: 20px;
+    align-self: center;
+    color: #335470;
+    border-color: #335470; }
+  .content div.testimonial.style-I {
+    background-image: var(--background);
+    background-position: 0 center;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 150px 0; }
+    .content div.testimonial.style-I div {
+      color: #000;
+      background: linear-gradient(rgba(229, 240, 242, 0.7), rgba(229, 240, 242, 0.7));
+      padding: 25px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      font-family: "Raleway", sans-serif; }
+      .content div.testimonial.style-I div blockquote {
+        font-style: normal; }
+      .content div.testimonial.style-I div a.button {
+        background: #335470;
+        color: #e5f0f2; }
+  .content div.testimonial.style-D {
+    background: #335470;
+    color: #e5f0f2; }
+    .content div.testimonial.style-D a.button {
+      color: #e5f0f2;
+      border-color: #e5f0f2; }
+  .content div.testimonial.style-L {
+    background: #e5f0f2; }
 
 /*# sourceMappingURL=testimonials.css.map */

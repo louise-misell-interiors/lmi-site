@@ -21,6 +21,8 @@ h2.step-number {
     text-align: left;
     width: 100%;
     display: inline-block; }
+    .row .col span.error {
+      color: #dd1010; }
   .row .col.button-col {
     position: relative;
     padding-bottom: 90px; }

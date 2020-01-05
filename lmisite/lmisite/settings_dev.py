@@ -177,5 +177,6 @@ CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
         'width': 1200,
+        'font_names': 'Baskerville; Raleway'
     },
 }

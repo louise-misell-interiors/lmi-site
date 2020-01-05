@@ -37,15 +37,10 @@ $(function () {
 
     var $menu = $(".nav");
     var $menuButton = $menu.find(".menu-button");
-    var $menuLeft = $menu.find(".nav-left");
-    var $menuRight = $menu.find(".nav-right");
 
     $menuButton.on("click", function () {
         $menu.toggleClass("show-menu");
-        var top = $menuLeft.outerHeight();
-        $menuRight.css("top", top);
-        $menuButton.toggleClass("fa-bars");
-        $menuButton.toggleClass("fa-times");
+        $menuButton.toggleClass("open");
     });
 
     [].forEach.call(document.querySelectorAll('img[data-src]'), function (img) {

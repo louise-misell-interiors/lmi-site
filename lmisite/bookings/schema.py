@@ -232,7 +232,7 @@ class BookingType(DjangoObjectType):
         num_tried = 0
 
         def get_days(start):
-            return get_booking_times(start, self, start + datetime.timedelta(days=num))
+            return get_booking_times(start, self, start + datetime.timedelta(days=(num-1)))
 
         while len(days) < num:
             new_days = get_days(day)
@@ -306,7 +306,7 @@ class CreateBooking(graphene.Mutation):
                     "Authorization": f"OAuth {creds['token']}"
                 }, json={
                     "email_address": email,
-                    "status": "subscribed",
+                    "status": "unsubscribed",
                     "source": "Website",
                     "ip_signup": get_client_ip(info.context),
                     "merge_fields": {

@@ -169,7 +169,7 @@
 
       .BookingTypes {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         grid-gap: $content-padding;
       }
 
@@ -178,6 +178,32 @@
         grid-template-columns: auto repeat(5, 1fr) auto;
         grid-gap: $content-padding;
         align-items: center;
+
+        @media (max-width: $media-medium) {
+          grid-template-columns: repeat(5, 1fr);
+
+          i {
+            grid-column: span 5;
+          }
+        }
+
+        @media (max-width: $media-small) {
+          grid-template-columns: repeat(3, 1fr);
+
+          i {
+            grid-column: span 3;
+            text-align: center;
+          }
+        }
+
+        @media (max-width: $media-xsmall) {
+          grid-template-columns: repeat(2, 1fr);
+
+          i {
+            grid-column: span 2;
+            text-align: center;
+          }
+        }
 
         .Day {
           display: flex;

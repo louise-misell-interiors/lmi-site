@@ -292,7 +292,7 @@ def contact(request):
                            "Authorization": f"OAuth {creds['token']}"
                         }, json={
                             "email_address": email,
-                            "status": "subscribed",
+                            "status": "unsubscribed",
                             "source": "Website",
                             "ip_signup": get_client_ip(request),
                             "merge_fields": {

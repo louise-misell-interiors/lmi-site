@@ -222,8 +222,9 @@ h2, h3 {
       margin: 0;
       font-style: italic; }
   .blog-post img {
-    padding: 25px 0;
     display: inline-block; }
+  .blog-post a {
+    color: #335470; }
   .blog-post .content {
     max-width: 1000px; }
 

@@ -331,8 +331,11 @@ h2, h3 {
   }
 
   img {
-    padding: $content-padding 0;
     display: inline-block;
+  }
+
+  a {
+    color: $dark-text-colour;
   }
 
   .content {

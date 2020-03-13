@@ -1,7 +1,11 @@
 server {
     listen 80;
+    listen [::]:80;
     server_name louisemisellinteriors.co.uk www.louisemisellinteriors.co.uk;
 
+    location /.well-known/acme-challenge/ {
+        root /var/www/html;
+    }
     location / {
         rewrite ^ https://louisemisellinteriors.co.uk$request_uri? permanent;
     }
@@ -9,6 +13,7 @@ server {
 
 server {
     listen 443 ssl http2;
+    listen [::]:443 ssl http2;
     server_name louisemisellinteriors.co.uk www.louisemisellinteriors.co.uk;
     charset utf-8;
 
@@ -41,6 +46,9 @@ server {
       }
     location /robots.txt {
         alias /opt/apps/lmisite/src/static/main_site/robots.txt;
+    }
+    location /.well-known/acme-challenge/ {
+        root /var/www/html;
     }
         
     location / {

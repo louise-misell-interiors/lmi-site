@@ -107,6 +107,7 @@ class Booking(models.Model):
     type = models.ForeignKey(BookingType, related_name='bookings', on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, related_name='bookings', on_delete=models.CASCADE)
     time = models.DateTimeField()
+    last_notification_sent = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.type.name} with {str(self.customer)}"

@@ -7,7 +7,7 @@ import main_site.views
 import pytz
 import requests
 from django.core.exceptions import ValidationError
-from django.core.mail import send_mail, EmailMultiAlternatives
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils import timezone
 from graphene_django import DjangoObjectType
@@ -378,7 +378,6 @@ class CreateBooking(graphene.Mutation):
             questions_text.append(f"{booking_question.question}:\r\n{question.value}")
         questions_text = "\r\n".join(questions_text)
 
-        subject = f"{first_name} {last_name} has booked {booking_type.name}"
         tz = pytz.timezone(booking_type.timezone)
         time = time.astimezone(tz=tz).strftime("%I:%M%p %a %d %b %Y")
         body = f"Name: {first_name} {last_name}\r\n" \
@@ -388,9 +387,13 @@ class CreateBooking(graphene.Mutation):
             f"{booking_type.name}\r\n" \
             f"Time: {time}, {booking_type.timezone}\r\n" \
             f"{questions_text}"
-
-        recipients = [config.email]
-        send_mail(subject, body, 'noreply@noreply.louisemisellinteriors.co.uk', recipients)
+        email_msg = EmailMessage(
+            subject=f"{first_name} {last_name} has booked {booking_type.name}",
+            body=body,
+            to=[config.email],
+            reply_to=[f"{first_name} {last_name} <{email}>"]
+        )
+        email_msg.send()
 
         context = {
             "booking_type": booking_type,
@@ -405,7 +408,7 @@ class CreateBooking(graphene.Mutation):
             } for q in questions]
         }
 
-        email = EmailMultiAlternatives(
+        email_msg = EmailMultiAlternatives(
             subject=f"Confirmation of your booking with Louise",
             body=render_to_string("bookings/booking_confirmation_txt.html", context),
             to=[email],
@@ -414,9 +417,9 @@ class CreateBooking(graphene.Mutation):
             },
             reply_to=[f"Louise Misell <{config.email}>"]
         )
-        email.attach_alternative(render_to_string("bookings/booking_confirmation_amp.html", context), "text/x-amp-html")
-        email.attach_alternative(render_to_string("bookings/booking_confirmation.html", context), "text/html")
-        email.send()
+        email_msg.attach_alternative(render_to_string("bookings/booking_confirmation_amp.html", context), "text/x-amp-html")
+        email_msg.attach_alternative(render_to_string("bookings/booking_confirmation.html", context), "text/html")
+        email_msg.send()
 
         insert_booking_to_calendar(booking)
 

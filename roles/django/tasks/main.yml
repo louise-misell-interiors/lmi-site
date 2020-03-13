@@ -63,7 +63,7 @@
 - name: Install dependencies
   pip:
     requirements: /opt/apps/lmisite-test/src/requirements.txt
-    state: present
+    state: latest
     virtualenv: /opt/apps/lmisite-test/env
   run_once: true
 
@@ -97,4 +97,4 @@
 - name: Reload vassal
   command: "touch --no-dereference /etc/uwsgi/vassals/lmisite-test.ini"
   args:
-    warn: true
+    warn: false

@@ -41,6 +41,11 @@ class ServiceAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = [ServiceSummaryInline]
 
 
+@admin.register(OnlineDesignStep)
+class OnlineDesignStepAdmin(SortableAdminMixin, admin.ModelAdmin):
+    pass
+
+
 @admin.register(Testimonial)
 class TestimonialAdmin(SortableAdminMixin, admin.ModelAdmin):
     pass

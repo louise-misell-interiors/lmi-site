@@ -1,0 +1,67 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}{{ config.online_design_title }}{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static "main_site/style/services.css" %}">
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ config.online_design_title }} | Louise Misell Interiors">
+    <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
+    <meta property="og:description" content="{{ config.online_design_description }}">
+    <meta name="description" content="{{ config.online_design_description }}">
+
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'services' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if config.online_design_header_image %}style="--background: url({{ config.online_design_header_image.url }});"{% endif %}>
+            <h1>Online design</h1>
+        </header>
+        <div class="bar">
+            {{ config.online_design_text|linebreaks }}
+            <a href="{% url 'contact' %}" class="button">Book a free introductory chat here</a>
+        </div>
+        <div class="services">
+            {% for step in steps %}
+                <div class="service" itemscope itemtype="https://schema.org/Service">
+                    {% if step.image %}
+                        <img src="{{ step.image.url }}" alt="{{ step.name }}">
+                    {% endif %}
+                    <div class="colour-block"></div>
+                    <h2 itemprop="name">{{ step.name }}</h2>
+                    <span itemprop="description" class="description">
+                      {{ step.description|linebreaks }}
+                    </span>
+                    {% if step.button_text %}
+                        <h2 class="price">
+                            <a href="{% url 'contact' %}" class="button">
+                                <span>{{ step.button_text }}</span>
+                            </a>
+                        </h2>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="testimonials">
+            <div class="content" itemscope itemtype="https://schema.org/Review">
+                <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
+                <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
+                {% if testimonial.related_project %}
+                    <link itemprop="itemReviewed"
+                          href="{% url 'project' testimonial.related_project.id %}">
+                {% else %}
+                    <link itemprop="itemReviewed" href="{% url 'contact' %}">
+                {% endif %}
+                {% if testimonial.image %}
+                    <link itemprop="image" href="{{ testimonial.image.url }}"/>
+                {% endif %}
+                <p>
+                    <a href="{% url 'testimonials' %}" class="button">More testimonials</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -10,9 +10,9 @@ from django.contrib.syndication.views import Feed
 from django.core.mail import EmailMultiAlternatives
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.utils import feedgenerator
-from django.utils import timezone
+from django.utils import feedgenerator, timezone
 from django.utils.encoding import iri_to_uri
+from django.contrib.auth.decorators import login_required
 
 from . import forms
 from .models import *
@@ -245,6 +245,16 @@ def services(request):
         testimonials = testimonials.filter(draft=False)
     services = list(itertools.chain(services_m, services_o))
     return render(request, "main_site/services.html", {"services": services, "testimonial": testimonials.first()})
+
+
+@login_required
+def online_design(request):
+    steps = OnlineDesignStep.objects.all()
+    testimonials = Testimonial.objects.filter(featured_on=Testimonial.ONLINE_DESIGN_PAGE)
+    if not request.user.is_superuser:
+        steps = steps.filter(draft=False)
+        testimonials = testimonials.filter(draft=False)
+    return render(request, "main_site/online_design.html", {"steps": steps, "testimonial": testimonials.first()})
 
 
 def testimonials(request):

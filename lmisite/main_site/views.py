@@ -247,7 +247,6 @@ def services(request):
     return render(request, "main_site/services.html", {"services": services, "testimonial": testimonials.first()})
 
 
-@login_required
 def online_design(request):
     steps = OnlineDesignStep.objects.all()
     testimonials = Testimonial.objects.filter(featured_on=Testimonial.ONLINE_DESIGN_PAGE)

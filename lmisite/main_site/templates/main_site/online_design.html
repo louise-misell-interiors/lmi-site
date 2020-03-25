@@ -35,13 +35,13 @@
                     <span itemprop="description" class="description">
                       {{ step.description|linebreaks }}
                     </span>
-                    {% if step.button_text %}
-                        <h2 class="price">
+                    <h2 class="price">
+                        {% if step.button_text %}
                             <a href="{% url 'contact' %}" class="button">
                                 <span>{{ step.button_text }}</span>
                             </a>
-                        </h2>
-                    {% endif %}
+                        {% endif %}
+                    </h2>
                 </div>
             {% endfor %}
         </div>

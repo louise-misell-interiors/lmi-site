@@ -39,7 +39,7 @@
                         <h2 class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                             <span itemprop="price">{{ service.price }}</span>
                             {% if service.button_text %}
-                                <a href="{% url 'contact' %}" class="button">
+                                <a href="{% if service.button_url %}{{ service.button_url }}{% else %}{% url 'contact' %}{% endif %}" class="button">
                                     <span>{{ service.button_text }}</span>
                                 </a>
                             {% endif %}

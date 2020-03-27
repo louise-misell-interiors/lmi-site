@@ -138,6 +138,7 @@ class Service(models.Model):
     description = models.TextField(blank=True)
     price = models.CharField(max_length=255, default="", blank=True)
     button_text = models.CharField(max_length=255, default="", blank=True)
+    button_url = models.URLField(null=True, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
@@ -167,6 +168,7 @@ class OnlineDesignStep(models.Model):
     image = models.ImageField(blank=True)
     description = models.TextField(blank=True)
     button_text = models.CharField(max_length=255, default="", blank=True)
+    button_url = models.URLField(null=True, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:

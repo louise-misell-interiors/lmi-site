@@ -37,7 +37,7 @@
                     </span>
                     <h2 class="price">
                         {% if step.button_text %}
-                            <a href="{% url 'contact' %}" class="button">
+                            <a href="{% if step.button_url %}{{ step.button_url }}{% else %}{% url 'contact' %}{% endif %}" class="button">
                                 <span>{{ step.button_text }}</span>
                             </a>
                         {% endif %}

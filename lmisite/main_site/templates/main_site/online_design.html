@@ -36,11 +36,11 @@
                       {{ step.description|linebreaks }}
                     </span>
                     <h2 class="price">
-                        {% if step.button_text %}
-                            <a href="{% if step.button_url %}{{ step.button_url }}{% else %}{% url 'contact' %}{% endif %}" class="button">
-                                <span>{{ step.button_text }}</span>
+                        {% for button in step.buttons.all %}
+                            <a href="{% if button.button_url %}{{ button.button_url }}{% else %}{% url 'contact' %}{% endif %}" class="button">
+                                <span>{{ button.button_text }}</span>
                             </a>
-                        {% endif %}
+                        {% endfor %}
                     </h2>
                 </div>
             {% endfor %}

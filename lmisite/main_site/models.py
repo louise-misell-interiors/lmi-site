@@ -87,7 +87,7 @@ class SiteConfig(SingletonModel):
     services_title = models.CharField(max_length=255, blank=True)
     services_header_image = models.ImageField(blank=True)
     services_description = models.TextField(blank=True)
-    services_text = models.TextField(blank=True)
+    services_text = RichTextUploadingField(blank=True)
 
     online_design_title = models.CharField(max_length=255, blank=True)
     online_design_header_image = models.ImageField(blank=True)
@@ -137,8 +137,6 @@ class Service(models.Model):
     home_page_image = models.ImageField(blank=True)
     description = models.TextField(blank=True)
     price = models.CharField(max_length=255, default="", blank=True)
-    button_text = models.CharField(max_length=255, default="", blank=True)
-    button_url = models.URLField(null=True, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
@@ -150,6 +148,15 @@ class Service(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ServiceButton(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='buttons')
+    button_text = models.CharField(max_length=255, default="", blank=True)
+    button_url = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.button_text
 
 
 class ServiceSummary(models.Model):
@@ -167,8 +174,6 @@ class OnlineDesignStep(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(blank=True)
     description = models.TextField(blank=True)
-    button_text = models.CharField(max_length=255, default="", blank=True)
-    button_url = models.URLField(null=True, blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
@@ -180,6 +185,15 @@ class OnlineDesignStep(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class OnlineDesignStepButton(models.Model):
+    step = models.ForeignKey(OnlineDesignStep, on_delete=models.CASCADE, related_name='buttons')
+    button_text = models.CharField(max_length=255, default="", blank=True)
+    button_url = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.button_text
 
 
 class Project(models.Model):

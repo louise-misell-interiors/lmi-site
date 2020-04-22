@@ -8,6 +8,7 @@
 @font-face {
   font-family: 'Baskerville';
   font-style: normal;
+  font-display: swap;
   src: url(../fonts/Baskerville.ttf) format("truetype"); }
 * {
   box-sizing: border-box; }

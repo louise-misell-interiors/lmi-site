@@ -1,5 +1,6 @@
 from PIL import Image as Img
 import io
+import readtime
 import nltk.data
 from bs4 import BeautifulSoup
 from django.db import models
@@ -360,6 +361,10 @@ class DesignInsiderPost(models.Model):
             out = f"{out} {token}"
 
         return out
+
+    @property
+    def read_time(self):
+        return str(readtime.of_html(self.content))
 
     def __str__(self):
         return self.title

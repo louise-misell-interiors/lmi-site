@@ -24,7 +24,7 @@
     <div>
         <div class="title">
             <h3 itemprop="headline"><a href="{% url 'design_insider_post' post.id %}">{{ post.title }}</a></h3>
-            <h4>{{ post.date }}</h4>
+            <h4>{{ post.date }} - <i class="far fa-clock"></i> {{ post.read_time }}</h4>
         </div>
         <p>{{ post.summarize }}<br><em>...</em></p>
     <a href="{% url 'design_insider_post' post.id %}" class="button">Read more</a>

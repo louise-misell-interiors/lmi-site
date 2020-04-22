@@ -11,6 +11,11 @@ server {
     }
 }
 
+map $http_accept $img_suffix {
+    "~*webp"  ".webp";
+    "~*jxr"    ".jxr";
+}
+
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
@@ -33,14 +38,25 @@ server {
     add_header Content-Security-Policy "default-src https:; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://code.jquery.com https://assets.pinterest.com 'unsafe-inline'; style-src https: 'unsafe-inline'; img-src https: data:; connect-src https: wss:; object-src 'self' ; frame-src 'self' ; frame-ancestors 'self' ; form-action 'self' ; upgrade-insecure-requests; block-all-mixed-content; base-uri 'self'; report-uri https://evilben.report-uri.com/r/d/csp/enforce;" always;
     add_header Expect-CT "enforce, max-age=0, report-uri=https://evilben.report-uri.com/r/d/ct/reportOnly" always;
     add_header Feature-Policy "usermedia 'none';" always;
-    
-    location /static {
-        alias /opt/apps/lmisite/src/static;
+
+    location /static/ {
+        alias /opt/apps/lmisite/src/static/;
+
+        location ~ ^/static(.*)\.(?:png|jpe?g|gif|webp|jxr)$ {
+            set $file $1;
+            add_header Vary Accept;
+            try_files $file$img_suffix $uri =404;
+        }
     }
-    
-    location /media {
-        alias /opt/apps/lmisite/src/media;
-    }
+    location /media/ {
+        alias /opt/apps/lmisite/src/media/;
+
+        location ~ ^/media(.*)\.(?:png|jpe?g|gif|webp|jxr)$ {
+            set $file $1;
+            add_header Vary Accept;
+            try_files $file$img_suffix $uri =404;
+        }
+      }
     location ~ ^/favicon.(\w*)$ {
             alias /opt/apps/lmisite/src/static/main_site/favicon/favicon.$1;
       }

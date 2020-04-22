@@ -1,6 +1,5 @@
 import itertools
 import json
-
 import bookings.models as booking_models
 import django.utils.xmlutils
 import google_auth_oauthlib.flow
@@ -123,8 +122,12 @@ def design_insider_post(request, id):
     else:
         form = forms.NewsletterForm()
 
-    return render(request, "main_site/design_insider_post.html",
-                  {"post": post, "short_posts": short_posts, "form": form})
+    return render(
+        request, "main_site/design_insider_post.html", {
+            "post": post,
+            "short_posts": short_posts,
+            "form": form
+        })
 
 
 class DesignInsiderFeedType(feedgenerator.Rss201rev2Feed):

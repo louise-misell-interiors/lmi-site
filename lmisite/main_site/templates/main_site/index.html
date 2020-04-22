@@ -103,7 +103,7 @@
         <div>
             {% for item in instagram %}
                 <a href="{{ item.permalink }}" target="_blank">
-                    <img src="{{ item.media_url }}" title="{{ item.caption }}">
+                    <img data-src="{{ item.media_url }}" class="lazyload" title="{{ item.caption }}">
                 </a>
             {% endfor %}
         </div>

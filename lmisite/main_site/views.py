@@ -329,6 +329,10 @@ def contact(request):
     return render(request, "main_site/contact.html", {'form': form, 'sent': False, "testimonial": testimonials.first()})
 
 
+def booking(request, id):
+    return render(request, "main_site/booking.html", {"booking_id": id})
+
+
 def fb_authorise(request):
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         FB_CLIENT_SECRETS_FILE, scopes=FB_SCOPES)

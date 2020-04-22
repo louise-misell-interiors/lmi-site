@@ -434,7 +434,7 @@ class Query(graphene.ObjectType):
     )
 
     def resolve_booking_types(self, info):
-        return models.BookingType.objects.all()
+        return models.BookingType.objects.filter(hidden=False)
 
     def resolve_booking_type(self, info, id):
         return models.BookingType.objects.get(pk=id)

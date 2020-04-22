@@ -21,7 +21,7 @@
             <h1>Services</h1>
         </header>
         <div class="bar">
-            {{ config.services_text|linebreaks }}
+            {{ config.services_text|safe }}
             <a href="{% url 'contact' %}" class="button">Book a free introductory chat here</a>
         </div>
         <div class="services">

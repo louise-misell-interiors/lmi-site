@@ -1,0 +1,25 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}{{ config.booking_title }}{% endblock %}
+
+{% block content %}
+    <div class="content" {% if config.booking_header_image %}style="--background: url({{ config.booking_header_imag.url }});"{% endif %}>
+        <header>
+            <h1 style="text-transform: none">{{ config.booking_title }}</h1>
+        </header>
+        <div style="max-width: 1000px;margin: 0 auto 50px;">
+            <div class="calendar" id="booking-wrapper">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        bookingConf = {
+            id: "{{ booking_id }}"
+        };
+    </script>
+<script src="{% static "bookings/js/main_production.js" %}"></script>
+{% endblock %}

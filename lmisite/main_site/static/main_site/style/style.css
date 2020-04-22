@@ -482,4 +482,102 @@ img {
   .form .errorlist li {
     list-style: none; }
 
+.calendar {
+  font-family: "Raleway", sans-serif;
+  position: relative;
+  display: inline-block;
+  width: 100%; }
+  .calendar h2 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: normal; }
+  .calendar > h2:first-of-type {
+    min-height: 2.2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #e5f0f2; }
+  .calendar h2, .calendar h3 {
+    font-family: "Baskerville", serif; }
+  .calendar p {
+    text-align: center; }
+  .calendar .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    text-align: center;
+    background: #e5f0f2; }
+    .calendar .box h3 {
+      margin: 0;
+      font-size: 30px;
+      font-family: Baskerville, serif;
+      padding-bottom: 12.5px;
+      border-bottom: 2px solid #335470; }
+    .calendar .box p {
+      flex-grow: 1; }
+  .calendar .loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  .calendar .back-button {
+    position: absolute;
+    top: calc(1.1em + 33.2px);
+    font-size: 25px;
+    left: 10px; }
+  .calendar .BookingTypes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 25px; }
+  .calendar .DaySelect {
+    display: grid;
+    grid-template-columns: auto repeat(5, 1fr) auto;
+    grid-gap: 25px;
+    align-items: center; }
+    @media (max-width: 1200px) {
+      .calendar .DaySelect {
+        grid-template-columns: repeat(5, 1fr); }
+        .calendar .DaySelect i {
+          grid-column: span 5; } }
+    @media (max-width: 800px) {
+      .calendar .DaySelect {
+        grid-template-columns: repeat(3, 1fr); }
+        .calendar .DaySelect i {
+          grid-column: span 3;
+          text-align: center; } }
+    @media (max-width: 700px) {
+      .calendar .DaySelect {
+        grid-template-columns: repeat(2, 1fr); }
+        .calendar .DaySelect i {
+          grid-column: span 2;
+          text-align: center; } }
+    .calendar .DaySelect .Day {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-self: stretch;
+      text-align: center; }
+  .calendar .TimeSelect {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 25px; }
+  .calendar .BookingInfo {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-gap: 25px;
+    padding: 25px 0;
+    text-align: center; }
+    .calendar .BookingInfo p, .calendar .BookingInfo h2, .calendar .BookingInfo h3 {
+      margin: 0; }
+  .calendar .CustomerDetails {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 25px;
+    padding: 25px 0;
+    align-items: start; }
+    .calendar .CustomerDetails .Form {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 25px; }
+
 /*# sourceMappingURL=style.css.map */

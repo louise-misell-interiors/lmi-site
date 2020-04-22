@@ -15,6 +15,7 @@ urlpatterns = [
     path('design_insider/<id>/', views.design_insider_post, name='design_insider_post'),
     path('testimonials/', views.testimonials, name='testimonials'),
     path('contact/', views.contact, name='contact'),
+    path('booking/<id>', views.booking, name='booking'),
     path('config.js', views.config, name='config.js'),
 
     path('facebook/authorise/', views.fb_authorise, name='fb_authorise'),

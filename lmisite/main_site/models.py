@@ -77,12 +77,12 @@ class SiteConfig(SingletonModel):
     portfolio_title = models.CharField(max_length=255, blank=True)
     portfolio_header_image = models.ImageField(blank=True)
     portfolio_description = models.TextField(blank=True)
-    portfolio_text = models.TextField(blank=True)
+    portfolio_text = RichTextUploadingField(blank=True)
 
     blog_title = models.CharField(max_length=255, blank=True)
     blog_header_image = models.ImageField(blank=True)
     blog_description = models.TextField(blank=True)
-    blog_text = models.TextField(blank=True)
+    blog_text = RichTextUploadingField(blank=True)
 
     services_title = models.CharField(max_length=255, blank=True)
     services_header_image = models.ImageField(blank=True)
@@ -92,7 +92,7 @@ class SiteConfig(SingletonModel):
     online_design_title = models.CharField(max_length=255, blank=True)
     online_design_header_image = models.ImageField(blank=True)
     online_design_description = models.TextField(blank=True)
-    online_design_text = models.TextField(blank=True)
+    online_design_text = RichTextUploadingField(blank=True)
 
     contact_title = models.CharField(max_length=255, blank=True)
     contact_header_image = models.ImageField(blank=True)
@@ -103,7 +103,10 @@ class SiteConfig(SingletonModel):
     testimonials_title = models.CharField(max_length=255, blank=True)
     testimonials_header_image = models.ImageField(blank=True)
     testimonials_description = models.TextField(blank=True)
-    testimonials_text = models.TextField(blank=True)
+    testimonials_text = RichTextUploadingField(blank=True)
+
+    booking_title = models.CharField(max_length=255, blank=True)
+    booking_header_image = models.ImageField(blank=True)
 
 
 class MainSliderImage(models.Model):

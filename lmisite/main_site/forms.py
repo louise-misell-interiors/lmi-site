@@ -132,7 +132,8 @@ class ConfigForm(forms.ModelForm):
                   'online_design_title', 'online_design_header_image', 'online_design_description',
                   'online_design_text',
                   'contact_title', 'contact_header_image', 'contact_description', 'contact_text_1', 'contact_text_2',
-                  'testimonials_title', 'testimonials_header_image', 'testimonials_description', 'testimonials_text')
+                  'testimonials_title', 'testimonials_header_image', 'testimonials_description', 'testimonials_text',
+                  'booking_title', 'booking_header_image')
         widgets = {
             "facebook_page_id": PageWidget,
             "newsletter_group_id": NewsletterGroupWidget

@@ -14,6 +14,7 @@ class BookingType(models.Model):
     length = models.DurationField()
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     icon = models.CharField(max_length=255, blank=True)
+    hidden = models.BooleanField()
 
     max_events_per_day = models.PositiveIntegerField(blank=True, null=True)
     minimum_scheduling_notice = models.DurationField(default=datetime.timedelta())

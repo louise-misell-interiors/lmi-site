@@ -21,7 +21,7 @@
             <h1>Online design</h1>
         </header>
         <div class="bar">
-            {{ config.online_design_text|linebreaks }}
+            {{ config.online_design_text|safe }}
             <a href="{% url 'contact' %}" class="button">Book a free introductory chat here</a>
         </div>
         <div class="services">

@@ -22,7 +22,7 @@
             <h1>Portfolio</h1>
         </header>
         <div class="desc">
-            {{ config.portfolio_text|linebreaks }}
+            {{ config.portfolio_text|safe }}
         </div>
         {% include 'main_site/portfolio_template.html' with projects=projects %}
     </div>

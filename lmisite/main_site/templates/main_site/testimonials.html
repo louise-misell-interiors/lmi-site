@@ -22,7 +22,7 @@
         <header {% if config.testimonials_header_image %}style="--background: url({{ config.testimonials_header_image.url }});"{% endif %}>
             <h1>Testimonials</h1>
             <div class="desc">
-                {{ config.testimonials_text|linebreaks }}
+                {{ config.testimonials_text|safe }}
             </div>
         </header>
         {% for testimonial in testimonials %}

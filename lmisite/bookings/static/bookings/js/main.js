@@ -77,6 +77,30 @@ class BookingApp extends Component {
         })
     }
 
+    componentWillMount() {
+        if (this.props.type) {
+            const self = this;
+            fetchGQL(
+                `query ($id: ID!) {
+                bookingType(id: $id) {
+                    id
+                    name
+                    description
+                    whilstBookingMessage
+                    afterBookingMessage
+                    icon
+                } 
+            }`,
+                {id: this.props.type})
+                .then(res => self.setState({
+                    selectedType: res.data.bookingType,
+                }))
+                .catch(err => this.setState({
+                    error: err,
+                }))
+        }
+    }
+
     componentDidCatch(error, errorInfo) {
       this.setState({ error });
       Sentry.withScope(scope => {
@@ -138,4 +162,8 @@ Sentry.init({
 });
 
 const domContainer = document.querySelector('#booking-wrapper');
-ReactDom.render(<BookingApp/>, domContainer);
+let bookingId = null;
+if (window.bookingConf) {
+    bookingId = window.bookingConf.id
+}
+ReactDom.render(<BookingApp type={bookingId}/>, domContainer);

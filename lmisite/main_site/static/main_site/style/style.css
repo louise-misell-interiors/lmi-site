@@ -466,4 +466,19 @@ img {
     .wrapper .footer a {
       color: #fff; }
 
+.form form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  grid-gap: 25px;
+  margin: 0;
+  border: 2px solid #e5f0f2;
+  padding: 25px; }
+.form .errorlist {
+  margin: 0;
+  text-align: left;
+  color: red; }
+  .form .errorlist li {
+    list-style: none; }
+
 /*# sourceMappingURL=style.css.map */

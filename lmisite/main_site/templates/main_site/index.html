@@ -52,7 +52,7 @@
                 <h3>
                     How can I help?
                 </h3>
-                {{ config.home_help_text|linebreaks }}
+                {{ config.home_help_text|safe }}
                 <p>
                     <a href="{% url 'contact' %}" class="button dark">Book a free introductory chat here</a>
                 </p>
@@ -113,6 +113,7 @@
         <div>
             <img src="{% static 'main_site/img/cardiff-life.png' %}" alt="BBC logo">
             <img src="{% static 'main_site/img/BBC.png' %}" alt="BBC logo">
+            <img src="{% static 'main_site/img/artifact-logo.png' %}" alt="Artifact lighting logo">
         </div>
     </div>
 {% endblock %}

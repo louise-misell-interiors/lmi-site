@@ -1,56 +1,47 @@
 {% extends "main_site/inc/base.html" %}
 {% load static %}
 
-{% block title %}{{ config.services_title }}{% endblock %}
+{% block title %}{{ config.online_design_title }}{% endblock %}
 
 {% block header %}
     <link rel="stylesheet" href="{% static "main_site/style/services.css" %}">
 
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="{{ config.services_title }} | Louise Misell Interiors">
+    <meta property="og:title" content="{{ config.online_design_title }} | Louise Misell Interiors">
     <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
-    <meta property="og:description" content="{{ config.services_description }}">
-    <meta name="description" content="{{ config.services_description }}">
+    <meta property="og:description" content="{{ config.online_design_description }}">
+    <meta name="description" content="{{ config.online_design_description }}">
 
     <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'services' %}">
 {% endblock %}
 
 {% block content %}
     <div class="content">
-        <header {% if config.services_header_image %}style="--background: url({{ config.services_header_image.url }});"{% endif %}>
-            <h1>Services</h1>
+        <header {% if config.online_design_header_image %}style="--background: url({{ config.online_design_header_image.url }});"{% endif %}>
+            <h1>Online design</h1>
         </header>
         <div class="bar">
-            {{ config.services_text|linebreaks }}
+            {{ config.online_design_text|linebreaks }}
             <a href="{% url 'contact' %}" class="button">Book a free introductory chat here</a>
         </div>
         <div class="services">
-            {% for service in services %}
+            {% for step in steps %}
                 <div class="service" itemscope itemtype="https://schema.org/Service">
-                    {% if service.image %}
-                        <img src="{{ service.image.url }}" alt="{{ service.name }}">
+                    {% if step.image %}
+                        <img src="{{ step.image.url }}" alt="{{ step.name }}">
                     {% endif %}
                     <div class="colour-block"></div>
-                    <h2 itemprop="name">{{ service.name }}</h2>
+                    <h2 itemprop="name">{{ step.name }}</h2>
                     <span itemprop="description" class="description">
-                      {{ service.description|linebreaks }}
+                      {{ step.description|linebreaks }}
                     </span>
-                    {% if service.price %}
-                        <h2 class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <span itemprop="price">{{ service.price }}</span>
-                            {% for button in service.buttons.all %}
-                                <a href="{% if button.button_url %}{{ button.button_url }}{% else %}{% url 'contact' %}{% endif %}" class="button">
-                                    <span>{{ button.button_text }}</span>
-                                </a>
-                            {% endfor %}
-                        </h2>
-                    {% endif %}
-                    <span itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog"
-                          style="display: none;">
-                        {% for summary in service.service_summaries.all %}
-                            <meta itemprop="itemListElement" content="{{ summary.text }}"/>
+                    <h2 class="price">
+                        {% for button in step.buttons.all %}
+                            <a href="{% if button.button_url %}{{ button.button_url }}{% else %}{% url 'contact' %}{% endif %}" class="button">
+                                <span>{{ button.button_text }}</span>
+                            </a>
                         {% endfor %}
-                    </span>
+                    </h2>
                 </div>
             {% endfor %}
         </div>

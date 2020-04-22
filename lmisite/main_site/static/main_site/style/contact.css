@@ -83,20 +83,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center; }
-      .content .contact-details .form form {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
-        grid-gap: 25px;
-        margin: 0;
-        border: 2px solid #e5f0f2;
-        padding: 25px; }
-      .content .contact-details .form .errorlist {
-        margin: 0;
-        text-align: left;
-        color: red; }
-        .content .contact-details .form .errorlist li {
-          list-style: none; }
     .content .contact-details .calendar {
       font-family: "Raleway", sans-serif;
       position: relative; }

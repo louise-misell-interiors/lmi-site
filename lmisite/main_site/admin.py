@@ -36,9 +36,24 @@ class ServiceSummaryInline(SortableInlineAdminMixin, admin.TabularInline):
     extra = 3
 
 
+class ServiceButtonInline(admin.TabularInline):
+    model = ServiceButton
+    extra = 1
+
+
 @admin.register(Service)
 class ServiceAdmin(SortableAdminMixin, admin.ModelAdmin):
-    inlines = [ServiceSummaryInline]
+    inlines = [ServiceSummaryInline, ServiceButtonInline]
+
+
+class OnlineDesignStepButtonInline(admin.TabularInline):
+    model = OnlineDesignStepButton
+    extra = 1
+
+
+@admin.register(OnlineDesignStep)
+class OnlineDesignStepAdmin(SortableAdminMixin, admin.ModelAdmin):
+    inlines = [OnlineDesignStepButtonInline]
 
 
 @admin.register(Testimonial)

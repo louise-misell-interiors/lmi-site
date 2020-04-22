@@ -62,7 +62,7 @@ class SiteConfig(SingletonModel):
     home_description = models.TextField(blank=True)
     home_subtitle = models.CharField(max_length=255, blank=True)
     home_about_text = RichTextUploadingField(blank=True)
-    home_help_text = models.TextField(blank=True, verbose_name="Home how can I help text")
+    home_help_text = RichTextUploadingField(blank=True, verbose_name="Home how can I help text")
     home_help_image = models.ImageField(blank=True, verbose_name="Home how can I help background image")
 
     about_title = models.CharField(max_length=255, blank=True)
@@ -86,7 +86,12 @@ class SiteConfig(SingletonModel):
     services_title = models.CharField(max_length=255, blank=True)
     services_header_image = models.ImageField(blank=True)
     services_description = models.TextField(blank=True)
-    services_text = models.TextField(blank=True)
+    services_text = RichTextUploadingField(blank=True)
+
+    online_design_title = models.CharField(max_length=255, blank=True)
+    online_design_header_image = models.ImageField(blank=True)
+    online_design_description = models.TextField(blank=True)
+    online_design_text = models.TextField(blank=True)
 
     contact_title = models.CharField(max_length=255, blank=True)
     contact_header_image = models.ImageField(blank=True)
@@ -132,7 +137,6 @@ class Service(models.Model):
     home_page_image = models.ImageField(blank=True)
     description = models.TextField(blank=True)
     price = models.CharField(max_length=255, default="", blank=True)
-    button_text = models.CharField(max_length=255, default="", blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
@@ -146,6 +150,15 @@ class Service(models.Model):
         return self.name
 
 
+class ServiceButton(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='buttons')
+    button_text = models.CharField(max_length=255, default="", blank=True)
+    button_url = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.button_text
+
+
 class ServiceSummary(models.Model):
     class Meta:
         verbose_name_plural = "Serivce Summaries"
@@ -154,6 +167,33 @@ class ServiceSummary(models.Model):
     service = models.ForeignKey(Service, related_name="service_summaries", on_delete=models.CASCADE)
     text = models.CharField(max_length=255)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
+
+
+class OnlineDesignStep(models.Model):
+    draft = models.BooleanField(default=False)
+    name = models.CharField(max_length=255)
+    image = models.ImageField(blank=True)
+    description = models.TextField(blank=True)
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+
+    class Meta:
+        ordering = ['order']
+
+    def save(self, *args, **kwargs):
+        self.image = compress_img(self.image)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
+class OnlineDesignStepButton(models.Model):
+    step = models.ForeignKey(OnlineDesignStep, on_delete=models.CASCADE, related_name='buttons')
+    button_text = models.CharField(max_length=255, default="", blank=True)
+    button_url = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.button_text
 
 
 class Project(models.Model):
@@ -240,12 +280,14 @@ class Testimonial(models.Model):
     ABOUT_PAGE = 'A'
     SERVICES_PAGE = 'S'
     CONTACT_PAGE = 'C'
+    ONLINE_DESIGN_PAGE = 'O'
     FEATURED_ON = (
         ('', '---'),
         (HOME_PAGE, 'Home page'),
         (ABOUT_PAGE, 'About page'),
         (SERVICES_PAGE, 'Services page'),
         (CONTACT_PAGE, 'Contact page'),
+        (ONLINE_DESIGN_PAGE, 'Online design page'),
     )
 
     LIGHT = "L"

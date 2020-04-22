@@ -236,14 +236,11 @@ def project(request, id):
 
 
 def services(request):
-    services_m = Service.objects.filter(type=Service.MAIN)
-    services_o = Service.objects.filter(type=Service.OTHER)
+    services = Service.objects.all()
     testimonials = Testimonial.objects.filter(featured_on=Testimonial.SERVICES_PAGE)
     if not request.user.is_superuser:
-        services_m = services_m.filter(draft=False)
-        services_o = services_o.filter(draft=False)
+        services = services.filter(draft=False)
         testimonials = testimonials.filter(draft=False)
-    services = list(itertools.chain(services_m, services_o))
     return render(request, "main_site/services.html", {"services": services, "testimonial": testimonials.first()})
 
 

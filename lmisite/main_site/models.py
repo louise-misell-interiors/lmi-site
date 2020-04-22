@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 from django.db import models
 from solo.models import SingletonModel
 from phonenumber_field.modelfields import PhoneNumberField
-from django.core.files.uploadedfile import UploadedFile
-from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.files.base import ContentFile
+from django.core.files.uploadedfile import UploadedFile, InMemoryUploadedFile
 from ckeditor_uploader.fields import RichTextUploadingField
 
 sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
@@ -17,16 +17,15 @@ def compress_img(image, new_width=1500):
         img = Img.open(io.BytesIO(image.read()))
         img.thumbnail((new_width, new_width * image.height / image.width), Img.ANTIALIAS)
         output = io.BytesIO()
+        output_webp = io.BytesIO()
         if img.mode == 'RGBA':
             background = Img.new("RGB", image.size, (255, 255, 255))
             background.paste(img, img.split()[-1])
             img = background
         img.save(output, format='JPEG', quality=80, optimise=True)
-        output.seek(0)
-        return InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % image.name.split('.')[0], 'image/jpeg',
-                                    len(output.getvalue()), None)
-    else:
-        return image
+        img.save(output_webp, format='WebP')
+        image.save("%s.webp" % image.name.split('.')[0], ContentFile(output_webp.getvalue()), save=True)
+        image.save("%s.jpg" % image.name.split('.')[0], ContentFile(output.getvalue()), save=True)
 
 
 class SiteConfig(SingletonModel):
@@ -105,13 +104,14 @@ class MainSliderImage(models.Model):
     name = models.CharField(max_length=255, default="", blank=True)
     image = models.ImageField(blank=True)
     alt_text = models.CharField(max_length=255, blank=True)
+    url = models.URLField(default="", blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
     class Meta:
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        self.image = compress_img(self.image)
+        compress_img(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -139,7 +139,7 @@ class Service(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        self.image = compress_img(self.image)
+        compress_img(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -173,7 +173,7 @@ class Project(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        self.image = compress_img(self.image)
+        compress_img(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -202,8 +202,8 @@ class ProjectItem(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        self.image = compress_img(self.image)
-        self.hover_image = compress_img(self.hover_image)
+        compress_img(self.image)
+        compress_img(self.hover_image)
         super().save(*args, **kwargs)
 
 
@@ -217,7 +217,7 @@ class ProjectBeforeImage(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        self.image = compress_img(self.image)
+        compress_img(self.image)
         super().save(*args, **kwargs)
 
 
@@ -231,7 +231,7 @@ class ProjectAfterImage(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        self.image = compress_img(self.image)
+        compress_img(self.image)
         super().save(*args, **kwargs)
 
 
@@ -271,7 +271,7 @@ class Testimonial(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        self.image = compress_img(self.image)
+        compress_img(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -292,7 +292,7 @@ class DesignInsiderPost(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        self.image = compress_img(self.image)
+        compress_img(self.image)
         super().save(*args, **kwargs)
 
     @property

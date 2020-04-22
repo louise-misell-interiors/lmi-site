@@ -28,7 +28,9 @@
                                     <h1>Welcome to Louise Misell Interiors</h1>
                                 </div>
                             {% endif %}
-                            <img data-src="{{ img.image.url }}" alt="{{ img.alt_text }}" data-pin-nopin="true">
+                            {% if img.url %}<a href="{{ img.url }}">{% endif %}
+                                <img data-src="{{ img.image.url }}" alt="{{ img.alt_text }}" data-pin-nopin="true">
+                            {% if img.url %}</a>{% endif %}
                         </div>
                     {% endfor %}
                     <span class="arrow"><i class="fas fa-chevron-right"></i></span>

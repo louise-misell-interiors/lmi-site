@@ -255,6 +255,8 @@ input, textarea, button {
   @media (max-width: 800px) {
     input, textarea, button {
       margin: 0; } }
+  input[type="checkbox"], textarea[type="checkbox"], button[type="checkbox"] {
+    width: initial; }
 
 button {
   color: #e5f0f2;

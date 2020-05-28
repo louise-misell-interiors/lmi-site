@@ -181,7 +181,7 @@ class OnlineDesignStep(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        self.image = compress_img(self.image)
+        compress_img(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -364,7 +364,10 @@ class DesignInsiderPost(models.Model):
 
     @property
     def read_time(self):
-        return str(readtime.of_html(self.content))
+        try:
+            return str(readtime.of_html(self.content))
+        except:
+            return ""
 
     def __str__(self):
         return self.title

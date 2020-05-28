@@ -276,6 +276,7 @@ def contact(request):
             email = form.cleaned_data['your_email']
             phone = form.cleaned_data['your_phone']
             message = form.cleaned_data['message']
+            newsletter = form.cleaned_data['newsletter']
 
             config = SiteConfig.objects.first()
             email_msg = EmailMultiAlternatives(
@@ -301,7 +302,7 @@ def contact(request):
                            "Authorization": f"OAuth {creds['token']}"
                         }, json={
                             "email_address": email,
-                            "status": "unsubscribed",
+                            "status": "subscribed" if newsletter else "unsubscribed",
                             "source": "Website",
                             "ip_signup": get_client_ip(request),
                             "merge_fields": {

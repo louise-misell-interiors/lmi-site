@@ -10,6 +10,10 @@ input, textarea, button {
   @media (max-width: $media-small) {
     margin: 0;
   }
+
+  &[type="checkbox"] {
+    width: initial;
+  }
 }
 
 button {

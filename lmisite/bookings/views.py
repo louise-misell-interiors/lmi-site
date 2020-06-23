@@ -82,6 +82,8 @@ def credentials_to_json(credentials):
 
 def get_credentials():
     config = Config.objects.first()
+    if not config or not config.google_credentials:
+        return None
     try:
         data = json.loads(config.google_credentials)
         return google.oauth2.credentials.Credentials(

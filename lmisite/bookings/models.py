@@ -16,6 +16,8 @@ class BookingType(models.Model):
     icon = models.CharField(max_length=255, blank=True)
 
     max_events_per_day = models.PositiveIntegerField(blank=True, null=True)
+    max_events_per_week = models.PositiveIntegerField(blank=True, null=True)
+    max_events_per_month = models.PositiveIntegerField(blank=True, null=True)
     minimum_scheduling_notice = models.DurationField(default=datetime.timedelta())
     scheduling_frequency = models.DurationField(default=datetime.timedelta(0, 30))
     buffer_before_event = models.DurationField(default=datetime.timedelta())

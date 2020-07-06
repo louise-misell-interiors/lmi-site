@@ -6,7 +6,7 @@
   run_once: true  
     
 - name: Create venv
-  shell: "python3 -m virtualenv /opt/apps/lmisite/env"
+  shell: "python3 -m venv /opt/apps/lmisite/env"
   run_once: true
 
 - name: Copy files
@@ -47,12 +47,14 @@
   
 - name: Create db
   mysql_db:
+    login_unix_socket: "/run/mysqld/mysqld.sock"
     name: lmisite
     encoding: utf8
     state: present
   
 - name: Create db user
   mysql_user:
+    login_unix_socket: "/run/mysqld/mysqld.sock"
     name: lmisite
     host: "%"
     state: present
@@ -71,21 +73,21 @@
   command: "/opt/apps/lmisite/env/bin/python3 /opt/apps/lmisite/src/manage.py migrate"
   
 - name: Collect static 
-  command: "/opt/apps/lmisite/env/bin/python3 /opt/apps/lmisite/src/manage.py collectstatic --noinput" 
+  command: "/opt/apps/lmisite/env/bin/python3 /opt/apps/lmisite/src/manage.py collectstatic --noinput"
 
-- name: Create uWSGI config
-  file:
-    path: /etc/uwsgi/vassals/lmisite.ini
-    src: /etc/uwsgi/vassals/app.skel
-    state: link
-    
+
+- name: Create vassal config
+  copy:
+    src: files/lmisite.ini
+    dest: /etc/uwsgi-emperor/vassals/lmisite.ini
+
 - name: Create nginx config
   copy:
     src: files/nginx
     dest: /etc/nginx/sites-enabled/lmisite
 
 - name: Issue certificates
-  shell: "certbot -m {{ letsencrypt_email }} --agree-tos --nginx -d louisemisellinteriors.co.uk -d www.louisemisellinteriors.co.uk -d test.louisemisellinteriors.co.uk -n certonly"
+  shell: "certbot -m {{ letsencrypt_email }} --agree-tos --nginx -d louisemisellinteriors.co.uk -d www.louisemisellinteriors.co.uk -n certonly"
   args:
     creates: /etc/letsencrypt/live/louisemisellinteriors.co.uk
 
@@ -93,8 +95,3 @@
   service:
     name: nginx
     state: reloaded
-    
-- name: Reload vassal
-  command: "touch --no-dereference /etc/uwsgi/vassals/lmisite.ini"
-  args:
-    warn: true

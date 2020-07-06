@@ -100,6 +100,7 @@ class Customer(models.Model):
     phone = PhoneNumberField()
     email = models.EmailField(unique=True)
     mailchimp_id = models.CharField(max_length=255, blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

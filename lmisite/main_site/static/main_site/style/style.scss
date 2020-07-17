@@ -211,8 +211,9 @@ img {
 
     .logos {
       display: grid;
+      grid-gap: $content-padding;
       grid-template-columns: 2fr 1fr;
-      justify-items: center;
+      //justify-items: center;
 
       @media (max-width: $media-small) {
         grid-template-columns: 1fr;

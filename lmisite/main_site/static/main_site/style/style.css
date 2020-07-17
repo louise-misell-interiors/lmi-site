@@ -399,8 +399,8 @@ img {
     background: #e5f0f2; }
     .wrapper .pre-footer .logos {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      justify-items: center; }
+      grid-gap: 25px;
+      grid-template-columns: 2fr 1fr; }
       @media (max-width: 800px) {
         .wrapper .pre-footer .logos {
           grid-template-columns: 1fr; } }

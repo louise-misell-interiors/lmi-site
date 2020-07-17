@@ -16,7 +16,7 @@ class ContactForm(forms.Form):
     source = forms.CharField(
         required=False,
         label='Where did you hear about me?',
-        widget=forms.Textarea(attrs={'placeholder': 'Where did you hear about me?'})
+        widget=forms.TextInput(attrs={'placeholder': 'Where did you hear about me?'})
     )
     newsletter = forms.BooleanField(required=False, label='Click here to be signed up to my newsletter', label_suffix="")
 

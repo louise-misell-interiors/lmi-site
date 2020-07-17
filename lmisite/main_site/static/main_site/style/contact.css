@@ -171,8 +171,7 @@
         padding: 25px 0;
         align-items: start; }
         .content .contact-details .calendar .CustomerDetails .Form {
-          display: flex;
-          flex-direction: column;
+          display: grid;
           grid-gap: 25px; }
 
 /*# sourceMappingURL=contact.css.map */

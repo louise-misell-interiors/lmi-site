@@ -31,7 +31,7 @@
             <div class="side">
                 <div class="post desc">
                     <img src="{% static 'main_site/img/louise-head.jpg' %}" alt="">
-                    {{ config.blog_text|linebreaks }}
+                    {{ config.blog_text|safe }}
                 </div>
                 {% include "main_site/newsletter_form.html" with form=form %}
                 <div class="short-posts">

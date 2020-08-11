@@ -108,8 +108,11 @@
       text-align: center; }
       .content .services .service .price > span {
         text-align: center; }
+      .content .services .service .price .buttons {
+        display: flex;
+        flex-direction: row; }
       .content .services .service .price .button {
-        margin-top: 20px;
+        margin: 20px 10px 0;
         background: #335470;
         border: none; }
     @media (max-width: 1200px) {

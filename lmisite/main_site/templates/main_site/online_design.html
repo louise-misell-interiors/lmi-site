@@ -36,11 +36,13 @@
                       {{ step.description|linebreaks }}
                     </span>
                     <h2 class="price">
+                        <span class="buttons">
                         {% for button in step.buttons.all %}
                             <a href="{% if button.button_url %}{{ button.button_url }}{% else %}{% url 'contact' %}{% endif %}" class="button">
                                 <span>{{ button.button_text }}</span>
                             </a>
                         {% endfor %}
+                        </span>
                     </h2>
                 </div>
             {% endfor %}

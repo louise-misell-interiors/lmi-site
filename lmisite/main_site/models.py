@@ -184,7 +184,7 @@ class OnlineDesignStep(models.Model):
         ordering = ['order']
 
     def save(self, *args, **kwargs):
-        self.image = compress_img(self.image)
+        compress_img(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):

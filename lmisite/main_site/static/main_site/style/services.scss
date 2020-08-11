@@ -111,8 +111,13 @@
           text-align: center;
         }
 
+        .buttons {
+          display: flex;
+          flex-direction: row;
+        }
+
         .button {
-          margin-top: $content-margin;
+          margin: $content-margin $content-margin/2 0;
           background: $background-colour-dark;
           border: none;
         }

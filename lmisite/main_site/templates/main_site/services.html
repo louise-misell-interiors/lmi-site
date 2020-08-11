@@ -38,11 +38,13 @@
                     {% if service.price %}
                         <h2 class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                             <span itemprop="price">{{ service.price }}</span>
+                            <span class="buttons">
                             {% for button in service.buttons.all %}
                                 <a href="{% if button.button_url %}{{ button.button_url }}{% else %}{% url 'contact' %}{% endif %}" class="button">
                                     <span>{{ button.button_text }}</span>
                                 </a>
                             {% endfor %}
+                            </span>
                         </h2>
                     {% endif %}
                     <span itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog"

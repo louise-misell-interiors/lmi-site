@@ -110,15 +110,19 @@
           height: 100%;
           transform: translateZ(-2px);
           left: -20%;
-          transition: height 0.5s, transform 0.5s, left 0.5s; }
+          transition: height 0.5s, transform 0.5s, left 0.5s, opacity 0.1s;
+          opacity: 0; }
           .main-slider .main-slider-inner .slider .slider-inner .slide.is-active {
             left: 20%;
-            transform: translateY(0) translateZ(0); }
-          .main-slider .main-slider-inner .slider .slider-inner .slide.is-active ~ .slide {
+            transform: translateY(0) translateZ(0);
+            opacity: 1; }
+          .main-slider .main-slider-inner .slider .slider-inner .slide.is-next {
             left: 60%;
-            display: none; }
-          .main-slider .main-slider-inner .slider .slider-inner .slide.is-active + .slide {
-            display: block; }
+            opacity: 1; }
+          .main-slider .main-slider-inner .slider .slider-inner .slide.is-next-next {
+            left: 60%; }
+          .main-slider .main-slider-inner .slider .slider-inner .slide.is-prev {
+            opacity: 1; }
           .main-slider .main-slider-inner .slider .slider-inner .slide img {
             position: absolute;
             top: 0;
@@ -173,15 +177,19 @@
             height: 100%;
             transform: translateZ(-2px);
             left: -72.5%;
-            transition: height 0.5s, transform 0.5s, left 0.5s; }
+            transition: height 0.5s, transform 0.5s, left 0.5s, opacity 0.1s;
+            opacity: 0; }
             .main-slider .main-slider-inner .slider .slider-inner .slide.is-active {
               left: 2.5%;
-              transform: translateY(0) translateZ(0); }
-            .main-slider .main-slider-inner .slider .slider-inner .slide.is-active ~ .slide {
+              transform: translateY(0) translateZ(0);
+              opacity: 1; }
+            .main-slider .main-slider-inner .slider .slider-inner .slide.is-next {
               left: 77.5%;
-              display: none; }
-            .main-slider .main-slider-inner .slider .slider-inner .slide.is-active + .slide {
-              display: block; }
+              opacity: 1; }
+            .main-slider .main-slider-inner .slider .slider-inner .slide.is-next-next {
+              left: 77.5%; }
+            .main-slider .main-slider-inner .slider .slider-inner .slide.is-prev {
+              opacity: 1; }
             .main-slider .main-slider-inner .slider .slider-inner .slide img {
               position: absolute;
               top: 0;

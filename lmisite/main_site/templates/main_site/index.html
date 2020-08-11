@@ -22,7 +22,7 @@
                 <div class="slider-inner">
                     <span class="arrow"><i class="fas fa-chevron-left"></i></span>
                     {% for img in slider_imgs %}
-                        <div class="slide{% if forloop.counter == 2 %} is-active{% endif %}">
+                        <div class="slide{% if forloop.counter == 1 %} is-prev{% elif forloop.counter == 2 %} is-active{% elif forloop.counter == 3 %} is-next{% endif %}">
                             {% if forloop.counter == 2 %}
                                 <div class="slide-text">
                                     <h1>Welcome to Louise Misell Interiors</h1>

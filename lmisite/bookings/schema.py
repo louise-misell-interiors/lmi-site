@@ -285,6 +285,7 @@ class CreateBooking(graphene.Mutation):
         last_name = graphene.String(required=True)
         email = graphene.String(required=True)
         phone = graphene.String(required=True)
+        newsletter = graphene.Boolean(required=True)
         questions = graphene.List(
             QuestionInput,
             required=True
@@ -293,13 +294,9 @@ class CreateBooking(graphene.Mutation):
     ok = graphene.Boolean()
     error = graphene.List(QuestionError)
 
-    def mutate(self, info, id, date, time, first_name, last_name, email, phone, questions):
+    def mutate(self, info, id, date, time, first_name, last_name, email, phone, newsletter, questions):
         config = SiteConfig.objects.first()
         booking_type = models.BookingType.objects.get(pk=id)
-        booking_times = get_booking_times(date, booking_type)[date]
-
-        if time not in booking_times:
-            return CreateBooking(ok=False, error=validation_error_to_graphene([('time', ["Unavailable booking time"])]))
 
         booking = models.Booking()
 
@@ -316,7 +313,7 @@ class CreateBooking(graphene.Mutation):
                     "Authorization": f"OAuth {creds['token']}"
                 }, json={
                     "email_address": email,
-                    "status": "unsubscribed",
+                    "status": "unsubscribed" if newsletter else "subscribed",
                     "source": "Website",
                     "ip_signup": get_client_ip(info.context),
                     "merge_fields": {
@@ -336,6 +333,12 @@ class CreateBooking(graphene.Mutation):
             customer.full_clean()
         except ValidationError as e:
             return CreateBooking(ok=False, error=validation_error_to_graphene(e))
+
+        booking_times = get_booking_times(date, booking_type)[date]
+
+        if time not in booking_times:
+            return CreateBooking(ok=False, error=validation_error_to_graphene([('time', ["Unavailable booking time"])]))
+
         customer.save()
 
         time = timezone.make_aware(datetime.datetime.combine(date, time), pytz.utc)

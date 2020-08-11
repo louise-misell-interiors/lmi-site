@@ -465,3 +465,15 @@ img {
     }
   }
 }
+
+#scroll-top {
+  display: block;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 7px 13px;
+  font-weight: bold;
+  font-size: 30px;
+}

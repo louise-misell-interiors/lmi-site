@@ -36,7 +36,7 @@
       <option name="outputFromStdout" value="false" />
       <option name="program" value="$PROJECT_DIR$/node_modules/.bin/babel" />
       <option name="runOnExternalChanges" value="true" />
-      <option name="scopeName" value="Main SIte" />
+      <option name="scopeName" value="Main site" />
       <option name="trackOnlyRoot" value="false" />
       <option name="workingDir" value="$ContentRoot$" />
       <envs />

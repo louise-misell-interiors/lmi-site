@@ -25,20 +25,25 @@
         height: 100%;
         transform: translateZ(-2px);
         left: - ($slide-width - $slide-offset) + $slide-cover;
-        transition: height $medium-transition, transform $medium-transition, left $medium-transition;
+        transition: height $medium-transition, transform $medium-transition, left $medium-transition, opacity 0.1s;
+        opacity: 0;
 
         &.is-active {
           left: $slide-offset;
           transform: translateY(0) translateZ(0);
+          opacity: 1;
         }
 
-        &.is-active ~ .slide {
+        &.is-next {
           left: $slide-width + $slide-offset - $slide-cover;
-          display: none;
+          opacity: 1;
+        }
+        &.is-next-next {
+          left: $slide-width + $slide-offset - $slide-cover;
         }
 
-        &.is-active + .slide {
-          display: block;
+        &.is-prev {
+          opacity: 1;
         }
 
         img {

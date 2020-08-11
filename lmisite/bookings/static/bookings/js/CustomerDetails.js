@@ -26,6 +26,7 @@ export class CustomerDetails extends Component {
             last_name: "",
             email: "",
             phone: "",
+            newsletter: null,
             loading: true,
             error: [],
             queryError: null
@@ -60,15 +61,18 @@ export class CustomerDetails extends Component {
     }
 
     scheduleEvent() {
+        if (!this.state.first_name || !this.state.last_name || !this.state.email || !this.state.phone || this.state.newsletter === null) {
+            return
+        }
         const self = this;
         this.setState({
             loading: true,
         });
         fetchGQL(
             `mutation ($id: ID!, $date: Date!, $time: Time!, $first_name: String!, $last_name: String!, 
-            $email: String!, $phone: String!, $questions: [QuestionInput!]!) {
+            $email: String!, $phone: String!, $questions: [QuestionInput!]!, $newsletter: Boolean!) {
               createBooking(id: $id, date: $date, time: $time, firstName: $first_name, lastName: $last_name,
-               email: $email, phone: $phone, questions: $questions) {
+               email: $email, phone: $phone, questions: $questions, newsletter: $newsletter) {
                 ok
                 error {
                   field
@@ -84,6 +88,7 @@ export class CustomerDetails extends Component {
                 last_name: this.state.last_name,
                 email: this.state.email,
                 phone: this.state.phone,
+                newsletter: this.state.newsletter,
                 questions: Object.keys(this.state.questionAnswers).map((key, i) => ({
                     id: key,
                     value: this.state.questionAnswers[key]
@@ -149,8 +154,8 @@ export class CustomerDetails extends Component {
                 }
 
                 return <div key={question.id}>
-                        {input}
-                        {errors}
+                    {input}
+                    {errors}
                 </div>
             });
 
@@ -185,27 +190,42 @@ export class CustomerDetails extends Component {
                 <BookingInfo type={this.props.type} time={date} key="1" onSchedule={this.scheduleEvent}/>
                 <div className="Form">
                     <div>
-                            <input type="text" value={this.state.first_name}
-                                   onChange={e => this.setState({first_name: e.target.value})} placeholder="First name"/>
-                            {firstNameErrors}
+                        <input type="text" value={this.state.first_name} required
+                               onChange={e => this.setState({first_name: e.target.value})} placeholder="First name"/>
+                        {firstNameErrors}
                     </div>
                     <div>
-                            <input type="text" value={this.state.last_name}
-                                   onChange={e => this.setState({last_name: e.target.value})} placeholder="Last name"/>
-                            {lastNameErrors}
+                        <input type="text" value={this.state.last_name} required
+                               onChange={e => this.setState({last_name: e.target.value})} placeholder="Last name"/>
+                        {lastNameErrors}
                     </div>
                     <div>
-                            <input type="text" value={this.state.email}
-                                   onChange={e => this.setState({email: e.target.value})} placeholder="Email"/>
-                            {emailErrors}
+                        <input type="text" value={this.state.email} required
+                               onChange={e => this.setState({email: e.target.value})} placeholder="Email"/>
+                        {emailErrors}
                     </div>
                     <div>
-                            <input type="phone" value={this.state.phone}
-                                   onChange={e => this.setState({phone: e.target.value})}
-                                   placeholder="Phone Number"/>
-                            {phoneErrors}
+                        <input type="phone" value={this.state.phone} required
+                               onChange={e => this.setState({phone: e.target.value})}
+                               placeholder="Phone Number"/>
+                        {phoneErrors}
                     </div>
                     {questions}
+                    <div>
+                        <div className="input-like">
+                            <p>Would you like to receive my email newsletter?</p>
+                            <div>
+                                <input type="radio" name="newsletter" value="yes" checked={this.state.newsletter === true}
+                                       required onChange={e => this.setState({newsletter: e.target.value === "yes"})}/>
+                                <label>Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="newsletter" value="no" checked={this.state.newsletter === false}
+                                       required onChange={e => this.setState({newsletter: e.target.value === "yes"})}/>
+                                <label>No</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>;
         }

@@ -246,17 +246,21 @@
         height: 100%;
         width: 100%; }
 
-input, textarea, button {
+input:not([type=radio]), textarea, button, .input-like {
   width: 100%;
   border: none;
   padding: 15px;
   font-size: 20px;
   background: #e5f0f2; }
   @media (max-width: 800px) {
-    input, textarea, button {
+    input:not([type=radio]), textarea, button, .input-like {
       margin: 0; } }
-  input[type="checkbox"], textarea[type="checkbox"], button[type="checkbox"] {
+  input:not([type=radio])[type="checkbox"], textarea[type="checkbox"], button[type="checkbox"], .input-like[type="checkbox"] {
     width: initial; }
+
+.input-like p {
+  margin-top: 0;
+  text-align: left; }
 
 button {
   color: #e5f0f2;
@@ -581,5 +585,16 @@ img {
       display: flex;
       flex-direction: column;
       grid-gap: 25px; }
+
+#scroll-top {
+  display: block;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 7px 13px;
+  font-weight: bold;
+  font-size: 30px; }
 
 /*# sourceMappingURL=style.css.map */

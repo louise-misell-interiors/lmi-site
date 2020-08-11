@@ -1,6 +1,6 @@
 @import "variables";
 
-input, textarea, button {
+input:not([type=radio]), textarea, button, .input-like {
   width: 100%;
   border: none;
   padding: 15px;
@@ -14,6 +14,11 @@ input, textarea, button {
   &[type="checkbox"] {
     width: initial;
   }
+}
+
+.input-like p {
+   margin-top: 0;
+  text-align: left;
 }
 
 button {

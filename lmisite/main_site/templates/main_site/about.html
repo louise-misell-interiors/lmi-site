@@ -41,7 +41,7 @@
 
             {{ config.about_text|safe }}
             <p>
-                <a href="{% url 'contact' %}" class="button dark">Book a free introductory chat here</a>
+                <a href="{% url 'contact' %}" class="button dark">{{ config.about_cta }}</a>
             </p>
         </div>
         <div class="testimonials">
@@ -58,7 +58,7 @@
                     <link itemprop="image" href="{{ testimonial.image.url }}"/>
                 {% endif %}
                 <p>
-                    <a href="{% url 'testimonials' %}" class="button">More testimonials</a>
+                    <a href="{% url 'testimonials' %}" class="button">{{ config.about_testimonials_cta }}</a>
                 </p>
             </div>
         </div>

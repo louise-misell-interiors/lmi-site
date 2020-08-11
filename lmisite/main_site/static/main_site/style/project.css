@@ -40,14 +40,14 @@
       grid-template-columns: repeat(3, 1fr); }
       .content .grid > div {
         grid-column-end: span 1 !important; } }
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
     .content .grid {
       grid-auto-rows: auto;
       grid-template-columns: repeat(2, 1fr);
       width: 100vw; }
       .content .grid > div {
         grid-column-end: span 1 !important; } }
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     .content .grid {
       grid-template-columns: 1fr; }
       .content .grid > div {

@@ -123,21 +123,23 @@ class ConfigForm(forms.ModelForm):
         return super().save(commit=commit)
 
     class Meta:
-        fields = ('fb_auth', 'facebook_page_id', 'newsletter_auth', 'newsletter_credentials', 'newsletter_group_id',
+        fields = ('fb_auth', 'facebook_page_id', 'newsletter_auth', 'newsletter_group_id',
                   'instagram_url', 'twitter_url', 'facebook_url', 'pintrest_url', 'linkedin_url', 'homify_url',
                   'houzz_url', 'bark_url', 'email', 'mobile', 'phone', 'address',
                   'privacy_policy', 'terms_and_conditions', 'image_slider_speed', 'testimonials_slider_speed',
                   'price_range',
-                  'home_title', 'home_subtitle', 'home_description', 'home_about_text', 'home_help_text',
-                  'home_help_image',
+                  'home_title', 'home_subtitle', 'home_description', 'home_about_text', 'home_about_cta',
+                  'home_help_text', 'home_help_image', 'home_help_cta', 'home_testimonials_cta',
                   'about_title', 'about_header_image', 'about_image_2', 'about_description', 'about_mission_statement',
-                  'about_text', 'about_text_2',
+                  'about_text', 'about_text_2', 'about_cta', 'about_testimonials_cta',
                   'portfolio_title', 'portfolio_header_image', 'portfolio_description', 'portfolio_text',
                   'blog_title', 'blog_header_image', 'blog_description', 'blog_text',
                   'services_title', 'services_header_image', 'services_description', 'services_text',
+                  'services_cta', 'services_testimonials_cta',
                   'online_design_title', 'online_design_header_image', 'online_design_description',
                   'online_design_text',
                   'contact_title', 'contact_header_image', 'contact_description', 'contact_text_1', 'contact_text_2',
+                  'contact_testimonials_cta',
                   'testimonials_title', 'testimonials_header_image', 'testimonials_description', 'testimonials_text',
                   'booking_title', 'booking_header_image')
         widgets = {

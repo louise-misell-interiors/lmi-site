@@ -63,8 +63,11 @@ class SiteConfig(SingletonModel):
     home_description = models.TextField(blank=True)
     home_subtitle = models.CharField(max_length=255, blank=True)
     home_about_text = RichTextUploadingField(blank=True)
+    home_about_cta = models.CharField(max_length=255, blank=True)
     home_help_text = RichTextUploadingField(blank=True, verbose_name="Home how can I help text")
     home_help_image = models.ImageField(blank=True, verbose_name="Home how can I help background image")
+    home_help_cta = models.CharField(max_length=255, blank=True)
+    home_testimonials_cta = models.CharField(max_length=255, blank=True)
 
     about_title = models.CharField(max_length=255, blank=True)
     about_header_image = models.ImageField(blank=True)
@@ -73,6 +76,8 @@ class SiteConfig(SingletonModel):
     about_mission_statement = RichTextUploadingField(blank=True)
     about_text = RichTextUploadingField(blank=True)
     about_text_2 = RichTextUploadingField(blank=True)
+    about_cta = models.CharField(max_length=255, blank=True)
+    about_testimonials_cta = models.CharField(max_length=255, blank=True)
 
     portfolio_title = models.CharField(max_length=255, blank=True)
     portfolio_header_image = models.ImageField(blank=True)
@@ -88,6 +93,8 @@ class SiteConfig(SingletonModel):
     services_header_image = models.ImageField(blank=True)
     services_description = models.TextField(blank=True)
     services_text = RichTextUploadingField(blank=True)
+    services_cta = models.CharField(max_length=255, blank=True)
+    services_testimonials_cta = models.CharField(max_length=255, blank=True)
 
     online_design_title = models.CharField(max_length=255, blank=True)
     online_design_header_image = models.ImageField(blank=True)
@@ -99,6 +106,7 @@ class SiteConfig(SingletonModel):
     contact_description = models.TextField(blank=True)
     contact_text_1 = RichTextUploadingField(blank=True)
     contact_text_2 = RichTextUploadingField(blank=True)
+    contact_testimonials_cta = models.CharField(max_length=255, blank=True)
 
     testimonials_title = models.CharField(max_length=255, blank=True)
     testimonials_header_image = models.ImageField(blank=True)
@@ -139,6 +147,7 @@ class Service(models.Model):
     type = models.CharField(max_length=1, choices=TYPES, default=MAIN)
     image = models.ImageField(blank=True)
     home_page_image = models.ImageField(blank=True)
+    home_cta = models.CharField(max_length=255, blank=True)
     description = models.TextField(blank=True)
     price = models.CharField(max_length=255, default="", blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)

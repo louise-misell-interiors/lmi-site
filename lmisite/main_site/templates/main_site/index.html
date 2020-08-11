@@ -43,7 +43,7 @@
             <div>
                 {{ config.home_about_text|safe }}
                 <p>
-                    <a href="{% url 'about' %}" class="button">Read more</a>
+                    <a href="{% url 'about' %}" class="button">{{ config.home_about_cta }}</a>
                 </p>
             </div>
         </div>
@@ -54,7 +54,7 @@
                 </h3>
                 {{ config.home_help_text|safe }}
                 <p>
-                    <a href="{% url 'contact' %}" class="button dark">Book a free introductory chat here</a>
+                    <a href="{% url 'contact' %}" class="button dark">{{ config.home_help_cta }}</a>
                 </p>
             </div>
         </div>
@@ -70,7 +70,7 @@
                                     <span itemprop="itemListElement">{{ s.text }}</span>
                                 {% endfor %}
                             </div>
-                            <a href="{% url 'services' %}" class="button">Find out more</a>
+                            <a href="{% url 'services' %}" class="button">{{ service.home_cta }}</a>
                         </div>
                         <meta itemprop="description" content="{{ service.description }}">
                         <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -93,7 +93,7 @@
                     <link itemprop="image" href="{{ testimonial.image.url }}"/>
                 {% endif %}
                 <p>
-                    <a href="{% url 'testimonials' %}" class="button">More testimonials</a>
+                    <a href="{% url 'testimonials' %}" class="button">{{ config.home_testimonials_cta }}</a>
                 </p>
             </div>
         </div>

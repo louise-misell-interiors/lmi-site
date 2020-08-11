@@ -13,6 +13,12 @@ class ContactForm(forms.Form):
     your_email = forms.EmailField(label='Your email', widget=forms.EmailInput(attrs={'placeholder': 'Your email'}))
     your_phone = PhoneNumberField(label='Your phone', widget=forms.TextInput(attrs={'placeholder': 'Your phone'}))
     message = forms.CharField(label='Your message', widget=forms.Textarea(attrs={'placeholder': 'Your message'}))
+    source = forms.CharField(
+        required=False,
+        label='Where did you hear about me?',
+        widget=forms.TextInput(attrs={'placeholder': 'Where did you hear about me?'})
+    )
+    newsletter = forms.BooleanField(required=False, label='Click here to be signed up to my newsletter', label_suffix="")
 
 
 class NewsletterForm(forms.Form):

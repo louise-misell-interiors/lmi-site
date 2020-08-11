@@ -112,8 +112,13 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
         times = []
         cur_time = datetime.datetime.combine(date, datetime.datetime.min.time())
 
-        bookings_on_day = models.Booking.objects.filter(time__date=cur_time.date())
-        while cur_time.time() <= datetime.time(23) and cur_time.date() == date:
+        cur_date = cur_time.date()
+        week_start = cur_date - datetime.timedelta(days=cur_date.weekday())
+        week_end = week_start + datetime.timedelta(days=6)
+        bookings_on_day = models.Booking.objects.filter(time__date=cur_date)
+        bookings_in_week = models.Booking.objects.filter(time__gt=week_start, time__lt=week_end)
+        bookings_in_month = models.Booking.objects.filter(time__month=cur_date.month)
+        while cur_time.time() <= datetime.time(23) and cur_date == date:
             valid = True
 
             if cur_time < now:
@@ -124,9 +129,9 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
             passes_rules = False
             if valid:
                 for rule in rules:
-                    if rule.start_date > cur_time.date():
+                    if rule.start_date > cur_date:
                         continue
-                    if not rule.recurring and rule.end_date < cur_time.date():
+                    if not rule.recurring and rule.end_date < cur_date:
                         continue
 
                     if not rule.monday and cur_time.weekday() == 0:
@@ -159,6 +164,11 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
 
             if valid:
                 if booking.max_events_per_day is not None and len(bookings_on_day) >= booking.max_events_per_day:
+                    valid = False
+                elif booking.max_events_per_week is not None and len(bookings_in_week) >= booking.max_events_per_week:
+                    valid = False
+                elif booking.max_events_per_month is not None and \
+                        len(bookings_in_month) >= booking.max_events_per_month:
                     valid = False
                 else:
                     for b in bookings_on_day:

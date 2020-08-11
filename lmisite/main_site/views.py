@@ -276,11 +276,17 @@ def contact(request):
             email = form.cleaned_data['your_email']
             phone = form.cleaned_data['your_phone']
             message = form.cleaned_data['message']
+            newsletter = form.cleaned_data['newsletter']
+            source = form.cleaned_data['source']
 
             config = SiteConfig.objects.first()
             email_msg = EmailMultiAlternatives(
                 subject=f"{first_name} has sent a message on your website",
-                body=f"Name: {first_name} {last_name}\r\nEmail: {email}\r\nPhone: {phone}\r\n\r\n---\r\n\r\n{message}",
+                body=f"Name: {first_name} {last_name}\r\n"
+                     f"Email: {email}\r\n"
+                     f"Phone: {phone}\r\n"
+                     f"Source: {source}\r\n\r\n"
+                     f"---\r\n\r\n{message}",
                 to=[config.email],
                 reply_to=[email]
             )
@@ -295,13 +301,13 @@ def contact(request):
 
                 creds = get_newsletter_credentials()
                 if creds is not None and config.newsletter_group_id:
-                    member = requests.post(
+                    member = requests.put(
                         f"{creds['endpoint']}/3.0/lists/{config.newsletter_group_id}/members/",
                         headers={
                            "Authorization": f"OAuth {creds['token']}"
                         }, json={
                             "email_address": email,
-                            "status": "unsubscribed",
+                            "status_if_new": "subscribed" if newsletter else "unsubscribed",
                             "source": "Website",
                             "ip_signup": get_client_ip(request),
                             "merge_fields": {
@@ -317,6 +323,7 @@ def contact(request):
             customer.first_name = first_name
             customer.last_name = last_name
             customer.phone = phone
+            customer.source = source
 
             customer.full_clean()
             customer.save()

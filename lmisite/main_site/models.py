@@ -367,7 +367,10 @@ class DesignInsiderPost(models.Model):
 
     @property
     def read_time(self):
-        return str(readtime.of_html(self.content))
+        try:
+            return str(readtime.of_html(self.content))
+        except:
+            return ""
 
     def __str__(self):
         return self.title

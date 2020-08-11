@@ -95,5 +95,135 @@
         @include h2;
       }
     }
+
+    .calendar {
+      font-family: "Raleway", sans-serif;
+      position: relative;
+
+      > h2:first-of-type {
+        @include h2;
+        background: $background-colour;
+      }
+
+      h2, h3 {
+        font-family: "Baskerville", serif;
+      }
+
+      p {
+        text-align: center;
+      }
+
+      .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: $content-padding;
+        text-align: center;
+        background: $background-colour;
+
+        h3 {
+          margin: 0;
+          font-size: 30px;
+          font-family: Baskerville, serif;
+          padding-bottom: $content-padding/2;
+          border-bottom: 2px solid $dark-text-colour;
+        }
+
+        p {
+          flex-grow: 1;
+        }
+      }
+
+      .loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .back-button {
+        position: absolute;
+        top: calc(1.1em + 33.2px);
+        font-size: 25px;
+        left: 10px;
+      }
+
+      .BookingTypes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: $content-padding;
+      }
+
+      .DaySelect {
+        display: grid;
+        grid-template-columns: auto repeat(5, 1fr) auto;
+        grid-gap: $content-padding;
+        align-items: center;
+
+        @media (max-width: $media-medium) {
+          grid-template-columns: repeat(5, 1fr);
+
+          i {
+            grid-column: span 5;
+          }
+        }
+
+        @media (max-width: $media-small) {
+          grid-template-columns: repeat(3, 1fr);
+
+          i {
+            grid-column: span 3;
+            text-align: center;
+          }
+        }
+
+        @media (max-width: $media-xsmall) {
+          grid-template-columns: repeat(2, 1fr);
+
+          i {
+            grid-column: span 2;
+            text-align: center;
+          }
+        }
+
+        .Day {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-self: stretch;
+          text-align: center;
+        }
+      }
+
+      .TimeSelect {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-gap: $content-padding;
+      }
+
+      .BookingInfo {
+        display: grid;
+        grid-auto-rows: auto;
+        grid-gap: $content-padding;
+        padding: $content-padding 0;
+        text-align: center;
+
+        p, h2, h3 {
+          margin: 0;
+        }
+      }
+
+      .CustomerDetails {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: $content-padding;
+        padding: $content-padding 0;
+        align-items: start;
+
+        .Form {
+          display: grid;
+          grid-gap: $content-padding;
+        }
+      }
+    }
   }
 }

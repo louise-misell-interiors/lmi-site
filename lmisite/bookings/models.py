@@ -17,6 +17,8 @@ class BookingType(models.Model):
     hidden = models.BooleanField()
 
     max_events_per_day = models.PositiveIntegerField(blank=True, null=True)
+    max_events_per_week = models.PositiveIntegerField(blank=True, null=True)
+    max_events_per_month = models.PositiveIntegerField(blank=True, null=True)
     minimum_scheduling_notice = models.DurationField(default=datetime.timedelta())
     scheduling_frequency = models.DurationField(default=datetime.timedelta(0, 30))
     buffer_before_event = models.DurationField(default=datetime.timedelta())
@@ -99,6 +101,7 @@ class Customer(models.Model):
     phone = PhoneNumberField()
     email = models.EmailField(unique=True)
     mailchimp_id = models.CharField(max_length=255, blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

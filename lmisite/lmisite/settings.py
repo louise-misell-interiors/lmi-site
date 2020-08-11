@@ -174,12 +174,15 @@ LOGGING = {
 
 FILE_UPLOAD_PERMISSIONS = 0o644
 
+with open("/opt/apps/gmail_relay_pass") as f:
+    mail_pass = f.read().strip()
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "mail.misell.cymru"
-EMAIL_PORT = 465
-EMAIL_HOST_USER = "noreply@noreply.louisemisellinteriors.co.uk"
-EMAIL_HOST_PASSWORD = "7fpB4892fQ7EFDX9aNPY5HZ3jur#Mz3Y"
-EMAIL_USE_SSL = True
+EMAIL_HOST = "smtp-relay.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "q@as207960.net"
+EMAIL_HOST_PASSWORD = mail_pass
+EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@noreply.louisemisellinteriors.co.uk>"
 
 

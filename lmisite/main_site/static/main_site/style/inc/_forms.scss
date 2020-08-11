@@ -14,6 +14,11 @@ input:not([type=radio]), textarea, button, .input-like {
   &[type="checkbox"] {
     width: initial;
   }
+
+  p {
+    font-size: 20px;
+    color: #444;
+  }
 }
 
 .input-like p {

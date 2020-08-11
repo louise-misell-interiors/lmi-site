@@ -257,6 +257,9 @@ input:not([type=radio]), textarea, button, .input-like {
       margin: 0; } }
   input:not([type=radio])[type="checkbox"], textarea[type="checkbox"], button[type="checkbox"], .input-like[type="checkbox"] {
     width: initial; }
+  input:not([type=radio]) p, textarea p, button p, .input-like p {
+    font-size: 20px;
+    color: #444; }
 
 .input-like p {
   margin-top: 0;

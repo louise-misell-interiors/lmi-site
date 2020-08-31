@@ -28,5 +28,5 @@ class ConfigForm(forms.ModelForm):
         return super().save(commit=commit)
 
     class Meta:
-        fields = ['auth']
+        fields = ['auth', 'booking_notice']
         model = Config

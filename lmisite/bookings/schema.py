@@ -439,7 +439,14 @@ class CreateBooking(graphene.Mutation):
         return CreateBooking(ok=True)
 
 
+class ConfigType(DjangoObjectType):
+    class Meta:
+        model = models.Config
+        only_fields = ('booking_notice',)
+
+
 class Query(graphene.ObjectType):
+    config = graphene.Field(ConfigType)
     booking_types = graphene.NonNull(graphene.List(graphene.NonNull(BookingType)))
     booking_type = graphene.Field(
         BookingType,
@@ -451,6 +458,9 @@ class Query(graphene.ObjectType):
 
     def resolve_booking_type(self, info, id):
         return models.BookingType.objects.get(pk=id)
+
+    def resolve_config(self, info):
+        return models.Config.objects.first()
 
 
 class Mutation(graphene.ObjectType):

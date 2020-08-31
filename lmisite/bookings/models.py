@@ -129,6 +129,7 @@ class BookingQuestionAnswer(models.Model):
 
 class Config(SingletonModel):
     google_credentials = models.TextField()
+    booking_notice = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return "Config"

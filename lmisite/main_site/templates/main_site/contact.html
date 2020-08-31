@@ -28,6 +28,7 @@
             <meta itemprop="name" content="Louise Misell Interiors">
             <meta itemprop="description" content="{{ config.home_description }}">
             <link itemprop="url" href="{% url 'index' %}">
+            {% csrf_token %}
             <div class="calendar" id="booking-wrapper">
             </div>
             <div class="form">

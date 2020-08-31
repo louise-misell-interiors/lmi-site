@@ -236,12 +236,17 @@
           overflow: auto;
           border-radius: 0;
 
+          div {
+            margin-bottom: 0;
+          }
+
           progress[value] {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
             border: none;
             background-color: $background-colour;
+            flex-grow: 1;
           }
           progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-value {
             background-color: $background-colour-dark;
@@ -249,6 +254,11 @@
 
           .dzu-previewContainer {
             padding: 10px 3%;
+          }
+
+          .dzu-previewStatusContainer {
+            flex-grow: 1;
+            margin-left: 10px;
           }
 
           .dzu-inputLabel {

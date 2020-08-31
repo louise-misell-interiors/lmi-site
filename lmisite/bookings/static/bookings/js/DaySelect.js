@@ -80,7 +80,7 @@ export class DaySelect extends Component {
 
         const self = this;
         const days = this.state.currentDays.map((day, i) =>
-            <Day date={day} onClick={self.props.onSelect}/>
+            <Day date={day} key={i} onClick={self.props.onSelect}/>
         );
 
         let content = null;

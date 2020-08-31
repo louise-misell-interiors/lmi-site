@@ -31,12 +31,17 @@ export class CustomerDetails extends Component {
             newsletter: null,
             loading: true,
             error: [],
-            queryError: null
+            queryError: null,
+            fileObjs: [],
+            initialfileObjs: [],
+            files: [],
+            filesCanSubmit: true,
         };
 
         this.scheduleEvent = this.scheduleEvent.bind(this);
         this.setQuestionAnswer = this.setQuestionAnswer.bind(this);
         this.getUploadParams = this.getUploadParams.bind(this);
+        this.onUploadStatus = this.onUploadStatus.bind(this);
     }
 
     componentWillMount() {
@@ -64,7 +69,8 @@ export class CustomerDetails extends Component {
     }
 
     scheduleEvent() {
-        if (!this.state.first_name || !this.state.last_name || !this.state.email || !this.state.phone || this.state.newsletter === null) {
+        if (!this.state.first_name || !this.state.last_name || !this.state.email || !this.state.phone
+            || this.state.newsletter === null || !this.state.filesCanSubmit) {
             return
         }
         const self = this;
@@ -73,9 +79,9 @@ export class CustomerDetails extends Component {
         });
         fetchGQL(
             `mutation ($id: ID!, $date: Date!, $time: Time!, $first_name: String!, $last_name: String!, 
-            $email: String!, $phone: String!, $questions: [QuestionInput!]!, $newsletter: Boolean!) {
+            $email: String!, $phone: String!, $questions: [QuestionInput!]!, $newsletter: Boolean!, $files: [String!]!) {
               createBooking(id: $id, date: $date, time: $time, firstName: $first_name, lastName: $last_name,
-               email: $email, phone: $phone, questions: $questions, newsletter: $newsletter) {
+               email: $email, phone: $phone, questions: $questions, newsletter: $newsletter, files: $files) {
                 ok
                 error {
                   field
@@ -92,6 +98,7 @@ export class CustomerDetails extends Component {
                 email: this.state.email,
                 phone: this.state.phone,
                 newsletter: this.state.newsletter,
+                files: this.state.files,
                 questions: Object.keys(this.state.questionAnswers).map((key, i) => ({
                     id: key,
                     value: this.state.questionAnswers[key]
@@ -104,7 +111,8 @@ export class CustomerDetails extends Component {
                 });
                 if (!res.data.createBooking.ok) {
                     self.setState({
-                        error: res.data.createBooking.error
+                        error: res.data.createBooking.error,
+                        initialFileObjs: this.state.fileObjs
                     })
                 } else {
                     self.props.onComplete();
@@ -125,7 +133,30 @@ export class CustomerDetails extends Component {
     }
 
     getUploadParams() {
-        return { url: 'https://httpbin.org/post' }
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        return {
+            url: '/bookings/upload',
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
+        }
+    }
+
+    onUploadStatus(meta, status, files) {
+        let statuses = files.map(f => f.meta.status);
+        const canSubmit = !(statuses.includes("preparing") || statuses.includes("ready") || statuses.includes("started")
+            || statuses.includes("getting_upload_params") || statuses.includes("uploading") || statuses.includes("restarted")
+            || statuses.includes("headers_received"));
+        const done_files = files.filter(f => f.meta.status === "done");
+        const file_urls = done_files.map(f => JSON.parse(f.xhr.responseText).url);
+        const file_objs = files.map(f => f.file);
+        console.log(file_urls, canSubmit);
+        this.setState({
+            filesCanSubmit: canSubmit,
+            files: file_urls,
+            fileObjs: file_objs,
+            initialFileObjs: []
+        });
     }
 
     render() {
@@ -223,6 +254,8 @@ export class CustomerDetails extends Component {
                             <p>Upload some pictures of your project</p>
                             <Dropzone
                                 getUploadParams={this.getUploadParams}
+                                onChangeStatus={this.onUploadStatus}
+                                initialFiles={this.state.initialfileObjs}
                                 accept="image/*"
                                 submitButtonDisabled={true}
                             />

@@ -182,16 +182,22 @@
           border: none;
           overflow: auto;
           border-radius: 0; }
+          .content .contact-details .calendar .CustomerDetails .dzu-dropzone div {
+            margin-bottom: 0; }
           .content .contact-details .calendar .CustomerDetails .dzu-dropzone progress[value] {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
             border: none;
-            background-color: #e5f0f2; }
+            background-color: #e5f0f2;
+            flex-grow: 1; }
           .content .contact-details .calendar .CustomerDetails .dzu-dropzone progress[value]::-moz-progress-bar, .content .contact-details .calendar .CustomerDetails .dzu-dropzone progress[value]::-webkit-progress-value {
             background-color: #335470; }
           .content .contact-details .calendar .CustomerDetails .dzu-dropzone .dzu-previewContainer {
             padding: 10px 3%; }
+          .content .contact-details .calendar .CustomerDetails .dzu-dropzone .dzu-previewStatusContainer {
+            flex-grow: 1;
+            margin-left: 10px; }
           .content .contact-details .calendar .CustomerDetails .dzu-dropzone .dzu-inputLabel {
             color: #335470; }
           .content .contact-details .calendar .CustomerDetails .dzu-dropzone .dzu-inputLabelWithFiles {

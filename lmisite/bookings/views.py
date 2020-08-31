@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect, reverse
+from django.views.decorators.http import require_POST
+from django.http import HttpResponseBadRequest, HttpResponse
+from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 import json
 import google_auth_oauthlib.flow
@@ -14,6 +17,21 @@ API_VERSION = 'v3'
 
 def index(request):
     return render(request, "bookings/index.html")
+
+
+@require_POST
+def upload_file(request):
+    if not len(request.FILES):
+        return HttpResponseBadRequest()
+
+    file = next(request.FILES.values())
+    fs = FileSystemStorage()
+    filename = fs.save(file.name, file)
+    uploaded_file_url = fs.url(filename)
+
+    return HttpResponse(json.dumps({
+        "url": uploaded_file_url
+    }), content_type="application/json")
 
 
 def authorise(request):

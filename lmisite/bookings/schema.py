@@ -286,6 +286,7 @@ class CreateBooking(graphene.Mutation):
         email = graphene.String(required=True)
         phone = graphene.String(required=True)
         newsletter = graphene.Boolean(required=True)
+        files = graphene.List(graphene.NonNull(graphene.String), required=True)
         questions = graphene.List(
             QuestionInput,
             required=True
@@ -294,7 +295,7 @@ class CreateBooking(graphene.Mutation):
     ok = graphene.Boolean()
     error = graphene.List(QuestionError)
 
-    def mutate(self, info, id, date, time, first_name, last_name, email, phone, newsletter, questions):
+    def mutate(self, info, id, date, time, first_name, last_name, email, phone, newsletter, files, questions):
         config = SiteConfig.objects.first()
         booking_type = models.BookingType.objects.get(pk=id)
 
@@ -385,11 +386,24 @@ class CreateBooking(graphene.Mutation):
         for booking_question_answer in booking_question_answers:
             booking.booking_question_answers.add(booking_question_answer, bulk=False)
 
+        for file in files:
+            booking_file = models.BookingFile(
+                booking=booking,
+                file=file
+            )
+            booking_file.save()
+
         questions_text = []
         for question in questions:
             booking_question = models.BookingQuestion.objects.get(id=question.id)
             questions_text.append(f"{booking_question.question}:\r\n{question.value}")
         questions_text = "\r\n".join(questions_text)
+
+        files_text = []
+        for file in files:
+            file_url = info.context.build_absolute_uri(file)
+            files_text.append(f"- {file_url}")
+        files_text = "\r\n".join(files_text)
 
         tz = pytz.timezone(booking_type.timezone)
         time = time.astimezone(tz=tz).strftime("%I:%M%p %a %d %b %Y")
@@ -399,7 +413,9 @@ class CreateBooking(graphene.Mutation):
             f"\r\n\r\n---\r\n\r\n" \
             f"{booking_type.name}\r\n" \
             f"Time: {time}, {booking_type.timezone}\r\n" \
-            f"{questions_text}"
+            f"{questions_text}\r\n---\r\n\r\n" \
+            f"Files:\r\n" \
+            f"{files_text}"
         email_msg = EmailMessage(
             subject=f"{first_name} {last_name} has booked {booking_type.name}",
             body=body,

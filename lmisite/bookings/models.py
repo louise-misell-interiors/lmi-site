@@ -127,6 +127,14 @@ class BookingQuestionAnswer(models.Model):
         return f"{self.booking}: {self.question}"
 
 
+class BookingFile(models.Model):
+    booking = models.ForeignKey(Booking, related_name='booking_files', on_delete=models.CASCADE)
+    file = models.URLField()
+
+    def __str__(self):
+        return f"{self.file}"
+
+
 class Config(SingletonModel):
     google_credentials = models.TextField()
     booking_notice = models.TextField(blank=True, null=True)

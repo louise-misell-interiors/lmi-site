@@ -92,8 +92,13 @@
         flex-direction: column;
         justify-content: center;
         background: #e5f0f2; }
-      .content .contact-details .calendar h2, .content .contact-details .calendar h3 {
+      .content .contact-details .calendar h2, .content .contact-details .calendar h4, .content .contact-details .calendar h3 {
         font-family: "Baskerville", serif; }
+      .content .contact-details .calendar h3.notice {
+        background: #335470;
+        padding: 10px;
+        text-align: center;
+        color: #e5f0f2; }
       .content .contact-details .calendar p {
         text-align: center; }
       .content .contact-details .calendar .box {
@@ -173,5 +178,27 @@
         .content .contact-details .calendar .CustomerDetails .Form {
           display: grid;
           grid-gap: 25px; }
+        .content .contact-details .calendar .CustomerDetails .dzu-dropzone {
+          border: none;
+          overflow: auto;
+          border-radius: 0; }
+          .content .contact-details .calendar .CustomerDetails .dzu-dropzone progress[value] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: none;
+            background-color: #e5f0f2; }
+          .content .contact-details .calendar .CustomerDetails .dzu-dropzone progress[value]::-moz-progress-bar, .content .contact-details .calendar .CustomerDetails .dzu-dropzone progress[value]::-webkit-progress-value {
+            background-color: #335470; }
+          .content .contact-details .calendar .CustomerDetails .dzu-dropzone .dzu-previewContainer {
+            padding: 10px 3%; }
+          .content .contact-details .calendar .CustomerDetails .dzu-dropzone .dzu-inputLabel {
+            color: #335470; }
+          .content .contact-details .calendar .CustomerDetails .dzu-dropzone .dzu-inputLabelWithFiles {
+            color: #e5f0f2;
+            background-color: #335470;
+            font-weight: normal;
+            border-radius: 0;
+            font-family: inherit; }
 
 /*# sourceMappingURL=contact.css.map */

@@ -105,8 +105,15 @@
         background: $background-colour;
       }
 
-      h2, h3 {
+      h2, h4, h3 {
         font-family: "Baskerville", serif;
+      }
+
+      h3.notice {
+        background: $background-colour-dark;
+        padding: 10px;
+        text-align: center;
+        color: $light-text-colour;
       }
 
       p {
@@ -222,6 +229,39 @@
         .Form {
           display: grid;
           grid-gap: $content-padding;
+        }
+
+        .dzu-dropzone {
+          border: none;
+          overflow: auto;
+          border-radius: 0;
+
+          progress[value] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: none;
+            background-color: $background-colour;
+          }
+          progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-value {
+            background-color: $background-colour-dark;
+          }
+
+          .dzu-previewContainer {
+            padding: 10px 3%;
+          }
+
+          .dzu-inputLabel {
+            color: $dark-text-colour;
+          }
+
+          .dzu-inputLabelWithFiles {
+            color: $light-text-colour;
+            background-color: $background-colour-dark;
+            font-weight: normal;
+            border-radius: 0;
+            font-family: inherit;
+          }
         }
       }
     }

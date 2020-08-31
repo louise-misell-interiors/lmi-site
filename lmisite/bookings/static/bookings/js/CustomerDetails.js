@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Loader} from "./Loader";
 import {fetchGQL} from "./main";
+import Dropzone from 'react-dropzone-uploader';
+import 'react-dropzone-uploader/dist/styles.css';
 
 class BookingInfo extends Component {
     render() {
@@ -34,6 +36,7 @@ export class CustomerDetails extends Component {
 
         this.scheduleEvent = this.scheduleEvent.bind(this);
         this.setQuestionAnswer = this.setQuestionAnswer.bind(this);
+        this.getUploadParams = this.getUploadParams.bind(this);
     }
 
     componentWillMount() {
@@ -119,6 +122,10 @@ export class CustomerDetails extends Component {
         this.setState({
             questionAnswers: questionAnswers
         })
+    }
+
+    getUploadParams() {
+        return { url: 'https://httpbin.org/post' }
     }
 
     render() {
@@ -213,14 +220,26 @@ export class CustomerDetails extends Component {
                     {questions}
                     <div>
                         <div className="input-like">
+                            <p>Upload some pictures of your project</p>
+                            <Dropzone
+                                getUploadParams={this.getUploadParams}
+                                accept="image/*"
+                                submitButtonDisabled={true}
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <div className="input-like">
                             <p>Would you like to receive my email newsletter?</p>
                             <div>
-                                <input type="radio" name="newsletter" value="yes" checked={this.state.newsletter === true}
+                                <input type="radio" name="newsletter" value="yes"
+                                       checked={this.state.newsletter === true}
                                        required onChange={e => this.setState({newsletter: e.target.value === "yes"})}/>
                                 <label>Yes</label>
                             </div>
                             <div>
-                                <input type="radio" name="newsletter" value="no" checked={this.state.newsletter === false}
+                                <input type="radio" name="newsletter" value="no"
+                                       checked={this.state.newsletter === false}
                                        required onChange={e => this.setState({newsletter: e.target.value === "yes"})}/>
                                 <label>No</label>
                             </div>

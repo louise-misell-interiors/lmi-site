@@ -246,24 +246,32 @@
         height: 100%;
         width: 100%; }
 
+form {
+  font-family: "Raleway", serif; }
+
 input:not([type=radio]), textarea, button, .input-like {
   width: 100%;
   border: none;
   padding: 15px;
   font-size: 20px;
-  background: #e5f0f2; }
+  background: #e5f0f2;
+  font-family: "Raleway", serif; }
   @media (max-width: 800px) {
     input:not([type=radio]), textarea, button, .input-like {
       margin: 0; } }
   input:not([type=radio])[type="checkbox"], textarea[type="checkbox"], button[type="checkbox"], .input-like[type="checkbox"] {
     width: initial; }
   input:not([type=radio]) p, textarea p, button p, .input-like p {
-    font-size: 20px;
-    color: #444; }
+    font-size: 20px !important;
+    text-align: left;
+    color: #6a6f70; }
 
 .input-like p {
   margin-top: 0;
   text-align: left; }
+
+.input-like div {
+  margin-bottom: 10px; }
 
 button {
   color: #e5f0f2;
@@ -279,7 +287,7 @@ body {
   font-size: 19px;
   font-family: "Baskerville", serif; }
 
-textarea, input, button, select {
+button {
   font-family: inherit; }
 
 a {

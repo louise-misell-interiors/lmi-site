@@ -26,7 +26,7 @@ export class BookingTypes extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const self = this;
         fetchGQL(
             `{

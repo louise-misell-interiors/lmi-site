@@ -21,8 +21,8 @@
             <h1>Blog</h1>
         </header>
         <div class="blog">
-            <div class="posts">
-                {% for post in posts  %}
+            <div class="posts" id="posts">
+                {% for post in posts %}
                     {% include "main_site/design_insider_post_template.html" with post=post %}
                 {% endfor %}
             </div>
@@ -32,7 +32,8 @@
                     {{ config.blog_text|safe }}
                 </div>
                 {% include "main_site/newsletter_form.html" with form=form %}
-                <div class="short-posts">
+            </div>
+            <div class="short-posts" id="short-posts">
                 <div>
                     {% for post in short_posts %}
                         <div class="post short" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -54,7 +55,6 @@
                             {{ post.content|safe }}
                         </div>
                     {% endfor %}
-                </div>
                 </div>
             </div>
         </div>

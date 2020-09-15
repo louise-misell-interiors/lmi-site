@@ -378,11 +378,23 @@ class DesignInsiderPost(models.Model):
     def read_time(self):
         try:
             return str(readtime.of_html(self.content))
-        except:
+        except Exception:
             return ""
 
     def __str__(self):
         return self.title
+
+
+class DesignInsiderPostRelated(models.Model):
+    post = models.ForeignKey(DesignInsiderPost, on_delete=models.CASCADE, related_name='related_posts')
+    related_post = models.ForeignKey(DesignInsiderPost, on_delete=models.CASCADE, related_name='relatee_posts')
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return str(self.related_post)
 
 
 class ShortPost(models.Model):

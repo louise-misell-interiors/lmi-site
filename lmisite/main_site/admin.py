@@ -71,9 +71,15 @@ class SiteConfigAdmin(SingletonModelAdmin):
     form = ConfigForm
 
 
+class DesignInsiderPostRelatedInline(SortableInlineAdminMixin, admin.TabularInline):
+    fk_name = 'post'
+    model = DesignInsiderPostRelated
+    extra = 3
+
+
 @admin.register(DesignInsiderPost)
 class DesignInsiderPostAdmin(SortableAdminMixin, admin.ModelAdmin):
-    pass
+    inlines = [DesignInsiderPostRelatedInline]
 
 
 @admin.register(ShortPost)

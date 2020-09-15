@@ -148,6 +148,8 @@
         right: -15px; }
       .nav nav a:last-of-type::before {
         display: none; }
+      .nav nav a.subitem {
+        display: none; }
   .nav .menu-button {
     position: absolute;
     z-index: 996;
@@ -202,8 +204,19 @@
         transition: transform ease-in-out .5s; }
         .nav nav a {
           margin: 20px; }
-          .nav nav a::before, .nav nav a::after {
+          .nav nav a::after, .nav nav a::before {
             display: none; }
+          .nav nav a.subitem {
+            display: block;
+            margin-left: 40px;
+            margin-top: 0;
+            font-size: 20px; }
+            .nav nav a.subitem::before {
+              content: "-";
+              display: block;
+              left: -5px;
+              right: unset;
+              border: none; }
       .nav .menu-button {
         display: block;
         z-index: 999; } }
@@ -268,7 +281,7 @@ input:not([type=radio]), textarea, button, .input-like {
 
 .input-like p {
   margin-top: 0;
-  text-align: left; }
+  text-align: left !important; }
 
 .input-like div {
   margin-bottom: 10px; }

@@ -109,10 +109,13 @@
         font-family: "Baskerville", serif;
       }
 
+      h3 {
+        text-align: center;
+      }
+
       h3.notice {
         background: $background-colour-dark;
         padding: 10px;
-        text-align: center;
         color: $light-text-colour;
       }
 
@@ -232,7 +235,7 @@
         }
 
         .dzu-dropzone {
-          border: none;
+          border: 1px solid $background-colour-dark;
           overflow: auto;
           border-radius: 0;
 

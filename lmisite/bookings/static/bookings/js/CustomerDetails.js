@@ -44,7 +44,7 @@ export class CustomerDetails extends Component {
         this.onUploadStatus = this.onUploadStatus.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const self = this;
         fetchGQL(
             `query ($id: ID!) {
@@ -251,11 +251,12 @@ export class CustomerDetails extends Component {
                     {questions}
                     <div>
                         <div className="input-like">
-                            <p>Upload some pictures of your project</p>
+                            <p>Please upload a picture or two of your project (optional)</p>
                             <Dropzone
                                 getUploadParams={this.getUploadParams}
                                 onChangeStatus={this.onUploadStatus}
                                 initialFiles={this.state.initialfileObjs}
+                                inputContent="Drag and drop files or click to browse"
                                 accept="image/*"
                                 submitButtonDisabled={true}
                             />

@@ -33,7 +33,7 @@ export class DaySelect extends Component {
         this.prevDays = this.prevDays.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getNewDays(moment.utc());
     }
 
@@ -93,7 +93,7 @@ export class DaySelect extends Component {
                     <i className="fas fa-chevron-right" onClick={this.nextDays}/>
                 </div>;
             } else {
-                content = <h3>No days available</h3>
+                content = <h3>No days are available for booking at the moment, please try again later.</h3>
             }
         } else {
             content = <Loader/>

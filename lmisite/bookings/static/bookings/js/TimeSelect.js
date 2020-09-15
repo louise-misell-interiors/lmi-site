@@ -24,7 +24,7 @@ export class TimeSelect extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getNewTimes(this.props.date);
     }
 

@@ -77,7 +77,7 @@ class BookingApp extends Component {
         })
     }
 
-    componentWillMount() {
+    componentDidMount() {
         if (this.props.type) {
             const self = this;
             fetchGQL(

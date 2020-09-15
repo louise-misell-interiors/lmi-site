@@ -94,10 +94,11 @@
         background: #e5f0f2; }
       .content .contact-details .calendar h2, .content .contact-details .calendar h4, .content .contact-details .calendar h3 {
         font-family: "Baskerville", serif; }
+      .content .contact-details .calendar h3 {
+        text-align: center; }
       .content .contact-details .calendar h3.notice {
         background: #335470;
         padding: 10px;
-        text-align: center;
         color: #e5f0f2; }
       .content .contact-details .calendar p {
         text-align: center; }
@@ -179,7 +180,7 @@
           display: grid;
           grid-gap: 25px; }
         .content .contact-details .calendar .CustomerDetails .dzu-dropzone {
-          border: none;
+          border: 1px solid #335470;
           overflow: auto;
           border-radius: 0; }
           .content .contact-details .calendar .CustomerDetails .dzu-dropzone div {

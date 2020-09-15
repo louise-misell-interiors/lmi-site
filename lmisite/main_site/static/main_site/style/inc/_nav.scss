@@ -104,6 +104,10 @@
       &:last-of-type::before {
         display: none;
       }
+
+      &.subitem {
+        display: none;
+      }
     }
   }
 
@@ -159,10 +163,12 @@
         span {
           transform: rotate(45deg) translate(-2px, -1px);
         }
+
         span:nth-last-child(2) {
           opacity: 0;
           transform: rotate(0deg) scale(0.2, 0.2);
         }
+
         span:nth-last-child(1) {
           transform: rotate(-45deg) translate(-2px, 1px);
         }
@@ -185,8 +191,23 @@
       a {
         margin: 20px;
 
-        &::before, &::after {
+        &::after, &::before {
           display: none;
+        }
+
+        &.subitem {
+          display: block;
+          margin-left: 40px;
+          margin-top: 0;
+          font-size: 20px;
+
+          &::before {
+            content: "-";
+            display: block;
+            left: -5px;
+            right: unset;
+            border: none;
+          }
         }
       }
     }

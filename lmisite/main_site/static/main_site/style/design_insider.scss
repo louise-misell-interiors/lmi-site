@@ -64,17 +64,8 @@
     width: 80vw;
     display: grid;
     grid-template-columns: 7fr 2fr;
+    grid-template-rows: auto 1fr;
     grid-gap: $content-padding;
-
-    @media (max-width: $media-medium) {
-      width: 100vw;
-    }
-    @media (max-width: $media-small) {
-      grid-template-columns: 7fr 3fr;
-    }
-    @media (max-width: $media-xsmall) {
-      grid-template-columns: 1fr;
-    }
 
     > .posts, > .side {
       display: grid;
@@ -86,6 +77,8 @@
     }
 
     > .posts {
+      grid-row: 1 / 3;
+
       .post {
         display: grid;
         grid-template-columns: 1fr 2fr;
@@ -190,6 +183,7 @@
             &::before {
               padding-bottom: 0;
             }
+
             grid-row: 1;
           }
 
@@ -201,58 +195,87 @@
       }
     }
 
+    .short, .desc {
+      background: $background-colour;
+
+      a {
+        color: $dark-text-colour;
+        font-weight: bold;
+      }
+    }
+
     > .side {
       text-align: center;
       grid-template-rows: auto auto 1fr;
+      grid-column: 2 / 3;
       align-self: stretch;
+    }
 
-      .short, .desc {
-        background: $background-colour;
+    > .short-posts {
+      grid-column: 2 / 3;
+      position: relative;
 
-        a {
-          color: $dark-text-colour;
-          font-weight: bold;
+      > div {
+        overflow-y: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        scrollbar-width: thin;
+        scrollbar-color: $background-colour-dark $background-colour;
+
+        h4 {
+          margin-bottom: $content-margin;
+        }
+
+        @media (max-width: $media-xsmall) {
+          position: relative;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $background-colour-dark;
+        }
+
+        &::-webkit-scrollbar {
+          width: 10px;
+          background: $background-colour;
+        }
+
+        .short {
+          margin-bottom: $content-padding;
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
         }
       }
+    }
 
-      .short-posts {
-        position: relative;
 
-        > div {
-          overflow-y: auto;
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          scrollbar-width: thin;
-          scrollbar-color: $background-colour-dark $background-colour;
+    @media (max-width: $media-medium) {
+      width: 100vw;
+    }
+    @media (max-width: $media-small) {
+      grid-template-columns: 7fr 3fr;
+    }
+    @media (max-width: $media-xsmall) {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
 
-          h4 {
-            margin-bottom: $content-margin;
-          }
+      > .posts {
+        grid-column: 1;
+        grid-row: 2;
+      }
 
-          @media (max-width: $media-xsmall) {
-            position: relative;
-          }
+      > .side {
+        grid-column: 1;
+        grid-row: 1;
+      }
 
-          &::-webkit-scrollbar-thumb {
-            background: $background-colour-dark;
-          }
-
-          &::-webkit-scrollbar {
-            width: 10px;
-            background: $background-colour;
-          }
-
-          .short {
-            margin-bottom: $content-padding;
-
-            &:last-of-type {
-              margin-bottom: 0;
-            }
-          }
-        }
+      > .short-posts {
+        grid-column: 1;
+        grid-row: 3;
       }
     }
   }
@@ -347,5 +370,35 @@ h2, h3 {
 
   .content {
     max-width: 1000px;
+  }
+}
+
+.related {
+  color: $dark-text-colour;
+  display: flex;
+  flex-direction: column;
+
+  > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: 1fr;
+    width: 80%;
+    align-self: center;
+    grid-gap: $content-padding;
+
+    .post {
+      display: grid;
+      grid-gap: 5px;
+      align-items: center;
+      grid-template-rows: 1fr 2fr auto auto;
+
+      > a {
+        align-self: stretch;
+        img {
+          object-fit: cover;
+          min-height: 100%;
+        }
+      }
+    }
   }
 }

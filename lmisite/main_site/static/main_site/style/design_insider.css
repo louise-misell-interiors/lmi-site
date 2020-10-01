@@ -226,7 +226,9 @@ h2, h3 {
   line-height: 1.5;
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  grid-row: 1;
+  grid-column: 1; }
   .blog-post .title {
     font-family: "Raleway", sans-serif;
     align-self: stretch;
@@ -247,6 +249,9 @@ h2, h3 {
     font-weight: bold; }
   .blog-post .content {
     max-width: 1000px; }
+  @media (max-width: 700px) {
+    .blog-post + .side {
+      grid-row: 2 !important; } }
 
 .related {
   color: #335470;
@@ -269,5 +274,3 @@ h2, h3 {
         .related > div .post > a img {
           object-fit: cover;
           min-height: 100%; }
-
-/*# sourceMappingURL=design_insider.css.map */

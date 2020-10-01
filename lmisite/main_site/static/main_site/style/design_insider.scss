@@ -339,6 +339,9 @@ h2, h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  grid-row: 1;
+  grid-column: 1;
+
 
   .title {
     font-family: "Raleway", sans-serif;
@@ -370,6 +373,12 @@ h2, h3 {
 
   .content {
     max-width: 1000px;
+  }
+
+  & + .side {
+    @media (max-width: $media-xsmall) {
+      grid-row: 2 !important;
+    }
   }
 }
 

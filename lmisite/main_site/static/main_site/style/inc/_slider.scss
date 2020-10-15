@@ -16,6 +16,7 @@
       width: 100%;
       height: 100%;
       position: relative;
+      pointer-events: none;
 
       $slide-offset: (100 - $slide-width) / 2;
 
@@ -27,6 +28,7 @@
         left: - ($slide-width - $slide-offset) + $slide-cover;
         transition: height $medium-transition, transform $medium-transition, left $medium-transition, opacity 0.1s;
         opacity: 0;
+        pointer-events: auto;
 
         &.is-active {
           left: $slide-offset;
@@ -80,8 +82,9 @@
         top: 50%;
         transform: translateY(-50%);
         left: $slide-offset;
-        z-index: 99;
+        z-index: 9999;
         transition: opacity $fast-transition;
+        pointer-events: auto;
 
         &:hover {
           opacity: 1;

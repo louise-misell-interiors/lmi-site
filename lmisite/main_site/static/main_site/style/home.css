@@ -103,7 +103,8 @@
         transform-style: preserve-3d;
         width: 100%;
         height: 100%;
-        position: relative; }
+        position: relative;
+        pointer-events: none; }
         .main-slider .main-slider-inner .slider .slider-inner .slide {
           position: absolute;
           width: 60%;
@@ -111,7 +112,8 @@
           transform: translateZ(-2px);
           left: -20%;
           transition: height 0.5s, transform 0.5s, left 0.5s, opacity 0.1s;
-          opacity: 0; }
+          opacity: 0;
+          pointer-events: auto; }
           .main-slider .main-slider-inner .slider .slider-inner .slide.is-active {
             left: 20%;
             transform: translateY(0) translateZ(0);
@@ -152,8 +154,9 @@
           top: 50%;
           transform: translateY(-50%);
           left: 20%;
-          z-index: 99;
-          transition: opacity 0.2s; }
+          z-index: 9999;
+          transition: opacity 0.2s;
+          pointer-events: auto; }
           .main-slider .main-slider-inner .slider .slider-inner .arrow:hover {
             opacity: 1; }
         .main-slider .main-slider-inner .slider .slider-inner .arrow:last-of-type {
@@ -170,7 +173,8 @@
           transform-style: preserve-3d;
           width: 100%;
           height: 100%;
-          position: relative; }
+          position: relative;
+          pointer-events: none; }
           .main-slider .main-slider-inner .slider .slider-inner .slide {
             position: absolute;
             width: 95%;
@@ -178,7 +182,8 @@
             transform: translateZ(-2px);
             left: -72.5%;
             transition: height 0.5s, transform 0.5s, left 0.5s, opacity 0.1s;
-            opacity: 0; }
+            opacity: 0;
+            pointer-events: auto; }
             .main-slider .main-slider-inner .slider .slider-inner .slide.is-active {
               left: 2.5%;
               transform: translateY(0) translateZ(0);
@@ -219,8 +224,9 @@
             top: 50%;
             transform: translateY(-50%);
             left: 2.5%;
-            z-index: 99;
-            transition: opacity 0.2s; }
+            z-index: 9999;
+            transition: opacity 0.2s;
+            pointer-events: auto; }
             .main-slider .main-slider-inner .slider .slider-inner .arrow:hover {
               opacity: 1; }
           .main-slider .main-slider-inner .slider .slider-inner .arrow:last-of-type {

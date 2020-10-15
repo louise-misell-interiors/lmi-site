@@ -39,12 +39,12 @@ function prevSlide(slider) {
     if ($prevPrevSlide.length === 0) {
         $prevPrevSlide = slider.find(".slide:last");
     }
-    let $nextNextNextSlide = $nextNextSlide.next(".slide");
-    if ($nextNextNextSlide.length === 0) {
-        $nextNextNextSlide = slider.find(".slide:first");
+    let $nextNextSlide = $nextSlide.next(".slide");
+    if ($nextNextSlide.length === 0) {
+        $nextNextSlide = slider.find(".slide:first");
     }
 
-    $nextNextNextSlide.removeClass("is-next-next");
+    $nextNextSlide.removeClass("is-next-next");
     $nextSlide.removeClass("is-next").addClass("is-next-next");
     $slide.removeClass("is-active").addClass("is-next");
     $prevSlide.addClass("is-active").removeClass("is-prev");

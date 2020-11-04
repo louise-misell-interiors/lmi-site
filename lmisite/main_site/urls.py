@@ -6,6 +6,7 @@ from .sitemap import SITEMAP
 urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
+    path('resources/', views.resources, name='resources'),
     path('portfolio/', views.portfolio, name='portfolio'),
     path('project/<id>/', views.project, name='project'),
     path('services/', views.services, name='services'),

@@ -223,6 +223,20 @@ def about(request):
     return render(request, "main_site/about.html", {"testimonial": testimonials.first()})
 
 
+def resources(request):
+    resources = Resource.objects.all()
+
+    if request.method == "POST":
+        form = handle_newsletter(request)
+    else:
+        form = forms.NewsletterForm()
+
+    return render(request, "main_site/resources.html", {
+        "form": form,
+        "resources": resources
+    })
+
+
 def portfolio(request):
     projects = Project.objects.all()
     if not request.user.is_superuser:

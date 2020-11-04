@@ -79,6 +79,11 @@ class SiteConfig(SingletonModel):
     about_cta = models.CharField(max_length=255, blank=True)
     about_testimonials_cta = models.CharField(max_length=255, blank=True)
 
+    resources_title = models.CharField(max_length=255, blank=True)
+    resources_image = models.ImageField(blank=True)
+    resources_description = models.TextField(blank=True)
+    resources_text = RichTextUploadingField(blank=True)
+
     portfolio_title = models.CharField(max_length=255, blank=True)
     portfolio_header_image = models.ImageField(blank=True)
     portfolio_description = models.TextField(blank=True)
@@ -130,6 +135,18 @@ class MainSliderImage(models.Model):
     def save(self, *args, **kwargs):
         compress_img(self.image)
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
+class Resource(models.Model):
+    name = models.CharField(max_length=255)
+    url = models.URLField()
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
         return self.name

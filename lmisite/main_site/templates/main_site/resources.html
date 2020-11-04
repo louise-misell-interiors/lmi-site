@@ -1,0 +1,45 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}{{ config.resources_title }}{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static "main_site/style/resources.css" %}">
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ config.resources_title }} | Louise Misell Interiors">
+    <meta property="og:image" content="http://louisemisellinteriors.co.uk{% static "main_site/img/logo.png" %}">
+    <meta property="og:description" content="{{ config.resources_description }}">
+
+    <meta name="description" content="{{ config.resources_description }}">
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'resources' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if config.resources_image %}style="--background: url({{ config.resources_image.url }});"{% endif %}>
+            <h1>{{ config.resources_title }}</h1>
+        </header>
+
+        <div class="resources">
+            <div class="links">
+                {% for resource in resources %}
+                    <a href="{{ resource.url }}" class="button dark">{{ resource.name }}</a>
+                {% endfor %}
+            </div>
+            <div class="side">
+                {% include "main_site/newsletter_form.html" with form=form %}
+            </div>
+        </div>
+
+        <div class="bio" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="name" content="Louise Misell">
+            <link itemprop="image"
+                  href="https://louisemisellinteriors.co.uk{% static 'main_site/img/louise-head.jpg' %}"/>
+            <img src="{% static 'main_site/img/louise-head.jpg' %}" alt="">
+            <div>
+                {{ config.resources_text|safe }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

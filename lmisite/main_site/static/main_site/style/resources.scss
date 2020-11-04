@@ -1,0 +1,93 @@
+@import "inc/variables";
+
+.resources {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+
+  @media (max-width: $media-small) {
+    grid-template-columns: 1fr;
+  }
+
+  .links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-gap: $content-padding;
+    align-content: start;
+    align-self: center;
+    margin: 0 $content-margin;
+  }
+
+  a.button {
+    font-size: 30px;
+    text-align: center;
+    padding: $content-padding;
+  }
+}
+
+.bio {
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: auto 1fr;
+
+  @media (max-width: $media-small) {
+    grid-template-columns: 1fr;
+  }
+
+  > img {
+    width: 350px;
+    max-width: calc(100% - #{$content-padding*4});
+    min-width: 100px;
+    margin: $content-padding*2;
+  }
+
+  p {
+    width: 80vw;
+    max-width: 1300px;
+    text-align: center;
+
+    a.button {
+      font-size: 30px;
+    }
+  }
+}
+
+.newsletter {
+  font-family: "Raleway", sans-serif;
+  font-size: 17px;
+  border: $background-colour-dark 2px solid;
+  padding: $content-padding;
+
+  @media (max-width: $media-small) {
+    margin-top: $content-margin;
+  }
+
+  a {
+    color: $dark-text-colour;
+    font-weight: bold;
+  }
+
+  i {
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0 0 10px;
+    text-align: center;
+    display: block;
+  }
+
+  input, button {
+    padding: 7px 15px;
+    margin: 2px 0;
+  }
+
+  h3 {
+    background: $background-colour-dark;
+    color: $light-text-colour;
+    padding: $content-padding/2;
+    margin-bottom: $content-margin;
+    margin-top: 0;
+    font-size: 22px;
+    text-align: center;
+  }
+}

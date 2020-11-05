@@ -61,6 +61,11 @@ class TestimonialAdmin(SortableAdminMixin, admin.ModelAdmin):
     pass
 
 
+@admin.register(Resource)
+class ResourceAdmin(SortableAdminMixin, admin.ModelAdmin):
+    pass
+
+
 @admin.register(MainSliderImage)
 class MainSliderImageAdmin(SortableAdminMixin, admin.ModelAdmin):
     pass

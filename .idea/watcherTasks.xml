@@ -14,7 +14,7 @@
         <array />
       </option>
       <option name="outputFromStdout" value="false" />
-      <option name="program" value="$USER_HOME$/.nix-profile/bin/scss" />
+      <option name="program" value="/usr/bin/scss" />
       <option name="runOnExternalChanges" value="true" />
       <option name="scopeName" value="Main site" />
       <option name="trackOnlyRoot" value="true" />

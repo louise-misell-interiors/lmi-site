@@ -132,6 +132,7 @@ class ConfigForm(forms.ModelForm):
                   'home_help_text', 'home_help_image', 'home_help_cta', 'home_testimonials_cta',
                   'about_title', 'about_header_image', 'about_image_2', 'about_description', 'about_mission_statement',
                   'about_text', 'about_text_2', 'about_cta', 'about_testimonials_cta',
+                  'resources_title', 'resources_image', 'resources_description', 'resources_text',
                   'portfolio_title', 'portfolio_header_image', 'portfolio_description', 'portfolio_text',
                   'blog_title', 'blog_header_image', 'blog_description', 'blog_text',
                   'services_title', 'services_header_image', 'services_description', 'services_text',

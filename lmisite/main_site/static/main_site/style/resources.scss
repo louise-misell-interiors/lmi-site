@@ -15,6 +15,10 @@
     align-content: start;
     align-self: center;
     margin: 0 $content-margin;
+
+    @media (max-width: $media-small) {
+      margin: 0;
+    }
   }
 
   a.button {

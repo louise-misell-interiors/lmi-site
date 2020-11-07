@@ -11,6 +11,9 @@
     align-content: start;
     align-self: center;
     margin: 0 20px; }
+    @media (max-width: 800px) {
+      .resources .links {
+        margin: 0; } }
   .resources a.button {
     font-size: 30px;
     text-align: center;

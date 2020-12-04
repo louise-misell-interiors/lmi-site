@@ -76,14 +76,25 @@
                 </form>
             </div>
             <div class="details">
-                <h3>Phone:
-                    <a href="tel:{{ config.phone.as_e164 }}">{{ config.phone.as_national }}</a>
-                    Mobile:
-                    <a href="tel:{{ config.mobile.as_e164 }}">{{ config.mobile.as_national }}</a>
+                <h3>
+                    {% if config.phone %}
+                        Phone:
+                        <a href="tel:{{ config.phone.as_e164 }}">{{ config.phone.as_national }}</a>
+                    {% endif %}
+                    {% if config.mobile %}
+                        Mobile:
+                        <a href="tel:{{ config.mobile.as_e164 }}">{{ config.mobile.as_national }}</a>
+                    {% endif %}
                 </h3>
-                <meta itemprop="telephone" content="{{ config.phone.as_e164 }}">
-                <meta itemprop="telephone" content="{{ config.mobile.as_e164 }}">
-                <h3>Email: <a href="mailto:{{ config.email }}" itemprop="email">{{ config.email }}</a></h3>
+                {% if config.phone %}
+                    <meta itemprop="telephone" content="{{ config.phone.as_e164 }}">
+                {% endif %}
+                {% if config.mobile %}
+                    <meta itemprop="telephone" content="{{ config.mobile.as_e164 }}">
+                {% endif %}
+                {% if config.email %}
+                    <h3>Email: <a href="mailto:{{ config.email }}" itemprop="email">{{ config.email }}</a></h3>
+                {% endif %}
                 <h3>Location:</h3>
                 <div class="address" itemprop="address">
                     {{ config.address|linebreaks }}
@@ -112,5 +123,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static "bookings/js/main_production.js" %}"></script>
+    <script src="{% static "bookings/js/main_production.js" %}"></script>
 {% endblock %}

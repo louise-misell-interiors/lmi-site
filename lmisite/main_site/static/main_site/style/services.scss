@@ -37,10 +37,6 @@
       padding: $content-padding/2;
       margin: $content-margin 0;
 
-      @media (max-width: $media-xsmall) {
-        //width: 100vw;
-      }
-
       .title {
         padding: $content-padding;
         background: $background-colour-dark;

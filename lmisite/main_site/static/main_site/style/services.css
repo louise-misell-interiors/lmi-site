@@ -39,13 +39,31 @@
   display: grid;
   grid-auto-flow: row;
   grid-auto-rows: auto;
-  grid-gap: 50px;
   padding: 100px !important;
   align-items: center;
   justify-content: center; }
   @media (max-width: 700px) {
     .content .services {
       padding: 0 !important; } }
+  .content .services .service-block {
+    border: 3px solid #335470;
+    padding: 25px;
+    margin: 20px 0; }
+    .content .services .service-block h2 {
+      font-family: Baskerville, serif;
+      text-align: center;
+      justify-self: center;
+      margin: 0;
+      padding-bottom: 12.5px;
+      color: #335470;
+      text-transform: uppercase;
+      font-size: 35px; }
+    .content .services .service-block > p {
+      font-size: 27px;
+      text-align: center;
+      margin: 0 0 20px; }
+    .content .services .service-block .service:not(:first-of-type) {
+      margin-top: 25px; }
   .content .services .service {
     width: 80vw;
     display: grid;
@@ -66,7 +84,7 @@
       align-self: stretch;
       justify-self: stretch;
       object-fit: cover; }
-    .content .services .service h2:first-of-type {
+    .content .services .service h3:first-of-type {
       grid-column: 1;
       grid-row: 1;
       font-family: Baskerville, serif;
@@ -76,7 +94,8 @@
       padding-bottom: 12.5px;
       color: #335470;
       text-transform: uppercase;
-      border-bottom: 2px solid #335470; }
+      border-bottom: 2px solid #335470;
+      font-size: 30px; }
     .content .services .service .description {
       grid-column: 1;
       grid-row: 2;
@@ -132,7 +151,6 @@
           margin: 25px 0; } }
     @media (max-width: 700px) {
       .content .services .service {
-        width: 100vw;
         padding: 0 !important; }
         .content .services .service .description, .content .services .service .price {
           margin: 25px; } }

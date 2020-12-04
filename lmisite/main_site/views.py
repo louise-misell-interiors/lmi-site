@@ -254,11 +254,30 @@ def project(request, id):
 
 def services(request):
     services = Service.objects.all()
+
     testimonials = Testimonial.objects.filter(featured_on=Testimonial.SERVICES_PAGE)
     if not request.user.is_superuser:
         services = services.filter(draft=False)
         testimonials = testimonials.filter(draft=False)
-    return render(request, "main_site/services.html", {"services": services, "testimonial": testimonials.first()})
+
+    services = list(services)
+    services_render = []
+    last_group = None
+    for i, service in enumerate(services):
+        next_i = i + 1
+        next_service = services[next_i] if next_i < len(services) else None
+        print(next_service)
+        services_render.append({
+            "service": service,
+            "group": service.group if service.group != last_group else None,
+            "last_group": (
+                    next_service.group != service.group and (service.group is not None)
+            ) if next_service else (service.group is not None)
+        })
+        print(services_render)
+        last_group = service.group
+
+    return render(request, "main_site/services.html", {"services": services_render, "testimonial": testimonials.first()})
 
 
 def online_design(request):

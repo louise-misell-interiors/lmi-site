@@ -321,11 +321,11 @@ img {
 }
 
 @mixin h2 {
-    min-height: 2.2em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+  min-height: 2.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .calendar {
   font-family: "Raleway", sans-serif;

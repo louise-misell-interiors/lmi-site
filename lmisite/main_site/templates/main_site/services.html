@@ -26,34 +26,51 @@
         </div>
         <div class="services">
             {% for service in services %}
-                <div class="service" itemscope itemtype="https://schema.org/Service">
-                    {% if service.image %}
-                        <img src="{{ service.image.url }}" alt="{{ service.name }}">
+                {% if service.group %}
+                    <div class="service-block">
+                    <h2>{{ service.group.name }}</h2>
+                    {% if service.group.description %}
+                        <p>{{ service.group.description }}</p>
                     {% endif %}
-                    <div class="colour-block"></div>
-                    <h2 itemprop="name">{{ service.name }}</h2>
-                    <span itemprop="description" class="description">
-                      {{ service.description|linebreaks }}
-                    </span>
-                    {% if service.price %}
-                        <h2 class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <span itemprop="price">{{ service.price }}</span>
-                            <span class="buttons">
-                            {% for button in service.buttons.all %}
-                                <a href="{% if button.button_url %}{{ button.button_url }}{% else %}{% url 'contact' %}{% endif %}" class="button">
-                                    <span>{{ button.button_text }}</span>
-                                </a>
+                {% endif %}
+                {% with service.service as service %}
+                    <div class="service" itemscope itemtype="https://schema.org/Service">
+                        {% if service.image %}
+                            <img src="{{ service.image.url }}" alt="{{ service.name }}">
+                        {% endif %}
+                        <div class="colour-block"></div>
+                        <h3 itemprop="name">{{ service.name }}</h3>
+                        <span itemprop="description" class="description">
+                          {{ service.description|linebreaks }}
+                        </span>
+                        {% if service.price %}
+                            <h3 class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                <span itemprop="price">{{ service.price }}</span>
+                                <span class="buttons">
+                                {% for button in service.buttons.all %}
+                                    <a href="
+
+
+
+                                            {% if button.button_url %}{{ button.button_url }}{% else %}{% url 'contact' %}{% endif %}"
+                                       class="button">
+                                        <span>{{ button.button_text }}</span>
+                                    </a>
+                                {% endfor %}
+                                </span>
+                            </h3>
+                        {% endif %}
+                        <span itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog"
+                              style="display: none;">
+                            {% for summary in service.service_summaries.all %}
+                                <meta itemprop="itemListElement" content="{{ summary.text }}"/>
                             {% endfor %}
-                            </span>
-                        </h2>
-                    {% endif %}
-                    <span itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog"
-                          style="display: none;">
-                        {% for summary in service.service_summaries.all %}
-                            <meta itemprop="itemListElement" content="{{ summary.text }}"/>
-                        {% endfor %}
-                    </span>
-                </div>
+                        </span>
+                    </div>
+                {% endwith %}
+                {% if service.last_group %}
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
         <div class="testimonials">

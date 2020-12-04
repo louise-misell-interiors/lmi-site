@@ -152,6 +152,14 @@ class Resource(models.Model):
         return self.name
 
 
+class ServiceGroup(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Service(models.Model):
     draft = models.BooleanField(default=False)
     name = models.CharField(max_length=255)
@@ -168,6 +176,7 @@ class Service(models.Model):
     description = models.TextField(blank=True)
     price = models.CharField(max_length=255, default="", blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
+    group = models.ForeignKey(ServiceGroup, on_delete=models.PROTECT, blank=True, null=True)
 
     class Meta:
         ordering = ['order']

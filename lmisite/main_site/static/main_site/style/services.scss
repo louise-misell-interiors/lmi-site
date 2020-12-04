@@ -34,28 +34,32 @@
 
     .service-block {
       border: 3px solid $background-colour-dark;
-      padding: $content-padding;
+      padding: $content-padding/2;
       margin: $content-margin 0;
 
       @media (max-width: $media-xsmall) {
         //width: 100vw;
       }
 
-      h2 {
-        font-family: Baskerville, serif;
-        text-align: center;
-        justify-self: center;
-        margin: 0;
-        padding-bottom: $content-padding/2;
-        color: $dark-text-colour;
-        text-transform: uppercase;
-        font-size: 35px;
-      }
+      .title {
+        padding: $content-padding;
+        background: $background-colour-dark;
 
-      > p {
-        font-size: 27px;
-        text-align: center;
-        margin: 0 0 $content-margin;
+        h2 {
+          font-family: Baskerville, serif;
+          text-align: center;
+          justify-self: center;
+          margin: 0;
+          color: $light-text-colour;
+          text-transform: uppercase;
+          font-size: 35px;
+        }
+
+        > p {
+          font-size: 27px;
+          text-align: center;
+          color: $light-text-colour;
+        }
       }
 
       .service:not(:first-of-type) {
@@ -72,12 +76,16 @@
       justify-content: left;
       grid-column-gap: $content-padding;
 
+      > * {
+        z-index: 2;
+      }
+
       .colour-block {
         grid-column: 1 / 3;
         grid-row: 1 / 4;
         background-color: $background-colour;
         align-self: stretch;
-        z-index: -1;
+        z-index: 1;
       }
 
       img {
@@ -177,6 +185,7 @@
         }
       }
       @media (max-width: $media-xsmall) {
+        max-width: 100%;
         padding: 0 !important;
 
         .description, .price {

@@ -28,10 +28,12 @@
             {% for service in services %}
                 {% if service.group %}
                     <div class="service-block">
+                    <div class="title">
                     <h2>{{ service.group.name }}</h2>
                     {% if service.group.description %}
                         <p>{{ service.group.description }}</p>
                     {% endif %}
+                    </div>
                 {% endif %}
                 {% with service.service as service %}
                     <div class="service" itemscope itemtype="https://schema.org/Service">

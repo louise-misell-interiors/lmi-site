@@ -299,6 +299,9 @@ def contact(request):
     if not request.user.is_superuser:
         testimonials = testimonials.filter(draft=False)
 
+    booking_config = booking_models.Config.objects.first()
+    booking_notice = booking_config.booking_notice if booking_config else None
+
     if request.method == 'POST':
         form = forms.ContactForm(request.POST)
         if form.is_valid():
@@ -364,7 +367,12 @@ def contact(request):
     else:
         form = forms.ContactForm()
 
-    return render(request, "main_site/contact.html", {'form': form, 'sent': False, "testimonial": testimonials.first()})
+    return render(request, "main_site/contact.html", {
+        'form': form,
+        'sent': False,
+        "testimonial": testimonials.first(),
+        "booking_notice": booking_notice,
+    })
 
 
 def booking(request, id):

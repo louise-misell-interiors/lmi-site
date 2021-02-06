@@ -41,6 +41,16 @@
     width: 80vw;
     align-self: center;
 
+    @media (max-width: $media-medium) {
+      width: 100vw;
+    }
+    @media (max-width: $media-small) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: $media-xsmall) {
+      grid-template-columns: 1fr;
+    }
+
     .details {
       font-family: "Raleway", sans-serif;
       letter-spacing: 1px;
@@ -51,6 +61,11 @@
 
         &:hover {
           color: lighten($dark-text-colour, 20%);
+        }
+
+        @media (max-width: $media-xsmall) {
+          font-size: 16px;
+          display: block;
         }
       }
 
@@ -78,130 +93,6 @@
 
       h2 {
         @include h2;
-      }
-
-      form {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
-        grid-gap: $content-padding;
-        margin: 0;
-        border: 2px solid $background-colour;
-        padding: $content-padding;
-      }
-
-      .errorlist {
-        margin: 0;
-        text-align: left;
-        color: red;
-
-        li {
-          list-style: none;
-        }
-      }
-    }
-
-    .calendar {
-      font-family: "Raleway", sans-serif;
-      position: relative;
-
-      > h2:first-of-type {
-        @include h2;
-        background: $background-colour;
-      }
-
-      h2, h3 {
-        font-family: "Baskerville", serif;
-      }
-
-      p {
-        text-align: center;
-      }
-
-      .box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: $content-padding;
-        text-align: center;
-        background: $background-colour;
-
-        h3 {
-          margin: 0;
-          font-size: 30px;
-          font-family: Baskerville, serif;
-          padding-bottom: $content-padding/2;
-          border-bottom: 2px solid $dark-text-colour;
-        }
-
-        p {
-          flex-grow: 1;
-        }
-      }
-
-      .loader {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .back-button {
-        position: absolute;
-        top: calc(1.1em + 27px);
-      }
-
-      .BookingTypes {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        grid-gap: $content-padding;
-      }
-
-      .DaySelect {
-        display: grid;
-        grid-template-columns: auto repeat(5, 1fr) auto;
-        grid-gap: $content-padding;
-        align-items: center;
-
-        .Day {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          align-self: stretch;
-          text-align: center;
-        }
-      }
-
-      .TimeSelect {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        grid-gap: $content-padding;
-      }
-
-      .BookingInfo {
-        display: grid;
-        grid-auto-rows: auto;
-        grid-gap: $content-padding;
-        padding: $content-padding 0;
-        text-align: center;
-
-        p, h2, h3 {
-          margin: 0;
-        }
-      }
-
-      .CustomerDetails {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: $content-padding;
-        padding: $content-padding 0;
-        align-items: start;
-
-        .Form {
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-auto-rows: 1fr;
-          grid-gap: $content-padding;
-        }
       }
     }
   }

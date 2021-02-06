@@ -50,6 +50,15 @@
     grid-gap: 25px;
     width: 80vw;
     align-self: center; }
+    @media (max-width: 1200px) {
+      .content .contact-details {
+        width: 100vw; } }
+    @media (max-width: 800px) {
+      .content .contact-details {
+        grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 700px) {
+      .content .contact-details {
+        grid-template-columns: 1fr; } }
     .content .contact-details .details {
       font-family: "Raleway", sans-serif;
       letter-spacing: 1px; }
@@ -58,6 +67,10 @@
         margin-inline-end: 10px; }
         .content .contact-details .details a:hover {
           color: #5788b2; }
+        @media (max-width: 700px) {
+          .content .contact-details .details a {
+            font-size: 16px;
+            display: block; } }
       .content .contact-details .details h3 {
         margin-bottom: 0; }
       .content .contact-details .details .address p {
@@ -70,92 +83,5 @@
         display: flex;
         flex-direction: column;
         justify-content: center; }
-      .content .contact-details .form form {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
-        grid-gap: 25px;
-        margin: 0;
-        border: 2px solid #e5f0f2;
-        padding: 25px; }
-      .content .contact-details .form .errorlist {
-        margin: 0;
-        text-align: left;
-        color: red; }
-        .content .contact-details .form .errorlist li {
-          list-style: none; }
-    .content .contact-details .calendar {
-      font-family: "Raleway", sans-serif;
-      position: relative; }
-      .content .contact-details .calendar > h2:first-of-type {
-        min-height: 2.2em;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background: #e5f0f2; }
-      .content .contact-details .calendar h2, .content .contact-details .calendar h3 {
-        font-family: "Baskerville", serif; }
-      .content .contact-details .calendar p {
-        text-align: center; }
-      .content .contact-details .calendar .box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 25px;
-        text-align: center;
-        background: #e5f0f2; }
-        .content .contact-details .calendar .box h3 {
-          margin: 0;
-          font-size: 30px;
-          font-family: Baskerville, serif;
-          padding-bottom: 12.5px;
-          border-bottom: 2px solid #335470; }
-        .content .contact-details .calendar .box p {
-          flex-grow: 1; }
-      .content .contact-details .calendar .loader {
-        display: flex;
-        flex-direction: column;
-        align-items: center; }
-      .content .contact-details .calendar .back-button {
-        position: absolute;
-        top: calc(1.1em + 27px); }
-      .content .contact-details .calendar .BookingTypes {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        grid-gap: 25px; }
-      .content .contact-details .calendar .DaySelect {
-        display: grid;
-        grid-template-columns: auto repeat(5, 1fr) auto;
-        grid-gap: 25px;
-        align-items: center; }
-        .content .contact-details .calendar .DaySelect .Day {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          align-self: stretch;
-          text-align: center; }
-      .content .contact-details .calendar .TimeSelect {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        grid-gap: 25px; }
-      .content .contact-details .calendar .BookingInfo {
-        display: grid;
-        grid-auto-rows: auto;
-        grid-gap: 25px;
-        padding: 25px 0;
-        text-align: center; }
-        .content .contact-details .calendar .BookingInfo p, .content .contact-details .calendar .BookingInfo h2, .content .contact-details .calendar .BookingInfo h3 {
-          margin: 0; }
-      .content .contact-details .calendar .CustomerDetails {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 25px;
-        padding: 25px 0;
-        align-items: start; }
-        .content .contact-details .calendar .CustomerDetails .Form {
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-auto-rows: 1fr;
-          grid-gap: 25px; }
 
 /*# sourceMappingURL=contact.css.map */

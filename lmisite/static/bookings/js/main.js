@@ -1,4 +1,5 @@
 'use strict';
+import 'whatwg-fetch';
 import * as Sentry from '@sentry/browser';
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';
@@ -76,6 +77,30 @@ class BookingApp extends Component {
         })
     }
 
+    componentDidMount() {
+        if (this.props.type) {
+            const self = this;
+            fetchGQL(
+                `query ($id: ID!) {
+                bookingType(id: $id) {
+                    id
+                    name
+                    description
+                    whilstBookingMessage
+                    afterBookingMessage
+                    icon
+                } 
+            }`,
+                {id: this.props.type})
+                .then(res => self.setState({
+                    selectedType: res.data.bookingType,
+                }))
+                .catch(err => this.setState({
+                    error: err,
+                }))
+        }
+    }
+
     componentDidCatch(error, errorInfo) {
       this.setState({ error });
       Sentry.withScope(scope => {
@@ -105,7 +130,7 @@ class BookingApp extends Component {
             } else if (this.state.selectedDay === null) {
                 disp = <DaySelect onSelect={this.selectDay} type={this.state.selectedType} onBack={() => {
                     this.setState({selectedType: null})
-                }}/>
+                }} noBack={!!this.props.type}/>
             } else if (this.state.selectedTime === null) {
                 disp =
                     <TimeSelect onSelect={this.selectTime} type={this.state.selectedType} date={this.state.selectedDay}
@@ -137,4 +162,8 @@ Sentry.init({
 });
 
 const domContainer = document.querySelector('#booking-wrapper');
-ReactDom.render(<BookingApp/>, domContainer);
+let bookingId = null;
+if (window.bookingConf) {
+    bookingId = window.bookingConf.id
+}
+ReactDom.render(<BookingApp type={bookingId}/>, domContainer);

@@ -21,14 +21,18 @@ export class BookingTypes extends Component {
         this.state = {
             types: [],
             loading: true,
-            queryError: null
+            queryError: null,
+            notice: null
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const self = this;
         fetchGQL(
             `{
+                config {
+                    bookingNotice
+                }
                 bookingTypes {
                     id
                     name
@@ -40,6 +44,7 @@ export class BookingTypes extends Component {
             }`)
             .then(res => self.setState({
                 types: res.data.bookingTypes,
+                notice: res.data.config.bookingNotice,
                 loading: false,
             }))
             .catch(err => this.setState({
@@ -63,7 +68,8 @@ export class BookingTypes extends Component {
 
         return (
             <React.Fragment>
-                <h2>Book an appointment with me</h2>
+                <h2 className="lead">Book an appointment with me</h2>
+                {this.state.notice ? <h3 className="notice">{this.state.notice}</h3> : null}
                 <div className="BookingTypes">
                     {types}
                 </div>

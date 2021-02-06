@@ -3,13 +3,17 @@
 
 {% block title %}{{ config.booking_title }}{% endblock %}
 
+{#{% block header %}#}
+{#    <link rel="stylesheet" href="{% static "main_site/style/contact.css" %}">#}
+{#{% endblock %}#}
+
 {% block content %}
     <div class="content" {% if config.booking_header_image %}style="--background: url({{ config.booking_header_image.url }});"{% endif %}>
         <header>
-            <h1 style="text-transform: none">{{ config.booking_title }}</h1>
+            <h1>{{ config.booking_title }}</h1>
         </header>
-        <div style="max-width: 1000px;margin: 0 auto 50px;">
-            <div class="calendar" id="booking-wrapper">
+        <div style="display: flex; justify-content: center;">
+            <div class="calendar" id="booking-wrapper" style="flex-basis: 1000px;">
             </div>
         </div>
     </div>

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Loader} from "./Loader";
 import {fetchGQL} from "./main";
+import Dropzone from 'react-dropzone-uploader';
+import 'react-dropzone-uploader/dist/styles.css';
 
 class BookingInfo extends Component {
     render() {
@@ -22,19 +24,27 @@ export class CustomerDetails extends Component {
         this.state = {
             questions: null,
             questionAnswers: {},
-            name: "",
+            first_name: "",
+            last_name: "",
             email: "",
             phone: "",
+            newsletter: null,
             loading: true,
             error: [],
-            queryError: null
+            queryError: null,
+            fileObjs: [],
+            initialfileObjs: [],
+            files: [],
+            filesCanSubmit: true,
         };
 
         this.scheduleEvent = this.scheduleEvent.bind(this);
         this.setQuestionAnswer = this.setQuestionAnswer.bind(this);
+        this.getUploadParams = this.getUploadParams.bind(this);
+        this.onUploadStatus = this.onUploadStatus.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const self = this;
         fetchGQL(
             `query ($id: ID!) {
@@ -59,15 +69,19 @@ export class CustomerDetails extends Component {
     }
 
     scheduleEvent() {
+        if (!this.state.first_name || !this.state.last_name || !this.state.email || !this.state.phone
+            || this.state.newsletter === null || !this.state.filesCanSubmit) {
+            return
+        }
         const self = this;
         this.setState({
             loading: true,
         });
         fetchGQL(
-            `mutation ($id: ID!, $date: Date!, $time: Time!, $name: String!, $email: String!, $phone: String!,
-                       $questions: [QuestionInput!]!) {
-              createBooking(id: $id, date: $date, time: $time, name: $name, email: $email, phone: $phone,
-                            questions: $questions) {
+            `mutation ($id: ID!, $date: Date!, $time: Time!, $first_name: String!, $last_name: String!, 
+            $email: String!, $phone: String!, $questions: [QuestionInput!]!, $newsletter: Boolean!, $files: [String!]!) {
+              createBooking(id: $id, date: $date, time: $time, firstName: $first_name, lastName: $last_name,
+               email: $email, phone: $phone, questions: $questions, newsletter: $newsletter, files: $files) {
                 ok
                 error {
                   field
@@ -79,9 +93,12 @@ export class CustomerDetails extends Component {
                 id: this.props.type.id,
                 date: this.props.date.format("Y-MM-DD"),
                 time: this.props.time.format("HH:mm:ss"),
-                name: this.state.name,
+                first_name: this.state.first_name,
+                last_name: this.state.last_name,
                 email: this.state.email,
                 phone: this.state.phone,
+                newsletter: this.state.newsletter,
+                files: this.state.files,
                 questions: Object.keys(this.state.questionAnswers).map((key, i) => ({
                     id: key,
                     value: this.state.questionAnswers[key]
@@ -94,7 +111,8 @@ export class CustomerDetails extends Component {
                 });
                 if (!res.data.createBooking.ok) {
                     self.setState({
-                        error: res.data.createBooking.error
+                        error: res.data.createBooking.error,
+                        initialFileObjs: this.state.fileObjs
                     })
                 } else {
                     self.props.onComplete();
@@ -112,6 +130,33 @@ export class CustomerDetails extends Component {
         this.setState({
             questionAnswers: questionAnswers
         })
+    }
+
+    getUploadParams() {
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        return {
+            url: '/bookings/upload',
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
+        }
+    }
+
+    onUploadStatus(meta, status, files) {
+        let statuses = files.map(f => f.meta.status);
+        const canSubmit = !(statuses.includes("preparing") || statuses.includes("ready") || statuses.includes("started")
+            || statuses.includes("getting_upload_params") || statuses.includes("uploading") || statuses.includes("restarted")
+            || statuses.includes("headers_received"));
+        const done_files = files.filter(f => f.meta.status === "done");
+        const file_urls = done_files.map(f => JSON.parse(f.xhr.responseText).url);
+        const file_objs = files.map(f => f.file);
+        console.log(file_urls, canSubmit);
+        this.setState({
+            filesCanSubmit: canSubmit,
+            files: file_urls,
+            fileObjs: file_objs,
+            initialFileObjs: []
+        });
     }
 
     render() {
@@ -147,18 +192,24 @@ export class CustomerDetails extends Component {
                 }
 
                 return <div key={question.id}>
-                        {input}
-                        {errors}
+                    {input}
+                    {errors}
                 </div>
             });
 
-            let nameErrors = null;
+            let firstNameErrors = null;
+            let lastNameErrors = null;
             let emailErrors = null;
             let phoneErrors = null;
             if (this.state.error !== null) {
-                let nameError = this.state.error.filter(error => error.field === "name");
-                if (nameError.length !== 0) {
-                    nameErrors = nameError[0].errors
+                let firstNameError = this.state.error.filter(error => error.field === "first_name");
+                if (firstNameError.length !== 0) {
+                    firstNameErrors = firstNameError[0].errors
+                        .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
+                }
+                let lastNameError = this.state.error.filter(error => error.field === "last_name");
+                if (lastNameError.length !== 0) {
+                    lastNameErrors = lastNameError[0].errors
                         .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
                 }
                 let emailError = this.state.error.filter(error => error.field === "email");
@@ -177,22 +228,57 @@ export class CustomerDetails extends Component {
                 <BookingInfo type={this.props.type} time={date} key="1" onSchedule={this.scheduleEvent}/>
                 <div className="Form">
                     <div>
-                            <input type="text" value={this.state.name}
-                                   onChange={e => this.setState({name: e.target.value})} placeholder="Name"/>
-                            {nameErrors}
+                        <input type="text" value={this.state.first_name} required
+                               onChange={e => this.setState({first_name: e.target.value})} placeholder="First name"/>
+                        {firstNameErrors}
                     </div>
                     <div>
-                            <input type="text" value={this.state.email}
-                                   onChange={e => this.setState({email: e.target.value})} placeholder="Email"/>
-                            {emailErrors}
+                        <input type="text" value={this.state.last_name} required
+                               onChange={e => this.setState({last_name: e.target.value})} placeholder="Last name"/>
+                        {lastNameErrors}
                     </div>
                     <div>
-                            <input type="phone" value={this.state.phone}
-                                   onChange={e => this.setState({phone: e.target.value})}
-                                   placeholder="Phone Number"/>
-                            {phoneErrors}
+                        <input type="text" value={this.state.email} required
+                               onChange={e => this.setState({email: e.target.value})} placeholder="Email"/>
+                        {emailErrors}
+                    </div>
+                    <div>
+                        <input type="phone" value={this.state.phone} required
+                               onChange={e => this.setState({phone: e.target.value})}
+                               placeholder="Phone Number"/>
+                        {phoneErrors}
                     </div>
                     {questions}
+                    <div>
+                        <div className="input-like">
+                            <p>Please upload a picture or two of your project (optional)</p>
+                            <Dropzone
+                                getUploadParams={this.getUploadParams}
+                                onChangeStatus={this.onUploadStatus}
+                                initialFiles={this.state.initialfileObjs}
+                                inputContent="Drag and drop files or click to browse"
+                                accept="image/*"
+                                submitButtonDisabled={true}
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <div className="input-like">
+                            <p>Would you like to receive my email newsletter?</p>
+                            <div>
+                                <input type="radio" name="newsletter" value="yes"
+                                       checked={this.state.newsletter === true}
+                                       required onChange={e => this.setState({newsletter: e.target.value === "yes"})}/>
+                                <label>Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="newsletter" value="no"
+                                       checked={this.state.newsletter === false}
+                                       required onChange={e => this.setState({newsletter: e.target.value === "yes"})}/>
+                                <label>No</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>;
         }
@@ -200,7 +286,7 @@ export class CustomerDetails extends Component {
         return (
             <React.Fragment>
                 <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
-                <h2>Your details</h2>
+                <h2 className="lead">Your details</h2>
                 <hr/>
                 {disp}
             </React.Fragment>

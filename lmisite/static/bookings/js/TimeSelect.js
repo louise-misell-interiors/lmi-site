@@ -7,7 +7,7 @@ class Time extends Component {
     render() {
         return (
             <button className="Time" onClick={this.props.onClick}>
-                {this.props.time.clone().local().format("hh:mm A")}
+                {this.props.time.clone().local().format("h:mm A")}
             </button>
         );
     }
@@ -24,7 +24,7 @@ export class TimeSelect extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getNewTimes(this.props.date);
     }
 
@@ -72,7 +72,7 @@ export class TimeSelect extends Component {
         return (
             <React.Fragment>
                 <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
-                <h2>{this.props.date.clone().local().format("dddd Do Y")}</h2>
+                <h2 className="lead">{this.props.date.clone().local().format("dddd Do MMMM Y")}</h2>
                 <p>{this.props.type.name}</p>
                 <hr/>
                 <h2>Select a time</h2>

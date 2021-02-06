@@ -339,13 +339,19 @@ img {
     font-weight: normal;
   }
 
-  > h2:first-of-type {
+  > h2.lead {
     @include h2;
     background: $background-colour;
   }
 
   h2, h3 {
     font-family: "Baskerville", serif;
+  }
+
+  h3.notice {
+    background: $background-colour-dark;
+    padding: 10px;
+    color: $light-text-colour;
   }
 
   p {

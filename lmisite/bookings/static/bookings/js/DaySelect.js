@@ -101,8 +101,11 @@ export class DaySelect extends Component {
 
         return (
             <React.Fragment>
-                <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
-                <h2>{this.props.type.name}</h2>
+                {this.props.noBack ?
+                    <h2 className="lead">Book an appointment with me</h2> :
+                    <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
+                }
+                <h2 className="lead">{this.props.type.name}</h2>
                 <p>{this.props.type.description}</p>
                 <hr/>
                 <h2>Select a day</h2>

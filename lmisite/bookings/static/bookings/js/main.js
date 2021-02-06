@@ -130,7 +130,7 @@ class BookingApp extends Component {
             } else if (this.state.selectedDay === null) {
                 disp = <DaySelect onSelect={this.selectDay} type={this.state.selectedType} onBack={() => {
                     this.setState({selectedType: null})
-                }}/>
+                }} noBack={!!this.props.type}/>
             } else if (this.state.selectedTime === null) {
                 disp =
                     <TimeSelect onSelect={this.selectTime} type={this.state.selectedType} date={this.state.selectedDay}

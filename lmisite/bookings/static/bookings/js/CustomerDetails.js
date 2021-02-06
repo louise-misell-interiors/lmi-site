@@ -286,7 +286,7 @@ export class CustomerDetails extends Component {
         return (
             <React.Fragment>
                 <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
-                <h2>Your details</h2>
+                <h2 className="lead">Your details</h2>
                 <hr/>
                 {disp}
             </React.Fragment>

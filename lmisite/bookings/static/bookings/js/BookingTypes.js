@@ -68,7 +68,7 @@ export class BookingTypes extends Component {
 
         return (
             <React.Fragment>
-                <h2>Book an appointment with me</h2>
+                <h2 className="lead">Book an appointment with me</h2>
                 {this.state.notice ? <h3 className="notice">{this.state.notice}</h3> : null}
                 <div className="BookingTypes">
                     {types}

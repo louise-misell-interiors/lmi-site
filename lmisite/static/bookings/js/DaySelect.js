@@ -7,7 +7,7 @@ class Day extends Component {
     render() {
         return (
             <div className="Day">
-                <h3>{this.props.date.clone().local().format("ddd Do")}</h3>
+                <h3>{this.props.date.clone().local().format("ddd Do MMM")}</h3>
                 <div className="button-div">
                     <button onClick={() => {
                         this.props.onClick(this.props.date)
@@ -33,7 +33,7 @@ export class DaySelect extends Component {
         this.prevDays = this.prevDays.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getNewDays(moment.utc());
     }
 
@@ -80,7 +80,7 @@ export class DaySelect extends Component {
 
         const self = this;
         const days = this.state.currentDays.map((day, i) =>
-            <Day date={day} onClick={self.props.onSelect}/>
+            <Day date={day} key={i} onClick={self.props.onSelect}/>
         );
 
         let content = null;
@@ -93,7 +93,7 @@ export class DaySelect extends Component {
                     <i className="fas fa-chevron-right" onClick={this.nextDays}/>
                 </div>;
             } else {
-                content = <h3>No days available</h3>
+                content = <h3>No days are available for booking at the moment, please try again later.</h3>
             }
         } else {
             content = <Loader/>
@@ -101,8 +101,11 @@ export class DaySelect extends Component {
 
         return (
             <React.Fragment>
-                <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
-                <h2>{this.props.type.name}</h2>
+                {this.props.noBack ?
+                    <h2 className="lead">Book an appointment with me</h2> :
+                    <div onClick={this.props.onBack} className="back-button"><i className="fas fa-chevron-left"/></div>
+                }
+                <h2 className="lead">{this.props.type.name}</h2>
                 <p>{this.props.type.description}</p>
                 <hr/>
                 <h2>Select a day</h2>

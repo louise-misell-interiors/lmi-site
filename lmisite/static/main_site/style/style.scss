@@ -10,6 +10,7 @@
 @font-face {
   font-family: 'Baskerville';
   font-style: normal;
+  font-display: swap;
   src: url(../fonts/Baskerville.ttf) format('truetype');
 }
 
@@ -31,7 +32,7 @@ body {
   font-family: "Baskerville", serif;
 }
 
-textarea, input, button, select {
+button {
   font-family: inherit;
 }
 
@@ -64,7 +65,7 @@ hr {
 }
 
 blockquote {
-  margin: 0;
+  margin: 20px 0;
   font-style: italic;
   position: relative;
 
@@ -193,12 +194,6 @@ img {
     > div {
       padding: $content-padding;
 
-      @media (max-width: $media-small) {
-        padding: 0;
-        width: auto;
-        margin: 0 5%;
-      }
-
       h1 {
         text-align: center;
         font-size: $header-font-size;
@@ -216,8 +211,13 @@ img {
 
     .logos {
       display: grid;
+      grid-gap: $content-padding;
       grid-template-columns: 2fr 1fr;
-      justify-items: center;
+      //justify-items: center;
+
+      @media (max-width: $media-small) {
+        grid-template-columns: 1fr;
+      }
 
       div:not(.cla) {
         display: grid;
@@ -238,6 +238,7 @@ img {
         display: grid;
         grid-auto-rows: 125px;
         justify-items: center;
+        align-items: center;
 
         img {
           max-height: 100%;
@@ -295,4 +296,190 @@ img {
       color: #fff;
     }
   }
+}
+
+.form {
+  form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    grid-gap: $content-padding;
+    margin: 0;
+    border: 2px solid $background-colour;
+    padding: $content-padding;
+  }
+
+  .errorlist {
+    margin: 0;
+    text-align: left;
+    color: red;
+
+    li {
+      list-style: none;
+    }
+  }
+}
+
+@mixin h2 {
+  min-height: 2.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.calendar {
+  font-family: "Raleway", sans-serif;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+  h2 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: normal;
+  }
+
+  > h2.lead {
+    @include h2;
+    background: $background-colour;
+  }
+
+  h2, h3 {
+    font-family: "Baskerville", serif;
+  }
+
+  h3.notice {
+    background: $background-colour-dark;
+    padding: 10px;
+    color: $light-text-colour;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $content-padding;
+    text-align: center;
+    background: $background-colour;
+
+    h3 {
+      margin: 0;
+      font-size: 30px;
+      font-family: Baskerville, serif;
+      padding-bottom: $content-padding/2;
+      border-bottom: 2px solid $dark-text-colour;
+    }
+
+    p {
+      flex-grow: 1;
+    }
+  }
+
+  .loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .back-button {
+    position: absolute;
+    top: calc(1.1em + 33.2px);
+    font-size: 25px;
+    left: 10px;
+  }
+
+  .BookingTypes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: $content-padding;
+  }
+
+  .DaySelect {
+    display: grid;
+    grid-template-columns: auto repeat(5, 1fr) auto;
+    grid-gap: $content-padding;
+    align-items: center;
+
+    @media (max-width: $media-medium) {
+      grid-template-columns: repeat(5, 1fr);
+
+      i {
+        grid-column: span 5;
+      }
+    }
+
+    @media (max-width: $media-small) {
+      grid-template-columns: repeat(3, 1fr);
+
+      i {
+        grid-column: span 3;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: $media-xsmall) {
+      grid-template-columns: repeat(2, 1fr);
+
+      i {
+        grid-column: span 2;
+        text-align: center;
+      }
+    }
+
+    .Day {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-self: stretch;
+      text-align: center;
+    }
+  }
+
+  .TimeSelect {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: $content-padding;
+  }
+
+  .BookingInfo {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-gap: $content-padding;
+    padding: $content-padding 0;
+    text-align: center;
+
+    p, h2, h3 {
+      margin: 0;
+    }
+  }
+
+  .CustomerDetails {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: $content-padding;
+    padding: $content-padding 0;
+    align-items: start;
+
+    .Form {
+      display: flex;
+      flex-direction: column;
+      grid-gap: $content-padding;
+    }
+  }
+}
+
+#scroll-top {
+  display: block;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 7px 13px;
+  font-weight: bold;
+  font-size: 30px;
 }

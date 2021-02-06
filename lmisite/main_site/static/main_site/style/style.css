@@ -522,7 +522,8 @@ img {
   justify-content: center;
   text-align: center;
   font-size: 40px;
-  font-weight: normal; }
+  font-weight: normal;
+  margin-top: 0; }
 
 .calendar {
   font-family: "Raleway", sans-serif;

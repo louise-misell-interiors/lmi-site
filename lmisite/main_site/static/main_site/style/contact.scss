@@ -35,10 +35,10 @@
   }
 
   .contact-details {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: $content-padding;
+    display: flex;
+    flex-direction: column;
     width: 80vw;
+    max-width: 1000px;
     align-self: center;
 
     @media (max-width: $media-medium) {
@@ -54,6 +54,7 @@
     .details {
       font-family: "Raleway", sans-serif;
       letter-spacing: 1px;
+      margin-top: $content-padding;
 
       a {
         color: $dark-text-colour;
@@ -88,7 +89,6 @@
     }
 
     .form {
-      grid-row-end: span 2;
       padding-top: 0 !important;
 
       h2 {

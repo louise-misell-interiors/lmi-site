@@ -29,10 +29,8 @@
             <meta itemprop="description" content="{{ config.home_description }}">
             <link itemprop="url" href="{% url 'index' %}">
             {% csrf_token %}
-            <div class="calendar" id="booking-wrapper">
-            </div>
             <div class="form">
-                <h2>Or send me a message and I'll contact you:</h2>
+                <h2>Send us a message and we'll contact you:</h2>
                 <form action="" method="post">
                     <small style="text-align:center;">I'll get back to you during business hours</small>
                     {% if sent %}
@@ -120,8 +118,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block scripts %}
-    <script src="{% static "bookings/js/main_production.js" %}"></script>
 {% endblock %}

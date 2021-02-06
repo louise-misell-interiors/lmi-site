@@ -45,10 +45,10 @@
     font-size: 40px;
     font-weight: normal; }
   .content .contact-details {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 25px;
+    display: flex;
+    flex-direction: column;
     width: 80vw;
+    max-width: 1000px;
     align-self: center; }
     @media (max-width: 1200px) {
       .content .contact-details {
@@ -61,7 +61,8 @@
         grid-template-columns: 1fr; } }
     .content .contact-details .details {
       font-family: "Raleway", sans-serif;
-      letter-spacing: 1px; }
+      letter-spacing: 1px;
+      margin-top: 25px; }
       .content .contact-details .details a {
         color: #335470;
         margin-inline-end: 10px; }
@@ -76,7 +77,6 @@
       .content .contact-details .details .address p {
         margin-top: 0; }
     .content .contact-details .form {
-      grid-row-end: span 2;
       padding-top: 0 !important; }
       .content .contact-details .form h2 {
         min-height: 2.2em;

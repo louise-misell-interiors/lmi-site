@@ -327,6 +327,16 @@ img {
   justify-content: center;
 }
 
+.calendar-outer .h2-stripe {
+  background: $background-colour-dark;
+  padding: 40px;
+  color: $light-text-colour;
+  @include h2;
+  text-align: center;
+  font-size: 40px;
+  font-weight: normal;
+}
+
 .calendar {
   font-family: "Raleway", sans-serif;
   position: relative;
@@ -342,6 +352,7 @@ img {
   > h2.lead {
     @include h2;
     background: $background-colour;
+    margin-top: 0;
   }
 
   h2, h3 {

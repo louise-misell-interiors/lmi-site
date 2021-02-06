@@ -512,6 +512,18 @@ img {
   .form .errorlist li {
     list-style: none; }
 
+.calendar-outer .h2-stripe {
+  background: #335470;
+  padding: 40px;
+  color: #e5f0f2;
+  min-height: 2.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 40px;
+  font-weight: normal; }
+
 .calendar {
   font-family: "Raleway", sans-serif;
   position: relative;
@@ -526,7 +538,8 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #e5f0f2; }
+    background: #e5f0f2;
+    margin-top: 0; }
   .calendar h2, .calendar h3 {
     font-family: "Baskerville", serif; }
   .calendar h3.notice {

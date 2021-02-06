@@ -4,14 +4,17 @@
 {% block title %}{{ config.booking_title }}{% endblock %}
 
 {#{% block header %}#}
-{#    <link rel="stylesheet" href="{% static "main_site/style/contact.css" %}">#}
+{#    <style>#}
+{##}
+{#    </style>#}
 {#{% endblock %}#}
 
 {% block content %}
-    <div class="content" {% if config.booking_header_image %}style="--background: url({{ config.booking_header_image.url }});"{% endif %}>
+    <div class="content calendar-outer" {% if config.booking_header_image %}style="--background: url({{ config.booking_header_image.url }});"{% endif %}>
         <header>
             <h1>{{ config.booking_title }}</h1>
         </header>
+            <h2 class="h2-stripe">Book an appointment with me</h2>
         <div style="display: flex; justify-content: center;">
             <div class="calendar" id="booking-wrapper" style="flex-basis: 1000px;">
             </div>

@@ -30,6 +30,9 @@
             <link itemprop="url" href="{% url 'index' %}">
             {% csrf_token %}
             <div class="form">
+                {% if config.contact_form_image %}
+                    <img src="{{ config.contact_form_image.url }}" alt="">
+                {% endif %}
                 {% if booking_notice %}
                     <h3 class="notice">{{ booking_notice }}</h3>
                 {% endif %}

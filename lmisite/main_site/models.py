@@ -108,6 +108,7 @@ class SiteConfig(SingletonModel):
 
     contact_title = models.CharField(max_length=255, blank=True)
     contact_header_image = models.ImageField(blank=True)
+    contact_form_image = models.ImageField(blank=True)
     contact_description = models.TextField(blank=True)
     contact_text_1 = RichTextUploadingField(blank=True)
     contact_text_2 = RichTextUploadingField(blank=True)

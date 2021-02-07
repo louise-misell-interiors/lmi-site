@@ -26,7 +26,8 @@
 .content {
   display: flex;
   flex-direction: column;
-  align-items: stretch; }
+  align-items: stretch;
+  overflow-x: hidden; }
   .content header {
     background-image: url(../img/contact.jpg); }
   .content p {
@@ -49,13 +50,15 @@
     background: #335470;
     padding: 10px;
     color: #e5f0f2;
-    text-align: center; }
+    text-align: center;
+    margin-top: 0; }
   .content .contact-details {
     display: flex;
     flex-direction: column;
     width: 80vw;
-    max-width: 750px;
-    align-self: center; }
+    max-width: 1250px;
+    align-self: center;
+    position: relative; }
     @media (max-width: 1200px) {
       .content .contact-details {
         width: 100vw; } }
@@ -83,7 +86,18 @@
       .content .contact-details .details .address p {
         margin-top: 0; }
     .content .contact-details .form {
-      padding-top: 0 !important; }
+      max-width: 800px;
+      padding-top: 0 !important;
+      position: relative;
+      float: left;
+      background: #fff;
+      margin-top: 10%; }
+      .content .contact-details .form img {
+        position: absolute;
+        z-index: -1;
+        right: -25vw;
+        top: -10%;
+        height: 100%; }
       .content .contact-details .form h2 {
         min-height: 2.2em;
         display: flex;

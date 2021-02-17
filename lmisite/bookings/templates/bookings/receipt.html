@@ -1,0 +1,45 @@
+<div style="background: #335470;padding: 50px 15px;font-family: sans-serif;">
+    <div style="max-width: 600px;margin: 0 auto;color: #335470;background: #fff;">
+        <div style="background: #e5f0f2;padding: 10px;">
+            <img src="https://louisemisellinteriors.co.uk/static/main_site/img/logo.png" alt=""
+                 style="max-width: 300px;margin: 0 auto;display: block;"/>
+        </div>
+        <div style="padding: 15px;">
+            <h1 style="background: #335470;margin: 0;padding: 20px 5px;text-align: center;color: #e5f0f2;">
+                Your Louise Misell Interiors receipt
+            </h1>
+            <h2>
+                Hi {{ charge.billing_details.name }}
+            </h2>
+            <p>
+                Here's your payment receipt for Louise Misell Interiors;
+            </p>
+            <h3 style="margin-bottom: 0;">
+                Amount paid
+            </h3>
+            <p style="margin-top: 0;">
+                &pound;{{ amount|floatformat:2 }}
+            </p>
+            <h3 style="margin-bottom: 0;">
+                Date paid
+            </h3>
+            <p style="margin-top: 0;">
+                {{ date }}
+            </p>
+            {% if charge.payment_method_details.type == "card" %}
+                <h3 style="margin-bottom: 0;">
+                    Paid with
+                </h3>
+                <p style="margin-top: 0;">
+                    {{ charge.payment_method_details.card.brand|upper }} ending {{ charge.payment_method_details.card.last4 }}
+                </p>
+            {% endif %}
+            <p>
+                This will appear on your statement as {{ charge.calculated_statement_descriptor }}
+            </p>
+            <p>
+                <a href="{{ charge.receipt_url }}" target="_blank">View this receipt in your browser</a>
+            </p>
+        </div>
+    </div>
+</div>

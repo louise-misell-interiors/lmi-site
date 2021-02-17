@@ -32,7 +32,7 @@ input:not([type=radio]), textarea, button, .input-like {
   text-align: left !important;
 }
 
-.input-like div {
+.input-like div:not(.StripeElement) {
   margin-bottom: 10px;
 }
 

@@ -11,6 +11,7 @@ urlpatterns = [
     path('deauthorise', views.deauthorise, name='deauthorise'),
     path('oauth', views.oauth, name='oauth'),
     path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    path('stripe_webhook/', csrf_exempt(views.stripe_webhook)),
 ]
 
 app_name = 'bookings'

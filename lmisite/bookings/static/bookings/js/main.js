@@ -3,6 +3,8 @@ import 'whatwg-fetch';
 import * as Sentry from '@sentry/browser';
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
 import {BookingTypes} from './BookingTypes';
 import {DaySelect} from './DaySelect';
 import {TimeSelect} from "./TimeSelect";
@@ -10,9 +12,18 @@ import {CustomerDetails} from "./CustomerDetails";
 import {Conformation} from "./Conformation";
 
 const apiUrl = "/bookings/graphql";
+const stripePromise = loadStripe(
+    process.env.NODE_ENV === 'production' ?
+        'pk_live_51IJ0ExINXWHtO11z4UC4ySDoqsL5Mo79lnJOw5C4RvDwEsEXw5PZu0aYFpLp1TsnUvVdUGP8QC5pdrsdGbucW5xc00WT7USUxF' :
+        'pk_test_51IJ0ExINXWHtO11zeUzKO2Oq4XJOJcCznP3ph99mT43Rhp1TrZC6tmjBQzS61PmQCWPWbHXUTCKm8BtEhpvkW9lr008uuQmLUo',
+    {
+        apiVersion: "2020-08-27"
+    }
+)
+
 
 class GraphQLError extends Error {
-    constructor(result,...args) {
+    constructor(result, ...args) {
         super(...args);
         this.result = result;
     }
@@ -102,13 +113,13 @@ class BookingApp extends Component {
     }
 
     componentDidCatch(error, errorInfo) {
-      this.setState({ error });
-      Sentry.withScope(scope => {
-        Object.keys(errorInfo).forEach(key => {
-          scope.setExtra(key, errorInfo[key]);
+        this.setState({error});
+        Sentry.withScope(scope => {
+            Object.keys(errorInfo).forEach(key => {
+                scope.setExtra(key, errorInfo[key]);
+            });
+            Sentry.captureException(error);
         });
-        Sentry.captureException(error);
-      });
     }
 
     render() {
@@ -157,13 +168,27 @@ class BookingApp extends Component {
     }
 }
 
+function BaseApp() {
+    let bookingId = null;
+    if (window.bookingConf) {
+        bookingId = window.bookingConf.id
+    }
+
+    return (
+        <Elements stripe={stripePromise} options={{
+            fonts: [{
+                cssSrc: 'https://fonts.googleapis.com/css?family=Raleway'
+            }]
+        }}>
+            <BookingApp type={bookingId}/>
+        </Elements>
+    );
+}
+
 Sentry.init({
- dsn: "https://b147c96f835d46178e4690cbe872a4d7@sentry.io/1370209"
+    dsn: "https://b147c96f835d46178e4690cbe872a4d7@sentry.io/1370209"
 });
 
 const domContainer = document.querySelector('#booking-wrapper');
-let bookingId = null;
-if (window.bookingConf) {
-    bookingId = window.bookingConf.id
-}
-ReactDom.render(<BookingApp type={bookingId}/>, domContainer);
+
+ReactDom.render(<BaseApp />, domContainer);

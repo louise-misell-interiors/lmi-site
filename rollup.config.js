@@ -45,6 +45,7 @@ export default {
                     'useMemo'
                 ],
                 'node_modules/react-dom/index.js': ['render', 'findDOMNode'],
+                'node_modules/@stripe/react-stripe-js/dist/react-stripe.umd.js': ['Elements', 'ElementsConsumer', 'CardElement'],
                 'node_modules/graphql-anywhere/lib/async.js': ['graphql'],
             }
         }),

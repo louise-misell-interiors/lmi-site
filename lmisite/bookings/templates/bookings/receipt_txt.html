@@ -1,0 +1,11 @@
+Hi {{ charge.billing_details.name }}
+
+Here's your payment receipt for Louise Misell Interiors;
+
+Amount paid: {{ amount|floatformat:2 }} {{ charge.currency|upper }}
+Date paid: {{ date }}{% if charge.payment_method_details.type == "card" %}
+Paid with: {{ charge.payment_method_details.card.brand|upper }} ending {{ charge.payment_method_details.card.last4 }}{% endif %}
+
+This will appear on your statement as {{ charge.calculated_statement_descriptor }}
+
+View this receipt in your browser: {{ charge.receipt_url }}

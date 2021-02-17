@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import stripe
+import json
 import sys
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
@@ -128,6 +130,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+EXTERNAL_URL_BASE = "https://lmi-site.eu.ngrok.io"
+
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 
@@ -172,6 +176,11 @@ GRAPHENE = {
 CKEDITOR_UPLOAD_PATH = ""
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_BROWSE_SHOW_DIRS = True
+
+with open(os.path.join(BASE_DIR, "stripe_secret.json")) as f:
+    d = json.load(f)
+    stripe.api_key = d["api_key"]
+    STRIPE_WEBHOOK_SECRET = d["webhook_secret"]
 
 CKEDITOR_CONFIGS = {
     'default': {

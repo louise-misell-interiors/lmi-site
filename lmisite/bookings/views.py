@@ -2,8 +2,14 @@ from django.shortcuts import render, redirect, reverse
 from django.views.decorators.http import require_POST
 from django.http import HttpResponseBadRequest, HttpResponse
 from django.core.files.storage import FileSystemStorage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.template.loader import render_to_string
 from django.conf import settings
+from main_site.models import SiteConfig
+import decimal
+import googleapiclient.discovery
 import json
+import stripe
 import google_auth_oauthlib.flow
 import google.oauth2.credentials
 from .models import *
@@ -109,3 +115,147 @@ def get_credentials():
             client_id=data['client_id'], client_secret=data['client_secret'], scopes=data['scopes'])
     except json.JSONDecodeError:
         return None
+
+
+def insert_booking_to_calendar(booking: Booking):
+    creds = get_credentials()
+    if creds is not None:
+        calendar = googleapiclient.discovery.build(
+            API_SERVICE_NAME, API_VERSION, credentials=creds)
+
+        calendar.events().insert(calendarId="primary", conferenceDataVersion=1, body={
+            "start": {
+                "dateTime": booking.time.isoformat(),
+                "timeZone": booking.time.tzname()
+            },
+            "end": {
+                "dateTime": (booking.time + booking.type.length).isoformat(),
+                "timeZone": (booking.time + booking.type.length).tzname()
+            },
+            "summary": str(booking),
+            "conferenceData": {},
+            "source": {
+                "title": "Louise Misell Interiors booking system",
+                "url": "https://louisemisellinteriors.co.uk"
+            },
+            "attendees": [
+                {
+                    "displayName": f"{booking.customer.first_name} {booking.customer.last_name}",
+                    "responseStatus": "accepted",
+                    "email": booking.customer.email,
+                    "comment": f"Phone: {booking.customer.phone}"
+                }
+            ],
+        }, sendUpdates="all").execute()
+
+
+def booking_succeeded(booking: Booking):
+    config = SiteConfig.objects.first()
+
+    questions_text = []
+    for question in booking.booking_question_answers.all():
+        questions_text.append(f"{question.question.question}:\r\n{question.answer}")
+    questions_text = "\r\n".join(questions_text)
+
+    files_text = []
+    for file in booking.booking_files.all():
+        file_url = settings.EXTERNAL_URL_BASE + file.file.url
+        files_text.append(f"- {file_url}")
+    files_text = "\r\n".join(files_text)
+
+    tz = pytz.timezone(booking.type.timezone)
+    time = booking.time.astimezone(tz=tz).strftime("%I:%M%p %a %d %b %Y")
+    body = f"Name: {booking.customer.first_name} {booking.customer.last_name}\r\n" \
+        f"Email: {booking.customer.email}\r\n" \
+        f"Phone: {booking.customer.phone}" \
+        f"\r\n\r\n---\r\n\r\n" \
+        f"{booking.type.name}\r\n" \
+        f"Time: {time}, {booking.type.timezone}\r\n" \
+        f"{questions_text}\r\n---\r\n\r\n" \
+        f"Files:\r\n" \
+        f"{files_text}"
+    email_msg = EmailMessage(
+        subject=f"{booking.customer.first_name} {booking.customer.last_name} has booked {booking.type.name}",
+        body=body,
+        to=[config.notification_email],
+        reply_to=[f"{booking.customer.first_name} {booking.customer.last_name} <{booking.customer.email}>"]
+    )
+    email_msg.send()
+
+    context = {
+        "booking_type": booking.type,
+        "time": time,
+        "first_name": booking.customer.first_name,
+        "last_name": booking.customer.last_name,
+        "email": booking.customer.email,
+        "phone": booking.customer.phone,
+        "questions": [{
+            "question": q.question,
+            "answer": q.answer
+        } for q in booking.booking_question_answers.all()]
+    }
+
+    email_msg = EmailMultiAlternatives(
+        subject=f"Confirmation of your booking with Louise",
+        body=render_to_string("bookings/booking_confirmation_txt.html", context),
+        to=[booking.customer.email],
+        headers={
+            "List-Unsubscribe": f"<mailto:{config.email}?subject=unsubscribe>",
+        },
+        reply_to=[f"Louise Misell <{config.email}>"]
+    )
+    email_msg.attach_alternative(render_to_string("bookings/booking_confirmation_amp.html", context), "text/x-amp-html")
+    email_msg.attach_alternative(render_to_string("bookings/booking_confirmation.html", context), "text/html")
+    email_msg.send()
+
+    insert_booking_to_calendar(booking)
+
+
+def send_stripe_receipt(charge):
+    config = SiteConfig.objects.first()
+
+    if not charge.billing_details.email:
+        return
+
+    if charge.receipt_number:
+        subject = f"Your Louise Misell Interiors receipt - {charge.receipt_number}"
+    else:
+        subject = "Your Louise Misell Interiors receipt"
+
+    context = {
+        "charge": charge,
+        "amount": decimal.Decimal(charge.amount) / decimal.Decimal(100),
+        "date": datetime.datetime.utcfromtimestamp(charge.created)
+    }
+
+    email_msg = EmailMultiAlternatives(
+        subject=subject,
+        body=render_to_string("bookings/receipt_txt.html", context),
+        to=[charge.billing_details.email],
+        reply_to=[f"Louise Misell Interiors <{config.email}>"]
+    )
+    email_msg.attach_alternative(render_to_string("bookings/receipt.html", context), "text/html")
+    email_msg.send()
+
+
+def stripe_webhook(request):
+    try:
+        event = stripe.Event.construct_from(
+            json.loads(request.body), stripe.api_key
+        )
+    except ValueError:
+        return HttpResponse(status=400)
+
+    obj = event.data.object
+    if obj.object == "payment_intent":
+        booking = Booking.objects.filter(pending=True, stripe_payment_intent_id=obj.id).first()
+        if booking:
+            if obj.status == "succeeded":
+                booking.pending = False
+                booking.save()
+                booking_succeeded(booking)
+    elif obj.object == "charge":
+        if event.type == "charge.succeeded":
+            send_stripe_receipt(obj)
+
+    return HttpResponse(status=200)

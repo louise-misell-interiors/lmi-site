@@ -15,6 +15,7 @@ class BookingType(models.Model):
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     icon = models.CharField(max_length=255, blank=True)
     hidden = models.BooleanField()
+    price = models.DecimalField(max_digits=9, decimal_places=2, blank=True, null=True)
 
     max_events_per_day = models.PositiveIntegerField(blank=True, null=True)
     max_events_per_week = models.PositiveIntegerField(blank=True, null=True)
@@ -112,6 +113,8 @@ class Booking(models.Model):
     customer = models.ForeignKey(Customer, related_name='bookings', on_delete=models.CASCADE)
     time = models.DateTimeField()
     last_notification_sent = models.DateTimeField(blank=True, null=True)
+    stripe_payment_intent_id = models.CharField(max_length=255, blank=True, null=True)
+    pending = models.BooleanField(blank=True, default=True)
 
     def __str__(self):
         return f"{self.type.name} with {str(self.customer)}"

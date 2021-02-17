@@ -6,15 +6,15 @@ import graphene.types.datetime
 import main_site.views
 import pytz
 import requests
+import stripe
+import decimal
 from django.core.exceptions import ValidationError
-from django.core.mail import EmailMessage, EmailMultiAlternatives
-from django.template.loader import render_to_string
 from django.utils import timezone
 from graphene_django import DjangoObjectType
 from main_site.models import SiteConfig
 
 from . import models
-from .views import API_SERVICE_NAME, API_VERSION, get_credentials
+from .views import API_SERVICE_NAME, API_VERSION, get_credentials, booking_succeeded
 
 
 def get_client_ip(request):
@@ -64,38 +64,6 @@ def get_calendar_events(start_date: datetime.date, end_date: datetime.date):
     return out
 
 
-def insert_booking_to_calendar(booking: models.Booking):
-    creds = get_credentials()
-    if creds is not None:
-        calendar = googleapiclient.discovery.build(
-            API_SERVICE_NAME, API_VERSION, credentials=creds)
-
-        calendar.events().insert(calendarId="primary", conferenceDataVersion=1, body={
-            "start": {
-                "dateTime": booking.time.isoformat(),
-                "timeZone": booking.time.tzname()
-            },
-            "end": {
-                "dateTime": (booking.time + booking.type.length).isoformat(),
-                "timeZone": (booking.time + booking.type.length).tzname()
-            },
-            "summary": str(booking),
-            "conferenceData": {},
-            "source": {
-                "title": "Louise Misell Interiors booking system",
-                "url": "https://louisemisellinteriors.co.uk"
-            },
-            "attendees": [
-                {
-                    "displayName": f"{booking.customer.first_name} {booking.customer.last_name}",
-                    "responseStatus": "accepted",
-                    "email": booking.customer.email,
-                    "comment": f"Phone: {booking.customer.phone}"
-                }
-            ],
-        }, sendUpdates="all").execute()
-
-
 def get_booking_times(start_date: datetime.date, booking: models.BookingType, end_date=None):
     if end_date is None:
         end_date = start_date
@@ -115,9 +83,9 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
         cur_date = cur_time.date()
         week_start = cur_date - datetime.timedelta(days=cur_date.weekday())
         week_end = week_start + datetime.timedelta(days=6)
-        bookings_on_day = models.Booking.objects.filter(time__date=cur_date)
-        bookings_in_week = models.Booking.objects.filter(time__gt=week_start, time__lt=week_end)
-        bookings_in_month = models.Booking.objects.filter(time__month=cur_date.month)
+        bookings_on_day = models.Booking.objects.filter(time__date=cur_date, pending=False)
+        bookings_in_week = models.Booking.objects.filter(time__gt=week_start, time__lt=week_end, pending=False)
+        bookings_in_month = models.Booking.objects.filter(time__month=cur_date.month, pending=False)
         while cur_time.time() <= datetime.time(23) and cur_date == date:
             valid = True
 
@@ -209,7 +177,7 @@ class BookingType(DjangoObjectType):
         model = models.BookingType
         only_fields = (
             'name', 'length', 'id', 'description', 'whilst_booking_message', 'after_booking_message', 'timezone',
-            'icon')
+            'icon', 'price')
 
     scheduling_frequency = graphene.String()
     minimum_scheduling_notice = graphene.String()
@@ -296,13 +264,14 @@ class CreateBooking(graphene.Mutation):
         )
 
     ok = graphene.Boolean()
+    payment_intent_id = graphene.String()
     error = graphene.List(QuestionError)
 
     def mutate(self, info, id, date, time, first_name, last_name, email, phone, newsletter, files, questions):
         config = SiteConfig.objects.first()
         booking_type = models.BookingType.objects.get(pk=id)
 
-        booking = models.Booking()
+        booking = models.Booking(pending=False)
 
         matching_customers = models.Customer.objects.filter(email=email)
         if len(matching_customers) > 0:
@@ -396,66 +365,26 @@ class CreateBooking(graphene.Mutation):
             )
             booking_file.save()
 
-        questions_text = []
-        for question in questions:
-            booking_question = models.BookingQuestion.objects.get(id=question.id)
-            questions_text.append(f"{booking_question.question}:\r\n{question.value}")
-        questions_text = "\r\n".join(questions_text)
+        if booking_type.price:
+            pi = stripe.PaymentIntent.create(
+                amount=int(booking_type.price * decimal.Decimal('100')),
+                currency='gbp',
+                description=booking_type.name,
+                setup_future_usage='off_session',
+                payment_method_options={
+                    "card": {
+                        "request_three_d_secure": "any"
+                    }
+                }
+            )
+            booking.stripe_payment_intent_id = pi.id
+            booking.pending = True
+            booking.save()
 
-        files_text = []
-        for file in files:
-            file_url = info.context.build_absolute_uri(file)
-            files_text.append(f"- {file_url}")
-        files_text = "\r\n".join(files_text)
-
-        tz = pytz.timezone(booking_type.timezone)
-        time = time.astimezone(tz=tz).strftime("%I:%M%p %a %d %b %Y")
-        body = f"Name: {first_name} {last_name}\r\n" \
-            f"Email: {email}\r\n" \
-            f"Phone: {phone}" \
-            f"\r\n\r\n---\r\n\r\n" \
-            f"{booking_type.name}\r\n" \
-            f"Time: {time}, {booking_type.timezone}\r\n" \
-            f"{questions_text}\r\n---\r\n\r\n" \
-            f"Files:\r\n" \
-            f"{files_text}"
-        email_msg = EmailMessage(
-            subject=f"{first_name} {last_name} has booked {booking_type.name}",
-            body=body,
-            to=[config.notification_email],
-            reply_to=[f"{first_name} {last_name} <{email}>"]
-        )
-        email_msg.send()
-
-        context = {
-            "booking_type": booking_type,
-            "time": time,
-            "first_name": first_name,
-            "last_name": last_name,
-            "email": email,
-            "phone": phone,
-            "questions": [{
-                "question": models.BookingQuestion.objects.get(id=q.id),
-                "answer": q.value
-            } for q in questions]
-        }
-
-        email_msg = EmailMultiAlternatives(
-            subject=f"Confirmation of your booking with Louise",
-            body=render_to_string("bookings/booking_confirmation_txt.html", context),
-            to=[email],
-            headers={
-                "List-Unsubscribe": f"<mailto:{config.email}?subject=unsubscribe>",
-            },
-            reply_to=[f"Louise Misell <{config.email}>"]
-        )
-        email_msg.attach_alternative(render_to_string("bookings/booking_confirmation_amp.html", context), "text/x-amp-html")
-        email_msg.attach_alternative(render_to_string("bookings/booking_confirmation.html", context), "text/html")
-        email_msg.send()
-
-        insert_booking_to_calendar(booking)
-
-        return CreateBooking(ok=True)
+            return CreateBooking(ok=True, payment_intent_id=pi.client_secret)
+        else:
+            booking_succeeded(booking)
+            return CreateBooking(ok=True)
 
 
 class ConfigType(DjangoObjectType):

@@ -34,6 +34,12 @@ class BookingQuestionAnswerInline(admin.StackedInline):
     max_num = 0
 
 
+class BookingFileInline(admin.StackedInline):
+    model = BookingFile
+    extra = 0
+    max_num = 0
+
+
 @admin.register(BookingType)
 class BookingTypeAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = [BookingRuleInline, BookingQuestionInline]
@@ -41,7 +47,7 @@ class BookingTypeAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    inlines = [BookingQuestionAnswerInline]
+    inlines = [BookingQuestionAnswerInline, BookingFileInline]
 
 
 class BookingInline(admin.StackedInline):

@@ -139,6 +139,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+EXTERNAL_URL_BASE = "https://louisemisellinteriors.co.uk"
+
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 
@@ -184,7 +186,6 @@ EMAIL_HOST_USER = "q@as207960.net"
 EMAIL_HOST_PASSWORD = mail_pass
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@noreply.louisemisellinteriors.co.uk>"
-
 
 GRAPHENE = {
     'SCHEMA': 'bookings.schema.schema'

@@ -191,9 +191,6 @@ h2, h3 {
   text-align: center;
   margin-bottom: 0; }
 
-.newsletter {
-  border: #335470 2px solid; }
-
 .post {
   padding: 20px;
   color: #000; }
@@ -207,7 +204,8 @@ h2, h3 {
 
 .newsletter {
   font-family: "Raleway", sans-serif;
-  font-size: 17px; }
+  font-size: 17px;
+  border: #335470 2px solid; }
   .newsletter i {
     font-size: 50px;
     font-weight: bold;

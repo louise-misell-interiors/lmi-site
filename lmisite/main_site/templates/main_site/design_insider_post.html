@@ -32,7 +32,8 @@
                     <div>
                         {% for related_post in post.related_posts.all %}
                             <div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-                                <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' related_post.related_post.id %}"/>
+                                <link itemprop="mainEntityOfPage"
+                                      href="{% url 'design_insider_post' related_post.related_post.id %}"/>
                                 <meta itemprop="datePublished" content="{{ related_post.related_post.date|date:"c" }}"/>
                                 <meta itemprop="dateModified" content="{{ related_post.related_post.date|date:"c" }}"/>
                                 <meta itemprop="description" content="{{ related_post.related_post.summary }}"/>
@@ -42,23 +43,30 @@
                                 <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
                                     <meta itemprop="name" content="Louise Misell Interiors"/>
                                     <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-                                        <link itemprop="url" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
+                                        <link itemprop="url"
+                                              href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
                                     </span>
                                 </span>
                                 <h3 itemprop="headline"><a
-                                        href="{% url 'design_insider_post' related_post.related_post.id %}">{{ related_post.related_post.title }}</a></h3>
+                                        href="{% url 'design_insider_post' related_post.related_post.id %}">{{ related_post.related_post.title }}</a>
+                                </h3>
                                 {% if related_post.related_post.image %}
                                     <link itemprop="image" href="{{ related_post.related_post.image.url }}">
                                     <a href="{% url 'design_insider_post' related_post.related_post.id %}">
-                                        <img data-src="{{ related_post.related_post.image.url }}" alt="{{ related_post.related_post.image_alt }}">
+                                        <img data-src="{{ related_post.related_post.image.url }}"
+                                             alt="{{ related_post.related_post.image_alt }}">
                                     </a>
                                 {% endif %}
-                                <h4>{{ related_post.related_post.date }} - <i class="far fa-clock"></i> {{ related_post.related_post.read_time }}</h4>
-                                <a href="{% url 'design_insider_post' related_post.related_post.id %}" class="button">Read more</a>
+                                <h4>{{ related_post.related_post.date }} - <i
+                                        class="far fa-clock"></i> {{ related_post.related_post.read_time }}</h4>
+                                <a href="{% url 'design_insider_post' related_post.related_post.id %}" class="button">Read
+                                    more</a>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
+
+                {% include "main_site/newsletter_form.html" with form=form %}
             </div>
             <div class="side">
                 <div class="post desc">

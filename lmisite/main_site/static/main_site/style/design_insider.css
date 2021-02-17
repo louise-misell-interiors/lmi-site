@@ -201,7 +201,7 @@ h2, h3 {
     text-align: center; }
   .post h3 {
     font-size: 25px; }
-  .post span {
+  .post > span {
     display: none; }
 
 .newsletter {

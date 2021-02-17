@@ -25,13 +25,14 @@
             <a href="{% url 'contact' %}" class="button">Book a free introductory chat here</a>
         </div>
         <div class="services">
+                    <div class="service-block">
             {% for step in steps %}
                 <div class="service" itemscope itemtype="https://schema.org/Service">
                     {% if step.image %}
                         <img src="{{ step.image.url }}" alt="{{ step.name }}">
                     {% endif %}
                     <div class="colour-block"></div>
-                    <h2 itemprop="name">{{ step.name }}</h2>
+                    <h3 itemprop="name">{{ step.name }}</h3>
                     <span itemprop="description" class="description">
                       {{ step.description|linebreaks }}
                     </span>
@@ -46,6 +47,7 @@
                     </h2>
                 </div>
             {% endfor %}
+                    </div>
         </div>
         <div class="testimonials">
             <div class="content" itemscope itemtype="https://schema.org/Review">

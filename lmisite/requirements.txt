@@ -20,3 +20,4 @@ phonenumbers
 beautifulsoup4
 nltk
 readtime
+stripe

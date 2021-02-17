@@ -125,7 +125,7 @@ class ConfigForm(forms.ModelForm):
     class Meta:
         fields = ('fb_auth', 'facebook_page_id', 'newsletter_auth', 'newsletter_group_id',
                   'instagram_url', 'twitter_url', 'facebook_url', 'pintrest_url', 'linkedin_url', 'homify_url',
-                  'houzz_url', 'bark_url', 'email', 'mobile', 'phone', 'address',
+                  'houzz_url', 'bark_url', 'email', 'notification_email', 'mobile', 'phone', 'address',
                   'privacy_policy', 'terms_and_conditions', 'image_slider_speed', 'testimonials_slider_speed',
                   'price_range',
                   'home_title', 'home_subtitle', 'home_description', 'home_about_text', 'home_about_cta',

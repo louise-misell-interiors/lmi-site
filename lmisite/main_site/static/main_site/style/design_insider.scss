@@ -403,6 +403,10 @@ h2, h3 {
 
       > a {
         align-self: stretch;
+        background: #e5f0f2;
+        border: none;
+        justify-self: center;
+
         img {
           object-fit: cover;
           min-height: 100%;

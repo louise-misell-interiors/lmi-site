@@ -131,7 +131,8 @@
               grid-column: 1;
               grid-row: 2; } }
     .content .blog .short, .content .blog .desc {
-      background: #e5f0f2; }
+      background: #e5f0f2;
+      font-family: "Raleway", sans-serif; }
       .content .blog .short a, .content .blog .desc a {
         color: #335470;
         font-weight: bold; }

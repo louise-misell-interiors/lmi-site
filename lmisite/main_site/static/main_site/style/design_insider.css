@@ -252,6 +252,8 @@ h2, h3 {
   @media (max-width: 700px) {
     .blog-post + .side {
       grid-row: 2 !important; } }
+  .blog-post > .newsletter {
+    width: 80%; }
 
 .related {
   color: #335470;

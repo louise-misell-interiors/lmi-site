@@ -258,7 +258,8 @@ h2, h3 {
 .related {
   color: #335470;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  margin-bottom: 25px; }
   .related > div {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

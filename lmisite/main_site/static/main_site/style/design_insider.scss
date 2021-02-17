@@ -389,6 +389,7 @@ h2, h3 {
   color: $dark-text-colour;
   display: flex;
   flex-direction: column;
+  margin-bottom: $content-padding;
 
   > div {
     display: grid;

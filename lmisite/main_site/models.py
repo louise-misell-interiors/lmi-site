@@ -46,6 +46,7 @@ class SiteConfig(SingletonModel):
     bark_url = models.URLField(default="", blank=True)
 
     email = models.EmailField(default="", blank=True)
+    notification_email = models.EmailField(default="", blank=True)
     mobile = PhoneNumberField(blank=True)
     phone = PhoneNumberField(blank=True)
     address = models.TextField(default="", blank=True)

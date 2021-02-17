@@ -422,7 +422,7 @@ class CreateBooking(graphene.Mutation):
         email_msg = EmailMessage(
             subject=f"{first_name} {last_name} has booked {booking_type.name}",
             body=body,
-            to=[config.email],
+            to=[config.notification_email],
             reply_to=[f"{first_name} {last_name} <{email}>"]
         )
         email_msg.send()

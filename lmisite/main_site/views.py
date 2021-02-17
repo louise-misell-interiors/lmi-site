@@ -321,7 +321,7 @@ def contact(request):
                      f"Phone: {phone}\r\n"
                      f"Source: {source}\r\n\r\n"
                      f"---\r\n\r\n{message}",
-                to=[config.email],
+                to=[config.notification_email],
                 reply_to=[email]
             )
             email_msg.send()

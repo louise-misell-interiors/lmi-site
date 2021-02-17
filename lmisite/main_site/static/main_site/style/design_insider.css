@@ -105,7 +105,8 @@
           .content .blog > .posts .post .title h4 {
             font-size: 17px; }
         .content .blog > .posts .post p {
-          line-height: 1.5; }
+          line-height: 1.5;
+          font-family: "Raleway", sans-serif; }
         .content .blog > .posts .post .button {
           background: #e5f0f2;
           border: none; }

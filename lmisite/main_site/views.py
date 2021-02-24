@@ -11,6 +11,7 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.utils import feedgenerator, timezone
 from django.utils.encoding import iri_to_uri
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from . import forms
@@ -51,6 +52,11 @@ def page_not_found(request, exception=None):
 
 def config(request):
     return render(request, "main_site/config.js", content_type="application/javascript")
+
+
+def apple_merchantid(request):
+    config = SiteConfig.objects.first()
+    return HttpResponse(config.apple_merchantid, content_type='text/plain')
 
 
 def handle_newsletter(request):
@@ -321,7 +327,7 @@ def contact(request):
                      f"Phone: {phone}\r\n"
                      f"Source: {source}\r\n\r\n"
                      f"---\r\n\r\n{message}",
-                to=[config.notification_email],
+                to=[config.email],
                 reply_to=[email]
             )
             email_msg.send()

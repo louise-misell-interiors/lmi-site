@@ -72,9 +72,13 @@ class BaseCustomerDetails extends Component {
                             country: 'GB',
                             currency: 'gbp',
                             total: {
-                                amount: Math.round(Number(this.state.price) * 100),
-                                label: this.props.type.name
+                                amount: Math.round(parseFloat(this.state.price) * 100),
+                                label: 'Louise Misell Interiors'
                             },
+                            displayItems: [{
+                                amount: Math.round(parseFloat(this.state.price) * 100),
+                                label: this.props.type.name
+                            }],
                             requestPayerName: true,
                             requestPayerEmail: true,
                             requestPayerPhone: true,
@@ -147,6 +151,8 @@ class BaseCustomerDetails extends Component {
                                 }
                                 self.stripeInFlight = false;
                             })
+                    } else {
+                        self.props.onComplete();
                     }
                 }
             })
@@ -251,6 +257,14 @@ class BaseCustomerDetails extends Component {
                 this.submitEvent(firstName, lastName, ev.payerEmail, ev.payerPhone, ev, {
                     payment_method: ev.paymentMethod.id
                 })
+            });
+            this.pr.on('cancel', () => {
+                if (this.stripeInFlight) {
+                    return;
+                }
+                this.setState({
+                    loading: false,
+                });
             })
         } else {
             if (!this.state.first_name || !this.state.last_name || !this.state.email || !this.state.phone

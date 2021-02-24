@@ -123,6 +123,8 @@ class SiteConfig(SingletonModel):
     booking_title = models.CharField(max_length=255, blank=True)
     booking_header_image = models.ImageField(blank=True)
 
+    apple_merchantid = models.TextField(blank=True, null=True)
+
 
 class MainSliderImage(models.Model):
     name = models.CharField(max_length=255, default="", blank=True)

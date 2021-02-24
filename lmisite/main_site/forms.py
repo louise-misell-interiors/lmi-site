@@ -142,7 +142,8 @@ class ConfigForm(forms.ModelForm):
                   'contact_title', 'contact_header_image', 'contact_description', 'contact_text_1', 'contact_text_2',
                   'contact_testimonials_cta', 'contact_form_image',
                   'testimonials_title', 'testimonials_header_image', 'testimonials_description', 'testimonials_text',
-                  'booking_title', 'booking_header_image')
+                  'booking_title', 'booking_header_image',
+                  'apple_merchantid')
         widgets = {
             "facebook_page_id": PageWidget,
             "newsletter_group_id": NewsletterGroupWidget

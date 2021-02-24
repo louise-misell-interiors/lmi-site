@@ -27,11 +27,11 @@ urlpatterns = [
     path('mailchimp/oauth/', views.newsletter_oauth, name='newsletter_oauth'),
     path('mailchimp/deauth/', views.newsletter_deauthorise, name='newsletter_deauthorise'),
 
-
     path('404', views.page_not_found),
 
-
     path('sitemap.xml', sitemap,  {'sitemaps': SITEMAP, 'template_name': 'main_site/sitemap.xml'},
-         name='django.contrib.sitemaps.views.sitemap')
+         name='django.contrib.sitemaps.views.sitemap'),
+
+    path('.well-known/apple-developer-merchantid-domain-association', views.apple_merchantid),
 ]
 

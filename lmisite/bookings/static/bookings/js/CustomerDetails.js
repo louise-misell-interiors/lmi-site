@@ -232,10 +232,29 @@ class BaseCustomerDetails extends Component {
     }
 
     scheduleEvent() {
+        if (this.state.newsletter === null) {
+            this.setState({
+                loading: false,
+                error: [{
+                    field: "__all__",
+                    errors: ["Please select if you wish to be subscribed to the newsletter"]
+                }],
+                initialFileObjs: this.state.fileObjs
+            });
+            return;
+        }
+        if (!this.state.filesCanSubmit) {
+            this.setState({
+                loading: false,
+                error: [{
+                    field: "__all__",
+                    errors: ["Files are still uploading"]
+                }],
+                initialFileObjs: this.state.fileObjs
+            });
+            return;
+        }
         if (this.state.hasPr) {
-            if (this.state.newsletter === null || !this.state.filesCanSubmit) {
-                return
-            }
             this.setState({
                 loading: true,
             });
@@ -267,9 +286,16 @@ class BaseCustomerDetails extends Component {
                 });
             })
         } else {
-            if (!this.state.first_name || !this.state.last_name || !this.state.email || !this.state.phone
-                || this.state.newsletter === null || !this.state.filesCanSubmit) {
-                return
+            if (!this.state.first_name || !this.state.last_name || !this.state.email || !this.state.phone) {
+                this.setState({
+                    loading: false,
+                    error: [{
+                        field: "__all__",
+                        errors: ["Please complete all required fields"]
+                    }],
+                    initialFileObjs: this.state.fileObjs
+                });
+                return;
             }
             let paymentData = null;
             if (this.state.price) {

@@ -41,7 +41,13 @@ export class TimeSelect extends Component {
             }`,
             {id: this.props.type.id, day: start.format("Y-MM-DD")})
             .then(res => self.setState({
-                currentTimes: res.data.bookingType.bookingTimes.map(time => moment.utc(time, "HH:mm:ss")),
+                currentTimes: res.data.bookingType.bookingTimes.map(time => {
+                    const t = moment.utc(time, "HH:mm:ss");
+                    t.year(start.year());
+                    t.month(start.month());
+                    t.date(start.date());
+                    return t;
+                }),
                 loading: false,
             }))
             .catch(err => this.setState({

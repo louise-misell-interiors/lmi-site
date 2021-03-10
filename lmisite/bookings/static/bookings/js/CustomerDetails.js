@@ -192,8 +192,8 @@ class BaseCustomerDetails extends Component {
             )
                 .then(res => {
                     if (!res.data.createBooking.ok) {
+                        let errors = res.data.createBooking.error;
                         if (prEv) {
-                            let errors = res.data.createBooking.error;
                             if (errors.filter(error => error.field === "email").length !== 0) {
                                 prEv.complete('invalid_payer_email');
                             } else if (errors.filter(error => error.field === "phone").length !== 0) {
@@ -436,13 +436,13 @@ class BaseCustomerDetails extends Component {
                             </div>
                         }
                         <button onClick={this.scheduleEvent}>Schedule and pay</button>
+                        <p>
+                            By continuing you authorize Louise Misell Interiors to send instructions to the
+                            financial institution that issued your card to take payments from your card account in
+                            accordance with the terms of your agreement with us.
+                        </p>
                     </React.Fragment>
                 }
-                <p>
-                    By continuing you authorize Louise Misell Interiors to send instructions to the
-                    financial institution that issued your card to take payments from your card account in
-                    accordance with the terms of your agreement with us.
-                </p>
             </div>
             <div className="Form">
                 {this.state.hasPr ? null : <React.Fragment>

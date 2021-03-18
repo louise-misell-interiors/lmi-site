@@ -222,7 +222,7 @@ class BookingType(DjangoObjectType):
                     days.append(d)
             num_tried += len(new_days)
             day = day + datetime.timedelta(days=num)
-            if len(days) == 0 and num_tried >= 90:
+            if len(days) == 0 and num_tried >= 365:
                 break
             elif len(days) != 0 and num_tried >= 30:
                 break

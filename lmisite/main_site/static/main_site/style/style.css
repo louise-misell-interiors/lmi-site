@@ -547,6 +547,8 @@ img {
     margin-top: 0; }
   .calendar h2, .calendar h3 {
     font-family: "Baskerville", serif; }
+    .calendar h2.error, .calendar h3.error {
+      color: #9d0828; }
   .calendar h3.notice {
     background: #335470;
     padding: 10px;

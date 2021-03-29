@@ -366,6 +366,10 @@ img {
 
   h2, h3 {
     font-family: "Baskerville", serif;
+
+    &.error {
+      color: #9d0828;
+    }
   }
 
   h3.notice {

@@ -108,6 +108,10 @@ class SiteConfig(SingletonModel):
     online_design_button_text = models.CharField(max_length=255, blank=True)
     online_design_text = RichTextUploadingField(blank=True)
 
+    design_for_diversity_title = models.CharField(max_length=255, blank=True)
+    design_for_diversity_header_image = models.ImageField(blank=True)
+    design_for_diversity_description = models.TextField(blank=True)
+
     contact_title = models.CharField(max_length=255, blank=True)
     contact_header_image = models.ImageField(blank=True)
     contact_form_image = models.ImageField(blank=True)
@@ -325,6 +329,7 @@ class Testimonial(models.Model):
     SERVICES_PAGE = 'S'
     CONTACT_PAGE = 'C'
     ONLINE_DESIGN_PAGE = 'O'
+    DESIGN_FOR_DIVERSITY = 'D'
     FEATURED_ON = (
         ('', '---'),
         (HOME_PAGE, 'Home page'),
@@ -332,6 +337,7 @@ class Testimonial(models.Model):
         (SERVICES_PAGE, 'Services page'),
         (CONTACT_PAGE, 'Contact page'),
         (ONLINE_DESIGN_PAGE, 'Online design page'),
+        (DESIGN_FOR_DIVERSITY, 'Design for Diversity page'),
     )
 
     LIGHT = "L"

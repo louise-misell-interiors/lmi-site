@@ -293,6 +293,14 @@ def online_design(request):
     return render(request, "main_site/online_design.html", {"steps": steps, "testimonial": testimonials.first()})
 
 
+def diversity_for_design(request):
+    testimonials = Testimonial.objects.filter(featured_on=Testimonial.DESIGN_FOR_DIVERSITY)
+    if not request.user.is_superuser:
+        testimonials = testimonials.filter(draft=False)
+
+    return render(request, "main_site/diversity_for_design.html", {"testimonial": testimonials.first()})
+
+
 def testimonials(request):
     testimonials = Testimonial.objects.filter(not_on_testimonials=False)
     if not request.user.is_superuser:

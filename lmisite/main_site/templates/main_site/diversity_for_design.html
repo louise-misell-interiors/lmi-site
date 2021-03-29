@@ -1,0 +1,55 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}{{ config.diversity_for_design_title }}{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static "main_site/style/services.css" %}">
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ config.design_for_diversity_title }} | Louise Misell Interiors">
+    <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
+    <meta property="og:description" content="{{ config.design_for_diversity_description }}">
+    <meta name="description" content="{{ config.design_for_diversity_description }}">
+
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'diversity_for_design' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if config.design_for_diversity_header_image %}style="--background: url({{ config.design_for_diversity_image.url }});"{% endif %}>
+            <h1>Design for Diversity</h1>
+        </header>
+        <div class="services" style="max-width: 1000px; margin: 0 auto;">
+            <h2>Visibility</h2>
+            <p>We pledge that our channels – our websites, blogs and social media – will at all
+                times endeavour to include people of every colour and gender and sexuality.</p>
+            <h2>Opportunity</h2>
+            <p>We pledge to seek out Black, Asian and Minority Ethnic candidates to interview
+                for roles that arise in our businesses. We will always hire the best person for the
+                job, but we will endeavour to bring more diverse candidates through the
+                process. We stop short of positive discrimination and we reject tokenism.</p>
+            <h2>Accessibility</h2>
+            <p>We pledge that any events we hold – be they panel discussions or talks, dinners,
+                receptions, or media events – will endeavour to include people of all colours
+                and genders.</p>
+        </div>
+        <div class="testimonials">
+            <div class="content" itemscope itemtype="https://schema.org/Review">
+                <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
+                <span class="by-line" itemprop="author">{{ testimonial.client }}</span>
+                {% if testimonial.related_project %}
+                    <link itemprop="itemReviewed"
+                          href="{% url 'project' testimonial.related_project.id %}">
+                {% else %}
+                    <link itemprop="itemReviewed" href="{% url 'contact' %}">
+                {% endif %}
+                {% if testimonial.image %}
+                    <link itemprop="image" href="{{ testimonial.image.url }}"/>
+                {% endif %}
+                <p>
+                    <a href="{% url 'testimonials' %}" class="button">More testimonials</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -151,7 +151,9 @@
                 <img src="{% static "main_site/img/interior_designers-cardiff-2020-clr.svg" %}" width="200" alt="Top 3 Interior Designer in Cardiff 2020">
             </div>
             <div>
-                <img src="{% static "main_site/img/design-for-diversity.svg" %}" alt="Design for Diversity">
+                <a href="{% url 'diversity_for_design' %}">
+                    <img src="{% static "main_site/img/design-for-diversity.svg" %}" alt="Design for Diversity">
+                </a>
                 <img src="{% static 'main_site/img/cpa-finalist.png' %}" alt="Cardiff Property Awards Finalist">
             </div>
         </div>

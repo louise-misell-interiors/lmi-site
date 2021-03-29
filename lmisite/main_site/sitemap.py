@@ -98,14 +98,6 @@ class TestimonialSitemap(ImageSitemap):
         return imgs
 
 
-class AboutSitemap(Sitemap):
-    def items(self):
-        return ['about']
-
-    def location(self, obj):
-        return reverse(obj)
-
-
 class PortfolioSitemap(ImageSitemap):
     def items(self):
         return ['portfolio']
@@ -126,7 +118,7 @@ class PortfolioSitemap(ImageSitemap):
 
 class StaticViewSitemap(Sitemap):
     def items(self):
-        return ['services', 'contact', 'design_insider']
+        return ['services', 'contact', 'design_insider', 'diversity_for_design', 'about']
 
     def location(self, item):
         return reverse(item)
@@ -136,7 +128,6 @@ SITEMAP = {
     "projects": ProjectSitemap,
     "design_insider": DesignInsiderSitemap,
     "testimonials": TestimonialSitemap,
-    "about": AboutSitemap,
     "portfolio": PortfolioSitemap,
     "static": StaticViewSitemap,
 }

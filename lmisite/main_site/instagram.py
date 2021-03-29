@@ -15,7 +15,7 @@ def get_user_feed():
 
     try:
         r = requests.get(f"https://graph.facebook.com/v3.3/{config.facebook_page_id}?fields=instagram_business_account"
-                         f"{{name,media{{media_type,media_url,permalink,caption}}}}", params={"access_token": creds}, timeout=30)
+                         f"{{name,media{{media_type,media_url,permalink,caption}}}}", params={"access_token": creds}, timeout=3)
     except requests.exceptions.Timeout:
         return []
     if r.status != 200:

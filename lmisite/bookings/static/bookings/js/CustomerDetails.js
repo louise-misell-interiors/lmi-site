@@ -67,16 +67,15 @@ class BaseCustomerDetails extends Component {
                 {id: this.props.type.id})
                 .then(res => {
                     if (res.data.bookingType.price) {
-                        console.log(res.data.bookingType.price);
                         this.pr = self.props.stripe.paymentRequest({
                             country: 'GB',
                             currency: 'gbp',
                             total: {
-                                amount: Math.round(parseFloat(this.state.price) * 100),
+                                amount: Math.round(parseFloat(res.data.bookingType.price) * 100),
                                 label: 'Louise Misell Interiors'
                             },
                             displayItems: [{
-                                amount: Math.round(parseFloat(this.state.price) * 100),
+                                amount: Math.round(parseFloat(res.data.bookingType.price) * 100),
                                 label: this.props.type.name
                             }],
                             requestPayerName: true,

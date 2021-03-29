@@ -480,6 +480,11 @@ class BaseCustomerDetails extends Component {
                             inputContent="Drag and drop files or click to browse"
                             accept="image/*"
                             submitButtonDisabled={true}
+                            styles={{
+                                inputLabel: {
+                                    color: "#335470"
+                                }
+                            }}
                         />
                     </div>
                 </div>

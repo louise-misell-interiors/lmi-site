@@ -22,7 +22,7 @@ export class Conformation extends Component {
 
         return (
             <React.Fragment>
-                <h1>Thank you</h1>
+                <h1>Thank you for your booking</h1>
                 <hr/>
                 <BookingInfo type={this.props.type} time={date}/>
             </React.Fragment>

@@ -13,8 +13,9 @@ def get_user_feed():
         return []
 
     r = requests.get(f"https://graph.facebook.com/v3.3/{config.facebook_page_id}?fields=instagram_business_account"
-                     f"{{name,media{{media_type,media_url,permalink,caption}}}}", params={"access_token": creds})
-    r.raise_for_status()
+                     f"{{name,media{{media_type,media_url,permalink,caption}}}}", params={"access_token": creds}, timeout=30)
+    if r.status != 200:
+      return []
     media = r.json().get("instagram_business_account", {}).get("media", {}).get("data", [])
 
     media = list(filter(lambda m: m["media_type"] in ("IMAGE", "CAROUSEL_ALBUM"), media))

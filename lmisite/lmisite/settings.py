@@ -180,12 +180,12 @@ with open("/opt/apps/gmail_relay_pass") as f:
     mail_pass = f.read().strip()
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp-relay.gmail.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "q@as207960.net"
+EMAIL_HOST = "mx.postal.as207960.net"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "lmi/main"
 EMAIL_HOST_PASSWORD = mail_pass
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@noreply.louisemisellinteriors.co.uk>"
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@louisemisellinteriors.co.uk>"
 
 GRAPHENE = {
     'SCHEMA': 'bookings.schema.schema'

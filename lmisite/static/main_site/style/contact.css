@@ -56,8 +56,9 @@
     display: flex;
     flex-direction: column;
     width: 80vw;
-    max-width: 750px;
-    align-self: center; }
+    max-width: 1250px;
+    align-self: center;
+    position: relative; }
     @media (max-width: 1200px) {
       .content .contact-details {
         width: 100vw; } }
@@ -85,16 +86,17 @@
       .content .contact-details .details .address p {
         margin-top: 0; }
     .content .contact-details .form {
+      max-width: 800px;
       padding-top: 0 !important;
       position: relative;
+      float: left;
       background: #fff;
-      margin-top: 10%;
-      left: -10vw; }
+      margin-top: 10%; }
       .content .contact-details .form img {
         position: absolute;
         z-index: -1;
         right: -25vw;
-        top: -7%;
+        top: -10%;
         height: 100%; }
       .content .contact-details .form h2 {
         min-height: 2.2em;

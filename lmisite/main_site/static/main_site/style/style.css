@@ -309,6 +309,10 @@ a {
   text-decoration: none; }
   a:hover {
     color: white; }
+  a.dark {
+    color: #335470; }
+    a.dark:hover {
+      color: #5788b2; }
 
 a.button {
   border: 2px #e5f0f2 solid;

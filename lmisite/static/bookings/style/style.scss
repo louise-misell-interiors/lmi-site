@@ -1,13 +1,13 @@
-h1, h2, h5, p {
+h1, h2, h4, h5, p {
   padding: 15px;
   margin: 0;
 }
 
-h2, h5, p {
+h2, h4, h5, p {
   padding: 5px;
 }
 
-p, h1, h2, h5 {
+p, h1, h2, h4, h5 {
   text-align: center;
   width: 100%;
 }

@@ -48,8 +48,9 @@
     display: flex;
     flex-direction: column;
     width: 80vw;
-    max-width: 750px;
+    max-width: 1250px;
     align-self: center;
+    position: relative;
 
     @media (max-width: $media-medium) {
       width: 100vw;
@@ -99,17 +100,19 @@
     }
 
     .form {
+      max-width: 800px;
       padding-top: 0 !important;
       position: relative;
+      float: left;
       background: #fff;
       margin-top: 10%;
-      left: min(-10vw, -10px);
+      //left: (clamp(#{-3vw}, #{-100px}, #{0px}));
 
       img {
         position: absolute;
         z-index: -1;
         right: -25vw;
-        top: -7%;
+        top: -10%;
         height: 100%;
         //max-width: 50vw;
         //width: 100%;

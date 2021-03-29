@@ -44,6 +44,14 @@ a {
   &:hover {
     color: lighten($light-text-colour, 20%);
   }
+
+  &.dark {
+    color: $dark-text-colour;
+
+    &:hover {
+      color: lighten($dark-text-colour, 20%);
+    }
+  }
 }
 
 a.button {

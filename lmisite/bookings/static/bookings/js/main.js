@@ -127,10 +127,8 @@ class BookingApp extends Component {
             return (
                 <React.Fragment>
                     <h2>Sorry, there was an error</h2>
-                    <div className="box">
-                        <p>Please contact Louise using the email below</p>
-                        <a onClick={() => Sentry.showReportDialog()}>Report feedback</a>
-                    </div>
+                    <p>Please email <a href="mailto:hello@louisemisellinteriors.co.uk" target="_blank" className="dark">hello@louisemisellinteriors.co.uk</a></p>
+                    <p><a className="dark" onClick={() => Sentry.showReportDialog()}>Report feedback</a></p>
                 </React.Fragment>
             );
         } else {

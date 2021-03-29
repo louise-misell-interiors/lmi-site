@@ -283,7 +283,7 @@ input:not([type=radio]), textarea, button, .input-like {
   margin-top: 0;
   text-align: left !important; }
 
-.input-like div {
+.input-like div:not(.StripeElement) {
   margin-bottom: 10px; }
 
 button {
@@ -309,6 +309,10 @@ a {
   text-decoration: none; }
   a:hover {
     color: white; }
+  a.dark {
+    color: #335470; }
+    a.dark:hover {
+      color: #5788b2; }
 
 a.button {
   border: 2px #e5f0f2 solid;
@@ -567,7 +571,9 @@ img {
   .calendar .loader {
     display: flex;
     flex-direction: column;
-    align-items: center; }
+    align-items: center;
+    min-height: 300px;
+    justify-content: center; }
   .calendar .back-button {
     position: absolute;
     top: calc(1.1em + 33.2px);
@@ -623,10 +629,21 @@ img {
     grid-gap: 25px;
     padding: 25px 0;
     align-items: start; }
+    .calendar .CustomerDetails .loader {
+      grid-row: 1;
+      grid-column: 1/3;
+      background: rgba(255, 255, 255, 0.9);
+      height: 100%;
+      z-index: 99; }
+    .calendar .CustomerDetails .BookingInfo {
+      grid-row: 1;
+      grid-column: 1; }
     .calendar .CustomerDetails .Form {
       display: flex;
       flex-direction: column;
-      grid-gap: 25px; }
+      grid-gap: 25px;
+      grid-row: 1;
+      grid-column: 2; }
 
 #scroll-top {
   display: block;
@@ -637,6 +654,7 @@ img {
   background-color: rgba(0, 0, 0, 0.4);
   padding: 7px 13px;
   font-weight: bold;
-  font-size: 30px; }
+  font-size: 30px;
+  z-index: 199; }
 
 /*# sourceMappingURL=style.css.map */

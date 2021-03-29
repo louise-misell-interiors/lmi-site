@@ -1,15 +1,39 @@
 @import "variables";
 
-input, textarea, button {
+form {
+  font-family: "Raleway", serif;
+}
+
+input:not([type=radio]), textarea, button, .input-like {
   width: 100%;
   border: none;
   padding: 15px;
   font-size: 20px;
   background: $background-colour;
+  font-family: "Raleway", serif;
 
   @media (max-width: $media-small) {
     margin: 0;
   }
+
+  &[type="checkbox"] {
+    width: initial;
+  }
+
+  p {
+    font-size: 20px !important;
+    text-align: left;
+    color: #6a6f70;
+  }
+}
+
+.input-like p {
+   margin-top: 0;
+  text-align: left !important;
+}
+
+.input-like div:not(.StripeElement) {
+  margin-bottom: 10px;
 }
 
 button {

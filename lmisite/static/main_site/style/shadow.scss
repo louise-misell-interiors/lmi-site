@@ -8,4 +8,5 @@ body::after {
     right: 0;
     height: $blur;
     box-shadow: inset 0 ($blur * -1) ($blur) ($blur * -1) #000;
+    z-index: 198;
 }

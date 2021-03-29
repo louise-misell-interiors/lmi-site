@@ -105,6 +105,7 @@ class SiteConfig(SingletonModel):
     online_design_title = models.CharField(max_length=255, blank=True)
     online_design_header_image = models.ImageField(blank=True)
     online_design_description = models.TextField(blank=True)
+    online_design_button_text = models.CharField(max_length=255, blank=True)
     online_design_text = RichTextUploadingField(blank=True)
 
     contact_title = models.CharField(max_length=255, blank=True)

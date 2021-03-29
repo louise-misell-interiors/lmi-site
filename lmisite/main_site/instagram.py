@@ -18,7 +18,7 @@ def get_user_feed():
                          f"{{name,media{{media_type,media_url,permalink,caption}}}}", params={"access_token": creds}, timeout=3)
     except requests.exceptions.Timeout:
         return []
-    if r.status != 200:
+    if r.status_code != 200:
         return []
     media = r.json().get("instagram_business_account", {}).get("media", {}).get("data", [])
 

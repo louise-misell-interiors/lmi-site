@@ -50,7 +50,7 @@ export default {
             }
         }),
         globals(),
-        replace({'process.env.NODE_ENV': JSON.stringify('development')}),
+        replace({'process.env.NODE_ENV': JSON.stringify('production')}),
         uglify()
     ]
 };

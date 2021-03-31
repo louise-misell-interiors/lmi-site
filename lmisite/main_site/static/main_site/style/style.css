@@ -309,9 +309,9 @@ a {
   text-decoration: none; }
   a:hover {
     color: white; }
-  a.dark {
+  a.dark:not(.button) {
     color: #335470; }
-    a.dark:hover {
+    a.dark:not(.button):hover {
       color: #5788b2; }
 
 a.button {

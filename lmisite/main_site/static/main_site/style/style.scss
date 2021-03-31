@@ -45,7 +45,7 @@ a {
     color: lighten($light-text-colour, 20%);
   }
 
-  &.dark {
+  &.dark:not(.button) {
     color: $dark-text-colour;
 
     &:hover {

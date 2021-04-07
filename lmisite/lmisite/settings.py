@@ -144,6 +144,7 @@ USE_TZ = True
 
 EXTERNAL_URL_BASE = "https://louisemisellinteriors.co.uk"
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 

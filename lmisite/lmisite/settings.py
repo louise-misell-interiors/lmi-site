@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import sys
+import json
+import stripe
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
@@ -179,6 +181,11 @@ LOGGING = {
 }
 
 FILE_UPLOAD_PERMISSIONS = 0o644
+
+with open("/opt/apps/stripe_secret.json") as f:
+    d = json.load(f)
+    stripe.api_key = d["api_key"]
+    STRIPE_WEBHOOK_SECRET = d["webhook_secret"]
 
 with open("/opt/apps/gmail_relay_pass") as f:
     mail_pass = f.read().strip()

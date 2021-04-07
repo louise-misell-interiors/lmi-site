@@ -102,6 +102,9 @@ DATABASES = {
         'HOST': os.getenv('DB_HOST', 'localhost'),
         'ENGINE': 'django.db.backends.mysql',
         'PORT': '',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        }
     }
 }
 

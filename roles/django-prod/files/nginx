@@ -19,7 +19,26 @@ map $http_accept $img_suffix {
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
-    server_name louisemisellinteriors.co.uk www.louisemisellinteriors.co.uk;
+    server_name www.louisemisellinteriors.co.uk louisemisellinteriors.com www.louisemisellinteriors.com louisemisellinteriors.ltd.uk www.louisemisellinteriors.ltd.uk;
+    charset utf-8;
+
+    ssl on;
+    ssl_certificate         /etc/letsencrypt/live/louisemisellinteriors.co.uk/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/louisemisellinteriors.co.uk/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/louisemisellinteriors.co.uk/fullchain.pem;
+ 
+    location /.well-known/acme-challenge/ {
+        root /var/www/html;
+    }
+    location / {
+        rewrite ^ https://louisemisellinteriors.co.uk$request_uri? permanent;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name louisemisellinteriors.co.uk;
     charset utf-8;
 
     ssl on;

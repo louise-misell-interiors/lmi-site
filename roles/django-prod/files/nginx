@@ -1,7 +1,7 @@
 server {
     listen 80;
     listen [::]:80;
-    server_name louisemisellinteriors.co.uk www.louisemisellinteriors.co.uk louisemisellinteriors.com www.louisemisellinteriors.com;
+    server_name louisemisellinteriors.co.uk www.louisemisellinteriors.co.uk louisemisellinteriors.com www.louisemisellinteriors.com louisemisellinteriors.ltd.uk www.louisemisellinteriors.ltd.uk;
 
     location /.well-known/acme-challenge/ {
         root /var/www/html;

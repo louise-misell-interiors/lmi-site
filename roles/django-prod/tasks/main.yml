@@ -87,7 +87,7 @@
     dest: /etc/nginx/sites-enabled/lmisite
 
 - name: Issue certificates
-  shell: "certbot -m {{ letsencrypt_email }} --agree-tos --nginx -d louisemisellinteriors.co.uk -d www.louisemisellinteriors.co.uk -n certonly"
+  shell: "certbot -m {{ letsencrypt_email }} --agree-tos --nginx -d louisemisellinteriors.co.uk -d www.louisemisellinteriors.co.uk -d louisemisellinteriors.ltd.uk -d www.louisemisellinteriors.ltd.uk -d louisemisellinteriors.com -d www.louisemisellinteriors.com -n certonly"
   args:
     creates: /etc/letsencrypt/live/louisemisellinteriors.co.uk
 

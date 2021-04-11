@@ -179,10 +179,11 @@ img {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: (150px - $content-padding) 0;
+      padding: $content-padding 0;
+      min-height: 355px;
 
       > img {
-        max-width: 600px;
+        max-width: 500px;
       }
 
       > h1 {

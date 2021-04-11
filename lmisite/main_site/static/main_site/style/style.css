@@ -402,9 +402,10 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 125px 0; }
+    padding: 25px 0;
+    min-height: 355px; }
     .wrapper .content header > img {
-      max-width: 600px; }
+      max-width: 500px; }
     .wrapper .content header > h1 {
       margin: 0;
       text-align: center;

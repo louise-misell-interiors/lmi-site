@@ -1,3 +1,0 @@
-"use strict";function nextSlide(d){var a=d.find(".slide.is-active"),b=a.next(".slide");0===b.length&&(b=d.find(".slide:first")),a.removeClass("is-active"),b.addClass("is-active")}function prevSlide(d){var a=d.find(".slide.is-active"),b=a.prev(".slide");0===b.length&&(b=d.find(".slide:last")),a.removeClass("is-active"),b.addClass("is-active")}$(function(){var b=$(".slider");b.find(".arrow:first").on("click",function(){prevSlide($(this).parent())}),b.find(".arrow:last").on("click",function(){nextSlide($(this).parent())})});
-
-//# sourceMappingURL=main-compiled-compiled.js.map

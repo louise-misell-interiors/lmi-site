@@ -1,3 +1,0 @@
-'use strict';(function(a){'use strict';a.fn.prepopulate=function(b,c,d){return this.each(function(){var e=a(this),f=function(){if(!e.data('_changed')){var f=[];a.each(b,function(b,c){c=a(c),0<c.val().length&&f.push(c.val())}),e.val(URLify(f.join(' '),c,d))}};e.data('_changed',!1),e.change(function(){e.data('_changed',!0)}),e.val()||a(b.join(',')).keyup(f).change(f).focus(f)})}})(django.jQuery);
-
-//# sourceMappingURL=prepopulate-compiled.js.map

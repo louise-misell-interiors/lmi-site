@@ -12,6 +12,7 @@ urlpatterns = [
     path('services/', views.services, name='services'),
     path('online_design/', views.online_design, name='online_design'),
     path('design_for_diversity/', views.diversity_for_design, name='diversity_for_design'),
+    path('designer_in_a_box/', views.designer_in_a_box, name='designer_in_a_box'),
     path('design_insider/', views.design_insider, name='design_insider'),
     path('design_insider.rss', views.DesignInsiderFeed(), name='design_insider_rss'),
     path('design_insider/<id>/', views.design_insider_post, name='design_insider_post'),

@@ -1,3 +1,0 @@
-"use strict";(function(){if(jQuery&&jQuery.fn&&jQuery.fn.select2&&jQuery.fn.select2.amd)var a=jQuery.fn.select2.amd;return a.define("select2/i18n/tr",[],function(){return{inputTooLong:function inputTooLong(a){var b=a.input.length-a.maximum;return b+" karakter daha girmelisiniz"},inputTooShort:function inputTooShort(a){var b=a.minimum-a.input.length;return"En az "+b+" karakter daha girmelisiniz"},loadingMore:function loadingMore(){return"Daha fazla\u2026"},maximumSelected:function maximumSelected(a){var b="Sadece "+a.maximum+" se\xE7im yapabilirsiniz";return b},noResults:function noResults(){return"Sonu\xE7 bulunamad\u0131"},searching:function searching(){return"Aran\u0131yor\u2026"}}}),{define:a.define,require:a.require}})();
-
-//# sourceMappingURL=tr-compiled.js.map

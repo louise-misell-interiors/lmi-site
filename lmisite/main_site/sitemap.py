@@ -118,7 +118,7 @@ class PortfolioSitemap(ImageSitemap):
 
 class StaticViewSitemap(Sitemap):
     def items(self):
-        return ['services', 'contact', 'design_insider', 'diversity_for_design', 'about']
+        return ['services', 'contact', 'design_insider', 'diversity_for_design', 'about', 'designer_in_a_box']
 
     def location(self, item):
         return reverse(item)

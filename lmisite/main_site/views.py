@@ -12,7 +12,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.utils import feedgenerator, timezone
 from django.utils.encoding import iri_to_uri
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 from . import forms
 from .models import *
@@ -299,6 +299,11 @@ def diversity_for_design(request):
         testimonials = testimonials.filter(draft=False)
 
     return render(request, "main_site/diversity_for_design.html", {"testimonial": testimonials.first()})
+
+
+@staff_member_required
+def designer_in_a_box(request):
+    return render(request, "main_site/designer_in_a_box.html")
 
 
 def testimonials(request):

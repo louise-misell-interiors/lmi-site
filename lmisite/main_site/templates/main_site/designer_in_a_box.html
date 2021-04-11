@@ -1,0 +1,24 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}{{ config.designer_in_a_box_title }}{% endblock %}
+
+{% block header %}
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ config.designer_in_a_box_title }} | Louise Misell Interiors">
+    <meta property="og:image" content="http://louisemisellinteriors.co.uk{% static "main_site/img/logo.png" %}">
+    <meta property="og:description" content="{{ config.designer_in_a_box_description }}">
+
+    <meta name="description" content="{{ config.designer_in_a_box_description }}">
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'designer_in_a_box' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if config.designer_in_a_box_header_image %}style="--background: url({{ config.designer_in_a_box_header_image.url }});"{% endif %}>
+            <img src="{% static 'main_site/img/designer_in_a_box_logo.png' %}" alt="Designer in a Box">
+        </header>
+
+        {{ config.designer_in_a_box_content|safe }}
+    </div>
+{% endblock %}

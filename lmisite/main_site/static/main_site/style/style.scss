@@ -170,6 +170,7 @@ img {
 
   .content {
     header {
+      background-color: $background-colour-dark;
       background-image: var(--background);
       background-position: center;
       background-attachment: fixed;
@@ -178,9 +179,10 @@ img {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      padding: (150px - $content-padding) 0;
 
       > h1 {
-        margin: (150px - $content-padding) 0;
+        margin: 0;
         text-align: center;
         color: $dark-text-colour;
         font-size: 45px;

@@ -112,6 +112,11 @@ class SiteConfig(SingletonModel):
     design_for_diversity_header_image = models.ImageField(blank=True)
     design_for_diversity_description = models.TextField(blank=True)
 
+    designer_in_a_box_title = models.CharField(max_length=255, blank=True)
+    designer_in_a_box_header_image = models.ImageField(blank=True)
+    designer_in_a_box_description = models.TextField(blank=True)
+    designer_in_a_box_content = RichTextUploadingField(blank=True)
+
     contact_title = models.CharField(max_length=255, blank=True)
     contact_header_image = models.ImageField(blank=True)
     contact_form_image = models.ImageField(blank=True)

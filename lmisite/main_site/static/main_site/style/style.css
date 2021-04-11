@@ -393,6 +393,7 @@ img {
 .wrapper {
   height: 100vh; }
   .wrapper .content header {
+    background-color: #335470;
     background-image: var(--background);
     background-position: center;
     background-attachment: fixed;
@@ -400,9 +401,10 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    padding: 125px 0; }
     .wrapper .content header > h1 {
-      margin: 125px 0;
+      margin: 0;
       text-align: center;
       color: #335470;
       font-size: 45px;

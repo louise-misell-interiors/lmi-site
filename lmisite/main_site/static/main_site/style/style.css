@@ -403,6 +403,8 @@ img {
     justify-content: center;
     align-items: center;
     padding: 125px 0; }
+    .wrapper .content header > img {
+      max-width: 600px; }
     .wrapper .content header > h1 {
       margin: 0;
       text-align: center;

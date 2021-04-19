@@ -2,9 +2,12 @@ from PIL import Image as Img
 import io
 import readtime
 import nltk.data
+import string
+import ast
 from bs4 import BeautifulSoup
 from django.db import models
 from solo.models import SingletonModel
+from django.core.exceptions import ValidationError
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import UploadedFile, InMemoryUploadedFile
@@ -464,3 +467,102 @@ class NewsletterEntry(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+def validate_variable_name(value):
+    if len(value) < 1:
+        raise ValidationError("Variable name too short")
+    if value[0] in string.digits:
+        raise ValidationError("Variable cannot start with digit")
+
+    valid_chars = string.ascii_letters + string.digits + ["_"]
+    if any(c not in valid_chars for c in value):
+        raise ValidationError("Variable contains invalid characters")
+
+
+def validate_exec(value):
+    try:
+        ast.parse(value, mode='exec')
+    except SyntaxError as e:
+        raise ValidationError(f"Syntax error: {e.msg}")
+
+
+def validate_eval(value):
+    try:
+        ast.parse(value, mode='eval')
+    except SyntaxError as e:
+        raise ValidationError(f"Syntax error: {e.msg}")
+
+
+class Quiz(models.Model):
+    id = models.UUIDField(primary_key=True)
+    draft = models.BooleanField(default=False)
+    name = models.CharField(max_length=255)
+    intro_text = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class QuizVariables(models.Model):
+    id = models.UUIDField(primary_key=True)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, validators=[validate_variable_name])
+
+    def __str__(self):
+        return self.name
+
+
+class QuizStep(models.Model):
+    STYLE_MOODBOARD = "mb"
+    STYLE_IMAGE_GRID = "ig"
+    STYLE_RADIO = "rb"
+    STYLES = (
+        (STYLE_RADIO, "Multiple choice / radio button"),
+        (STYLE_MOODBOARD, "Image moodboard"),
+        (STYLE_IMAGE_GRID, "Image grid"),
+    )
+
+    id = models.UUIDField(primary_key=True)
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+    style = models.CharField(max_length=2, choices=STYLES)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    question_text = models.TextField()
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{str(self.quiz)}: step #{int(self.order)}"
+
+
+class QuizStepAnswer(models.Model):
+    id = models.UUIDField(primary_key=True)
+    step = models.ForeignKey(QuizStep, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+    text = models.TextField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+    effect = models.TextField(blank=True, null=True, validators=[validate_exec])
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{str(self.step)}: answer #{int(self.order)}"
+
+
+class QuizResult(models.Model):
+    id = models.UUIDField(primary_key=True)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+    condition = models.TextField(blank=True, null=True, validators=[validate_eval])
+    text = models.TextField()
+    image = models.ImageField(blank=True, null=True)
+    link = models.URLField(blank=True, null=True)
+    link_text = models.CharField(max_length=255)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{str(self.quiz)}: result #{int(self.order)}"

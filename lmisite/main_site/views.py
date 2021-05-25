@@ -13,6 +13,7 @@ from django.utils import feedgenerator, timezone
 from django.utils.encoding import iri_to_uri
 from django.http import HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 
 from . import forms
 from .models import *
@@ -96,11 +97,11 @@ def handle_newsletter(request):
 
 def design_insider(request):
     posts = DesignInsiderPost.objects.all()
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         posts = posts.filter(draft=False)
 
     short_posts = ShortPost.objects.all()
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         short_posts = short_posts.filter(draft=False)
 
     if request.method == "POST":
@@ -118,7 +119,7 @@ def design_insider_post(request, id):
     post = get_object_or_404(DesignInsiderPost, id=id)
 
     short_posts = ShortPost.objects.all()
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         short_posts = short_posts.filter(draft=False)
 
     if request.method == "POST":
@@ -224,7 +225,7 @@ class DesignInsiderFeed(Feed):
 
 def about(request):
     testimonials = Testimonial.objects.filter(featured_on=Testimonial.ABOUT_PAGE)
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         testimonials = testimonials.filter(draft=False)
     return render(request, "main_site/about.html", {"testimonial": testimonials.first()})
 
@@ -245,7 +246,7 @@ def resources(request):
 
 def portfolio(request):
     projects = Project.objects.all()
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         projects = projects.filter(draft=False)
     return render(request, "main_site/portfolio.html", {"projects": projects})
 
@@ -253,7 +254,7 @@ def portfolio(request):
 def project(request, id):
     project = get_object_or_404(Project, id=id)
     projects = Project.objects.filter(~Q(id=id))
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         projects = projects.filter(draft=False)
     return render(request, "main_site/project.html", {"project": project, "projects": projects})
 
@@ -262,7 +263,7 @@ def services(request):
     services = Service.objects.all()
 
     testimonials = Testimonial.objects.filter(featured_on=Testimonial.SERVICES_PAGE)
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         services = services.filter(draft=False)
         testimonials = testimonials.filter(draft=False)
 
@@ -287,7 +288,7 @@ def services(request):
 def online_design(request):
     steps = OnlineDesignStep.objects.all()
     testimonials = Testimonial.objects.filter(featured_on=Testimonial.ONLINE_DESIGN_PAGE)
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         steps = steps.filter(draft=False)
         testimonials = testimonials.filter(draft=False)
     return render(request, "main_site/online_design.html", {"steps": steps, "testimonial": testimonials.first()})
@@ -295,7 +296,7 @@ def online_design(request):
 
 def diversity_for_design(request):
     testimonials = Testimonial.objects.filter(featured_on=Testimonial.DESIGN_FOR_DIVERSITY)
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         testimonials = testimonials.filter(draft=False)
 
     return render(request, "main_site/diversity_for_design.html", {"testimonial": testimonials.first()})
@@ -308,14 +309,14 @@ def designer_in_a_box(request):
 
 def testimonials(request):
     testimonials = Testimonial.objects.filter(not_on_testimonials=False)
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         testimonials = testimonials.filter(draft=False)
     return render(request, "main_site/testimonials.html", {"testimonials": testimonials})
 
 
 def contact(request):
     testimonials = Testimonial.objects.filter(featured_on=Testimonial.CONTACT_PAGE)
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         testimonials = testimonials.filter(draft=False)
 
     booking_config = booking_models.Config.objects.first()
@@ -396,6 +397,11 @@ def contact(request):
 
 def booking(request, id):
     return render(request, "main_site/booking.html", {"booking_id": id})
+
+
+@login_required
+def account_profile(request):
+    return render(request, "registration/profile.html", {})
 
 
 def fb_authorise(request):

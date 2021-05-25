@@ -24,6 +24,7 @@
 @import "inc/instagram";
 @import "inc/forms";
 @import "inc/bar";
+@import "inc/quiz";
 
 body {
   margin: 0;
@@ -171,7 +172,7 @@ img {
   .content {
     header {
       background-color: $background-colour-dark;
-      background-image: var(--background);
+      background-image: var(--header-background);
       background-position: center;
       background-attachment: fixed;
       background-size: cover;
@@ -309,28 +310,6 @@ img {
 
     a {
       color: #fff;
-    }
-  }
-}
-
-.form {
-  form {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-    grid-gap: $content-padding;
-    margin: 0;
-    border: 2px solid $background-colour;
-    padding: $content-padding;
-  }
-
-  .errorlist {
-    margin: 0;
-    text-align: left;
-    color: red;
-
-    li {
-      list-style: none;
     }
   }
 }

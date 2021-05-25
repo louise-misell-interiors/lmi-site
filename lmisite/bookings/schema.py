@@ -394,7 +394,7 @@ class ConfigType(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
-    config = graphene.Field(ConfigType)
+    booking_config = graphene.Field(ConfigType)
     booking_types = graphene.NonNull(graphene.List(graphene.NonNull(BookingType)))
     booking_type = graphene.Field(
         BookingType,

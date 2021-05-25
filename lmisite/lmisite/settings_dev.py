@@ -38,8 +38,6 @@ INTERNAL_IPS = (
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -52,7 +50,10 @@ INSTALLED_APPS = [
     'graphene_django',
     'django.contrib.sitemaps',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'magiclink',
 ]
 
 MIDDLEWARE = [
@@ -95,6 +96,7 @@ DATABASES = {
        'NAME': 'db.sqlite3',
     }
 }
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -113,6 +115,30 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'magiclink.backends.MagicLinkBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_URL = "magiclink:login"
+
+MAGICLINK_LOGIN_TEMPLATE_NAME = "registration/magic_login.html"
+MAGICLINK_LOGIN_SENT_TEMPLATE_NAME = "registration/magic_sent.html"
+MAGICLINK_LOGIN_FAILED_TEMPLATE_NAME = "registration/magic_failed.html"
+MAGICLINK_SIGNUP_TEMPLATE_NAME = "registration/magic_signup.html"
+MAGICLINK_EMAIL_SUBJECT = "Your Louise Misell Interiors login"
+MAGICLINK_EMAIL_TEMPLATE_NAME_TEXT = "registration/magic_email.txt"
+MAGICLINK_EMAIL_TEMPLATE_NAME_HTML = "registration/magic_email.html"
+MAGICLINK_REQUIRE_SIGNUP = True
+MAGICLINK_IGNORE_EMAIL_CASE = True
+MAGICLINK_EMAIL_AS_USERNAME = True
+MAGICLINK_ALLOW_SUPERUSER_LOGIN = False
+MAGICLINK_ALLOW_STAFF_LOGIN = False
+MAGICLINK_IGNORE_IS_ACTIVE_FLAG = False
+MAGICLINK_REQUIRE_SAME_BROWSER = False
+MAGICLINK_REQUIRE_SAME_IP = True
+MAGICLINK_TOKEN_USES = 1
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -168,9 +194,10 @@ LOGGING = {
 FILE_UPLOAD_PERMISSIONS = 0o644
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@louisemisellinteriors.co.uk>"
 
 GRAPHENE = {
-    'SCHEMA': 'bookings.schema.schema'
+    'SCHEMA': 'lmisite.schema.schema'
 }
 
 CKEDITOR_UPLOAD_PATH = ""
@@ -188,5 +215,6 @@ CKEDITOR_CONFIGS = {
         'width': 1200,
         'font_names': 'Baskerville; Raleway',
         'extraPlugins': 'lineheight,richcombo',
+        'allowedContent': True
     },
 }

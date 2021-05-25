@@ -29,7 +29,7 @@
     color: #335470;
     border-color: #335470; }
   .content div.testimonial.style-I {
-    background-image: var(--background);
+    background-image: var(--header-background);
     background-position: 0 center;
     background-attachment: fixed;
     background-size: cover;

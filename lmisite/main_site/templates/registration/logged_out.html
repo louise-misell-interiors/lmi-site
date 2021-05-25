@@ -1,0 +1,21 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}Logged out{% endblock %}
+
+{% block content %}
+    <div class="content" {% if config.home_help_image %}style="--header-background: url({{ config.home_help_image.url }});"{% endif %}>
+        <header>
+            <h1 style="text-transform: none">Logged out</h1>
+        </header>
+        <div style="text-align: center; font-size: 30px;">
+            <div class="form" style="max-width: 700px; margin: 0 auto;">
+                <p>
+                    You've been successfully logged out.
+                </p>
+                <a href="{% url 'index' %}" class="dark button">Home</a>
+                <a href="{% url 'login' %}" class="dark button">Login again</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

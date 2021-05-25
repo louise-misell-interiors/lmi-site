@@ -3,8 +3,11 @@ import io
 import readtime
 import nltk.data
 import string
+import uuid
+import typing
 import ast
 from bs4 import BeautifulSoup
+from django.conf import settings
 from django.db import models
 from solo.models import SingletonModel
 from django.core.exceptions import ValidationError
@@ -475,7 +478,7 @@ def validate_variable_name(value):
     if value[0] in string.digits:
         raise ValidationError("Variable cannot start with digit")
 
-    valid_chars = string.ascii_letters + string.digits + ["_"]
+    valid_chars = string.ascii_letters + string.digits + "_"
     if any(c not in valid_chars for c in value):
         raise ValidationError("Variable contains invalid characters")
 
@@ -495,7 +498,7 @@ def validate_eval(value):
 
 
 class Quiz(models.Model):
-    id = models.UUIDField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     draft = models.BooleanField(default=False)
     name = models.CharField(max_length=255)
     intro_text = models.TextField()
@@ -505,9 +508,10 @@ class Quiz(models.Model):
 
 
 class QuizVariables(models.Model):
-    id = models.UUIDField(primary_key=True)
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='variables')
     name = models.CharField(max_length=255, validators=[validate_variable_name])
+    initial_value = models.TextField(validators=[validate_eval])
 
     def __str__(self):
         return self.name
@@ -523,10 +527,11 @@ class QuizStep(models.Model):
         (STYLE_IMAGE_GRID, "Image grid"),
     )
 
-    id = models.UUIDField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
+    max_choices = models.PositiveIntegerField(default=0, blank=True, null=False)
     style = models.CharField(max_length=2, choices=STYLES)
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="steps")
     question_text = models.TextField()
 
     class Meta:
@@ -537,8 +542,8 @@ class QuizStep(models.Model):
 
 
 class QuizStepAnswer(models.Model):
-    id = models.UUIDField(primary_key=True)
-    step = models.ForeignKey(QuizStep, on_delete=models.CASCADE)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    step = models.ForeignKey(QuizStep, on_delete=models.CASCADE, related_name="answers")
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     text = models.TextField(blank=True, null=True)
     image = models.ImageField(blank=True, null=True)
@@ -552,17 +557,46 @@ class QuizStepAnswer(models.Model):
 
 
 class QuizResult(models.Model):
-    id = models.UUIDField(primary_key=True)
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='results')
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     condition = models.TextField(blank=True, null=True, validators=[validate_eval])
     text = models.TextField()
     image = models.ImageField(blank=True, null=True)
     link = models.URLField(blank=True, null=True)
-    link_text = models.CharField(max_length=255)
+    link_text = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         ordering = ['order']
 
     def __str__(self):
         return f"{str(self.quiz)}: result #{int(self.order)}"
+
+
+class QuizSession(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    current_step = models.ForeignKey(QuizStep, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
+
+    @property
+    def result(self) -> typing.Optional[QuizResult]:
+        variables = {}
+        for variable in self.quiz.variables.all():
+            variables[variable.name] = eval(variable.initial_value, {}, {})
+
+        for answer in self.answers.order_by('answer__step__order').all():
+            if answer.answer.effect:
+                exec(answer.answer.effect, {}, variables)
+
+        for result in self.quiz.results.all():
+            if bool(eval(result.condition, {}, variables)):
+                return result
+
+        return None
+
+
+class QuizSessionStepAnswer(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    session = models.ForeignKey(QuizSession, on_delete=models.CASCADE, related_name="answers")
+    answer = models.ForeignKey(QuizStepAnswer, on_delete=models.CASCADE)

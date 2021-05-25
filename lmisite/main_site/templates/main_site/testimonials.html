@@ -19,7 +19,7 @@
 
 {% block content %}
     <div class="content">
-        <header {% if config.testimonials_header_image %}style="--background: url({{ config.testimonials_header_image.url }});"{% endif %}>
+        <header {% if config.testimonials_header_image %}style="--header-background: url({{ config.testimonials_header_image.url }});"{% endif %}>
             <h1>Testimonials</h1>
             <div class="desc">
                 {{ config.testimonials_text|safe }}
@@ -27,7 +27,7 @@
         </header>
         {% for testimonial in testimonials %}
             <div class="testimonial style-{{ testimonial.style }}" itemscope itemtype="https://schema.org/Review"
-                 {% if testimonial.image %}style="--background: url({{ testimonial.image.url }})"{% endif %}>
+                 {% if testimonial.image %}style="--header-background: url({{ testimonial.image.url }})"{% endif %}>
                     <div>
                         <blockquote itemprop="reviewBody">{{ testimonial.text }}</blockquote>
                         <h2 class="by-line" itemprop="author">{{ testimonial.client }}</h2>

@@ -1,0 +1,28 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}Your profile{% endblock %}
+
+{% block content %}
+    <div class="content" {% if config.home_help_image %}style="--header-background: url({{ config.home_help_image.url }});"{% endif %}>
+        <header>
+            <h1 style="text-transform: none">Hello {{ request.user.first_name }}!</h1>
+        </header>
+        <div style="font-size: 30px;">
+            <div style="max-width: 700px; margin: 0 auto;">
+                <h2>Your profile</h2>
+                <p>
+                    Username: {{ request.user.get_username }}<br/>
+                    Name: {{ request.user.get_full_name }}<br/>
+                    Email: {{ request.user.email }}<br/>
+                    Member since: {{ request.user.date_joined.date }}<br/>
+                </p>
+                <h2>Security info</h2>
+                <p>
+                    Last login: {{ request.user.last_login }}<br/>
+                </p>
+                <a href="{% url 'password_change' %}" class="dark button">Change password</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

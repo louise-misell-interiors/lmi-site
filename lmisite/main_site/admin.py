@@ -102,6 +102,43 @@ class NewsletterEntryAdmin(admin.ModelAdmin):
     pass
 
 
+class QuizVariableInline(admin.TabularInline):
+    exclude = ["id"]
+    model = QuizVariables
+    extra = 3
+
+
+class QuizStepInline(SortableInlineAdminMixin, admin.StackedInline):
+    exclude = ["id"]
+    model = QuizStep
+    extra = 3
+    show_change_link = True
+
+
+class QuizResultInline(SortableInlineAdminMixin, admin.StackedInline):
+    exclude = ["id"]
+    model = QuizResult
+    extra = 3
+
+
+@admin.register(Quiz)
+class QuizAdmin(admin.ModelAdmin):
+    inlines = [QuizVariableInline, QuizStepInline, QuizResultInline]
+    readonly_fields = ["id"]
+
+
+class QuizStepAnswerInline(SortableInlineAdminMixin, admin.StackedInline):
+    exclude = ["id"]
+    model = QuizStepAnswer
+    extra = 3
+
+
+@admin.register(QuizStep)
+class QuizStepAdmin(SortableAdminMixin, admin.ModelAdmin):
+    inlines = [QuizStepAnswerInline]
+    exclude = ["id"]
+
+
 admin.site.site_header = "Louise Misell Interiors"
 admin.site.site_title = "Louise Misell Interiors"
 admin.site.index_title = "Home"

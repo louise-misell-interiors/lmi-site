@@ -4,7 +4,7 @@
   align-items: center; }
   .content header {
     align-self: stretch;
-    background-image: var(--background);
+    background-image: var(--header-background);
     background-position: center;
     background-attachment: fixed;
     background-size: cover;

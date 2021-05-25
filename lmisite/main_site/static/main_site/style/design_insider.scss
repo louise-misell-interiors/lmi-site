@@ -8,17 +8,10 @@
 
   header {
     align-self: stretch;
-    background-image: var(--background);
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
     grid-row: 1;
     grid-column: 1;
     padding: 50px $content-padding;
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     img, p {
       display: none;

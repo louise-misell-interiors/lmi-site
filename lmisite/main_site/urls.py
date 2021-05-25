@@ -1,5 +1,6 @@
 from django.urls import path
 from django.contrib.sitemaps.views import sitemap
+import django.contrib.auth.views
 from . import views
 from .sitemap import SITEMAP
 
@@ -20,6 +21,11 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('booking/<id>', views.booking, name='booking'),
     path('config.js', views.config, name='config.js'),
+
+    path('accounts/profile/', views.account_profile, name='profile'),
+    path('accounts/password_reset/', django.contrib.auth.views.PasswordResetView.as_view(
+        html_email_template_name="registration/password_reset_email_html.html"
+    ), name='password_reset'),
 
     path('facebook/authorise/', views.fb_authorise, name='fb_authorise'),
     path('facebook/oauth/', views.fb_oauth, name='fb_oauth'),

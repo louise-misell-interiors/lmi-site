@@ -21,7 +21,7 @@
         {% if project.image %}
             <link itemprop="image" href="{{ project.image.url }}">
         {% endif %}
-        <header {% if project.header_image %}style="--background: url({{ project.header_image.url }});"{% endif %}>
+        <header {% if project.header_image %}style="--header-background: url({{ project.header_image.url }});"{% endif %}>
             <div>
                 <h1 itemprop="headline">{{ project.name }}</h1>
                 <h2>{{ project.area }}</h2>

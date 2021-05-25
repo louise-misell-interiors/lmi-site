@@ -10,8 +10,9 @@ import {DaySelect} from './DaySelect';
 import {TimeSelect} from "./TimeSelect";
 import {CustomerDetails} from "./CustomerDetails";
 import {Conformation} from "./Conformation";
+import {fetchGQL} from "../../../../common_js/graphql";
 
-const apiUrl = "/bookings/graphql";
+const apiUrl = "/graphql/";
 const stripePromise = loadStripe(
     process.env.NODE_ENV === 'production' ?
         'pk_live_51IJ0ExINXWHtO11z4UC4ySDoqsL5Mo79lnJOw5C4RvDwEsEXw5PZu0aYFpLp1TsnUvVdUGP8QC5pdrsdGbucW5xc00WT7USUxF' :
@@ -20,37 +21,6 @@ const stripePromise = loadStripe(
         apiVersion: "2020-08-27"
     }
 )
-
-
-class GraphQLError extends Error {
-    constructor(result, ...args) {
-        super(...args);
-        this.result = result;
-    }
-}
-
-export const fetchGQL = (query, variables) =>
-    fetch(apiUrl, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        },
-        body: JSON.stringify({query: query, variables: variables}),
-    })
-        .then(res => {
-            if (!res.ok) {
-                throw new GraphQLError(res);
-            }
-            return res;
-        })
-        .then(res => res.json())
-        .then(res => {
-            if (typeof res.errors !== "undefined") {
-                throw new GraphQLError(res);
-            }
-            return res
-        });
 
 class BookingApp extends Component {
     constructor(props) {

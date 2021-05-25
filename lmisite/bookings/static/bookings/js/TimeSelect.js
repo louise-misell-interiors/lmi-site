@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
-import {fetchGQL} from "./main";
-import {Loader} from "./Loader";
+import {fetchGQL} from "../../../../common_js/graphql";
+import {Loader} from "../../../../common_js/Loader";
 
 class Time extends Component {
     render() {

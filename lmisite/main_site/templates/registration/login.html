@@ -4,7 +4,7 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <div class="content" {% if config.home_help_image %}style="--background: url({{ config.home_help_image.url }});"{% endif %}>
+    <div class="content" {% if config.home_help_image %}style="--header-background: url({{ config.home_help_image.url }});"{% endif %}>
         <header>
             <h1 style="text-transform: none">Login</h1>
         </header>
@@ -38,6 +38,8 @@
                         Login
                     </button>
                     <input type="hidden" name="next" value="{{ next }}">
+
+                    <a href="{% url 'password_reset' %}" class="dark">Forgot your password?</a>
                 </form>
             </div>
         </div>

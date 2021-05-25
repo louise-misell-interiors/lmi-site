@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="Main site" pattern="file[lmi-site]:lmisite/main_site//*" />
-</component>

@@ -3,7 +3,7 @@
   font-size: 37px;
   color: #335470; }
 .content header {
-  background-image: var(--background); }
+  background-image: var(--header-background); }
   .content header div {
     margin: 100px 0;
     text-align: center;

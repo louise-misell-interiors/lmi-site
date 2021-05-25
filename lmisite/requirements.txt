@@ -15,9 +15,11 @@ requests
 python-dateutil
 django-ckeditor
 django-tinymce
+django-filter
 sentry-sdk
 phonenumbers
 beautifulsoup4
 nltk
 readtime
 stripe
+django-magiclink

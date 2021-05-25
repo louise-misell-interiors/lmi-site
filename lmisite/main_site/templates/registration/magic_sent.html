@@ -1,0 +1,23 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="content" {% if config.home_help_image %}style="--header-background: url({{ config.home_help_image.url }});"{% endif %}>
+        <header>
+            <h1 style="text-transform: none">Check your email</h1>
+        </header>
+        <div style="text-align: center; font-size: 30px;">
+            <div class="form" style="max-width: 700px; margin: 0 auto;">
+                <p>
+                    We've sent you a magic login link to your email.
+                </p>
+                <p>
+                    If you haven't received anything yet please check your spam folder,
+                    and that you've entered your email correctly.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

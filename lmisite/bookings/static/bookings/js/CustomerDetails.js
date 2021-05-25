@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Loader} from "./Loader";
-import {fetchGQL} from "./main";
+import {Loader} from "../../../../common_js/Loader";
+import {fetchGQL} from "../../../../common_js/graphql";
 import {ElementsConsumer, CardElement} from "@stripe/react-stripe-js";
 import Dropzone from 'react-dropzone-uploader';
 import 'react-dropzone-uploader/dist/styles.css';

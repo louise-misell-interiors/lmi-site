@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {fetchGQL} from "./main";
-import {Loader} from "./Loader";
+import {fetchGQL} from "../../../../common_js/graphql";
+import {Loader} from "../../../../common_js/Loader";
 
 
 class BookingType extends React.Component {
@@ -30,7 +30,7 @@ export class BookingTypes extends Component {
         const self = this;
         fetchGQL(
             `{
-                config {
+                booking_config {
                     bookingNotice
                 }
                 bookingTypes {

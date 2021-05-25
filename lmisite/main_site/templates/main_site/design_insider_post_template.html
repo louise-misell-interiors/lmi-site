@@ -1,7 +1,7 @@
 {% load static %}
 
 <div class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting"
-     {% if post.image %}style="--background: url({{ post.image.url }})"{% endif %}>
+     {% if post.image %}style="--header-background: url({{ post.image.url }})"{% endif %}>
     <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' post.id %}" />
     <meta itemprop="datePublished" content="{{ post.date|date:"c" }}" />
     <meta itemprop="dateModified" content="{{ post.date|date:"c" }}" />

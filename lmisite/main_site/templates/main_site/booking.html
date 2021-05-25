@@ -10,7 +10,7 @@
 {#{% endblock %}#}
 
 {% block content %}
-    <div class="content calendar-outer" {% if config.booking_header_image %}style="--background: url({{ config.booking_header_image.url }});"{% endif %}>
+    <div class="content calendar-outer" {% if config.booking_header_image %}style="--header-background: url({{ config.booking_header_image.url }});"{% endif %}>
         <header>
             <h1>{{ config.booking_title }}</h1>
         </header>

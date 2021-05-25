@@ -4,17 +4,10 @@
   align-items: center; }
   .content header {
     align-self: stretch;
-    background-image: var(--header-background);
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
     grid-row: 1;
     grid-column: 1;
     padding: 50px 25px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center; }
+    text-align: center; }
     .content header img, .content header p {
       display: none; }
     .content header > div {

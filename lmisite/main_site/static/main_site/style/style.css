@@ -489,6 +489,9 @@ img {
     align-items: center;
     padding: 25px 0;
     min-height: 355px; }
+    @media (hover: none) {
+      .wrapper .content header {
+        background-attachment: scroll; } }
     .wrapper .content header > img {
       max-width: 500px; }
     .wrapper .content header > h1 {

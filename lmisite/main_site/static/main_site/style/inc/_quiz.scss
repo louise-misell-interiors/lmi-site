@@ -1,11 +1,16 @@
 @import "variables";
 
 #quiz-wrapper {
-  margin: $content-margin auto;
-  max-width: 900px;
-  border: 3px solid $background-colour;
-  padding: $content-padding;
+  margin: 20px;
+  border: 3px solid $background-colour-dark;
+  background-color: $background-colour;
+  padding: $content-padding/2;
+  background-clip: content-box;
   text-align: center;
+
+  > * {
+    padding: $content-padding/2;
+  }
 
   .loader {
     margin-top: 100px;

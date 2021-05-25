@@ -314,11 +314,14 @@ button {
   min-width: 30%; }
 
 #quiz-wrapper {
-  margin: 20px auto;
-  max-width: 900px;
-  border: 3px solid #e5f0f2;
-  padding: 25px;
+  margin: 20px;
+  border: 3px solid #335470;
+  background-color: #e5f0f2;
+  padding: 12.5px;
+  background-clip: content-box;
   text-align: center; }
+  #quiz-wrapper > * {
+    padding: 12.5px; }
   #quiz-wrapper .loader {
     margin-top: 100px;
     margin-bottom: 100px; }

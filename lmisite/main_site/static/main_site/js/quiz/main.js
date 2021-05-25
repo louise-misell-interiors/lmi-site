@@ -41,10 +41,12 @@ class QuizApp extends Component {
                 } 
             }`,
                 {id: this.props.quizId})
-                .then(res => this.setState({
-                    quiz: res.data.allQuizzes.edges[0] ? res.data.allQuizzes.edges[0].node : null,
-                    loading: false
-                }))
+                .then(res => {
+                    this.setState({
+                        quiz: res.data.allQuizzes.edges[0] ? res.data.allQuizzes.edges[0].node : null
+                    });
+                    this.startQuiz();
+                })
                 .catch(err => {
                     console.error(err);
                     this.setState({
@@ -65,9 +67,6 @@ class QuizApp extends Component {
     }
 
     startQuiz() {
-        this.setState({
-            loading: true
-        })
         fetchGQL(`mutation ($input: CreateQuizSessionMutationInput!) {
                 createQuizSession(input: $input) {
                     session {
@@ -282,14 +281,6 @@ class QuizApp extends Component {
                     <h2>Oh no!</h2>
                     <p>Looks like we can't find a result to match your answers.</p>
                     <p><a className="button dark" onClick={this.startQuiz}>Try again?</a></p>
-                </div>
-            );
-        } else if (this.state.quiz) {
-            return (
-                <div className="StartPage">
-                    <h2>{this.state.quiz.name}</h2>
-                    <p>{this.state.quiz.introText}</p>
-                    <p><a className="button dark" onClick={this.startQuiz}>Take the quiz</a></p>
                 </div>
             );
         } else {

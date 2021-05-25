@@ -19,7 +19,8 @@ urlpatterns = [
     path('design_insider/<id>/', views.design_insider_post, name='design_insider_post'),
     path('testimonials/', views.testimonials, name='testimonials'),
     path('contact/', views.contact, name='contact'),
-    path('booking/<id>', views.booking, name='booking'),
+    path('booking/<id>/', views.booking, name='booking'),
+    path('quiz/<uuid:id>/', views.quiz, name='quiz'),
     path('config.js', views.config, name='config.js'),
 
     path('accounts/profile/', views.account_profile, name='profile'),

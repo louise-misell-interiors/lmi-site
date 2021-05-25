@@ -399,6 +399,14 @@ def booking(request, id):
     return render(request, "main_site/booking.html", {"booking_id": id})
 
 
+def quiz(request, id):
+    quiz = get_object_or_404(Quiz, id=id)
+
+    return render(request, "main_site/quiz.html", {
+        "quiz": quiz
+    })
+
+
 @login_required
 def account_profile(request):
     return render(request, "registration/profile.html", {})

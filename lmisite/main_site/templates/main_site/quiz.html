@@ -1,0 +1,24 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}{{ quiz.name }}{% endblock %}
+
+{% block content %}
+    <div class="content calendar-outer" {% if config.designer_in_a_box_header_image %}style="--header-background: url({{ config.designer_in_a_box_header_image.url }});"{% endif %}>
+        <header>
+            <h1>{{ quiz.name }}</h1>
+        </header>
+        <div style="display: flex; justify-content: center;">
+            <div id="quiz-wrapper"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        quizConf = {
+            id: "{{ quiz.id }}"
+        };
+    </script>
+<script src="{% static "main_site/js/quiz/main_production.js" %}"></script>
+{% endblock %}

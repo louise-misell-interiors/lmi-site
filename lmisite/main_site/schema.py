@@ -13,7 +13,7 @@ from . import models
 class QuizStepAnswerNode(graphene_django.DjangoObjectType):
     class Meta:
         model = models.QuizStepAnswer
-        fields = ('id', 'text', 'image', 'step')
+        fields = ('id', 'text', 'alt_text', 'image', 'step')
         filter_fields = []
         interfaces = (graphene.relay.Node,)
 
@@ -57,7 +57,7 @@ class QuizNode(graphene_django.DjangoObjectType):
 
     class Meta:
         model = models.Quiz
-        fields = ('id', 'name', 'intro_text', 'steps')
+        fields = ('id', 'name', 'intro_text', 'steps', 'result_header', 'result_save_to_email')
         filterset_class = QuizNodeFilterSet
         interfaces = (graphene.relay.Node,)
 

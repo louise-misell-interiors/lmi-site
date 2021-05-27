@@ -36,6 +36,8 @@ class QuizApp extends Component {
                             id
                             name
                             introText
+                            resultHeader
+                            resultSaveToEmail
                         }
                     }
                 } 
@@ -126,6 +128,7 @@ class QuizApp extends Component {
                                     node {
                                         id
                                         text
+                                        altText
                                         image
                                     }
                                 }
@@ -239,8 +242,8 @@ class QuizApp extends Component {
         } else if (this.state.result) {
             return (
                 <div className="StartPage">
-                    <h2>Here's your result!</h2>
-                    <p>{this.state.result.text}</p>
+                    <h2>{this.state.quiz.resultHeader}</h2>
+                    <div className="ResultText" dangerouslySetInnerHTML={{__html: this.state.result.text}} />
                     {this.state.result.link ? <p>
                         <a className="button dark" href={this.state.result.link}>{this.state.result.linkText}</a>
                     </p> : null}
@@ -248,14 +251,14 @@ class QuizApp extends Component {
                         We've sent your results to your email, they should be with you shortly.
                     </p> : (this.state.has_user ?
                             <div className="form">
-                                <p>Click below to save this to your email</p>
+                                <p>{this.state.quiz.resultSaveToEmail}</p>
 
                                 <button type="button" onClick={this.saveToEmail}>
                                     Send to email
                                 </button>
                             </div> :
                             <div className="form">
-                                <p>Enter your details below to save this to your email</p>
+                                <p>{this.state.quiz.resultSaveToEmail}</p>
 
                                 <form>
                                     <div>

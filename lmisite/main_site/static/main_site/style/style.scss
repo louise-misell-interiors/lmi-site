@@ -42,7 +42,7 @@ a {
   transition: color .2s;
   text-decoration: none;
 
-  &:hover {
+  &:hover:not(.disabled) {
     color: lighten($light-text-colour, 20%);
   }
 
@@ -64,6 +64,11 @@ a.button {
   &.dark {
     background: $background-colour-dark;
     border: none;
+  }
+
+  &.disabled {
+    filter: grayscale(100%);
+    opacity: 0.5;
   }
 }
 

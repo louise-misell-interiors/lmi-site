@@ -14,6 +14,7 @@ from django.core.exceptions import ValidationError
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import UploadedFile, InMemoryUploadedFile
+from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
@@ -502,6 +503,8 @@ class Quiz(models.Model):
     draft = models.BooleanField(default=False)
     name = models.CharField(max_length=255)
     intro_text = models.TextField()
+    result_header = models.CharField(max_length=255, blank=True, null=True)
+    result_save_to_email = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -532,7 +535,7 @@ class QuizStep(models.Model):
     max_choices = models.PositiveIntegerField(default=0, blank=True, null=False)
     style = models.CharField(max_length=2, choices=STYLES)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="steps")
-    question_text = models.TextField()
+    question_text = RichTextField()
 
     class Meta:
         ordering = ['order']
@@ -545,7 +548,8 @@ class QuizStepAnswer(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     step = models.ForeignKey(QuizStep, on_delete=models.CASCADE, related_name="answers")
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
-    text = models.TextField(blank=True, null=True)
+    text = RichTextField(blank=True, null=True)
+    alt_text = models.TextField(blank=True, null=True)
     image = models.ImageField(blank=True, null=True)
     effect = models.TextField(blank=True, null=True, validators=[validate_exec])
 
@@ -561,7 +565,7 @@ class QuizResult(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='results')
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     condition = models.TextField(blank=True, null=True, validators=[validate_eval])
-    text = models.TextField()
+    text = RichTextUploadingField()
     image = models.ImageField(blank=True, null=True)
     link = models.URLField(blank=True, null=True)
     link_text = models.CharField(max_length=255, blank=True, null=True)

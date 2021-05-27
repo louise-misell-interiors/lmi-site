@@ -319,32 +319,65 @@ button {
   background-color: #e5f0f2;
   padding: 12.5px;
   background-clip: content-box;
-  text-align: center; }
+  text-align: center;
+  color: #335470; }
+  @media (max-width: 800px) {
+    #quiz-wrapper {
+      margin: 20px 0; } }
   #quiz-wrapper > * {
     padding: 12.5px; }
+  #quiz-wrapper h2 {
+    font-size: 36px; }
+  #quiz-wrapper .button {
+    font-size: 32px; }
   #quiz-wrapper .loader {
     margin-top: 100px;
     margin-bottom: 100px; }
-  #quiz-wrapper .StepPage .StepAnswer {
-    border: 5px solid #e5f0f2; }
-    #quiz-wrapper .StepPage .StepAnswer.AnswerSelected {
-      background: #335470;
-      border-color: #335470;
-      color: #fff; }
-    #quiz-wrapper .StepPage .StepAnswer:hover {
-      background: #e5f0f2;
-      color: #000; }
+  #quiz-wrapper .StepPage .StepAnswer.AnswerSelected {
+    background: #335470;
+    border-color: #335470;
+    color: #fff; }
+  #quiz-wrapper .StepPage .StepAnswer:hover {
+    background: #e5f0f2;
+    color: #000; }
   #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer {
     padding: 12.5px;
-    margin: 12.5px; }
+    margin: 12.5px;
+    display: grid;
+    background-color: #335470;
+    color: #e5f0f2;
+    align-items: center;
+    justify-items: center;
+    grid-gap: 25px;
+    grid-template-columns: 1fr auto; }
+    #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer.AnswerSelected .text {
+      background: #e5f0f2;
+      color: #335470; }
+    #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer .text {
+      align-self: stretch;
+      justify-self: stretch;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer .text p {
+        grid-column: 1;
+        grid-row: 1;
+        font-size: 32px; }
+    #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer img {
+      grid-column: 2;
+      grid-row: 1; }
   #quiz-wrapper .StepPage .StepAnswers.StepMoodBoard {
     column-count: 3;
     column-gap: 25px; }
+    @media (max-width: 800px) {
+      #quiz-wrapper .StepPage .StepAnswers.StepMoodBoard {
+        column-count: 1; } }
     #quiz-wrapper .StepPage .StepAnswers.StepMoodBoard .StepAnswer {
       cursor: pointer;
-      margin-bottom: 25px;
       border-color: transparent;
-      position: relative; }
+      position: relative;
+      display: inline-flex;
+      margin-bottom: 25px; }
       #quiz-wrapper .StepPage .StepAnswers.StepMoodBoard .StepAnswer:hover {
         border-color: #e5f0f2; }
       #quiz-wrapper .StepPage .StepAnswers.StepMoodBoard .StepAnswer.AnswerSelected::before {
@@ -371,16 +404,24 @@ button {
       #quiz-wrapper .StepPage .StepAnswers.StepMoodBoard .StepAnswer img {
         display: block; }
   #quiz-wrapper .StepPage .StepAnswers.StepImageGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     grid-gap: 25px; }
     #quiz-wrapper .StepPage .StepAnswers.StepImageGrid .StepAnswer {
       padding: 12.5px;
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      width: 300px; }
       #quiz-wrapper .StepPage .StepAnswers.StepImageGrid .StepAnswer img {
         flex-grow: 1;
         object-fit: cover; }
+      #quiz-wrapper .StepPage .StepAnswers.StepImageGrid .StepAnswer:hover {
+        background: #335470;
+        color: #e5f0f2; }
+      #quiz-wrapper .StepPage .StepAnswers.StepImageGrid .StepAnswer.AnswerSelected {
+        background: #335470;
+        color: #e5f0f2; }
 
 body {
   margin: 0;
@@ -395,7 +436,7 @@ a {
   color: #e5f0f2;
   transition: color .2s;
   text-decoration: none; }
-  a:hover {
+  a:hover:not(.disabled) {
     color: white; }
   a.dark:not(.button) {
     color: #335470; }
@@ -410,6 +451,9 @@ a.button {
   a.button.dark {
     background: #335470;
     border: none; }
+  a.button.disabled {
+    filter: grayscale(100%);
+    opacity: 0.5; }
 
 hr {
   width: 30%;

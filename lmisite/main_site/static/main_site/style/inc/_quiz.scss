@@ -7,9 +7,23 @@
   padding: $content-padding/2;
   background-clip: content-box;
   text-align: center;
+  color: $dark-text-colour;
+
+  @media (max-width: $media-small) {
+    margin: 20px 0;
+  }
+
 
   > * {
     padding: $content-padding/2;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  .button {
+    font-size: 32px;
   }
 
   .loader {
@@ -22,7 +36,6 @@
 
   .StepPage {
     .StepAnswer {
-      border: 5px solid $background-colour;
 
       &.AnswerSelected {
         background: $background-colour-dark;
@@ -40,6 +53,39 @@
       .StepAnswer {
         padding: $content-padding/2;
         margin: $content-padding/2;
+        display: grid;
+        background-color: $background-colour-dark;
+        color: $light-text-colour;
+        align-items: center;
+        justify-items: center;
+        grid-gap: $content-padding;
+        grid-template-columns: 1fr auto;
+
+        &.AnswerSelected {
+          .text {
+            background: $background-colour;
+            color: $dark-text-colour;
+          }
+        }
+
+        .text {
+          align-self: stretch;
+          justify-self: stretch;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          p {
+            grid-column: 1;
+            grid-row: 1;
+            font-size: 32px;
+          }
+        }
+
+        img {
+          grid-column: 2;
+          grid-row: 1;
+        }
       }
     }
 
@@ -47,11 +93,16 @@
       column-count: 3;
       column-gap: $content-padding;
 
+      @media (max-width: $media-small) {
+        column-count: 1;
+      }
+
       .StepAnswer {
         cursor: pointer;
-        margin-bottom: $content-padding;
         border-color: transparent;
         position: relative;
+        display: inline-flex;
+        margin-bottom: 25px;
 
         &:hover {
           border-color: $background-colour;
@@ -89,18 +140,30 @@
     }
 
     .StepAnswers.StepImageGrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       grid-gap: $content-padding;
 
       .StepAnswer {
         padding: $content-padding/2;
         display: flex;
         flex-direction: column;
+        width: 300px;
 
         img {
           flex-grow: 1;
           object-fit: cover;
+        }
+
+        &:hover {
+          background: $background-colour-dark;
+          color: $light-text-colour;
+        }
+
+        &.AnswerSelected {
+          background: $background-colour-dark;
+          color: $light-text-colour;
         }
       }
     }

@@ -10,11 +10,18 @@ export class Step extends Component {
         }
 
         this.nextStep = this.nextStep.bind(this);
+        this.canProceed = this.canProceed.bind(this);
         this.selectAnswer = this.selectAnswer.bind(this);
     }
 
+    canProceed() {
+        return this.state.selectedAnswers.size >= 1 && (
+            (this.props.step.maxChoices && this.state.selectedAnswers.size >= this.props.step.maxChoices) || !this.props.step.maxChoices
+        );
+    }
+
     nextStep() {
-        if (this.state.selectedAnswers.size >= 1) {
+        if (this.canProceed()) {
             this.props.nextStep(Array.from(this.state.selectedAnswers));
         }
     }
@@ -47,14 +54,14 @@ export class Step extends Component {
     render() {
         return (
             <div className="StepPage">
-                <h2>{this.props.step.questionText}</h2>
+                <div className="QuestionText" dangerouslySetInnerHTML={{__html: this.props.step.questionText}} />
 
                 {this.props.step.style === "RB" ? <div className="StepAnswers StepRadio">
                     {this.props.step.answers.edges.map(e => <div className={
                         "StepAnswer" + (this.state.selectedAnswers.has(e.node.id) ? " AnswerSelected" : "")
                     } onClick={() => this.selectAnswer(e.node.id)}>
-                        {e.node.image ? <img src={e.node.image} alt=""/> : null}
-                        {e.node.text}
+                        {e.node.image ? <img src={e.node.image} alt={e.node.altText} /> : null}
+                        <div className="text" dangerouslySetInnerHTML={{__html: e.node.text}}/>
                     </div>)}
                 </div> : null}
 
@@ -62,7 +69,7 @@ export class Step extends Component {
                     {this.props.step.answers.edges.map(e => <div className={
                         "StepAnswer" + (this.state.selectedAnswers.has(e.node.id) ? " AnswerSelected" : "")
                     } onClick={() => this.selectAnswer(e.node.id)}>
-                        <img src={e.node.image} alt={e.node.text}/>
+                        <img src={e.node.image} alt={e.node.altText}/>
                     </div>)}
                 </div> : null}
 
@@ -70,12 +77,12 @@ export class Step extends Component {
                     {this.props.step.answers.edges.map(e => <div className={
                         "StepAnswer" + (this.state.selectedAnswers.has(e.node.id) ? " AnswerSelected" : "")
                     } onClick={() => this.selectAnswer(e.node.id)}>
-                        <img src={e.node.image} alt=""/>
-                        {e.node.text}
+                        <img src={e.node.image} alt={e.node.altText} />
+                        <div className="text" dangerouslySetInnerHTML={{__html: e.node.text}} />
                     </div>)}
                 </div> : null}
 
-                <p><a className="button dark" onClick={this.nextStep}>Next</a></p>
+                <p><a className={"button dark" + (this.canProceed() ? "" : " disabled")} onClick={this.nextStep}>Next</a></p>
             </div>
         );
     }

@@ -44,7 +44,7 @@ export class BookingTypes extends Component {
             }`)
             .then(res => self.setState({
                 types: res.data.bookingTypes,
-                notice: res.data.config.bookingNotice,
+                notice: res.data.bookingConfig.bookingNotice,
                 loading: false,
             }))
             .catch(err => this.setState({

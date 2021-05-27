@@ -30,7 +30,7 @@ export class BookingTypes extends Component {
         const self = this;
         fetchGQL(
             `{
-                booking_config {
+                bookingConfig {
                     bookingNotice
                 }
                 bookingTypes {

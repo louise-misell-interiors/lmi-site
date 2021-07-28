@@ -23,3 +23,6 @@ nltk
 readtime
 stripe
 django-magiclink
+gtin-validator
+django-countries
+django-mathfilters

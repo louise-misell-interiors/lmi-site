@@ -32,21 +32,19 @@
   }
 
   .StartPage {
+    .form {
+      max-width: 700px;
+      margin: $content-margin auto;
+
+      input {
+        border: 3px solid $background-colour-dark;
+      }
+    }
   }
 
   .StepPage {
-    .StepAnswer {
-
-      &.AnswerSelected {
-        background: $background-colour-dark;
-        border-color: $background-colour-dark;
-        color: #fff;
-      }
-
-      &:hover {
-        background: $background-colour;
-        color: #000;
-      }
+    .QuestionText {
+      margin-bottom: $content-margin*2;
     }
 
     .StepAnswers.StepRadio {
@@ -61,11 +59,13 @@
         grid-gap: $content-padding;
         grid-template-columns: 1fr auto;
 
-        &.AnswerSelected {
-          .text {
-            background: $background-colour;
-            color: $dark-text-colour;
-          }
+        button {
+          border: 3px solid $background-colour;
+        }
+
+        button.AnswerSelected {
+          background: $background-colour;
+          color: $dark-text-colour;
         }
 
         .text {
@@ -104,8 +104,16 @@
         display: inline-flex;
         margin-bottom: 25px;
 
+        &.AnswerSelected {
+          background: $background-colour-dark;
+          border-color: $background-colour-dark;
+          color: #fff;
+        }
+
         &:hover {
+          background: $background-colour;
           border-color: $background-colour;
+          color: #000;
         }
 
         &.AnswerSelected::before {
@@ -149,19 +157,20 @@
         padding: $content-padding/2;
         display: flex;
         flex-direction: column;
-        width: 300px;
+        width: 350px;
+        gap: $content-padding;
 
         img {
           flex-grow: 1;
           object-fit: cover;
         }
 
-        &:hover {
+        &:hover .text {
           background: $background-colour-dark;
           color: $light-text-colour;
         }
 
-        &.AnswerSelected {
+        &.AnswerSelected .text {
           background: $background-colour-dark;
           color: $light-text-colour;
         }

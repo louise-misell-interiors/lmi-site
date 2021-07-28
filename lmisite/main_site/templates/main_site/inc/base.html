@@ -4,10 +4,10 @@
 <head>
     <script>
         (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "59bcdsw0gg");
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "59bcdsw0gg");
     </script>
 
     <!-- Google Tag Manager -->
@@ -31,7 +31,8 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %} | Louise Misell Interiors</title>
 
-    <link rel="stylesheet" href="{% static "fontawesome/css/all.css" %}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!--<link rel="stylesheet" href="{% static "fontawesome/css/all.css" %}">-->
     <link rel="stylesheet" href="{% static "main_site/style/style.css" %}">
     <link rel="stylesheet" href="{% static "main_site/style/shadow.css" %}">
 
@@ -57,7 +58,8 @@
     <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-16x16.png" %}" sizes="16x16"/>
     <link rel="icon" type="image/png" href="{% static "main_site/favicon/favicon-128.png" %}" sizes="128x128"/>
     <meta name="application-name" content="Louise Misell Interiors"/>
-    <meta name="msapplication-TileColor" content="#FFFFFF"/>
+    <meta name="theme-color" content="#e5f0f2"/>
+    <meta name="msapplication-TileColor" content="#e5f0f2"/>
     <meta name="msapplication-TileImage" content="{% static "main_site/favicon/mstile-144x144.png" %}"/>
     <meta name="msapplication-square70x70logo" content="{% static "main_site/favicon/mstile-70x70.png" %}"/>
     <meta name="msapplication-square150x150logo" content="{% static "main_site/favicon/mstile-150x150.png" %}"/>
@@ -100,6 +102,7 @@
             {% url 'design_insider' as blog_url %}
             {% url 'services' as services_url %}
             {% url 'contact' as contact_url %}
+            {% url 'shop_basket' as basket_url %}
             <a href="{{ home_url }}" {% if request.get_full_path == home_url %}class="is-active"{% endif %}>Home</a>
             <a href="{{ about_url }}" {% if request.get_full_path == about_url %}class="is-active"{% endif %}>About</a>
             <a href="{{ services_url }}" {% if request.get_full_path == services_url %}class="is-active"{% endif %}>Services</a>
@@ -110,6 +113,11 @@
             <a href="{{ testimonials_url }}"
                {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
             <a href="{{ contact_url }}" {% if request.get_full_path == contact_url %}class="is-active"{% endif %}>Contact</a>
+            {% if basket %}
+                <a href="{{ basket_url }}" {% if request.get_full_path == basket_url %}class="is-active"{% endif %}>
+                    <i class="fal fa-shopping-basket"></i>&nbsp;{{ basket.item_quantity }}
+                </a>
+            {% endif %}
         </nav>
         <div class="menu-button">
             <span></span>
@@ -243,6 +251,7 @@ src="https://www.facebook.com/tr?id=550468805795101&ev=PageView
 &noscript=1"/>
 </noscript>
 <!-- End Facebook Pixel Code -->
+<script src="https://js.stripe.com/v3/"></script>
 <script src="{% static "main_site/js/lazysizes.min.js" %}"></script>
 <script src="{% static "main_site/js/main-compiled.js" %}"></script>
 {% block scripts %}

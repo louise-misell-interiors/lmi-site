@@ -9,32 +9,36 @@ form {
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
-    grid-gap: $content-padding;
+    grid-gap: $content-padding/2;
     margin: 0;
     border: 2px solid $background-colour;
-    padding: $content-padding;
+    padding: 0 $content-padding $content-padding;
 
     > div {
       text-align: left;
       font-size: 20px;
     }
 
-  }
-
-  .errorlist {
-    margin: 0;
-    padding: 0;
-    text-align: left;
-    color: red;
-
-    li {
-      list-style: none;
+    label {
+      font-size: 18px;
     }
+
+  }
+}
+
+.errorlist {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  color: red;
+
+  li {
+    list-style: none;
   }
 }
 
 
-input:not([type=radio]), textarea, button, .input-like {
+input:not([type=radio]), textarea, button, .input-like, select {
   width: 100%;
   border: none;
   padding: 15px;
@@ -73,4 +77,27 @@ button {
   width: auto;
   justify-self: center;
   min-width: 30%;
+}
+
+.pac-container {
+  background: $background-colour;
+  font-family: "Raleway", serif;
+
+  &.pac-logo:after {
+    display: none;
+  }
+
+  .pac-item {
+    border: none;
+    padding: $content-padding/2;
+    font-size: 17px;
+
+    .pac-item-query {
+      font-size: 17px;
+    }
+
+    .pac-icon {
+      display: none;
+    }
+  }
 }

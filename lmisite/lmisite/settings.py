@@ -56,6 +56,9 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'ckeditor',
     'ckeditor_uploader',
+    'django_countries',
+    'mathfilters',
+    # 'magiclink',
 ]
 
 MIDDLEWARE = [
@@ -212,6 +215,7 @@ with open("/opt/apps/stripe_secret.json") as f:
     d = json.load(f)
     stripe.api_key = d["api_key"]
     STRIPE_WEBHOOK_SECRET = d["webhook_secret"]
+    STRIPE_PUBLIC_KEY = d["public_key"]
 
 with open("/opt/apps/gmail_relay_pass") as f:
     mail_pass = f.read().strip()

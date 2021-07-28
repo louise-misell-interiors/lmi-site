@@ -1,0 +1,57 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+{% block title %}Order complete{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static "main_site/style/shop.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if config.basket_header_image %}style="--header-background: url({{ config.basket_header_image.url }});"{% endif %}>
+            <h1>Order Complete</h1>
+        </header>
+        <div class="basket-complete checkout">
+            <div class="steps">
+                <div>
+                    <div>
+                        <h2>1</h2>
+                        <h3>Basket</h3>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h2>2</h2>
+                        <h3>Your<br/>details</h3>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h2>3</h2>
+                        <h3>Payment</h3>
+                    </div>
+                </div>
+                <div class="active">
+                    <div>
+                        <h2>4</h2>
+                        <h3>Complete</h3>
+                    </div>
+                </div>
+            </div>
+            <h1>Thank you</h1>
+            <h2>Your order is complete</h2>
+            <h3>
+                We've sent a confirmation to your email address.
+                {% if delivery_time_range %}
+                    Your order should be with you {{ delivery_time_range }}.
+                {% endif %}
+            </h3>
+            <p>
+                If you have any queries or concerns about your order you can email us at
+                <a href="mailto:shop@louisemisellinteriors.co.uk" class="dark">shop@louisemisellinteriors.co.uk</a>.
+            </p>
+        </div>
+    </div>
+{% endblock %}

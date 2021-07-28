@@ -1,0 +1,101 @@
+{% load mathfilters %}
+<div class="steps">
+    <div class="active">
+        <div>
+            <h2>1</h2>
+            <h3>Basket</h3>
+        </div>
+    </div>
+    <div>
+        <div>
+            <h2>2</h2>
+            <h3>Your<br/>details</h3>
+        </div>
+    </div>
+    <div>
+        <div>
+            <h2>3</h2>
+            <h3>Payment</h3>
+        </div>
+    </div>
+    <div>
+        <div>
+            <h2>4</h2>
+            <h3>Complete</h3>
+        </div>
+    </div>
+</div>
+{% if basket.items.all %}
+    <div class="item">
+        <h2>Item</h2>
+        <h2>Unit price</h2>
+        <h2>Quantity</h2>
+        <h2>Subtotal</h2>
+    </div>
+    <hr/>
+    {% for item in basket.items.all %}
+        <div class="item">
+            <div class="item-name">
+                {% if item.product.images.first %}
+                    <img src="{{ item.product.images.first.image.url }}"
+                         alt="{{ item.product.images.first.alt }}">
+                {% endif %}
+                <div>
+                    <h2>{{ item.product.title }}</h2>
+                    <h3>{{ item.product.subtitle }}</h3>
+                </div>
+            </div>
+            <h4 class="base-price">{{ item.quantity }} @ &pound;{{ item.product.price|floatformat:2 }}</h4>
+            <form action="{% url 'shop_basket_update_quantity' %}" method="post" class="quantity">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ item.id }}"/>
+                <div class="number-input">
+                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1" aria-label="Quantity">
+                    <button class="button dark" type="submit" name="action" value="update">Update</button>
+                </div>
+                <button class="button dark" type="submit" name="action" value="remove">
+                    Remove
+                </button>
+            </form>
+            <h3 class="total-price">&pound;{{ item.total_price|floatformat:2 }}</h3>
+        </div>
+    {% endfor %}
+{% else %}
+    <h1>Empty basket</h1>
+{% endif %}
+<hr>
+<div class="totals">
+    <h2>Subtotal</h2>
+    <h2>&pound;{{ basket.items_total|floatformat:2 }}</h2>
+</div>
+{% if basket.can_checkout %}
+    <div class="actions">
+        <div class="loader" id="loader" style="display: none">
+            <svg xmlns:Xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 50 50">
+                <path d="M43.935 25.145c0-10.318-8.364-18.683-18.683-18.683-10.318 0-18.683 8.365-18.683 18.683h4.068c0-8.071 6.543-14.615 14.615-14.615s14.615 6.543 14.615 14.615h4.068z">
+                    <animateTransform attributeType="xml" attributeName="transform" type="rotate"
+                                      from="0 25 25"
+                                      to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform>
+                </path>
+            </svg>
+        </div>
+        <ul class="errorlist">
+            <li id="error-disp" style="display: none;"></li>
+        </ul>
+        <div id="payment-request-button"></div>
+        <a class="button dark" href="{% url 'shop_basket_details' %}">Checkout</a>
+        <div>
+            <i class="fab fa-cc-visa fa-2x"></i>
+            <i class="fab fa-cc-mastercard fa-2x"></i>
+            <i class="fab fa-cc-amex fa-2x"></i>
+            <i class="fab fa-cc-discover fa-2x"></i>
+        </div>
+    </div>
+    <script type="application/javascript">
+        var displayItems = [{% for item in basket.items.all %}{
+                label: "{{ item.quantity }} x {{ item.product.name }} @ {{ item.product.price|floatformat:2 }}",
+                amount: {{ item.total_price|mul:100|floatformat:0 }}
+                }{% endfor %}];
+        var basketTotal = {{ basket.items_total|mul:100|floatformat:2 }};
+    </script>
+{% endif %}

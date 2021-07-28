@@ -139,6 +139,51 @@ class QuizStepAdmin(SortableAdminMixin, admin.ModelAdmin):
     exclude = ["id"]
 
 
+class ProductImageInline(SortableInlineAdminMixin, admin.StackedInline):
+    exclude = ["id"]
+    model = ProductImage
+    extra = 3
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    inlines = [ProductImageInline]
+    exclude = ["id"]
+
+
+@admin.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+
+class BasketItemInline(admin.StackedInline):
+    exclude = ["id"]
+    model = BasketItem
+    extra = 0
+
+
+@admin.register(Basket)
+class BasketAdmin(admin.ModelAdmin):
+    inlines = [BasketItemInline]
+    exclude = ["id"]
+
+
+class PostageServiceTypeInline(SortableInlineAdminMixin, admin.StackedInline):
+    exclude = ["id"]
+    model = PostageServiceType
+    extra = 3
+
+
+@admin.register(PostageService)
+class PostageServiceAdmin(SortableAdminMixin, admin.ModelAdmin):
+    inlines = [PostageServiceTypeInline]
+
+
 admin.site.site_header = "Louise Misell Interiors"
 admin.site.site_title = "Louise Misell Interiors"
 admin.site.index_title = "Home"

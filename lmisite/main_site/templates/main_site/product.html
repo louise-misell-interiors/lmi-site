@@ -1,0 +1,126 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static "main_site/style/shop.css" %}">
+
+    <meta property="og:type" content="product"/>
+    <meta property="og:title" content="{{ product.name }} | Louise Misell Interiors">
+    {% if product.images.first %}
+        <meta property="og:image" content="{{ product.images.first.image.url }}">{% endif %}
+    <meta property="og:description" content="{{ product.description_text }}">
+    <meta property="product:price.amount" content="{{ product.price }}">
+    <meta property="product:price.currency" content="GBP">
+    <meta name="description" content="{{ product.description_text }}">
+
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'shop_product' product.id %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if product.header_image %}style="--header-background: url({{ product.header_image.url }});"{% endif %}>
+            <h1>{{ product.name }}</h1>
+        </header>
+        <div class="product">
+            <div class="imgs">
+                {% if product.images.first %}
+                    <img src="{{ product.images.first.image.url }}" alt="{{ product.images.first.alt }}">
+                {% endif %}
+            </div>
+            <div class="info">
+                <h1>{{ product.title }}</h1>
+                <h3>{{ product.subtitle }}</h3>
+                {{ product.description|safe }}
+                <div class="price">
+                    <h2>&pound;{{ product.price|floatformat:2 }}</h2>
+                    <form action="{% url 'shop_product_add' product.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="number" min="1" max="999" value="1" aria-label="Quantity" name="quantity">
+                        <button type="submit">Add to basket</button>
+                    </form>
+                </div>
+                <hr>
+                <h3>Delivery & Returns</h3>
+                {{ product.delivery_info|safe }}
+            </div>
+            <hr>
+            <div class="secondary-imgs">
+                {% for image in product.images.all %}
+                    {% if not forloop.first %}
+                        <img src="{{ image.image.url }}" alt="{{ image.alt }}">
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% if product.extended_description %}
+                <div class="extended-description">
+                    <hr>
+                    {{ product.extended_description|safe }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "{{ product.name }}",
+            "brand": {
+                "@type": "Brand",
+                "name": "{{ product.brand.name }}",
+                "logo": "{% if product.brand.logo %}{{ product.brand.logo.url }}{% endif %}"
+            },
+            "description": "{{ product.description_text }}",
+            "image": [{% for image in product.images.all %}
+                "{{ image.image.url }}"{% if not forloop.last %},{% endif %}
+            {% endfor %}],
+            "gtin": "{{ product.gtin }}",
+            "mpn": "{% if product.mpn %}{{ product.mpn }}{% endif %}",
+            "sku": "{{ product.id }}",
+            {% if product.category %}"category": "https://louisemisellinteriors.co.uk
+        {% url 'shop_category' product.category.id %}",{% endif %}
+            "offers": {
+                "@type": "Offer",
+                "price": "{{ product.price }}",
+                "availability": "{{ product.availability }}",
+                "priceCurrency": "GBP",
+                "url": "https://louisemisellinteriors.co.uk{% url 'shop_product' product.id %}",
+                {% if product.category %}"category": "https://louisemisellinteriors.co.uk
+        {% url 'shop_category' product.category.id %}",{% endif %}
+                "shippingDetails": [{% for postage_option in product.possible_postage_options %}{
+                    "@type": "OfferShippingDetails",
+                    "deliveryTime": {
+                        "@type": "ShippingDeliveryTime",
+                        "businessDays": {
+                            "@type": "OpeningHoursSpecification",
+                            "dayOfWeek": [{% for day in postage_option.service.despatch_days_str %}
+                                "https://schema.org/{{ day }}"{% if not forloop.last %},{% endif %}
+                            {% endfor %}]
+                        },
+                        "cutoffTime": "{{ postage_option.service.cutoff_time_utc_str }}",
+                        "handlingTime": {
+                            "@type": "QuantitativeValue",
+                            "minValue": {{ postage_option.service.handling_time_min }},
+                            "maxValue": {{ postage_option.service.handling_time_max }}
+                        },
+                        "transitTime": {
+                            "@type": "QuantitativeValue",
+                            "minValue": {{ postage_option.service.transit_time_min }},
+                            "maxValue": {{ postage_option.service.transit_time_max }}
+                        }
+                    },
+                    "shippingDestination": {
+                        "@type": "DefinedRegion",
+                        "addressCountry": "{{ postage_option.service.country.code }}"
+                    },
+                    "shippingRate": {
+                        "@type": "MonetaryAmount",
+                        "currency": "GBP",
+                        "value": {{ postage_option.price }}
+                    }
+                }{% endfor %}]
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,172 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+{% block title %}Basket{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static "main_site/style/shop.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if config.basket_header_image %}style="--header-background: url({{ config.basket_header_image.url }});"{% endif %}>
+            <h1>Your details</h1>
+        </header>
+        <div class="basket-details checkout">
+            <div class="steps">
+                <a href="{% url 'shop_basket' %}">
+                    <div>
+                        <h2>1</h2>
+                        <h3>Basket</h3>
+                    </div>
+                </a>
+                <div class="active">
+                    <div>
+                        <h2>2</h2>
+                        <h3>Your<br/>details</h3>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h2>3</h2>
+                        <h3>Payment</h3>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h2>4</h2>
+                        <h3>Complete</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="form">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <h2>Your details</h2>
+                    {{ details_form.non_field_errors }}
+                    <div>
+                        {{ details_form.name.errors }}
+                        <label for="{{ details_form.name.id_for_label }}">Name*</label>
+                        {{ details_form.name }}
+                    </div>
+                    <div>
+                        {{ details_form.email.errors }}
+                        <label for="{{ details_form.email.id_for_label }}">Email*</label>
+                        {{ details_form.email }}
+                    </div>
+                    <div>
+                        {{ details_form.phone.errors }}
+                        <label for="{{ details_form.phone.id_for_label }}">Phone*</label>
+                        {{ details_form.phone }}
+                    </div>
+                    <h2>Your delivery address</h2>
+                    {{ form.non_field_errors }}
+                    <div>
+                        {{ form.address_line1.errors }}
+                        <label for="{{ form.address_line1.id_for_label }}">Line 1*</label>
+                        {{ form.address_line1 }}
+                    </div>
+                    <div>
+                        {{ form.address_line2.errors }}
+                        <label for="{{ form.address_line2.id_for_label }}">Line 2</label>
+                        {{ form.address_line2 }}
+                    </div>
+                    <div>
+                        {{ form.address_line3.errors }}
+                        <label for="{{ form.address_line3.id_for_label }}">Line 3</label>
+                        {{ form.address_line3 }}
+                    </div>
+                    <div>
+                        {{ form.city.errors }}
+                        <label for="{{ form.city.id_for_label }}">City*</label>
+                        {{ form.city }}
+                    </div>
+                    <div>
+                        {{ form.region.errors }}
+                        <label for="{{ form.region.id_for_label }}">Region</label>
+                        {{ form.region }}
+                    </div>
+                    <div>
+                        {{ form.post_code.errors }}
+                        <label for="{{ form.post_code.id_for_label }}">Post code</label>
+                        {{ form.post_code }}
+                    </div>
+                    <div>
+                        {{ form.country.errors }}
+                        <label for="{{ form.country.id_for_label }}">Country*</label>
+                        {{ form.country }}
+                    </div>
+                    <div>
+                        {{ form.delivery_notes.errors }}
+                        <label for="{{ form.delivery_notescountry.id_for_label }}">Delivery notes</label>
+                        {{ form.delivery_notes }}
+                    </div>
+                    <button type="submit">Next</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZfarAPfnyMsfphcTaoCqt8uwO8Xb1jao&callback=initAutocomplete&libraries=places&v=weekly" async></script>
+    <script type="application/javascript">
+        function getAddressComponent(place, type, attr) {
+            for (var comp of place.address_components) {
+                for (var comp_type of comp.types) {
+                    if (comp_type === type) {
+                        return comp[attr];
+                    }
+                }
+            }
+        }
+
+        function initAutocomplete() {
+            var addressLine1 = document.getElementById("{{ form.address_line1.id_for_label }}");
+            var addressLine2 = document.getElementById("{{ form.address_line2.id_for_label }}");
+            var addressLine3 = document.getElementById("{{ form.address_line3.id_for_label }}");
+            var addressCity = document.getElementById("{{ form.city.id_for_label }}");
+            var addressRegion = document.getElementById("{{ form.region.id_for_label }}");
+            var addressPostCode = document.getElementById("{{ form.post_code.id_for_label }}");
+            var addressCountry = document.getElementById("{{ form.country.id_for_label }}");
+
+            var autocomplete = new google.maps.places.Autocomplete(addressLine1, {
+                fields: ["address_components"],
+                type: ["address"],
+                bounds: new google.maps.LatLngBounds({
+                    lng: -7.57216793459,
+                    lat: 49.959999905,
+                }, {
+                    lng: 1.68153079591,
+                    lat: 58.6350001085
+                })
+            });
+
+            autocomplete.addListener('place_changed', function () {
+                var place = autocomplete.getPlace();
+                if (place.address_components) {
+                    var addr = {
+                        house_no: getAddressComponent(place, "street_number", "long_name"),
+                        street: getAddressComponent(place, "route", "long_name"),
+                        line2: getAddressComponent(place, "sublocality", "long_name"),
+                        line3: getAddressComponent(place, "locality", "long_name"),
+                        city: getAddressComponent(place, "postal_town", "long_name"),
+                        region: getAddressComponent(place, "administrative_area_level_1", "long_name"),
+                        country: getAddressComponent(place, "country", "short_name"),
+                        postal_code: getAddressComponent(place, "postal_code", "long_name"),
+                    };
+
+                    addressLine1.value = (addr.house_no || "") + " " + (addr.street || "");
+                    addressLine2.value = addr.line2 || "";
+                    addressLine3.value = addr.line3 || "";
+                    addressCity.value = addr.city || "";
+                    addressRegion.value = addr.region || "";
+                    addressPostCode.value = addr.postal_code || "";
+                    addressCountry.value = addr.country || "";
+                    console.log(addr);
+                }
+            });
+        }
+    </script>
+{% endblock %}

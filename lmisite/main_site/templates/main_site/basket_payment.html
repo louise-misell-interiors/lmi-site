@@ -1,0 +1,198 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+{% block title %}Basket{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static "main_site/style/shop.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if config.basket_header_image %}style="--header-background: url({{ config.basket_header_image.url }});"{% endif %}>
+            <h1>Payment</h1>
+        </header>
+        <div class="basket-payment checkout">
+            <div class="steps">
+                <a href="{% url 'shop_basket' %}">
+                    <div>
+                        <h2>1</h2>
+                        <h3>Basket</h3>
+                    </div>
+                </a>
+                <a href="{% url 'shop_basket_details' %}">
+                    <div>
+                        <h2>2</h2>
+                        <h3>Your<br/>details</h3>
+                    </div>
+                </a>
+                <div class="active">
+                    <div>
+                        <h2>3</h2>
+                        <h3>Payment</h3>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h2>4</h2>
+                        <h3>Complete</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="form">
+                {% if can_deliver %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <h2>Summary</h2>
+                        <div class="totals">
+                            {% for item in basket.items.all %}
+                                <h3>{{ item.quantity }} &times; {{ item.product.name }}</h3>
+                                <h3>&pound;{{ item.total_price|floatformat:2 }}</h3>
+                            {% endfor %}
+                        </div>
+                        <h2>Delivery</h2>
+                        <div class="delivery">
+                            {% for option in postage_options %}
+                                <label class="postage-option">
+                                    <input type="radio" name="postage_option" value="{{ option.service.id }}"
+                                           {% if forloop.first %}checked{% endif %}>
+                                    <span>
+                                    <span class="name">{{ option.service.name }}</span>
+                                    <span class="description">{{ option.description }}</span>
+                                    <span class="price">
+                                        {% if option.price %}
+                                            &pound;{{ option.price|floatformat:2 }}
+                                        {% else %}
+                                            Free
+                                        {% endif %}
+                                    </span>
+                                </span>
+                                </label>
+                            {% endfor %}
+                        </div>
+                        <h2>Payment</h2>
+                        <div class="payment">
+                            <div class="loader" id="loader" style="display: none">
+                                <svg xmlns:Xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 50 50">
+                                    <path d="M43.935 25.145c0-10.318-8.364-18.683-18.683-18.683-10.318 0-18.683 8.365-18.683 18.683h4.068c0-8.071 6.543-14.615 14.615-14.615s14.615 6.543 14.615 14.615h4.068z">
+                                        <animateTransform attributeType="xml" attributeName="transform" type="rotate"
+                                                          from="0 25 25"
+                                                          to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform>
+                                    </path>
+                                </svg>
+                            </div>
+                            <ul class="errorlist">
+                                <li id="error-disp" style="display: none;"></li>
+                            </ul>
+                            <div class="input-like">
+                                <div id="card-element"></div>
+                            </div>
+                            <button type="button" id="payment-button">Pay now</button>
+                        </div>
+                    </form>
+                {% else %}
+                    <h1>Sorry, we can't deliver to your address</h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {% csrf_token %}
+    <script type="application/javascript">
+        var csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+        var errorDisp = document.getElementById("error-disp");
+        var loader = document.getElementById("loader");
+
+        var stripe = Stripe("{{ stripe_public_key }}");
+        var stripeElements = stripe.elements();
+
+        var cardButton = stripeElements.create('card', {
+            iconStyle: 'solid',
+            hidePostalCode: true,
+            style: {
+                base: {
+                    fontSize: '20px',
+                    fontFamily: '"Raleway", sans-serif',
+                    fontWeight: 'normal',
+                }
+            },
+        });
+
+        function error(msg) {
+            if (msg) {
+                errorDisp.style.display = 'list-item';
+                loader.style.display = 'none';
+                errorDisp.innerText = msg;
+            } else {
+                errorDisp.style.display = 'none';
+                errorDisp.innerText = ""
+            }
+        }
+
+        function loading(loading) {
+            if (loading) {
+                loader.style.display = 'flex';
+            } else {
+                loader.style.display = 'none';
+            }
+        }
+
+        $(function () {
+            cardButton.mount("#card-element");
+
+            $("#payment-button").on('click', function (evt) {
+                evt.preventDefault();
+                error(null);
+                loading(true);
+                var postage_option = document.querySelector('input[name="postage_option"]:checked').value;
+
+                if (postage_option) {
+                    fetch("{% url 'shop_basket_payment_intent' %}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRFToken": csrfToken,
+                        },
+                        credentials: "same-origin",
+                        body: JSON.stringify({
+                            postage_option: postage_option
+                        })
+                    }).then(function (r) {
+                        return r.json();
+                    }).then(function (r) {
+                        return stripe.confirmCardPayment(r.client_secret, {
+                            payment_method: {
+                                card: cardButton,
+                                billing_details: {
+                                    name: "{{ basket.name }}",
+                                    phone: "{{ basket.phone }}",
+                                    email: "{{ basket.email }}",
+                                    address: {
+                                        line1: "{{ basket.postage_address.address_line1 }}",
+                                        line2: "{{ basket.postage_address.address_line2 }}",
+                                        city: "{{ basket.postage_address.city }}",
+                                        state: "{{ basket.postage_address.region }}",
+                                        country: "{{ basket.postage_address.country }}",
+                                        postal_code: "{{ basket.postage_address.post_code }}",
+                                    }
+                                }
+                            }
+                        })
+                    }).then(function (r) {
+                        if (r.error) {
+                            error(r.error.message)
+                        } else {
+                           window.location = "{% url 'shop_basket_complete' %}";
+                        }
+                    }).catch(function (err) {
+                        console.error(err);
+                        error("An unexpected error occurred")
+                    });
+                }
+            });
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static "main_site/style/shop.css" %}">
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ category.name }} | Louise Misell Interiors">
+    <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
+    <meta property="og:description" content="{{ category.description }}">
+    <meta property="og:url" content=https://louisemisellinteriors.co.uk{% url 'shop_category' category.id %}">
+    <meta name="description" content="{{ category.description }}">
+
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'shop_category' category.id %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if category.header_image %}style="--header-background: url({{ category.header_image.url }});"{% endif %}>
+            <h1>{{ category.name }}</h1>
+        </header>
+        <div class="bar">
+            {{ category.description|safe }}
+        </div>
+        <div class="category">
+            {% for product in category.products.all %}
+                <div class="product">
+                    <h2>{{ product.name }}</h2>
+                    {% if product.images.first %}
+                        <img src="{{  product.images.first.image.url }}" alt="{{ product.images.first.alt }}">
+                    {% endif %}
+                    <h3 class="price">&pound;{{ product.price|floatformat:2 }}</h3>
+                    <a href="{% url 'shop_product' product.id %}" class="button">View</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

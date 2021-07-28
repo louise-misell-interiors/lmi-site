@@ -6,6 +6,8 @@ import magiclink.helpers
 import graphql
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives, EmailMessage
 from django.db import transaction
 from . import models
 
@@ -159,6 +161,24 @@ def validation_error_to_graphene(error):
     return map(lambda item: SaveToEmailError(field=item[0], errors=item[1]), error)
 
 
+def email_quiz_session(session):
+    config = models.SiteConfig.objects.first()
+
+    context = {
+        "session": session,
+        "config": config
+    }
+
+    email_msg = EmailMultiAlternatives(
+        subject="Your quiz results",
+        body=render_to_string("main_site/quiz_email.html", context),
+        to=[session.user.email],
+        reply_to=[f"Louise Misell Interiors <{config.email}>"]
+    )
+    email_msg.content_subtype = "html"
+    email_msg.send()
+
+
 class SaveToEmailQuizSessionMutation(graphene.relay.ClientIDMutation):
     class Input:
         session_id = graphene.ID(required=True)
@@ -171,46 +191,46 @@ class SaveToEmailQuizSessionMutation(graphene.relay.ClientIDMutation):
     def mutate_and_get_payload(cls, root, info, session_id, user_info=None):
         session = models.QuizSession.objects.get(id=graphql_relay.from_global_id(session_id)[1])
 
-        if not user_info:
-            raise graphql.GraphQLError("User info must be specified on an anonymous session")
-
-        if not user_info.email:
-            return cls(ok=False, error=[
-                SaveToEmailError(field='email', errors=['Email cannot be blank'])
-            ])
-
-        if not user_info.name:
-            return cls(ok=False, error=[
-                SaveToEmailError(field='email', errors=['Name cannot be blank'])
-            ])
-
-        try:
-            validate_email(user_info.email)
-        except ValidationError as e:
-            return cls(ok=False, error=[
-                SaveToEmailError(field='email', errors=[e.message])
-            ])
-
-        try:
-            first_name, last_name = user_info.name.split(" ", 1)
-        except ValueError:
-            first_name = user_info.name
-            last_name = ''
-
-        try:
-            user = magiclink.helpers.get_or_create_user(
-                email=user_info.email,
-                first_name=first_name,
-                last_name=last_name,
-            )
-        except ValidationError as e:
-            return cls(ok=False, error=validation_error_to_graphene(e))
-
-        print(user)
-
         if not session.user:
+            if not user_info:
+                raise graphql.GraphQLError("User info must be specified on an anonymous session")
+
+            if not user_info.email:
+                return cls(ok=False, error=[
+                    SaveToEmailError(field='email', errors=['Email cannot be blank'])
+                ])
+
+            if not user_info.name:
+                return cls(ok=False, error=[
+                    SaveToEmailError(field='email', errors=['Name cannot be blank'])
+                ])
+
+            try:
+                validate_email(user_info.email)
+            except ValidationError as e:
+                return cls(ok=False, error=[
+                    SaveToEmailError(field='email', errors=[e.message])
+                ])
+
+            try:
+                first_name, last_name = user_info.name.split(" ", 1)
+            except ValueError:
+                first_name = user_info.name
+                last_name = ''
+
+            try:
+                user = magiclink.helpers.get_or_create_user(
+                    email=user_info.email,
+                    first_name=first_name,
+                    last_name=last_name,
+                )
+            except ValidationError as e:
+                return cls(ok=False, error=validation_error_to_graphene(e))
+
             session.user = user
             session.save()
+
+        email_quiz_session(session)
 
         return cls(ok=True, error=None)
 

@@ -57,11 +57,15 @@ export class Step extends Component {
                 <div className="QuestionText" dangerouslySetInnerHTML={{__html: this.props.step.questionText}} />
 
                 {this.props.step.style === "RB" ? <div className="StepAnswers StepRadio">
-                    {this.props.step.answers.edges.map(e => <div className={
-                        "StepAnswer" + (this.state.selectedAnswers.has(e.node.id) ? " AnswerSelected" : "")
-                    } onClick={() => this.selectAnswer(e.node.id)}>
+                    {this.props.step.answers.edges.map(e => <div className="StepAnswer">
                         {e.node.image ? <img src={e.node.image} alt={e.node.altText} /> : null}
-                        <div className="text" dangerouslySetInnerHTML={{__html: e.node.text}}/>
+                        <div>
+                            <div className="text" dangerouslySetInnerHTML={{__html: e.node.text}}/>
+                            <button onClick={() => this.selectAnswer(e.node.id)}
+                                    className={this.state.selectedAnswers.has(e.node.id) ? "AnswerSelected" : ""}>
+                                Choose this option
+                            </button>
+                        </div>
                     </div>)}
                 </div> : null}
 

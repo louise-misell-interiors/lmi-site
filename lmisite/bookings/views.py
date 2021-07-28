@@ -6,10 +6,8 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
 from main_site.models import SiteConfig
-import decimal
 import googleapiclient.discovery
 import json
-import stripe
 import google_auth_oauthlib.flow
 import google.oauth2.credentials
 from .models import *
@@ -211,41 +209,7 @@ def booking_succeeded(booking: Booking):
     insert_booking_to_calendar(booking)
 
 
-def send_stripe_receipt(charge):
-    config = SiteConfig.objects.first()
-
-    if not charge.billing_details.email:
-        return
-
-    if charge.receipt_number:
-        subject = f"Your Louise Misell Interiors receipt - {charge.receipt_number}"
-    else:
-        subject = "Your Louise Misell Interiors receipt"
-
-    context = {
-        "charge": charge,
-        "amount": decimal.Decimal(charge.amount) / decimal.Decimal(100),
-        "date": datetime.datetime.utcfromtimestamp(charge.created)
-    }
-
-    email_msg = EmailMultiAlternatives(
-        subject=subject,
-        body=render_to_string("bookings/receipt_txt.html", context),
-        to=[charge.billing_details.email],
-        reply_to=[f"Louise Misell Interiors <{config.email}>"]
-    )
-    email_msg.attach_alternative(render_to_string("bookings/receipt.html", context), "text/html")
-    email_msg.send()
-
-
-def stripe_webhook(request):
-    try:
-        event = stripe.Event.construct_from(
-            json.loads(request.body), stripe.api_key
-        )
-    except ValueError:
-        return HttpResponse(status=400)
-
+def stripe_webhook(event):
     obj = event.data.object
     if obj.object == "payment_intent":
         booking = Booking.objects.filter(pending=True, stripe_payment_intent_id=obj.id).first()
@@ -254,8 +218,3 @@ def stripe_webhook(request):
                 booking.pending = False
                 booking.save()
                 booking_succeeded(booking)
-    elif obj.object == "charge":
-        if event.type == "charge.succeeded":
-            send_stripe_receipt(obj)
-
-    return HttpResponse(status=200)

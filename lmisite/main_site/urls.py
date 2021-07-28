@@ -1,7 +1,8 @@
 from django.urls import path
 from django.contrib.sitemaps.views import sitemap
 import django.contrib.auth.views
-from . import views
+from django.views.decorators.csrf import csrf_exempt
+from . import views, shop
 from .sitemap import SITEMAP
 
 urlpatterns = [
@@ -21,6 +22,20 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('booking/<id>/', views.booking, name='booking'),
     path('quiz/<uuid:id>/', views.quiz, name='quiz'),
+
+    path('shop/basket/', shop.shop_basket, name='shop_basket'),
+    path('shop/basket/details/', shop.shop_basket_details, name='shop_basket_details'),
+    path('shop/basket/payment/', shop.shop_basket_payment, name='shop_basket_payment'),
+    path('shop/basket/complete/', shop.shop_basket_complete, name='shop_basket_complete'),
+
+    path('shop/basket/update_quantity/', shop.shop_basket_update_quantity, name='shop_basket_update_quantity'),
+    path('shop/basket/calculate_postage/', shop.shop_basket_calculate_postage, name='shop_basket_calculate_postage'),
+    path('shop/basket/payment_intent/', shop.shop_basket_payment_intent, name='shop_basket_payment_intent'),
+
+    path('shop/category/<uuid:id>/', shop.shop_category, name='shop_category'),
+    path('shop/product/<uuid:id>/', shop.shop_product, name='shop_product'),
+    path('shop/product/<uuid:id>/add/', shop.shop_product_add, name='shop_product_add'),
+
     path('config.js', views.config, name='config.js'),
 
     path('accounts/profile/', views.account_profile, name='profile'),
@@ -42,5 +57,6 @@ urlpatterns = [
          name='django.contrib.sitemaps.views.sitemap'),
 
     path('.well-known/apple-developer-merchantid-domain-association', views.apple_merchantid),
+    path('stripe_webhook/', csrf_exempt(shop.stripe_webhook)),
 ]
 

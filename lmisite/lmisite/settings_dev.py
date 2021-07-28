@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'magiclink',
+    'django_countries',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
@@ -193,7 +195,19 @@ LOGGING = {
 
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+with open(os.path.join(BASE_DIR, "mail_secret.json")) as f:
+    mail_conf = json.load(f)
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@louisemisellinteriors.co.uk>"
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "mx.postal.as207960.net"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = mail_conf["user"]
+EMAIL_HOST_PASSWORD = mail_conf["pass"]
+EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@louisemisellinteriors.co.uk>"
 
 GRAPHENE = {
@@ -208,6 +222,11 @@ with open(os.path.join(BASE_DIR, "stripe_secret.json")) as f:
     d = json.load(f)
     stripe.api_key = d["api_key"]
     STRIPE_WEBHOOK_SECRET = d["webhook_secret"]
+    STRIPE_PUBLIC_KEY = d["public_key"]
+
+with open(os.path.join(BASE_DIR, "rm_secret.json")) as f:
+    d = json.load(f)
+    RM_API_KEY = d["api_key"]
 
 CKEDITOR_CONFIGS = {
     'default': {

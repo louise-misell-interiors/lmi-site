@@ -1,10 +1,9 @@
-import itertools
 import json
+
 import bookings.models as booking_models
 import django.utils.xmlutils
 import google_auth_oauthlib.flow
 import requests
-from django.conf import settings
 from django.contrib.syndication.views import Feed
 from django.core.mail import EmailMultiAlternatives
 from django.db.models import Q

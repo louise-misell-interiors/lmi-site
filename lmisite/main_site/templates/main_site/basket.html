@@ -1,0 +1,332 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+{% block title %}Basket{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static "main_site/style/shop.css" %}">
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Basket | Louise Misell Interiors">
+    <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
+    <meta property="og:url" content=https://louisemisellinteriors.co.uk{% url 'shop_basket' %}">
+
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'shop_basket' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if config.basket_header_image %}style="--header-background: url({{config.basket_header_image.url }});"{% endif %}>
+            <h1>Basket</h1>
+        </header>
+        <div class="basket checkout">
+            {% include "main_site/basket_fragment.html" with basket=basket %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {% csrf_token %}
+    <script type="application/javascript">
+        var csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+
+        var stripe = Stripe("{{ stripe_public_key }}");
+        var stripeElements = stripe.elements();
+
+        var displayItems = [{% for item in basket.items.all %}{
+                label: "{{ item.quantity }} x {{ item.product.name }} @ {{ item.product.price|floatformat:2 }}",
+                amount: {{ item.total_price|mul:100|floatformat:0 }}
+                }{% endfor %}];
+        var basketTotal = {{ basket.items_total|mul:100|floatformat:2 }};
+
+        var paymentRequest = stripe.paymentRequest({
+            country: "GB",
+            currency: "gbp",
+            total: {
+                amount: basketTotal,
+                label: "Louise Misell Interiors",
+                pending: true
+            },
+            displayItems: displayItems,
+            requestPayerName: true,
+            requestPayerEmail: true,
+            requestPayerPhone: true,
+            requestShipping: true,
+        });
+        var prButton = stripeElements.create('paymentRequestButton', {
+            paymentRequest: paymentRequest,
+            style: {
+                paymentRequestButton: {
+                    type: "buy",
+                    theme: "light-outline",
+                }
+            }
+        });
+        var shippingAddress = null;
+
+        function setupPaymentRequest() {
+            var errorDisp = document.getElementById("error-disp");
+
+            function error(msg) {
+                if (msg) {
+                    errorDisp.style.display = 'list-item';
+                    errorDisp.innerText = msg;
+                } else {
+                    errorDisp.style.display = 'none';
+                    errorDisp.innerText = ""
+                }
+            }
+
+            function updateShippingAddress(shippingAddress) {
+                return fetch("{% url 'shop_basket_calculate_postage' %}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": csrfToken,
+                    },
+                    credentials: "same-origin",
+                    body: JSON.stringify({
+                        address: shippingAddress
+                    })
+                }).then(function (r) {
+                    return r.json();
+                }).catch(function (err) {
+                    console.error(err);
+                    return err;
+                });
+            }
+
+            if (shippingAddress) {
+                updateShippingAddress(shippingAddress).then(function (r) {
+                    if (!r.options) {
+                        paymentRequest.update({
+                            total: {
+                                amount: basketTotal,
+                                label: "Louise Misell Interiors",
+                                pending: true
+                            },
+                            displayItems: displayItems,
+                            shippingOptions: []
+                        })
+                    } else {
+                        paymentRequest.update({
+                            total: {
+                                amount: basketTotal + r.options[0].amount,
+                                label: "Louise Misell Interiors",
+                                pending: false
+                            },
+                            displayItems: displayItems.concat([{
+                                label: r.options[0].label,
+                                amount: r.options[0].amount,
+                            }]),
+                            shippingOptions: r.options
+                        })
+                    }
+                })
+            }
+
+            paymentRequest.canMakePayment().then(function (res) {
+                if (res) {
+                    prButton.mount("#payment-request-button");
+                } else {
+                    $("#payment-request-button").hide();
+                }
+            });
+
+            paymentRequest.on('shippingaddresschange', function (ev) {
+                shippingAddress = ev.shippingAddress;
+                updateShippingAddress(ev.shippingAddress).then(function (r) {
+                    if (!r.options) {
+                        ev.updateWith({
+                            status: "invalid_shipping_address",
+                        })
+                    } else {
+                        ev.updateWith({
+                            status: "success",
+                            shippingOptions: r.options,
+                            total: {
+                                amount: basketTotal + r.options[0].amount,
+                                label: "Louise Misell Interiors",
+                                pending: false
+                            },
+                            displayItems: displayItems.concat([{
+                                label: r.options[0].label,
+                                amount: r.options[0].amount,
+                            }])
+                        })
+                    }
+                }).catch(function (err) {
+                    ev.updateWith({
+                        status: "fail"
+                    });
+                });
+            });
+
+            paymentRequest.on('shippingoptionchange', function (ev) {
+                ev.updateWith({
+                    status: "success",
+                    total: {
+                        amount: basketTotal + ev.shippingOption.amount,
+                        label: "Louise Misell Interiors",
+                        pending: false
+                    },
+                    displayItems: displayItems.concat([{
+                        label: ev.shippingOption.label,
+                        amount: ev.shippingOption.amount,
+                    }])
+                });
+            });
+
+            paymentRequest.on('paymentmethod', function (ev) {
+                error(null);
+                fetch("{% url 'shop_basket_payment_intent' %}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": csrfToken,
+                    },
+                    credentials: "same-origin",
+                    body: JSON.stringify({
+                        postage_option: ev.shippingOption.id,
+                        name: ev.payerName,
+                        email: ev.payerEmail,
+                        phone: ev.payerPhone,
+                        address: ev.shippingAddress,
+                    })
+                }).then(function (r) {
+                    return r.json();
+                }).then(function (r) {
+                    return stripe.confirmCardPayment(r.client_secret, {
+                        payment_method: ev.paymentMethod.id
+                    }, {
+                        handleActions: false
+                    }).then(function (cr) {
+                        return {r: cr, client_secret: r.client_secret};
+                    })
+                }).then(function ({r, client_secret}) {
+                    if (r.error) {
+                        ev.complete('fail');
+                    } else {
+                        ev.complete('success');
+                        if (r.paymentIntent.status === "requires_action") {
+                            stripe.confirmCardPayment(client_secret).then(function (r) {
+                                if (r.error) {
+                                    error(r.error.mesage)
+                                } else {
+                                    window.location = "{% url 'shop_basket_complete' %}";
+                                }
+                            })
+                        } else {
+                            window.location = "{% url 'shop_basket_complete' %}";
+                        }
+                    }
+                }).catch(function (err) {
+                    console.error(err);
+                    ev.complete('fail');
+                });
+            });
+        }
+
+        $(function () {
+            var basket = $(".basket");
+
+            function updateBasket(data) {
+                var params = new URLSearchParams(data);
+
+                fetch("{% url 'shop_basket_update_quantity' %}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "X-CSRFToken": csrfToken,
+                    },
+                    credentials: "same-origin",
+                    body: params.toString()
+                }).then(function (r) {
+                    return r.text();
+                }).then(function (r) {
+                    basket.html(r);
+                    bind();
+                    setupPaymentRequest();
+                });
+            }
+
+            function decrement(evt) {
+                var btn = evt.target;
+                var input = btn.nextElementSibling;
+                var idInput = btn.parentElement.previousElementSibling;
+                var oldVal = parseInt(input.value);
+                var minVal = input.attributes.getNamedItem("min")
+                minVal = minVal ? parseInt(minVal.value) : null;
+                var newVal = oldVal - 1;
+                if (minVal && newVal < minVal) {
+                    newVal = minVal;
+                }
+                input.value = newVal;
+                updateBasket({
+                    id: idInput.value,
+                    action: "update_js",
+                    quantity: newVal
+                });
+            }
+
+            function increment(evt) {
+                var btn = evt.target;
+                var input = btn.previousElementSibling;
+                var idInput = btn.parentElement.previousElementSibling;
+                var oldVal = parseInt(input.value);
+                var maxVal = input.attributes.getNamedItem("max")
+                maxVal = maxVal ? parseInt(maxVal.value) : null;
+                var newVal = oldVal + 1;
+                if (maxVal && newVal > maxVal) {
+                    newVal = maxVal;
+                }
+                input.value = newVal;
+                updateBasket({
+                    id: idInput.value,
+                    action: "update_js",
+                    quantity: newVal
+                });
+            }
+
+            function change(evt) {
+                var input = evt.target;
+                var idInput = input.parentElement.previousElementSibling;
+                updateBasket({
+                    id: idInput.value,
+                    action: "update_js",
+                    quantity: input.value
+                });
+            }
+
+            function remove(evt) {
+                evt.preventDefault();
+                var btn = evt.target;
+                var idInput = btn.previousElementSibling.previousElementSibling;
+                updateBasket({
+                    id: idInput.value,
+                    action: "remove_js",
+                });
+            }
+
+            function bind() {
+                var inputWrapper = $(".number-input");
+                var incBtn = $('<button type="button" class="dark">+</button>');
+                var decBtn = $('<button type="button" class="dark">-</button>');
+                inputWrapper.find("button").remove();
+                incBtn.appendTo(inputWrapper);
+                decBtn.prependTo(inputWrapper);
+                inputWrapper.addClass("rendered");
+                decBtn.on('click', decrement);
+                incBtn.on('click', increment);
+
+                inputWrapper.find("input").on('change', change);
+
+                inputWrapper.parent().find('[value="remove"]').on('click', remove);
+            }
+
+            bind();
+            setupPaymentRequest();
+        });
+    </script>
+{% endblock %}

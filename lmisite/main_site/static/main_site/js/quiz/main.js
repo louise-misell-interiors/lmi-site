@@ -195,7 +195,10 @@ class QuizApp extends Component {
         fetchGQL(`mutation ($input: SaveToEmailQuizSessionMutationInput!) {
                 saveToEmailQuizSession(input: $input) {
                     ok
-                    error
+                    error {
+                        field
+                        errors
+                    }
                 } 
             }`,
             {
@@ -247,18 +250,18 @@ class QuizApp extends Component {
                     {this.state.result.link ? <p>
                         <a className="button dark" href={this.state.result.link}>{this.state.result.linkText}</a>
                     </p> : null}
-                    {this.state.sent_to_user ? <p>
+                    {this.state.sent_to_user ? <h3>
                         We've sent your results to your email, they should be with you shortly.
-                    </p> : (this.state.has_user ?
+                    </h3> : (!this.state.has_user ?
                             <div className="form">
-                                <p>{this.state.quiz.resultSaveToEmail}</p>
+                                <h3>{this.state.quiz.resultSaveToEmail}</h3>
 
                                 <button type="button" onClick={this.saveToEmail}>
-                                    Send to email
+                                    Send me my results
                                 </button>
                             </div> :
                             <div className="form">
-                                <p>{this.state.quiz.resultSaveToEmail}</p>
+                                <h3>{this.state.quiz.resultSaveToEmail}</h3>
 
                                 <form>
                                     <div>
@@ -266,12 +269,12 @@ class QuizApp extends Component {
                                         <input type="text" id="user_name" required={true} ref="user_name"/>
                                     </div>
                                     <div>
-                                        <label htmlFor="user_email">Your email:</label>
+                                        <label htmlFor="user_email">Your email address:</label>
                                         <input type="email" id="user_email" required={true} ref="user_email"/>
                                     </div>
 
                                     <button type="button" onClick={this.saveToEmail}>
-                                        Send to email
+                                        Send me my results
                                     </button>
                                 </form>
                             </div>

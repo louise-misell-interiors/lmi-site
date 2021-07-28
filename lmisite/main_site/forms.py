@@ -4,7 +4,8 @@ from django.template.loader import render_to_string
 from . import models
 from . import views
 import requests
-from phonenumber_field.formfields import PhoneNumberField
+import phonenumber_field.widgets
+import phonenumber_field.formfields
 
 
 class ContactForm(forms.Form):
@@ -12,7 +13,9 @@ class ContactForm(forms.Form):
                                  widget=forms.TextInput(attrs={'placeholder': 'Your first name'}))
     last_name = forms.CharField(label='Your last name', widget=forms.TextInput(attrs={'placeholder': 'Your last name'}))
     your_email = forms.EmailField(label='Your email', widget=forms.EmailInput(attrs={'placeholder': 'Your email'}))
-    your_phone = PhoneNumberField(label='Your phone', widget=forms.TextInput(attrs={'placeholder': 'Your phone'}))
+    your_phone = phonenumber_field.formfields.PhoneNumberField(
+        label='Your phone', widget=forms.TextInput(attrs={'placeholder': 'Your phone'})
+    )
     message = forms.CharField(label='Your message', widget=forms.Textarea(attrs={'placeholder': 'Your message'}))
     source = forms.CharField(
         required=False,
@@ -149,10 +152,35 @@ class ConfigForm(forms.ModelForm):
             'contact_title', 'contact_header_image', 'contact_description', 'contact_text_1', 'contact_text_2',
             'contact_testimonials_cta', 'contact_form_image',
             'testimonials_title', 'testimonials_header_image', 'testimonials_description', 'testimonials_text',
-            'booking_title', 'booking_header_image',
+            'booking_title', 'booking_header_image', 'basket_header_image',
             'apple_merchantid'))
         widgets = {
             "facebook_page_id": PageWidget,
             "newsletter_group_id": NewsletterGroupWidget
         }
         model = models.SiteConfig
+
+
+class PersonalDetailsForm(forms.Form):
+    name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={"autocomplete": "name"}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"autocomplete": "email"}))
+    phone = phonenumber_field.formfields.PhoneNumberField(
+        widget=phonenumber_field.widgets.PhoneNumberInternationalFallbackWidget(attrs={"autocomplete": "tel"})
+    )
+
+
+class PostalAddressForm(forms.ModelForm):
+    class Meta:
+        fields = ('address_line1', 'address_line2', 'address_line3', 'city', 'region', 'post_code', 'country',
+                  'delivery_notes')
+        model = models.PostalAddress
+        widgets = {
+            "address_line1": forms.TextInput(attrs={"autocomplete": "off"}),
+            "address_line2": forms.TextInput(attrs={"autocomplete": "address-line2"}),
+            "address_line3": forms.TextInput(attrs={"autocomplete": "address-line3"}),
+            "city": forms.TextInput(attrs={"autocomplete": "address-level2"}),
+            "region": forms.TextInput(attrs={"autocomplete": "address-level1"}),
+            "post_code": forms.TextInput(attrs={"autocomplete": "postal-code"}),
+            "country": forms.Select(attrs={"autocomplete": "country"}),
+            "delivery_notes": forms.Textarea(attrs={"rows": 3})
+        }

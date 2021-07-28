@@ -962,7 +962,7 @@ class Basket(models.Model):
     @property
     def items_total(self):
         return self.items.aggregate(
-            total=models.Sum(models.F('product__price') * models.F('quantity'))
+            total=models.Sum(models.F('product__price') * models.F('quantity'), output_field=models.DecimalField())
         )["total"] or decimal.Decimal(0)
 
     @property

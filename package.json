@@ -29,7 +29,7 @@
     "rollup-plugin-node-globals": "^1",
     "rollup-plugin-postcss": "^4",
     "rollup-plugin-svg": "^2",
-    "rollup-plugin-uglify": "^6",
+    "rollup-plugin-terser": "^7",
     "sass": "^1",
     "whatwg-fetch": "^3"
   }

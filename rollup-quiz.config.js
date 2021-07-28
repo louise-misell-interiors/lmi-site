@@ -5,7 +5,7 @@ import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import svg from 'rollup-plugin-svg';
-import {uglify} from 'rollup-plugin-uglify';
+import { terser } from "rollup-plugin-terser";
 
 export default {
     input: 'lmisite/main_site/static/main_site/js/quiz/main.js',
@@ -42,6 +42,6 @@ export default {
         }),
         globals(),
         replace({'process.env.NODE_ENV': JSON.stringify('production')}),
-        uglify()
+        terser()
     ]
 };

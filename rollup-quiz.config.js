@@ -1,8 +1,8 @@
-import babel from 'rollup-plugin-babel';
-import cjs from 'rollup-plugin-commonjs';
+import babel from '@rollup/plugin-babel';
+import cjs from '@rollup/plugin-commonjs';
 import globals from 'rollup-plugin-node-globals';
-import replace from 'rollup-plugin-replace';
-import resolve from 'rollup-plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
+import resolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import svg from 'rollup-plugin-svg';
 import {uglify} from 'rollup-plugin-uglify';
@@ -28,8 +28,9 @@ export default {
         babel({
             babelrc: false,
             exclude: 'node_modules/**',
-            presets: [['env', {modules: false}], 'stage-0', 'react'],
-            plugins: ['external-helpers']
+            presets: [['@babel/env', {modules: false}], '@babel/react'],
+//            plugins: ['@babel/external-helpers'],
+            babelHelpers: 'bundled'
         }),
         cjs({
             include: [
@@ -38,15 +39,6 @@ export default {
             exclude: [
                 'node_modules/process-es6/**'
             ],
-            namedExports: {
-                'node_modules/react/index.js': [
-                    'Children', 'Component', 'PropTypes', 'createElement', 'cloneElement', 'forwardRef',
-                    'useImperativeHandle', 'Fragment', 'useRef', 'useReducer', 'useCallback', 'useEffect',
-                    'useMemo'
-                ],
-                'node_modules/react-dom/index.js': ['render', 'findDOMNode'],
-                'node_modules/graphql-anywhere/lib/async.js': ['graphql'],
-            }
         }),
         globals(),
         replace({'process.env.NODE_ENV': JSON.stringify('production')}),

@@ -17,6 +17,7 @@
     "babel-preset-es2015": "^6",
     "babelrc-rollup": "^3",
     "dateformat": "^4",
+    "glob-parent": "^5.1.2",
     "global": "^4",
     "moment": "^2",
     "postcss": "^8",

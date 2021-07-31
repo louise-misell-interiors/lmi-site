@@ -145,8 +145,9 @@
         grid-column: 1; }
   .content > .category {
     display: grid;
-    grid-auto-columns: 400px;
-    grid-gap: 1%;
+    grid-template-columns: repeat(auto-fit, 400px);
+    grid-auto-rows: 1fr;
+    grid-gap: 20px;
     justify-content: center; }
     .content > .category .product {
       background: #335470;

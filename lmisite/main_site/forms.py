@@ -22,7 +22,7 @@ class ContactForm(forms.Form):
         label='Where did you hear about me?',
         widget=forms.TextInput(attrs={'placeholder': 'Where did you hear about me?'})
     )
-    newsletter = forms.BooleanField(required=False, label='Click here to be signed up to my newsletter',
+    newsletter = forms.BooleanField(required=False, label='Click here to be signed up to our newsletter',
                                     label_suffix="")
 
 

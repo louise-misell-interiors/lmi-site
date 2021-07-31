@@ -216,8 +216,9 @@
 
   > .category {
     display: grid;
-    grid-auto-columns: 400px;
-    grid-gap: $column-gutter;
+    grid-template-columns: repeat(auto-fit, 400px);
+    grid-auto-rows: 1fr;
+    grid-gap: $content-margin;
     justify-content: center;
 
     .product {

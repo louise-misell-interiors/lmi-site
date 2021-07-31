@@ -571,6 +571,7 @@ class BrandGoogleManufacturerFeedType(feedgenerator.Rss201rev2Feed):
         handler.addQuickElement('g:product_page_url', item["g_product_page_url"])
         handler.addQuickElement('g:product_line', item["g_title"])
         handler.addQuickElement('g:product_name', item["g_subtitle"])
+        handler.addQuickElement('g:suggested_retail_price', item["g_price"])
 
         if len(item["g_images"]) >= 1:
             handler.addQuickElement('g:image_link', item["g_images"][0])
@@ -613,6 +614,9 @@ class BrandGoogleManufacturerFeed(Feed):
     def item_link(self, item: Product):
         return reverse('shop_product', kwargs={"id": item.id})
 
+    def item_guid(self, item: Product):
+        return str(item.id)
+
     def item_extra_kwargs(self, item: Product):
         return {
             "g_id": str(item.id),
@@ -622,6 +626,7 @@ class BrandGoogleManufacturerFeed(Feed):
             "g_subtitle": str(item.subtitle),
             "g_gtin": str(item.gtin),
             "g_description": str(item.description_text),
+            "g_price": f"GBP {item.price}",
             "g_product_page_url": settings.EXTERNAL_URL_BASE + reverse('shop_product', kwargs={"id": item.id}),
             "g_images": [settings.EXTERNAL_URL_BASE + i.image.url for i in item.images.all()]
         }

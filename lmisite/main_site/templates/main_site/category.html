@@ -25,7 +25,7 @@
             {{ category.description|safe }}
         </div>
         <div class="category">
-            {% for product in category.products.all %}
+            {% for product in items %}
                 <div class="product">
                     <h2>{{ product.name }}</h2>
                     {% if product.images.first %}

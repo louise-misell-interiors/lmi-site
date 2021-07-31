@@ -163,9 +163,9 @@ class DesignInsiderFeed(Feed):
     feed_type = DesignInsiderFeedType
     title = "Louise Misell Interiors blog"
     author_name = "Louise Misell"
-    author_email = "louise@louisemisellinteriors.co.uk"
+    author_email = "hello@louisemisellinteriors.co.uk"
     item_author_name = "Louise Misell"
-    item_author_email = "louise@louisemisellinteriors.co.uk"
+    item_author_email = "hello@louisemisellinteriors.co.uk"
     description = "Updates and posts from Louise Misell Interiors"
     request = None
     site = None
@@ -629,4 +629,109 @@ class BrandGoogleManufacturerFeed(Feed):
             "g_price": f"GBP {item.price}",
             "g_product_page_url": settings.EXTERNAL_URL_BASE + reverse('shop_product', kwargs={"id": item.id}),
             "g_images": [settings.EXTERNAL_URL_BASE + i.image.url for i in item.images.all()]
+        }
+
+
+class GoogleMerchantFeedType(feedgenerator.Rss201rev2Feed):
+    def rss_attributes(self):
+        return {
+            'version': self._version,
+            'xmlns:g': 'http://base.google.com/ns/1.0',
+        }
+
+    def add_item_elements(self, handler: django.utils.xmlutils.SimplerXMLGenerator, item: dict):
+        super().add_item_elements(handler, item)
+        handler.addQuickElement('g:id', item["g_id"])
+        handler.addQuickElement('g:title', item["g_name"])
+        handler.addQuickElement('g:description', item["g_description"])
+        handler.addQuickElement('g:link', item["g_link"])
+        handler.addQuickElement('g:price', item["g_price"])
+        handler.addQuickElement('g:brand', item["g_brand"])
+        handler.addQuickElement('g:gtin', item["g_gtin"])
+
+        if item["g_availability"] in (
+                Product.IN_STOCK, Product.LIMITED_AVAILABILITY,
+                Product.IN_STORE_ONLY, Product.ONLINE_ONLY,
+                Product.PRE_ORDER, Product.PRE_SALE,
+        ):
+            handler.addQuickElement('g:availability', "in stock")
+        elif item["g_availability"] in (
+                Product.OUT_OF_STOCK, Product.BACK_ORDER,
+                Product.DISCONTINUED, Product.SOLD_OUT,
+        ):
+            handler.addQuickElement('g:availability', "out of stock")
+
+        if len(item["g_images"]) >= 1:
+            handler.addQuickElement('g:image_link', item["g_images"][0])
+            for img in item["g_images"][1:]:
+                handler.addQuickElement('g:additional_image_link', img)
+
+        for shipping in item["g_shipping"]: # type: PostageServiceType
+            handler.startElement('g:shipping', {})
+            handler.addQuickElement("g:country", shipping.service.country.code)
+            handler.addQuickElement("g:service", shipping.service.name)
+            handler.addQuickElement("g:price", f"{shipping.price} GBP")
+            handler.addQuickElement("g:min_handling_time", str(shipping.service.handling_time_min))
+            handler.addQuickElement("g:max_handling_time", str(shipping.service.handling_time_max))
+            handler.addQuickElement("g:min_transit_time", str(shipping.service.transit_time_min))
+            handler.addQuickElement("g:max_transit_time", str(shipping.service.transit_time_max))
+            handler.endElement('g:shipping')
+
+        handler.addQuickElement("g:shipping_weight", f"{item['g_weight']} kg")
+        handler.addQuickElement("g:shipping_length", f"{item['g_length']} cm")
+        handler.addQuickElement("g:shipping_width", f"{item['g_width']} cm")
+        handler.addQuickElement("g:shipping_height", f"{item['g_height']} cm")
+
+
+class GoogleMerchantFeed(Feed):
+    title = 'Louise Misell Interiors'
+    feed_type = GoogleMerchantFeedType
+
+    def link(self):
+        return reverse('index')
+
+    def feed_url(self):
+        return reverse('shop_feed')
+
+    def feed_copyright(self):
+        now = timezone.now()
+        return f"Copyright Louise Misell Interiors {now.year}"
+
+    def item_copyright(self):
+        now = timezone.now()
+        return f"Copyright Louise Misell Interiors {now.year}"
+
+    def items(self):
+        return Product.objects.filter(~Q(availability=(
+            Product.DISCONTINUED,
+        )), draft=False)
+
+    def item_title(self, item: Product):
+        return item.name
+
+    def item_description(self, item: Product):
+        return item.description_text
+
+    def item_link(self, item: Product):
+        return reverse('shop_product', kwargs={"id": item.id})
+
+    def item_guid(self, item: Product):
+        return str(item.id)
+
+    def item_extra_kwargs(self, item: Product):
+        return {
+            "g_id": str(item.id),
+            "g_name": str(item.name),
+            "g_description": str(item.description_text),
+            "g_link": settings.EXTERNAL_URL_BASE + reverse('shop_product', kwargs={"id": item.id}),
+            "g_images": [settings.EXTERNAL_URL_BASE + i.image.url for i in item.images.all()],
+            "g_availability": item.availability,
+            "g_price": f"GBP {item.price}",
+            "g_brand": str(item.brand.name),
+            "g_gtin": str(item.gtin),
+            "g_shipping": item.possible_postage_options,
+            "g_weight": str(item.weight),
+            "g_width": str(item.width),
+            "g_height": str(item.height),
+            "g_length": str(item.depth),
         }

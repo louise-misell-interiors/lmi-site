@@ -828,6 +828,10 @@ class Product(models.Model):
     height = models.DecimalField(max_digits=9, decimal_places=2, default=0, verbose_name="Unit height (cm)")
     depth = models.DecimalField(max_digits=9, decimal_places=2, default=0, verbose_name="Unit depth (cm)")
     delivery_info = RichTextField(blank=True, null=True)
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+
+    class Meta:
+        ordering = ['order']
 
     # Volume of one item, in millilitres
     @property

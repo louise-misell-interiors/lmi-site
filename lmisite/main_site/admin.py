@@ -146,7 +146,7 @@ class ProductImageInline(SortableInlineAdminMixin, admin.StackedInline):
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = [ProductImageInline]
     exclude = ["id"]
 

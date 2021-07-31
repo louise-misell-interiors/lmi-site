@@ -30,7 +30,7 @@
                     {% if product.images.first %}
                         <img src="{{  product.images.first.image.url }}" alt="{{ product.images.first.alt }}">
                     {% endif %}
-                    <h2>{{ product.name }}</h2>
+                    <h2>{{ product.title }}<br/>{{ product.subtitle }}</h2>
                     <h3 class="price">&pound;{{ product.price|floatformat:2 }}</h3>
                     <a href="{% url 'shop_product' product.id %}" class="button dark">View</a>
                 </div>

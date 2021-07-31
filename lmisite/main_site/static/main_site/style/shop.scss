@@ -222,13 +222,27 @@
     justify-content: center;
 
     .product {
-      background: $background-colour-dark;
       padding: $content-padding 0;
-      color: $light-text-colour;
+      color: $dark-text-colour;
       text-align: center;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
 
       h2 {
         margin-top: 0;
+        grid-column: 1;
+      }
+
+      .price {
+        grid-column: 2;
+      }
+
+      img {
+        grid-column: 1 / 3;
+      }
+
+      .button {
+        grid-column: 1 / 3;
       }
     }
   }

@@ -36,6 +36,8 @@ urlpatterns = [
     path('shop/product/<uuid:id>/', shop.shop_product, name='shop_product'),
     path('shop/product/<uuid:id>/add/', shop.shop_product_add, name='shop_product_add'),
 
+    path('shop/feeds/brand/<uuid:id>.rss', views.BrandGoogleManufacturerFeed(), name='shop_brand_feed'),
+
     path('config.js', views.config, name='config.js'),
 
     path('accounts/profile/', views.account_profile, name='profile'),

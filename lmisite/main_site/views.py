@@ -552,3 +552,76 @@ def get_newsletter_credentials():
         }
     except json.JSONDecodeError:
         return None
+
+
+class BrandGoogleManufacturerFeedType(feedgenerator.Rss201rev2Feed):
+    def rss_attributes(self):
+        return {
+            'version': self._version,
+            'xmlns:g': 'http://base.google.com/ns/1.0',
+        }
+
+    def add_item_elements(self, handler: django.utils.xmlutils.SimplerXMLGenerator, item: dict):
+        super().add_item_elements(handler, item)
+        handler.addQuickElement('g:id', item["g_id"])
+        handler.addQuickElement('g:brand', item["g_brand"])
+        handler.addQuickElement('g:title', item["g_name"])
+        handler.addQuickElement('g:gtin', item["g_gtin"])
+        handler.addQuickElement('g:description', item["g_description"])
+        handler.addQuickElement('g:product_page_url', item["g_product_page_url"])
+        handler.addQuickElement('g:product_line', item["g_title"])
+        handler.addQuickElement('g:product_name', item["g_subtitle"])
+
+        if len(item["g_images"]) >= 1:
+            handler.addQuickElement('g:image_link', item["g_images"][0])
+            for img in item["g_images"][1:]:
+                handler.addQuickElement('g:additional_image_link', img)
+
+
+class BrandGoogleManufacturerFeed(Feed):
+    feed_type = BrandGoogleManufacturerFeedType
+
+    def get_object(self, request, id):
+        return get_object_or_404(Brand, id=id)
+
+    def title(self, obj: Brand):
+        return obj.name
+
+    def link(self):
+        return reverse('index')
+
+    def feed_url(self, obj: Brand):
+        return reverse('shop_brand_feed', kwargs={"id": obj.id})
+
+    def feed_copyright(self):
+        now = timezone.now()
+        return f"Copyright Louise Misell Interiors {now.year}"
+
+    def item_copyright(self):
+        now = timezone.now()
+        return f"Copyright Louise Misell Interiors {now.year}"
+
+    def items(self, obj: Brand):
+        return obj.products.all()
+
+    def item_title(self, item: Product):
+        return item.name
+
+    def item_description(self, item: Product):
+        return item.description_text
+
+    def item_link(self, item: Product):
+        return reverse('shop_product', kwargs={"id": item.id})
+
+    def item_extra_kwargs(self, item: Product):
+        return {
+            "g_id": str(item.id),
+            "g_brand": str(item.brand.name),
+            "g_name": str(item.name),
+            "g_title": str(item.title),
+            "g_subtitle": str(item.subtitle),
+            "g_gtin": str(item.gtin),
+            "g_description": str(item.description_text),
+            "g_product_page_url": settings.EXTERNAL_URL_BASE + reverse('shop_product', kwargs={"id": item.id}),
+            "g_images": [settings.EXTERNAL_URL_BASE + i.image.url for i in item.images.all()]
+        }

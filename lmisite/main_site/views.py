@@ -558,6 +558,7 @@ class BrandGoogleManufacturerFeedType(feedgenerator.Rss201rev2Feed):
     def rss_attributes(self):
         return {
             'version': self._version,
+            'xmlns:atom': 'http://www.w3.org/2005/Atom',
             'xmlns:g': 'http://base.google.com/ns/1.0',
         }
 
@@ -636,6 +637,7 @@ class GoogleMerchantFeedType(feedgenerator.Rss201rev2Feed):
     def rss_attributes(self):
         return {
             'version': self._version,
+            'xmlns:atom': 'http://www.w3.org/2005/Atom',
             'xmlns:g': 'http://base.google.com/ns/1.0',
         }
 

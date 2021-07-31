@@ -152,12 +152,14 @@
       flex-wrap: wrap;
       justify-content: center;
       grid-gap: $content-padding;
+      max-width: 1500px;
+      margin: 0 auto;
 
       .StepAnswer {
         padding: $content-padding/2;
         display: flex;
         flex-direction: column;
-        width: 350px;
+        width: 300px;
         gap: $content-padding;
 
         img {

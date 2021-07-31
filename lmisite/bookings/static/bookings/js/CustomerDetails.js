@@ -473,12 +473,12 @@ class BaseCustomerDetails extends Component {
                 <div>
                     <div className="input-like">
                         <p>Please upload a picture or two of your project (optional)</p>
-                        <Dropzone
+                        <Dropzone.default
+                            accept="image/*"
                             getUploadParams={this.getUploadParams}
                             onChangeStatus={this.onUploadStatus}
                             initialFiles={this.state.initialfileObjs}
                             inputContent="Drag and drop files or click to browse"
-                            accept="image/*"
                             submitButtonDisabled={true}
                             styles={{
                                 inputLabel: {

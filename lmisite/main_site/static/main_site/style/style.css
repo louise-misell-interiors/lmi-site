@@ -432,12 +432,14 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    grid-gap: 25px; }
+    grid-gap: 25px;
+    max-width: 1500px;
+    margin: 0 auto; }
     #quiz-wrapper .StepPage .StepAnswers.StepImageGrid .StepAnswer {
       padding: 12.5px;
       display: flex;
       flex-direction: column;
-      width: 350px;
+      width: 300px;
       gap: 25px; }
       #quiz-wrapper .StepPage .StepAnswers.StepImageGrid .StepAnswer img {
         flex-grow: 1;

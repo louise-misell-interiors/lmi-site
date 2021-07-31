@@ -245,14 +245,15 @@ class QuizApp extends Component {
         } else if (this.state.result) {
             return (
                 <div className="StartPage">
+                    {this.state.sent_to_user ? <h2>
+                        We've sent your results to your email, they should be with you shortly.
+                    </h2> : null}
                     <h2>{this.state.quiz.resultHeader}</h2>
-                    <div className="ResultText" dangerouslySetInnerHTML={{__html: this.state.result.text}} />
+                    <div className="ResultText" dangerouslySetInnerHTML={{__html: this.state.result.text}}/>
                     {this.state.result.link ? <p>
                         <a className="button dark" href={this.state.result.link}>{this.state.result.linkText}</a>
                     </p> : null}
-                    {this.state.sent_to_user ? <h3>
-                        We've sent your results to your email, they should be with you shortly.
-                    </h3> : (!this.state.has_user ?
+                    {this.state.sent_to_user ? null : (!this.state.has_user ?
                             <div className="form">
                                 <h3>{this.state.quiz.resultSaveToEmail}</h3>
 

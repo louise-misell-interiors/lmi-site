@@ -420,75 +420,76 @@ def order_succeeded(basket: Basket):
 
 
 def make_rm_order(basket: Basket):
-    postage_option = PostageOption.from_json(basket.postage_service_bins)
-    subtotal = basket.items_total
+    if settings.RM_API_KEY:
+        postage_option = PostageOption.from_json(basket.postage_service_bins)
+        subtotal = basket.items_total
 
-    address = {
-        "fullName": basket.postage_address.name,
-        "addressLine1": basket.postage_address.address_line1,
-        "addressLine2": basket.postage_address.address_line2,
-        "addressLine3": basket.postage_address.address_line3,
-        "city": basket.postage_address.city,
-        "county": basket.postage_address.region,
-        "postcode": basket.postage_address.post_code,
-        "countryCode": basket.postage_address.country.code,
-    }
-
-    order = {
-        "orderReference": None,
-        "recipient": {
-            "address": address,
-            "phoneNumber": basket.phone.as_e164,
-            "emailAddress": basket.email,
-            "addressBookReference": str(basket.postage_address.id),
-        },
-        "billing": {
-            "address": address,
-            "phoneNumber": basket.phone.as_e164,
-            "emailAddress": basket.email,
-        },
-        "packages": None,
-        "orderDate": basket.completed_date.isoformat(),
-        "specialInstructions": basket.postage_address.delivery_notes,
-        "subtotal": str(subtotal),
-        "shippingCostCharged": str(postage_option.price),
-        "total": str(subtotal + postage_option.price),
-        "currencyCode": "GBP",
-        "postageDetails": {
-            "serviceCode": postage_option.service.rm_service_code,
-            "sendNotificationsTo": "recipient",
-            "receiveEmailNotifications": True,
-            "receiveSmsNotifications": True,
+        address = {
+            "fullName": basket.postage_address.name,
+            "addressLine1": basket.postage_address.address_line1,
+            "addressLine2": basket.postage_address.address_line2,
+            "addressLine3": basket.postage_address.address_line3,
+            "city": basket.postage_address.city,
+            "county": basket.postage_address.region,
+            "postcode": basket.postage_address.post_code,
+            "countryCode": basket.postage_address.country.code,
         }
-    }
 
-    orders = []
-    for i, postage_bin in enumerate(postage_option.bins):
-        new_order = copy.copy(order)
-        new_order["orderReference"] = f"{basket.id};{i}"
-        new_order["packages"] = [{
-            "weightInGrams": postage_bin.weight_grams,
-            "packageFormatIdentifier": postage_bin.service_type.rm_package_format_id
-            if postage_bin.service_type.rm_package_format_id else "undefined",
-            "contents": [next(
-                {
-                    "name": product.name,
-                    "SKU": str(product.id),
-                    "quantity": len(list(filter(lambda p: p.id == pid, postage_bin.items))),
-                    "unitValue": str(product.price),
-                    "unitWeightInGrams": int(round(product.weight * 1000)),
-                    "customsDeclarationCategory": "saleOfGoods",
-                } for product in postage_bin.items if product.id == pid
-            ) for pid in set(map(lambda p: p.id, postage_bin.items))]
-        }]
-        orders.append(new_order)
+        order = {
+            "orderReference": None,
+            "recipient": {
+                "address": address,
+                "phoneNumber": basket.phone.as_e164,
+                "emailAddress": basket.email,
+                "addressBookReference": str(basket.postage_address.id),
+            },
+            "billing": {
+                "address": address,
+                "phoneNumber": basket.phone.as_e164,
+                "emailAddress": basket.email,
+            },
+            "packages": None,
+            "orderDate": basket.completed_date.isoformat(),
+            "specialInstructions": basket.postage_address.delivery_notes,
+            "subtotal": str(subtotal),
+            "shippingCostCharged": str(postage_option.price),
+            "total": str(subtotal + postage_option.price),
+            "currencyCode": "GBP",
+            "postageDetails": {
+                "serviceCode": postage_option.service.rm_service_code,
+                "sendNotificationsTo": "recipient",
+                "receiveEmailNotifications": True,
+                "receiveSmsNotifications": True,
+            }
+        }
 
-    r = requests.post("https://api.parcel.royalmail.com/api/v1/orders", headers={
-        "Authorization": f"Bearer {settings.RM_API_KEY}",
-    }, json={
-        "items": orders
-    })
-    r.raise_for_status()
+        orders = []
+        for i, postage_bin in enumerate(postage_option.bins):
+            new_order = copy.copy(order)
+            new_order["orderReference"] = f"{basket.id};{i}"
+            new_order["packages"] = [{
+                "weightInGrams": postage_bin.weight_grams,
+                "packageFormatIdentifier": postage_bin.service_type.rm_package_format_id
+                if postage_bin.service_type.rm_package_format_id else "undefined",
+                "contents": [next(
+                    {
+                        "name": product.name,
+                        "SKU": str(product.id),
+                        "quantity": len(list(filter(lambda p: p.id == pid, postage_bin.items))),
+                        "unitValue": str(product.price),
+                        "unitWeightInGrams": int(round(product.weight * 1000)),
+                        "customsDeclarationCategory": "saleOfGoods",
+                    } for product in postage_bin.items if product.id == pid
+                ) for pid in set(map(lambda p: p.id, postage_bin.items))]
+            }]
+            orders.append(new_order)
 
-    basket.rm_order_id = list(map(lambda o: o["orderIdentifier"], r.json()["createdOrders"]))
-    basket.save()
+        r = requests.post("https://api.parcel.royalmail.com/api/v1/orders", headers={
+            "Authorization": f"Bearer {settings.RM_API_KEY}",
+        }, json={
+            "items": orders
+        })
+        r.raise_for_status()
+
+        basket.rm_order_id = list(map(lambda o: o["orderIdentifier"], r.json()["createdOrders"]))
+        basket.save()

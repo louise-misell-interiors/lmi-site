@@ -220,6 +220,8 @@ with open("/opt/apps/stripe_secret.json") as f:
 with open("/opt/apps/gmail_relay_pass") as f:
     mail_pass = f.read().strip()
 
+RM_API_KEY = None
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "mx.postal.as207960.net"
 EMAIL_PORT = 25

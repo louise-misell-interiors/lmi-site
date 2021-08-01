@@ -29,9 +29,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qt-d9(74_5==&jku1kr&jh_tmeal+p)&s(lv30^7mpobfoch)v'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -58,7 +55,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'django_countries',
     'mathfilters',
-    # 'magiclink',
+    'magiclink',
 ]
 
 MIDDLEWARE = [
@@ -220,7 +217,12 @@ with open("/opt/apps/stripe_secret.json") as f:
 with open("/opt/apps/gmail_relay_pass") as f:
     mail_pass = f.read().strip()
 
-RM_API_KEY = None
+with open("/opt/apps/django_secret") as f:
+    SECRET_KEY = f.read().strip()
+
+with open("/opt/apps/rm_secret.json") as f:
+    d = json.load(f)
+    RM_API_KEY = d["api_key"]
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "mx.postal.as207960.net"

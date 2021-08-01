@@ -129,6 +129,8 @@
     .imgs {
       img {
         width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
     }
 
@@ -141,8 +143,7 @@
 
       img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        object-fit: contain;
       }
     }
 
@@ -220,6 +221,10 @@
 
     @media (max-width: $media-small) {
       grid-template-columns: 1fr;
+
+      .info {
+        width: unset;
+      }
 
       .secondary-imgs, .extended-description, hr {
         grid-column: 1;

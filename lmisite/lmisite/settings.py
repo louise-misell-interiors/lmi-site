@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'django_countries',
     'mathfilters',
-    'magiclink',
 ]
 
 MIDDLEWARE = [

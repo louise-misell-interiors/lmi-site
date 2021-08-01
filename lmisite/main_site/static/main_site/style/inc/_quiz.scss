@@ -59,6 +59,23 @@
         grid-gap: $content-padding;
         grid-template-columns: 1fr auto;
 
+        @media (max-width: $media-medium) {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: $media-small) {
+          grid-template-columns: 1fr;
+
+          img {
+            grid-column: 1;
+            grid-row: 1;
+          }
+        }
+
+        @media (max-width: $media-xsmall) {
+          margin: $content-padding/2 -$content-padding/2;
+        }
+
         button {
           border: 3px solid $background-colour;
         }

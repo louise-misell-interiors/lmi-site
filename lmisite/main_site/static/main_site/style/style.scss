@@ -219,6 +219,10 @@ img {
     > div {
       padding: $content-padding;
 
+      @media (max-width: $media-xsmall) {
+        padding: $content-padding/4;
+      }
+
       h1 {
         text-align: center;
         font-size: $header-font-size;

@@ -29,7 +29,12 @@
     justify-content: center;
 
     @media (max-width: $media-xsmall) {
-      padding: 0 !important;
+      padding: $content-padding/2 !important;
+
+      .service {
+        width: unset;
+
+      }
     }
 
     .service-block {

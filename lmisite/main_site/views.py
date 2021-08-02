@@ -301,7 +301,6 @@ def diversity_for_design(request):
     return render(request, "main_site/diversity_for_design.html", {"testimonial": testimonials.first()})
 
 
-@staff_member_required
 def designer_in_a_box(request):
     return render(request, "main_site/designer_in_a_box.html")
 

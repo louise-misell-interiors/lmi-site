@@ -32,14 +32,14 @@ class ImageSitemap(Sitemap):
                 'lastmod': lastmod,
                 'changefreq': self.__get('changefreq', item),
                 'priority': str(priority if priority is not None else ''),
-                'images': self.get_image(protocol, domain, item),
+                'images': self.get_image(item),
             }
             urls.append(url_info)
         if all_items_lastmod and latest_lastmod:
             self.latest_lastmod = latest_lastmod
         return urls
 
-    def get_image(self, protocol, domain, item):
+    def get_image(self, item):
         raise NotImplementedError()
 
 
@@ -50,7 +50,7 @@ class ProjectSitemap(ImageSitemap):
     def location(self, obj):
         return reverse('project', kwargs={'id': obj.id})
 
-    def get_image(self, _protocol, _domain, item):
+    def get_image(self, item):
         imgs = []
         for img in item.before_images.all():
             imgs.append({
@@ -72,7 +72,7 @@ class DesignInsiderSitemap(ImageSitemap):
     def location(self, obj):
         return reverse('design_insider_post', kwargs={'id': obj.id})
 
-    def get_image(self, _protocol, _domain, item):
+    def get_image(self, item):
         imgs = []
         if item.image:
             imgs.append({
@@ -88,7 +88,7 @@ class TestimonialSitemap(ImageSitemap):
     def location(self, obj):
         return reverse(obj)
 
-    def get_image(self, _protocol, _domain, item):
+    def get_image(self, item):
         imgs = []
         for testimonial in Testimonial.objects.filter(draft=False):
             if testimonial.image:
@@ -105,7 +105,7 @@ class PortfolioSitemap(ImageSitemap):
     def location(self, obj):
         return reverse(obj)
 
-    def get_image(self, _protocol, _domain, item):
+    def get_image(self, item):
         imgs = []
         for project in Project.objects.filter(draft=False):
             if project.image:
@@ -123,7 +123,7 @@ class ShopProductSitemap(ImageSitemap):
     def location(self, obj):
         return reverse('shop_product', kwargs={'id': obj.id})
 
-    def get_image(self, _protocol, _domain, item: Product):
+    def get_image(self, item: Product):
         imgs = []
         for img in item.images.all():
             imgs.append({

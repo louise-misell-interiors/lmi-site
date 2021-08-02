@@ -515,6 +515,9 @@ class Quiz(models.Model):
     intro_text = models.TextField()
     result_header = models.CharField(max_length=255, blank=True, null=True)
     result_save_to_email = models.CharField(max_length=255, blank=True, null=True)
+    results_email_subject = models.CharField(max_length=255)
+    results_email_header_background = models.ImageField(blank=True)
+    results_email_header_logo = models.ImageField(blank=True)
 
     def __str__(self):
         return self.name
@@ -714,9 +717,8 @@ class PostageService(models.Model):
 
         return times
 
-    def formatted_delivery_time_range(self, timestamp=None):
-        time_range = self.delivery_time_range(timestamp=timestamp)
-
+    @staticmethod
+    def format_delivery_time_range(time_range):
         if time_range:
             if time_range[0] == time_range[1]:
                 if time_range[0] == 1:
@@ -727,6 +729,10 @@ class PostageService(models.Model):
                 return f"within {time_range[0]} to {time_range[1]} days"
         else:
             return None
+
+    def formatted_delivery_time_range(self, timestamp=None):
+        time_range = self.delivery_time_range(timestamp=timestamp)
+        return self.format_delivery_time_range(time_range)
 
     def __str__(self):
         return self.name

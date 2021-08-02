@@ -1,0 +1,33 @@
+{% extends "main_site_emails/base.html" %}
+{% block content %}
+    <h2>
+        Hi {{ session.user.first_name }},
+    </h2>
+    <h1 style="text-align: center;">
+        Here are the results of your quiz
+    </h1>
+    {% with result=session.result %}
+        <div style="text-align: center">
+            {{ result.text|safe }}
+        </div>
+        {% if result.link %}
+            <hr style="height: 0; border: none; border-bottom: 3px solid #e5f0f2;"/>
+
+            <div style="text-align: center;margin: 25px 0;">
+                <a href="{{ result.link }}" style="font-size: 20px;padding: 18px;background: #335470;color: #fff;display: inline-block;text-decoration: none;">
+                    {{ result.link_text }}
+                </a>
+            </div>
+        {% endif %}
+    {% endwith %}
+    <hr style="height: 0; border: none; border-bottom: 3px solid #e5f0f2;"/>
+    <h2 style="text-align: center;">
+        Not sure its the right one for you?
+    </h2>
+    <div style="text-align: center">
+        <a href="{{ settings.EXTERNAL_URL_BASE  }}{% url 'quiz' session.quiz.id %}"
+           style="font-size: 20px;padding: 18px;background: #335470;color: #fff;display: inline-block;text-decoration: none;">
+            Take the quiz again
+        </a>
+    </div>
+{% endblock %}

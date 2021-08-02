@@ -28,5 +28,9 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('bookings/', include('bookings.urls', namespace='bookings')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 handler404 = 'main_site.views.page_not_found'
+
+if settings.DEBUG:
+    urlpatterns.extend(static(settings.MEDIA_URL_PATH, document_root=settings.MEDIA_ROOT))
+    urlpatterns.extend(static(settings.STATIC_URL_PATH, document_root=settings.STATIC_ROOT))

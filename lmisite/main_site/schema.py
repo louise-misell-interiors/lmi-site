@@ -9,6 +9,7 @@ from django.core.validators import validate_email
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives, EmailMessage
 from django.db import transaction
+from django.conf import settings
 from . import models
 
 
@@ -165,13 +166,17 @@ def email_quiz_session(session):
     config = models.SiteConfig.objects.first()
 
     context = {
+        "settings": settings,
         "session": session,
-        "config": config
+        "header_bg": session.quiz.results_email_header_background.url
+        if session.quiz.results_email_header_background else None,
+        "header_logo": session.quiz.results_email_header_logo.url
+        if session.quiz.results_email_header_logo else None,
     }
 
     email_msg = EmailMultiAlternatives(
-        subject="Your quiz results",
-        body=render_to_string("main_site/quiz_email.html", context),
+        subject=session.quiz.results_email_subject,
+        body=render_to_string("main_site_emails/quiz_email.html", context),
         to=[session.user.email],
         reply_to=[f"Louise Misell Interiors <{config.email}>"]
     )
@@ -191,7 +196,8 @@ class SaveToEmailQuizSessionMutation(graphene.relay.ClientIDMutation):
     def mutate_and_get_payload(cls, root, info, session_id, user_info=None):
         session = models.QuizSession.objects.get(id=graphql_relay.from_global_id(session_id)[1])
 
-        if not session.user:
+        # if not session.user:
+        if True:
             if not user_info:
                 raise graphql.GraphQLError("User info must be specified on an anonymous session")
 

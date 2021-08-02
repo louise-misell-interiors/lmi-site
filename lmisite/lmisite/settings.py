@@ -173,10 +173,12 @@ EXTERNAL_URL_BASE = "https://louisemisellinteriors.co.uk"
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = '/static/'
+STATIC_URL_PATH = '/static/'
+STATIC_URL = EXTERNAL_URL_BASE + STATIC_URL_PATH
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = '/media/'
+MEDIA_URL_PATH = '/media/'
+MEDIA_URL = EXTERNAL_URL_BASE + MEDIA_URL_PATH
 
 PHONENUMBER_DEFAULT_REGION = 'GB'
 

@@ -55,3 +55,26 @@
         </div>
     </div>
 {% endblock %}
+
+{% block scripts %}
+<script src="https://apis.google.com/js/platform.js?onload=renderOptIn"></script>
+
+<script>
+  window.renderOptIn = function() {
+    window.gapi.load('surveyoptin', function() {
+      window.gapi.surveyoptin.render(
+        {
+          "merchant_id": 464702105,
+          "order_id": "{{ basket.id }}",
+          "email": "{{ basket.email }}",
+          "delivery_country": "{{ basket.postage_address.country.code }}",
+          "estimated_delivery_date": "{{ estimated_delivery_date|date:"Y-m-d" }}",
+          "products": [{% for item in basket.items.all %}
+              {"gtin": "{{ item.product.gtin }}"}
+          {% endfor %}]
+        });
+    });
+  }
+</script>
+{% endblock scripts %}
+

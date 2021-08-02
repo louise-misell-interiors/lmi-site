@@ -1,0 +1,29 @@
+{% if header_bg %}
+<div style="background-image: url({{ header_bg }}); background-position: 50% 50%; background-size: cover; background-attachment: fixed; padding: 50px 15px;margin-bottom: 25px">
+{% else %}
+<div style="background: #e5f0f2;padding: 50px 15px;margin-bottom: 25px">
+{% endif %}
+    <img src="{% if header_logo %}{{ header_logo }}{% else %}{{ settings.EXTERNAL_URL_BASE }}/static/main_site/img/logo.png{% endif %}" alt=""
+         style="max-width: 200px;margin: 0 auto;display: block;"/>
+</div>
+
+<div style="max-width: 600px;margin: 0 auto;color: #335470;">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<div style="background: #335470;padding: 50px 15px;margin-top: 25px;">
+    <div style="max-width: 600px;color: #fff;text-align: center;margin: 0 auto;">
+        <p>
+            &copy; Louise Misell Interiors Ltd.
+        </p>
+        <p>
+            Company registration &#x2116; 13272519.
+        </p>
+        <p>
+            <a style="color: #fff;" href="{% if config.privacy_policy %}{{ settings.EXTERNAL_URL_BASE }}{{ config.privacy_policy.url }}{% endif %}">Privacy Policy</a>
+            |
+            <a style="color: #fff;" href="{% if config.terms_and_conditions %}{{ settings.EXTERNAL_URL_BASE }}{{ config.terms_and_conditions.url }}{% endif %}">Terms &amp; Conditions</a>
+        </p>
+    </div>
+</div>

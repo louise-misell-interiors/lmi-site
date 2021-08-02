@@ -161,10 +161,12 @@ USE_TZ = True
 EXTERNAL_URL_BASE = "https://lmi-site.eu.ngrok.io"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = '/static/'
+STATIC_URL_PATH = '/static/'
+STATIC_URL = EXTERNAL_URL_BASE + STATIC_URL_PATH
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = '/media/'
+MEDIA_URL_PATH = '/media/'
+MEDIA_URL = EXTERNAL_URL_BASE + MEDIA_URL_PATH
 
 PHONENUMBER_DEFAULT_REGION = 'GB'
 
@@ -199,16 +201,16 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 with open(os.path.join(BASE_DIR, "mail_secret.json")) as f:
     mail_conf = json.load(f)
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@louisemisellinteriors.co.uk>"
-
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "mx.postal.as207960.net"
-EMAIL_PORT = 25
-EMAIL_HOST_USER = mail_conf["user"]
-EMAIL_HOST_PASSWORD = mail_conf["pass"]
-EMAIL_USE_TLS = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@louisemisellinteriors.co.uk>"
+
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "mx.postal.as207960.net"
+# EMAIL_PORT = 25
+# EMAIL_HOST_USER = mail_conf["user"]
+# EMAIL_HOST_PASSWORD = mail_conf["pass"]
+# EMAIL_USE_TLS = False
+# DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@louisemisellinteriors.co.uk>"
 
 GRAPHENE = {
     'SCHEMA': 'lmisite.schema.schema'

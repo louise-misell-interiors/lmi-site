@@ -1,4 +1,5 @@
 import copy
+import datetime
 import json
 import uuid
 
@@ -140,14 +141,22 @@ def shop_basket_payment(request):
 
 def shop_basket_complete(request):
     basket = get_basket(request, complete=True)
-    if not basket or not basket.completed_date or not basket.postage_service:
+    if not basket or not basket.postage_service:
         return redirect('shop_basket')
 
-    delivery_time_range = basket.postage_service.formatted_delivery_time_range(timestamp=basket.completed_date)
+    delivery_time_range = basket.postage_service.delivery_time_range(
+        timestamp=basket.completed_date
+    )
+    formatted_delivery_time_range = basket.postage_service.format_delivery_time_range(delivery_time_range)
+
+    estimated_delivery_date = basket.completed_date
+    if delivery_time_range:
+        estimated_delivery_date += datetime.timedelta(days=delivery_time_range[0])
 
     return render(request, "main_site/basket_complete.html", {
         "basket": basket,
-        "delivery_time_range": delivery_time_range
+        "delivery_time_range": formatted_delivery_time_range,
+        "estimated_delivery_date": estimated_delivery_date
     })
 
 

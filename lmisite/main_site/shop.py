@@ -38,7 +38,10 @@ def shop_product(request, id):
 
 def get_basket(request, create=True, complete=False):
     if complete:
-        return Basket.objects.filter(id=request.session["basket_id"]).first()
+        if "basket_id" in request.session:
+            return Basket.objects.filter(id=request.session["basket_id"]).first()
+        else:
+            return None
 
     if "basket_id" in request.session:
         basket = Basket.objects.filter(id=request.session["basket_id"], state=Basket.STATE_CREATION).first()

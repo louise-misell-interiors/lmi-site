@@ -628,7 +628,7 @@ class BrandGoogleManufacturerFeed(Feed):
             "g_description": str(item.description_text),
             "g_price": f"GBP {item.price}",
             "g_product_page_url": settings.EXTERNAL_URL_BASE + reverse('shop_product', kwargs={"id": item.id}),
-            "g_images": [settings.EXTERNAL_URL_BASE + i.image.url for i in item.images.all()]
+            "g_images": [i.image.url for i in item.images.all()]
         }
 
 

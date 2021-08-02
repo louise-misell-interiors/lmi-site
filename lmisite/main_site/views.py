@@ -725,7 +725,7 @@ class GoogleMerchantFeed(Feed):
             "g_name": str(item.name),
             "g_description": str(item.description_text),
             "g_link": settings.EXTERNAL_URL_BASE + reverse('shop_product', kwargs={"id": item.id}),
-            "g_images": [settings.EXTERNAL_URL_BASE + i.image.url for i in item.images.all()],
+            "g_images": [i.image.url for i in item.images.all()],
             "g_availability": item.availability,
             "g_price": f"GBP {item.price}",
             "g_brand": str(item.brand.name),

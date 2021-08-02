@@ -50,16 +50,16 @@ class ProjectSitemap(ImageSitemap):
     def location(self, obj):
         return reverse('project', kwargs={'id': obj.id})
 
-    def get_image(self, protocol, domain, item):
+    def get_image(self, _protocol, _domain, item):
         imgs = []
         for img in item.before_images.all():
             imgs.append({
-                "loc": "%s://%s%s" % (protocol, domain, img.image.url),
+                "loc": img.image.url,
                 "caption": img.alt_text
             })
         for img in item.after_images.all():
             imgs.append({
-                "loc":  "%s://%s%s" % (protocol, domain, img.image.url),
+                "loc": img.image.url,
                 "caption": img.alt_text
             })
         return imgs
@@ -72,11 +72,11 @@ class DesignInsiderSitemap(ImageSitemap):
     def location(self, obj):
         return reverse('design_insider_post', kwargs={'id': obj.id})
 
-    def get_image(self, protocol, domain, item):
+    def get_image(self, _protocol, _domain, item):
         imgs = []
         if item.image:
             imgs.append({
-                "loc": "%s://%s%s" % (protocol, domain, item.image.url)
+                "loc": item.image.url
             })
         return imgs
 
@@ -88,12 +88,12 @@ class TestimonialSitemap(ImageSitemap):
     def location(self, obj):
         return reverse(obj)
 
-    def get_image(self, protocol, domain, item):
+    def get_image(self, _protocol, _domain, item):
         imgs = []
         for testimonial in Testimonial.objects.filter(draft=False):
             if testimonial.image:
                 imgs.append({
-                    "loc": "%s://%s%s" % (protocol, domain, testimonial.image.url)
+                    "loc": testimonial.image.url
                 })
         return imgs
 
@@ -105,15 +105,40 @@ class PortfolioSitemap(ImageSitemap):
     def location(self, obj):
         return reverse(obj)
 
-    def get_image(self, protocol, domain, item):
+    def get_image(self, _protocol, _domain, item):
         imgs = []
         for project in Project.objects.filter(draft=False):
             if project.image:
                 imgs.append({
-                    "loc": "%s://%s%s" % (protocol, domain, project.image.url),
+                    "loc": project.image.url,
                     "caption": project.image_alt_text
                 })
         return imgs
+
+
+class ShopProductSitemap(ImageSitemap):
+    def items(self):
+        return Product.objects.filter(draft=False)
+
+    def location(self, obj):
+        return reverse('shop_product', kwargs={'id': obj.id})
+
+    def get_image(self, _protocol, _domain, item: Product):
+        imgs = []
+        for img in item.images.all():
+            imgs.append({
+                "loc":  img.image.url,
+                "caption": img.alt
+            })
+        return imgs
+
+
+class ShopCategorySitemap(Sitemap):
+    def items(self):
+        return Category.objects.all()
+
+    def location(self, obj):
+        return reverse('shop_category', kwargs={'id': obj.id})
 
 
 class StaticViewSitemap(Sitemap):
@@ -129,5 +154,7 @@ SITEMAP = {
     "design_insider": DesignInsiderSitemap,
     "testimonials": TestimonialSitemap,
     "portfolio": PortfolioSitemap,
+    "shop_product": ShopProductSitemap,
+    "shop_category": ShopCategorySitemap,
     "static": StaticViewSitemap,
 }

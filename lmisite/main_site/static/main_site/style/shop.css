@@ -123,23 +123,22 @@
         align-items: center; }
         .content > .product .info .price h2 {
           display: inline-block;
-          color: #335470; }
-        .content > .product .info .price form {
-          margin-left: 20px; }
-          .content > .product .info .price form input {
-            display: inline-block;
-            width: 80px;
-            padding: 12.5px;
-            font-family: 'Baskerville', sans-serif;
-            margin-left: 10px;
-            margin-bottom: 10px; }
-            .content > .product .info .price form input ::-webkit-inner-spin-button, .content > .product .info .price form input ::-webkit-outer-spin-button {
-              opacity: 1; }
-          .content > .product .info .price form button {
-            font-size: inherit;
-            padding: 12.5px;
-            font-family: 'Baskerville', sans-serif;
-            margin-left: 10px; }
+          color: #335470;
+          margin-right: 20px; }
+        .content > .product .info .price form input {
+          display: inline-block;
+          width: 80px;
+          padding: 12.5px;
+          font-family: 'Baskerville', sans-serif;
+          margin-left: 10px;
+          margin-bottom: 10px; }
+          .content > .product .info .price form input ::-webkit-inner-spin-button, .content > .product .info .price form input ::-webkit-outer-spin-button {
+            opacity: 1; }
+        .content > .product .info .price form button {
+          font-size: inherit;
+          padding: 12.5px;
+          font-family: 'Baskerville', sans-serif;
+          margin-left: 10px; }
       .content > .product .info p {
         color: #335470; }
       .content > .product .info hr {

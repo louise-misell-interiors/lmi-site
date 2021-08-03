@@ -68,6 +68,7 @@ class SiteConfig(SingletonModel):
 
     privacy_policy = models.FileField(blank=True)
     terms_and_conditions = models.FileField(blank=True)
+    shop_terms_and_conditions = models.FileField(blank=True)
 
     image_slider_speed = models.PositiveIntegerField(default=5000, verbose_name="Home page image slider speed (ms)")
     testimonials_slider_speed = \

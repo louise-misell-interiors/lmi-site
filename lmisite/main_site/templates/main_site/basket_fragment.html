@@ -90,6 +90,9 @@
             <i class="fab fa-cc-amex fa-2x"></i>
             <i class="fab fa-cc-discover fa-2x"></i>
         </div>
+        {% if config.shop_terms_and_conditions %}
+            <a href="{{ config.shop_terms_and_conditions.url }}" class="dark">Shop Terms &amp; Conditions</a>
+        {% endif %}
     </div>
     <script type="application/javascript">
         var displayItems = [{% for item in basket.items.all %}{

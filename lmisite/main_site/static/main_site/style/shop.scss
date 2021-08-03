@@ -178,11 +178,10 @@
         h2 {
           display: inline-block;
           color: $dark-text-colour;
+          margin-right: $content-margin;
         }
 
         form {
-          margin-left: $content-margin;
-
           input {
             display: inline-block;
             width: 80px;

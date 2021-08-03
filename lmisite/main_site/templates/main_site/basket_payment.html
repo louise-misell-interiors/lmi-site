@@ -74,11 +74,13 @@
                         <h2>Payment</h2>
                         <div class="payment">
                             <div class="loader" id="loader" style="display: none">
-                                <svg xmlns:Xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 50 50">
+                                <svg xmlns:Xlink="http://www.w3.org/1999/xlink" width="40" height="40"
+                                     viewBox="0 0 50 50">
                                     <path d="M43.935 25.145c0-10.318-8.364-18.683-18.683-18.683-10.318 0-18.683 8.365-18.683 18.683h4.068c0-8.071 6.543-14.615 14.615-14.615s14.615 6.543 14.615 14.615h4.068z">
                                         <animateTransform attributeType="xml" attributeName="transform" type="rotate"
                                                           from="0 25 25"
-                                                          to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform>
+                                                          to="360 25 25" dur="0.6s"
+                                                          repeatCount="indefinite"></animateTransform>
                                     </path>
                                 </svg>
                             </div>
@@ -89,6 +91,12 @@
                                 <div id="card-element"></div>
                             </div>
                             <button type="button" id="payment-button">Pay now</button>
+                            {% if config.shop_terms_and_conditions %}
+                                <p>
+                                    <a href="{{ config.shop_terms_and_conditions.url }}" class="dark">Shop Terms &amp;
+                                        Conditions</a>
+                                </p>
+                            {% endif %}
                         </div>
                     </form>
                 {% else %}
@@ -185,7 +193,7 @@
                         if (r.error) {
                             error(r.error.message)
                         } else {
-                           window.location = "{% url 'shop_basket_complete' %}";
+                            window.location = "{% url 'shop_basket_complete' %}";
                         }
                     }).catch(function (err) {
                         console.error(err);

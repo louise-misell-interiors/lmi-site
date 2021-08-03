@@ -62,6 +62,12 @@ def get_basket(request, create=True, complete=False):
 def shop_product_add(request, id):
     product_obj = get_object_or_404(Product, id=id)
 
+    if product_obj.availability in (
+        product_obj.OUT_OF_STOCK, product_obj.DISCONTINUED,
+        product_obj.SOLD_OUT, product_obj.IN_STORE_ONLY
+    ):
+        return redirect('shop_product', id=product_obj.id)
+
     try:
         quantity = int(request.POST.get("quantity"))
     except ValueError:

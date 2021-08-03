@@ -35,15 +35,28 @@
                 {{ product.description|safe }}
                 <div class="price">
                     <h2>&pound;{{ product.price|floatformat:2 }}</h2>
-                    <form action="{% url 'shop_product_add' product.id %}" method="post">
-                        {% csrf_token %}
-                        <input type="number" min="1" max="999" value="1" aria-label="Quantity" name="quantity">
-                        <button type="submit">Add to basket</button>
-                    </form>
+                    {% if product.availability == product.DISCONTINUED %}
+                        <h2>Discontinued</h2>
+                    {% elif product.availability == product.OUT_OF_STOCK %}
+                        <h2>Out of stock</h2>
+                    {% elif product.availability == product.SOLD_OUT %}
+                        <h2>Sold out</h2>
+                    {% elif product.availability == product.IN_STORE_ONLY %}
+                        <h2>In store only</h2>
+                    {% else %}
+                        <form action="{% url 'shop_product_add' product.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="number" min="1" max="999" value="1" aria-label="Quantity" name="quantity">
+                            <button type="submit">Add to basket</button>
+                        </form>
+                    {% endif %}
                 </div>
                 <hr>
                 <h3>Delivery & Returns</h3>
                 {{ product.delivery_info|safe }}
+                {% if config.shop_terms_and_conditions %}
+                    <p><a href="{{ config.shop_terms_and_conditions.url }}" class="dark">Shop Terms &amp; Conditions</a></p>
+                {% endif %}
             </div>
             <hr>
             <div class="secondary-imgs">

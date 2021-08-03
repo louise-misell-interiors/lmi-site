@@ -248,21 +248,21 @@ class QuizApp extends Component {
                     {this.state.sent_to_user ? <h2>
                         We've sent your results to your email, they should be with you shortly.
                     </h2> : null}
-                    <h2>{this.state.quiz.resultHeader}</h2>
+                    <div dangerouslySetInnerHTML={{__html: this.state.quiz.resultHeader}}/>
                     <div className="ResultText" dangerouslySetInnerHTML={{__html: this.state.result.text}}/>
                     {this.state.result.link ? <p>
                         <a className="button dark" href={this.state.result.link}>{this.state.result.linkText}</a>
                     </p> : null}
                     {this.state.sent_to_user ? null : (!this.state.has_user ?
                             <div className="form">
-                                <h3>{this.state.quiz.resultSaveToEmail}</h3>
+                                <div dangerouslySetInnerHTML={{__html: this.state.quiz.resultSaveToEmail}}/>
 
                                 <button type="button" onClick={this.saveToEmail}>
                                     Send me my results
                                 </button>
                             </div> :
                             <div className="form">
-                                <h3>{this.state.quiz.resultSaveToEmail}</h3>
+                                <div dangerouslySetInnerHTML={{__html: this.state.quiz.resultSaveToEmail}}/>
 
                                 <form>
                                     <div>

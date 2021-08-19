@@ -10,6 +10,12 @@
   font-style: normal;
   font-display: swap;
   src: url(../fonts/Baskerville.ttf) format("truetype"); }
+@font-face {
+  font-family: 'Baskerville';
+  font-style: normal;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/l/font?kit=CSR84z9ShvucWzsMKxhfXuXo5g&skey=e5d445850c40840d&v=v8) format("woff2");
+  unicode-range: U+AE; }
 * {
   box-sizing: border-box; }
 
@@ -367,6 +373,18 @@ button {
     justify-items: center;
     grid-gap: 25px;
     grid-template-columns: 1fr auto; }
+    @media (max-width: 1200px) {
+      #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer {
+        grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 800px) {
+      #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer {
+        grid-template-columns: 1fr; }
+        #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer img {
+          grid-column: 1;
+          grid-row: 1; } }
+    @media (max-width: 700px) {
+      #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer {
+        margin: 0px; } }
     #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer button {
       border: 3px solid #e5f0f2; }
     #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer button.AnswerSelected {

@@ -14,6 +14,14 @@
   src: url(../fonts/Baskerville.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'Baskerville';
+  font-style: normal;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/l/font?kit=CSR84z9ShvucWzsMKxhfXuXo5g&skey=e5d445850c40840d&v=v8) format('woff2');
+  unicode-range: U+AE;
+}
+
 * {
   box-sizing: border-box;
 }

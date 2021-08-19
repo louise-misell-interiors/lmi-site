@@ -157,6 +157,7 @@ class SiteConfig(SingletonModel):
     apple_merchantid = models.TextField(blank=True, null=True)
 
     banner_text = RichTextField(blank=True, null=True)
+    banner_link = models.URLField(blank=True, null=True)
     banner_enabled = models.BooleanField(blank=True)
 
 

@@ -89,9 +89,11 @@
 <div class="wrapper">
     {% if config.banner_enabled %}
         <div class="top-banner">
-            <div class="top-banner-inner">
-                {{ config.banner_text|safe }}
-            </div>
+            <a href="{{ config.banner_link }}">
+                <span class="top-banner-inner">
+                    {{ config.banner_text|safe }}
+                </span>
+            </a>
         </div>
     {% endif %}
     <div class="nav" role="navigation">

@@ -539,6 +539,11 @@ img {
   text-align: center;
   color: $light-text-colour;
   overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten($background-colour-dark, 10%);
+  }
 
   .top-banner-inner {
     max-width: 80vw;

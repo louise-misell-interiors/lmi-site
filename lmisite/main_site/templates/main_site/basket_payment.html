@@ -50,6 +50,10 @@
                                 <h3>{{ item.quantity }} &times; {{ item.product.name }}</h3>
                                 <h3>&pound;{{ item.total_price|floatformat:2 }}</h3>
                             {% endfor %}
+                            {% if basket.items.count > 1 %}
+                                <h3>Total</h3>
+                                <h3>&pound;{{ basket.items_total|floatformat:2 }}</h3>
+                            {% endif %}
                         </div>
                         <h2>Delivery</h2>
                         <div class="delivery">

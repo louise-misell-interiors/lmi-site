@@ -50,10 +50,6 @@
                                 <h3>{{ item.quantity }} &times; {{ item.product.name }}</h3>
                                 <h3>&pound;{{ item.total_price|floatformat:2 }}</h3>
                             {% endfor %}
-                            {% if basket.items.count > 1 %}
-                                <h3>Total</h3>
-                                <h3>&pound;{{ basket.items_total|floatformat:2 }}</h3>
-                            {% endif %}
                         </div>
                         <h2>Delivery</h2>
                         <div class="delivery">
@@ -76,6 +72,12 @@
                             {% endfor %}
                         </div>
                         <h2>Payment</h2>
+                        {% if basket.items.count > 1 %}
+                            <div class="totals">
+                                <h3>Total</h3>
+                                <h3>&pound;{{ basket.items_total|floatformat:2 }}</h3>
+                            </div>
+                        {% endif %}
                         <div class="payment">
                             <div class="loader" id="loader" style="display: none">
                                 <svg xmlns:Xlink="http://www.w3.org/1999/xlink" width="40" height="40"

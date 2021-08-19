@@ -154,7 +154,8 @@ def shop_basket_complete(request):
         return redirect('shop_basket')
 
     delivery_time_range = basket.postage_service.delivery_time_range(
-        timestamp=basket.completed_date
+        timestamp=basket.completed_date,
+        products=list(map(lambda i: i.product, basket.items.all()))
     )
     formatted_delivery_time_range = basket.postage_service.format_delivery_time_range(delivery_time_range)
 

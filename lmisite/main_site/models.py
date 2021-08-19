@@ -682,14 +682,21 @@ class PostageService(models.Model):
         offset_mins -= offset_hours * 60
         return f'{cutoff_datetime_local.strftime("%H:%M:%S")}{"+" if offset_hours >0 else "-"}{abs(offset_hours):0>2}:{offset_mins:0>2}'
 
-    def delivery_time_range(self, timestamp=None):
-
+    def delivery_time_range(self, timestamp=None, products=None):
+        print(products)
         if not timestamp:
             timestamp = datetime.datetime.utcnow()
 
         if not timestamp.tzinfo:
             tz = pytz.timezone(self.timezone)
             timestamp = tz.fromutc(timestamp)
+
+        back_order_days = 0
+
+        if products is not None:
+            back_ordered_products = list(filter(lambda p: p.back_ordered_days, products))
+            if back_ordered_products:
+                back_order_days = max(map(lambda p: p.back_ordered_days, back_ordered_products))
 
         despatch_days = [
             self.despatch_monday, self.despatch_tuesday, self.despatch_wednesday, self.despatch_thursday,
@@ -708,6 +715,7 @@ class PostageService(models.Model):
         if next_despatch is None:
             return None
         despatch_offset = next_despatch[0]
+        despatch_offset = max(back_order_days, despatch_offset)
         handling_time_min = max(self.handling_time_min, despatch_offset)
         handling_time_max = max(self.handling_time_max, despatch_offset)
 
@@ -731,8 +739,8 @@ class PostageService(models.Model):
         else:
             return None
 
-    def formatted_delivery_time_range(self, timestamp=None):
-        time_range = self.delivery_time_range(timestamp=timestamp)
+    def formatted_delivery_time_range(self, timestamp=None, products=None):
+        time_range = self.delivery_time_range(timestamp=timestamp, products=products)
         return self.format_delivery_time_range(time_range)
 
     def __str__(self):
@@ -829,6 +837,7 @@ class Product(models.Model):
     mpn = models.CharField(max_length=255, blank=True, null=True, verbose_name="Manufacturer part number")
     price = models.DecimalField(max_digits=9, decimal_places=2)
     availability = models.CharField(max_length=255, choices=AVAILABILITY)
+    back_ordered_days = models.PositiveIntegerField(blank=True, null=True)
     draft = models.BooleanField(blank=True)
     weight = models.DecimalField(max_digits=9, decimal_places=4, default=0, verbose_name="Unit weight (kg)")
     width = models.DecimalField(max_digits=9, decimal_places=2, default=0, verbose_name="Unit width (cm)")
@@ -1089,7 +1098,9 @@ class Basket(models.Model):
 
         for service_option in service_options:
             if all(i in all_item_ids for i in map(lambda i: i.id, service_option.items)):
-                delivery_time_range = service_option.service.formatted_delivery_time_range()
+                delivery_time_range = service_option.service.formatted_delivery_time_range(
+                    products=list(map(lambda i: i.product, service_option.items))
+                )
                 if delivery_time_range:
                     desc = f"Arrives {delivery_time_range}"
                 else:

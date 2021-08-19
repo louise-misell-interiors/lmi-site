@@ -1,3 +1,4 @@
+import datetime
 import json
 
 import bookings.models as booking_models
@@ -678,6 +679,10 @@ class GoogleMerchantFeedType(feedgenerator.Rss201rev2Feed):
             handler.addQuickElement("g:max_transit_time", str(shipping.service.transit_time_max))
             handler.endElement('g:shipping')
 
+        if item["g_back_ordered_days"]:
+            availability_date = timezone.now() + datetime.timedelta(days=item["g_back_ordered_days"])
+            handler.addQuickElement("g:availability_date", availability_date.isoformat())
+
         handler.addQuickElement("g:shipping_weight", f"{item['g_weight']} kg")
         handler.addQuickElement("g:shipping_length", f"{item['g_length']} cm")
         handler.addQuickElement("g:shipping_width", f"{item['g_width']} cm")
@@ -735,4 +740,5 @@ class GoogleMerchantFeed(Feed):
             "g_width": str(item.width),
             "g_height": str(item.height),
             "g_length": str(item.depth),
+            "g_back_ordered_days": item.back_ordered_days
         }

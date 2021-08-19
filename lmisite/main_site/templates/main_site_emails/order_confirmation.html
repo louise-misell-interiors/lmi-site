@@ -1,0 +1,61 @@
+{% extends "main_site_emails/base.html" %}
+{% block content %}
+    <h2 style="font-weight: normal">
+        Hi {{ basket.name }},
+    </h2>
+    <h2 style="font-weight: normal; text-align: center">
+        Here are your order details
+    </h2>
+    <table style="width: 100%;font-size: 17px;border-collapse: collapse;border: none;text-align: center;">
+        <thead>
+        <tr>
+            <th style="padding: 5px">Quantity</th>
+            <th style="padding: 5px">Item</th>
+            <th style="padding: 5px">Price</th>
+            <th style="padding: 5px">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in basket.items.all %}
+            <tr>
+                <td style="padding: 5px">{{ item.quantity }}</td>
+                <td style="padding: 5px">{{ item.product.name }}</td>
+                <td style="padding: 5px">&pound;{{ item.product.price|floatformat:2 }}</td>
+                <td style="padding: 5px">&pound;{{ item.total_price|floatformat:2 }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr style="border-top: 1px solid #335470;">
+            <td colspan="3" style="text-align: right;padding: 5px">
+                {{ basket.postage_service.name }}<br/>
+                <span style="font-size: 15px">{{ basket.postage_service_bins_obj.description }}</span>
+            </td>
+            <td>&pound;{{ basket.postage_service_bins_obj.price|floatformat:2 }}</td>
+        </tr>
+        <tr>
+            <th colspan="3" style="text-align: right;padding: 5px">Total</th>
+            <th>&pound;{{ amount|floatformat:2 }}</th>
+        </tr>
+        </tfoot>
+    </table>
+    <h3 style="margin-bottom: 0; font-weight: normal;">
+        <b>Date:</b> {{ basket.completed_date }}
+    </h3>
+    <h3 style="margin-top: 0; font-weight: normal;">
+        <b>Order ID:</b> {{ basket.disp_reference }}
+    </h3>
+    <h3 style="font-weight: normal;">
+        <b>Delivery address:</b><br/>
+        {{ basket.postage_address.as_formatted_address|linebreaksbr }}
+    </h3>
+    <p style="font-size: 16px;">
+        Thank you for your order.<br/>
+        If you have any problems with your order you can contact us at <a href="mailto:{{ config.email_shop }}">{{ config.email_shop }}</a>.
+    </p>
+    {% if config.shop_terms_and_conditions %}
+        <p style="font-size: 16px;">
+            Your order is subject to the <a href="{{ config.shop_terms_and_conditions }}" target="_blank">shop terms & conditions</a>.
+        </p>
+    {% endif %}
+{% endblock %}

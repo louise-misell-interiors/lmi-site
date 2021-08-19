@@ -1,6 +1,8 @@
 import dataclasses
 import datetime
 
+import base64
+import secrets
 import decimal
 from PIL import Image as Img
 import io
@@ -61,6 +63,7 @@ class SiteConfig(SingletonModel):
     bark_url = models.URLField(default="", blank=True)
 
     email = models.EmailField(default="", blank=True)
+    email_shop = models.EmailField(default="", blank=True)
     notification_email = models.EmailField(default="", blank=True)
     mobile = PhoneNumberField(blank=True)
     phone = PhoneNumberField(blank=True)
@@ -152,6 +155,9 @@ class SiteConfig(SingletonModel):
     basket_header_image = models.ImageField(blank=True)
 
     apple_merchantid = models.TextField(blank=True, null=True)
+
+    banner_text = RichTextField(blank=True, null=True)
+    banner_enabled = models.BooleanField(blank=True)
 
 
 class MainSliderImage(models.Model):
@@ -953,6 +959,10 @@ class PostageOption:
         )
 
 
+def get_basket_id():
+    return base64.b32encode(secrets.token_bytes(5)).decode()
+
+
 class Basket(models.Model):
     STATE_CREATION = "C"
     STATE_PAID = "P"
@@ -972,8 +982,16 @@ class Basket(models.Model):
     phone = PhoneNumberField(blank=True, null=True)
     state = models.CharField(max_length=1, choices=STATES, default=STATE_CREATION)
     payment_intent_id = models.CharField(max_length=255, blank=True, null=True)
+    reference = models.CharField(max_length=64, default=get_basket_id)
     completed_date = models.DateTimeField(blank=True, null=True)
     rm_order_id = models.JSONField(max_length=255, blank=True, null=True, verbose_name="Royal Mail order ID")
+
+    @property
+    def disp_reference(self):
+        return "-".join(self.reference[i:i+3] for i in range(0, len(self.reference), 3))
+
+    def __str__(self):
+        return self.disp_reference
 
     @property
     def item_quantity(self):
@@ -988,6 +1006,10 @@ class Basket(models.Model):
     @property
     def can_checkout(self):
         return bool(len(self.items.all()))
+
+    @property
+    def postage_service_bins_obj(self):
+        return PostageOption.from_json(self.postage_service_bins)
 
     def possible_postage_options(self, country: str) -> typing.List[PostageOption]:
         @dataclasses.dataclass
@@ -1149,3 +1171,19 @@ class PostalAddress(models.Model):
     post_code = models.CharField(max_length=255, blank=True, null=True)
     country = django_countries.fields.CountryField(blank_label="")
     delivery_notes = models.TextField(blank=True, null=True)
+
+    @property
+    def as_formatted_address(self):
+        out = self.address_line1
+        if self.address_line2:
+            out += f"\r\n{self.address_line2}"
+        if self.address_line3:
+            out += f"\r\n{self.address_line3}"
+        out += f"\r\n{self.city}"
+        if self.region:
+            out += f"\r\n{self.region}"
+        if self.post_code:
+            out += f"\r\n{self.post_code}"
+        out += f"\r\n{self.country.name}"
+
+        return out

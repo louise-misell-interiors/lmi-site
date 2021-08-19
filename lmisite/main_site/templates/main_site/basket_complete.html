@@ -48,9 +48,10 @@
                     Your order should be with you {{ delivery_time_range }}.
                 {% endif %}
             </h3>
+            <h3>Your order ID is {{ basket.disp_reference }}</h3>
             <p>
                 If you have any queries or concerns about your order you can email us at
-                <a href="mailto:shop@louisemisellinteriors.co.uk" class="dark">shop@louisemisellinteriors.co.uk</a>.
+                <a href="mailto:{{ config.email_shop }}" class="dark">{{ config.email_shop }}</a>.
             </p>
         </div>
     </div>

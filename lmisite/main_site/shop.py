@@ -425,6 +425,8 @@ def order_succeeded(basket: Basket):
               f"ID: {basket.id}\r\n" \
               f"Date: {basket.completed_date}\r\n" \
               f"Total amount: {amount} {payment_intent.currency.upper()}\r\n" \
+              f"Delivery service ID: {basket.postage_service.id}\r\n" \
+              f"Delivery service: {basket.postage_service.name}\r\n" \
               "--- END SUMMARY ---"
 
     body = f"{summary}\r\n\r\n{customer}\r\n\r\n{recipient_address}\r\n\r\n{items_text}"
@@ -435,6 +437,22 @@ def order_succeeded(basket: Basket):
         to=[config.notification_email],
         reply_to=[f"{basket.name} <{basket.email}>"]
     )
+    email_msg.send()
+
+    context = {
+        "settings": settings,
+        "basket": basket,
+        "config": config,
+        "amount": amount
+    }
+
+    email_msg = EmailMultiAlternatives(
+        subject="Your Louise Misell Interiors Order",
+        body=render_to_string("main_site_emails/order_confirmation.html", context),
+        to=[basket.email],
+        reply_to=[f"Louise Misell Interiors <{config.email_shop}>"]
+    )
+    email_msg.content_subtype = "html"
     email_msg.send()
 
 

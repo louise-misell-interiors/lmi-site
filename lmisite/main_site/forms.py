@@ -132,7 +132,7 @@ class ConfigForm(forms.ModelForm):
         fields = sorted((
             'fb_auth', 'facebook_page_id', 'newsletter_auth', 'newsletter_group_id',
             'instagram_url', 'twitter_url', 'facebook_url', 'pintrest_url', 'linkedin_url', 'homify_url',
-            'houzz_url', 'bark_url', 'email', 'notification_email', 'mobile', 'phone', 'address',
+            'houzz_url', 'bark_url', 'email', 'notification_email', 'mobile', 'phone', 'address', 'email_shop',
             'privacy_policy', 'terms_and_conditions', 'image_slider_speed', 'testimonials_slider_speed',
             'price_range',
             'home_title', 'home_subtitle', 'home_description', 'home_about_text', 'home_about_cta', 'home_help_text',
@@ -153,7 +153,7 @@ class ConfigForm(forms.ModelForm):
             'contact_testimonials_cta', 'contact_form_image',
             'testimonials_title', 'testimonials_header_image', 'testimonials_description', 'testimonials_text',
             'booking_title', 'booking_header_image', 'basket_header_image',
-            'apple_merchantid', 'basket_header_image', 'shop_terms_and_conditions'))
+            'apple_merchantid', 'basket_header_image', 'shop_terms_and_conditions', 'banner_text', 'banner_enabled'))
         widgets = {
             "facebook_page_id": PageWidget,
             "newsletter_group_id": NewsletterGroupWidget

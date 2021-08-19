@@ -87,6 +87,13 @@
 <!-- End Google Tag Manager (noscript) -->
 <div id="top"></div>
 <div class="wrapper">
+    {% if config.banner_enabled %}
+        <div class="top-banner">
+            <div class="top-banner-inner">
+                {{ config.banner_text|safe }}
+            </div>
+        </div>
+    {% endif %}
     <div class="nav" role="navigation">
         <div class="logo" role="presentation">
             <a href="{% url 'index' %}" aria-label="Go home">

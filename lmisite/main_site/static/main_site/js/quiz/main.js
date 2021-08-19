@@ -253,7 +253,7 @@ class QuizApp extends Component {
                     {this.state.result.link ? <p>
                         <a className="button dark" href={this.state.result.link}>{this.state.result.linkText}</a>
                     </p> : null}
-                    {this.state.sent_to_user ? null : (!this.state.has_user ?
+                    {this.state.sent_to_user ? null : (this.state.has_user ?
                             <div className="form">
                                 <div dangerouslySetInnerHTML={{__html: this.state.quiz.resultSaveToEmail}}/>
 

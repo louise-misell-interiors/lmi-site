@@ -3,10 +3,13 @@
     <h2>
         Hi {{ session.user.first_name }},
     </h2>
-    <h1 style="text-align: center;">
-        Here are the results of your quiz
-    </h1>
+{#    <h1 style="text-align: center;">#}
+{#        Here are the results of your quiz#}
+{#    </h1>#}
     {% with result=session.result %}
+        <div style="text-align: center">
+            {{ session.quiz.result_header|safe }}
+        </div>
         <div style="text-align: center">
             {{ result.text|safe }}
         </div>

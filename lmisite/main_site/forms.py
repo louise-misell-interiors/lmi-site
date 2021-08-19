@@ -162,7 +162,7 @@ class ConfigForm(forms.ModelForm):
 
 
 class PersonalDetailsForm(forms.Form):
-    name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={"autocomplete": "name"}))
+    name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={"autocomplete": "name"}), label="Full name")
     email = forms.EmailField(widget=forms.EmailInput(attrs={"autocomplete": "email"}))
     phone = phonenumber_field.formfields.PhoneNumberField(
         widget=phonenumber_field.widgets.PhoneNumberInternationalFallbackWidget(attrs={"autocomplete": "tel"})

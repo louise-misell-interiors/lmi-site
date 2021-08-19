@@ -115,7 +115,7 @@
             <a href="{{ contact_url }}" {% if request.get_full_path == contact_url %}class="is-active"{% endif %}>Contact</a>
             {% if basket %}
                 <a href="{{ basket_url }}" {% if request.get_full_path == basket_url %}class="is-active"{% endif %}>
-                    <i class="fal fa-shopping-basket"></i>&nbsp;{{ basket.item_quantity }}
+                    <i class="fal fa-shopping-basket"></i>&nbsp;<span id="basket-quantity">{{ basket.item_quantity }}</span>
                 </a>
             {% endif %}
         </nav>

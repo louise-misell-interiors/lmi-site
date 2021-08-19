@@ -95,10 +95,11 @@
         {% endif %}
     </div>
     <script type="application/javascript">
+        var basketItemsCount = "{{ basket.item_quantity }}";
         var displayItems = [{% for item in basket.items.all %}{
                 label: "{{ item.quantity }} x {{ item.product.name }} @ {{ item.product.price|floatformat:2 }}",
                 amount: {{ item.total_price|mul:100|floatformat:0 }}
-                }{% endfor %}];
+                },{% endfor %}];
         var basketTotal = {{ basket.items_total|mul:100|floatformat:2 }};
     </script>
 {% endif %}

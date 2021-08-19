@@ -196,8 +196,7 @@ class SaveToEmailQuizSessionMutation(graphene.relay.ClientIDMutation):
     def mutate_and_get_payload(cls, root, info, session_id, user_info=None):
         session = models.QuizSession.objects.get(id=graphql_relay.from_global_id(session_id)[1])
 
-        # if not session.user:
-        if True:
+        if not session.user:
             if not user_info:
                 raise graphql.GraphQLError("User info must be specified on an anonymous session")
 

@@ -349,11 +349,11 @@ def send_stripe_receipt(charge):
 
     email_msg = EmailMultiAlternatives(
         subject=subject,
-        body=render_to_string("bookings/receipt_txt.html", context),
+        body=render_to_string("main_site_emails/receipt_txt.html", context),
         to=[charge.billing_details.email],
         reply_to=[f"Louise Misell Interiors <{config.email}>"]
     )
-    email_msg.attach_alternative(render_to_string("bookings/receipt.html", context), "text/html")
+    email_msg.attach_alternative(render_to_string("main_site_emails/receipt.html", context), "text/html")
     email_msg.send()
 
 

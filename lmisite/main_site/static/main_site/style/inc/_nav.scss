@@ -27,6 +27,7 @@
   justify-content: space-between;
   align-items: center;
   grid-template-columns: 10vw $nav-height 1fr 10vw;
+  position: relative;
 
   @media (max-width: $media-medium) {
     grid-template-columns: 0 $nav-height 1fr 0;
@@ -46,7 +47,7 @@
 
   &::after {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;

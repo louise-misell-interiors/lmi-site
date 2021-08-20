@@ -87,7 +87,8 @@
   display: grid;
   justify-content: space-between;
   align-items: center;
-  grid-template-columns: 10vw 170px 1fr 10vw; }
+  grid-template-columns: 10vw 170px 1fr 10vw;
+  position: relative; }
   @media (max-width: 1200px) {
     .nav {
       grid-template-columns: 0 170px 1fr 0; } }
@@ -100,7 +101,7 @@
       pointer-events: all; }
   .nav::after {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -373,18 +374,6 @@ button {
     justify-items: center;
     grid-gap: 25px;
     grid-template-columns: 1fr auto; }
-    @media (max-width: 1200px) {
-      #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer {
-        grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 800px) {
-      #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer {
-        grid-template-columns: 1fr; }
-        #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer img {
-          grid-column: 1;
-          grid-row: 1; } }
-    @media (max-width: 700px) {
-      #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer {
-        margin: 0px; } }
     #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer button {
       border: 3px solid #e5f0f2; }
     #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer button.AnswerSelected {
@@ -403,6 +392,18 @@ button {
     #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer img {
       grid-column: 2;
       grid-row: 1; }
+    @media (max-width: 1200px) {
+      #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer {
+        grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 800px) {
+      #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer {
+        grid-template-columns: 1fr; }
+        #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer img {
+          grid-column: 1;
+          grid-row: 1; } }
+    @media (max-width: 700px) {
+      #quiz-wrapper .StepPage .StepAnswers.StepRadio .StepAnswer {
+        margin: 0px; } }
   #quiz-wrapper .StepPage .StepAnswers.StepMoodBoard {
     column-count: 3;
     column-gap: 25px; }

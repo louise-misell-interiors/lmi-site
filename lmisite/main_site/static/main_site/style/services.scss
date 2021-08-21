@@ -170,6 +170,7 @@
       @media (max-width: $media-small) {
         grid-template-columns: 1fr;
         grid-template-rows: auto 1fr auto 1fr;
+        width: unset;
 
         .colour-block {
           grid-column: 1;

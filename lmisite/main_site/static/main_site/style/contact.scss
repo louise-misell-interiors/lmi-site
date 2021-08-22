@@ -104,10 +104,14 @@
       padding-top: 0 !important;
       position: relative;
       float: left;
-      background: #fff;
       margin-top: 10%;
       min-height: 50vw;
       //left: (clamp(#{-3vw}, #{-100px}, #{0px}));
+
+      .form-inner {
+        background: #fff;
+        overflow: hidden;
+      }
 
       img {
         position: absolute;

@@ -90,9 +90,11 @@
       padding-top: 0 !important;
       position: relative;
       float: left;
-      background: #fff;
       margin-top: 10%;
       min-height: 50vw; }
+      .content .contact-details .form .form-inner {
+        background: #fff;
+        overflow: hidden; }
       .content .contact-details .form img {
         position: absolute;
         z-index: -1;

@@ -91,7 +91,8 @@
       position: relative;
       float: left;
       background: #fff;
-      margin-top: 10%; }
+      margin-top: 10%;
+      min-height: 50vw; }
       .content .contact-details .form img {
         position: absolute;
         z-index: -1;

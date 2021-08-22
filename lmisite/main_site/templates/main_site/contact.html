@@ -33,51 +33,51 @@
                 {% if config.contact_form_image %}
                     <img src="{{ config.contact_form_image.url }}" alt="">
                 {% endif %}
-                {% if booking_notice %}
-                    <h3 class="notice">{{ booking_notice }}</h3>
-                {% endif %}
-                <h2>Send us a message and we'll contact you:</h2>
-                <form action="" method="post">
-{#                    <small style="text-align:center;">We'll get back to you during business hours</small>#}
-                    {% if sent %}
-                        <h4>Thank you, your message has been sent.</h4>
+                {% if sent %}
+                    {{ config.contact_submitted_texts|safe }}
+                {% else %}
+                    {% if booking_notice %}
+                        <h3 class="notice">{{ booking_notice }}</h3>
                     {% endif %}
+                    <h2>Send us a message and we'll contact you:</h2>
+                    <form action="" method="post">
 
-                    {% csrf_token %}
-                    {{ form.non_field_errors }}
-                    <div>
-                        {{ form.first_name.errors }}
-                        {{ form.first_name }}
-                    </div>
-                    <div>
-                        {{ form.last_name.errors }}
-                        {{ form.last_name }}
-                    </div>
-                    <div>
-                        {{ form.your_email.errors }}
-                        {{ form.your_email }}
-                    </div>
-                    <div>
-                        {{ form.your_phone.errors }}
-                        {{ form.your_phone }}
-                    </div>
-                    <div>
-                        {{ form.source.errors }}
-                        {{ form.source }}
-                    </div>
-                    <div>
-                        {{ form.message.errors }}
-                        {{ form.message }}
-                    </div>
-                    <div>
-                        {{ form.newsletter.errors }}
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
                         <div>
-                            {{ form.newsletter }}
-                            {{ form.newsletter.label_tag }}
+                            {{ form.first_name.errors }}
+                            {{ form.first_name }}
                         </div>
-                    </div>
-                    <button type="submit">Submit</button>
-                </form>
+                        <div>
+                            {{ form.last_name.errors }}
+                            {{ form.last_name }}
+                        </div>
+                        <div>
+                            {{ form.your_email.errors }}
+                            {{ form.your_email }}
+                        </div>
+                        <div>
+                            {{ form.your_phone.errors }}
+                            {{ form.your_phone }}
+                        </div>
+                        <div>
+                            {{ form.source.errors }}
+                            {{ form.source }}
+                        </div>
+                        <div>
+                            {{ form.message.errors }}
+                            {{ form.message }}
+                        </div>
+                        <div>
+                            {{ form.newsletter.errors }}
+                            <div>
+                                {{ form.newsletter }}
+                                {{ form.newsletter.label_tag }}
+                            </div>
+                        </div>
+                        <button type="submit">Submit</button>
+                    </form>
+                {% endif %}
             </div>
             <div class="details">
                 <h3>

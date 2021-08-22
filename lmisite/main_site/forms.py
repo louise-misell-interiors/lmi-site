@@ -150,7 +150,7 @@ class ConfigForm(forms.ModelForm):
             'designer_in_a_box_title', 'designer_in_a_box_header_image', 'designer_in_a_box_description',
             'designer_in_a_box_content',
             'contact_title', 'contact_header_image', 'contact_description', 'contact_text_1', 'contact_text_2',
-            'contact_testimonials_cta', 'contact_form_image',
+            'contact_testimonials_cta', 'contact_form_image', 'contact_submitted_texts',
             'testimonials_title', 'testimonials_header_image', 'testimonials_description', 'testimonials_text',
             'booking_title', 'booking_header_image', 'basket_header_image',
             'apple_merchantid', 'basket_header_image', 'shop_terms_and_conditions', 'banner_text', 'banner_enabled', 'banner_link'))

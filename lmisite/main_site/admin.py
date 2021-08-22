@@ -139,6 +139,15 @@ class QuizStepAdmin(SortableAdminMixin, admin.ModelAdmin):
     exclude = ["id"]
 
 
+class QuizSessionStepAnswerInline(admin.StackedInline):
+    readonly_fields = ["id", "session", "answer"]
+
+
+@admin.register(QuizSession)
+class QuizSessionAdmin(admin.ModelAdmin):
+    readonly_fields = ["id", "result", "quiz", "current_step", "user"]
+
+
 class ProductImageInline(SortableInlineAdminMixin, admin.StackedInline):
     exclude = ["id"]
     model = ProductImage
@@ -153,6 +162,11 @@ class ProductAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(PostalAddress)
+class PostageAddressAdmin(admin.ModelAdmin):
     pass
 
 

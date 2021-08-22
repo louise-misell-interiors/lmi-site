@@ -20,9 +20,11 @@
         <header {% if config.contact_header_image %}style="--header-background: url({{ config.contact_header_image.url }});"{% endif %}>
             <h1>Contact</h1>
         </header>
-        <div class="desc">
-            {{ config.contact_text_1|safe }}
-        </div>
+        {% if config.contact_text_1 %}
+            <div class="desc">
+                {{ config.contact_text_1|safe }}
+            </div>
+        {% endif %}
         <div class="contact-details" itemscope itemtype="http://schema.org/LocalBusiness">
             <link itemprop="image" href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
             <meta itemprop="name" content="Louise Misell Interiors">

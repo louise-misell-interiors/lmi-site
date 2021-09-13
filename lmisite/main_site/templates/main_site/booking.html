@@ -28,5 +28,6 @@
             id: "{{ booking_id }}"
         };
     </script>
-<script src="{% static "bookings/js/main_production.js" %}"></script>
+    <script src="{% static "bookings/js/main_production.js" %}"></script>
+    {% csrf_token %}
 {% endblock %}

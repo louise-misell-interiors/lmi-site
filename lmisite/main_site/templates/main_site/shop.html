@@ -1,0 +1,38 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}{{ config.shop_title }}{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static "main_site/style/shop.css" %}">
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ config.shop_title }} | Louise Misell Interiors">
+    <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
+    <meta property="og:description" content="{{ config.shop_description }}">
+    <meta property="og:url" content=https://louisemisellinteriors.co.uk{% url 'shop_index' %}">
+    <meta name="description" content="{{ config.shop_description }}">
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'shop_index' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if config.shop_header_image %}style="--header-background: url({{ config.shop_header_image }});"{% endif %}>
+            <h1>{{ config.shop_title }}</h1>
+        </header>
+        <div class="bar">
+            {{ config.shop_text|safe }}
+        </div>
+        <div class="category">
+            {% for category in categories %}
+                <div class="category">
+                    {% if category.image %}
+                        <img src="{{ category.image.url }}" alt="">
+                    {% endif %}
+                    <h2>{{ category.name }}</h2>
+                    <a href="{% url 'shop_category' category.id %}" class="button dark">View</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

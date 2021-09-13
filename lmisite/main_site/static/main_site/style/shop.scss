@@ -238,7 +238,7 @@
     grid-gap: $content-margin*2;
     justify-content: center;
 
-    .product {
+    .product, .category {
       padding: $content-padding 0;
       color: $dark-text-colour;
       text-align: center;
@@ -266,6 +266,10 @@
         justify-self: center;
         align-self: center;
       }
+    }
+
+    .category {
+      grid-template-columns: 1fr;
     }
   }
 

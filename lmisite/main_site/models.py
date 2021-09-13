@@ -161,6 +161,11 @@ class SiteConfig(SingletonModel):
     banner_link = models.URLField(blank=True, null=True)
     banner_enabled = models.BooleanField(blank=True)
 
+    shop_title = models.CharField(max_length=255, blank=True)
+    shop_header_image = models.ImageField(blank=True)
+    shop_description = models.TextField(blank=True)
+    shop_text = RichTextField(blank=True)
+
 
 class MainSliderImage(models.Model):
     name = models.CharField(max_length=255, default="", blank=True)
@@ -784,7 +789,9 @@ class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
     header_image = models.ImageField(blank=True)
+    image = models.ImageField(blank=True)
     description = RichTextField()
+    draft = models.BooleanField(blank=True, default=False)
 
     def __str__(self):
         return self.name

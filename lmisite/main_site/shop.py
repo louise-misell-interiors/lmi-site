@@ -18,6 +18,16 @@ from . import forms
 from .models import *
 
 
+def shop_index(request):
+    categories = Category.objects.filter(draft=False)
+    if len(categories) == 1:
+        return redirect('shop_category', categories.first().id)
+
+    return render(request, "main_site/shop.html", {
+        "categories": categories,
+    })
+
+
 def shop_category(request, id):
     category_obj = get_object_or_404(Category, id=id)
     items = category_obj.products.order_by('order')
@@ -295,6 +305,8 @@ def shop_basket_payment_intent(request):
         payment_intent = stripe.PaymentIntent.create(
             amount=int(round(amount * 100)),
             currency='gbp',
+            description=basket.disp_reference,
+            statement_descriptor_suffix=basket.disp_reference,
             payment_method_types=['card'],
             metadata={
                 'basket': basket.id

@@ -23,6 +23,8 @@ urlpatterns = [
     path('booking/<id>/', views.booking, name='booking'),
     path('quiz/<uuid:id>/', views.quiz, name='quiz'),
 
+    path('shop/', shop.shop_index, name='shop_index'),
+
     path('shop/basket/', shop.shop_basket, name='shop_basket'),
     path('shop/basket/details/', shop.shop_basket_details, name='shop_basket_details'),
     path('shop/basket/payment/', shop.shop_basket_payment, name='shop_basket_payment'),

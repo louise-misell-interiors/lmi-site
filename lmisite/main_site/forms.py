@@ -153,6 +153,7 @@ class ConfigForm(forms.ModelForm):
             'contact_testimonials_cta', 'contact_form_image', 'contact_submitted_texts',
             'testimonials_title', 'testimonials_header_image', 'testimonials_description', 'testimonials_text',
             'booking_title', 'booking_header_image', 'basket_header_image',
+            'shop_title', 'shop_header_image', 'shop_description', 'shop_text',
             'apple_merchantid', 'basket_header_image', 'shop_terms_and_conditions', 'banner_text', 'banner_enabled', 'banner_link'))
         widgets = {
             "facebook_page_id": PageWidget,

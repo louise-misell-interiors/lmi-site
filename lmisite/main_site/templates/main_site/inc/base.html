@@ -111,6 +111,7 @@
             {% url 'design_insider' as blog_url %}
             {% url 'services' as services_url %}
             {% url 'contact' as contact_url %}
+            {% url 'shop_index' as shop_url %}
             {% url 'shop_basket' as basket_url %}
             <a href="{{ home_url }}" {% if request.get_full_path == home_url %}class="is-active"{% endif %}>Home</a>
             <a href="{{ about_url }}" {% if request.get_full_path == about_url %}class="is-active"{% endif %}>About</a>
@@ -121,6 +122,7 @@
             <a href="{{ blog_url }}#short-posts" class="subitem">Updates</a>
             <a href="{{ testimonials_url }}"
                {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
+            <a href="{{ shop_url }}" {% if request.get_full_path == shop_url %}class="is-active"{% endif %}>Shop</a>
             <a href="{{ contact_url }}" {% if request.get_full_path == contact_url %}class="is-active"{% endif %}>Contact</a>
             {% if basket %}
                 <a href="{{ basket_url }}" {% if request.get_full_path == basket_url %}class="is-active"{% endif %}>

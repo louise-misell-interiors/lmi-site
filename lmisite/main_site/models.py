@@ -50,6 +50,9 @@ class SiteConfig(SingletonModel):
     facebook_token = models.TextField(blank=True, default="")
     facebook_page_id = models.CharField(max_length=255, blank=True, default="")
 
+    instagram_token = models.TextField(blank=True, default="")
+    instagram_token_expires = models.DateTimeField(blank=True, null=True)
+
     newsletter_credentials = models.TextField(blank=True, default="")
     newsletter_group_id = models.CharField(max_length=255, blank=True, default="")
 

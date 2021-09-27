@@ -1,1 +1,6 @@
 lmisite/media/*
+lmisite/client_secret.json
+lmisite/mailchimp_client_secret.json
+lmisite/stripe_secret.json
+lmisite/facebook_client_secret.json
+lmisite/instagram_client_secret.json

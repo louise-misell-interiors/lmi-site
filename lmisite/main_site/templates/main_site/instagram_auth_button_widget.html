@@ -1,0 +1,5 @@
+{% if is_signed_in %}
+    <a href="{% url 'instagram_deauthorise' %}">Sign out</a>
+{% else %}
+    <a href="{% url "instagram_authorise" %}">Login with Instagram</a>
+{% endif %}

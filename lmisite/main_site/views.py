@@ -20,6 +20,8 @@ from .models import *
 
 FB_CLIENT_SECRETS_FILE = "facebook_client_secret.json"
 FB_SCOPES = ['instagram_basic', 'pages_show_list']
+INSTAGRAM_CLIENT_SECRETS_FILE = "instagram_client_secret.json"
+INSTAGRAM_SCOPES = ['user_profile', 'user_media']
 NEWSLETTER_CLIENT_SECRETS_FILE = "mailchimp_client_secret.json"
 
 
@@ -479,6 +481,79 @@ def get_fb_credentials():
         return None
 
 
+def get_instagram_credentials():
+    config = SiteConfig.objects.first()  # type: SiteConfig
+    if config is None:
+        return None
+    if config.instagram_token_expires is None or config.instagram_token_expires > timezone.now():
+        if config.instagram_token_expires is not None and \
+                config.instagram_token_expires - datetime.timedelta(days=30) < timezone.now():
+            r = requests.get("https://graph.instagram.com/refresh_access_token", params={
+                "access_token": config.instagram_token,
+                "grant_type": "ig_refresh_token",
+            })
+            if r.status_code == 200:
+                r_data = r.json()
+                config.instagram_token = r_data["access_token"]
+                config.instagram_token_expires = timezone.now() + datetime.timedelta(seconds=r_data["expires_in"])
+                config.save()
+
+        return config.instagram_token
+
+
+def instagram_authorise(request):
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        INSTAGRAM_CLIENT_SECRETS_FILE, scopes=INSTAGRAM_SCOPES)
+
+    uri = request.build_absolute_uri(reverse('instagram_oauth')).replace("http://", "https://")
+    flow.redirect_uri = uri
+
+    authorization_url, state = flow.authorization_url()
+
+    request.session['state'] = state
+    request.session['redirect'] = request.META.get('HTTP_REFERER')
+
+    return redirect(authorization_url)
+
+
+def instagram_oauth(request):
+    state = request.session['state']
+
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        INSTAGRAM_CLIENT_SECRETS_FILE, scopes=INSTAGRAM_SCOPES, state=state)
+    uri = request.build_absolute_uri(reverse('instagram_oauth')).replace("http://", "https://")
+    flow.redirect_uri = uri
+
+    token = flow.fetch_token(code=request.GET.get("code"), include_client_id=True)
+
+    r = requests.get("https://graph.instagram.com/access_token", params={
+        "access_token": token["access_token"],
+        "grant_type": "ig_exchange_token",
+        "client_secret": flow.client_config["client_secret"],
+    })
+    r.raise_for_status()
+    r_data = r.json()
+
+    config = SiteConfig.objects.first()
+    config.instagram_token = r_data["access_token"]
+    config.instagram_token_expires = timezone.now() + datetime.timedelta(seconds=r_data["expires_in"])
+    config.save()
+
+    return redirect(request.session['redirect'])
+
+
+def instagram_deauthorise(request):
+    credentials = get_instagram_credentials()
+
+    if credentials is not None:
+        config = SiteConfig.objects.first()
+        config.instagram_token = ""
+        config.instagram_token_expires = None
+        config.save()
+
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
 def newsletter_authorise(request):
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(NEWSLETTER_CLIENT_SECRETS_FILE, scopes=[])
 
@@ -501,8 +576,8 @@ def newsletter_authorise(request):
 def newsletter_oauth(request):
     state = request.session['state']
 
-    flow = \
-        google_auth_oauthlib.flow.Flow.from_client_secrets_file(NEWSLETTER_CLIENT_SECRETS_FILE, scopes=[], state=state)
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        NEWSLETTER_CLIENT_SECRETS_FILE, scopes=[], state=state)
     uri = request.build_absolute_uri(reverse('newsletter_oauth'))
     if not settings.DEBUG:
         uri = uri.replace("http://", "https://")

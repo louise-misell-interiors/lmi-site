@@ -52,6 +52,10 @@ urlpatterns = [
     path('facebook/oauth/', views.fb_oauth, name='fb_oauth'),
     path('facebook/deauth/', views.fb_deauthorise, name='fb_deauthorise'),
 
+    path('instagram/authorise/', views.instagram_authorise, name='instagram_authorise'),
+    path('instagram/oauth/', views.instagram_oauth, name='instagram_oauth'),
+    path('instagram/deauth/', views.instagram_deauthorise, name='instagram_deauthorise'),
+
     path('mailchimp/authorise/', views.newsletter_authorise, name='newsletter_authorise'),
     path('mailchimp/oauth/', views.newsletter_oauth, name='newsletter_oauth'),
     path('mailchimp/deauth/', views.newsletter_deauthorise, name='newsletter_deauthorise'),

@@ -49,6 +49,22 @@ class FbAuthWidget(forms.Widget):
         return mark_safe(render_to_string(self.template_name, context))
 
 
+class InstagramAuthWidget(forms.Widget):
+    template_name = 'main_site/instagram_auth_button_widget.html'
+
+    def render(self, name, value, attrs=None, **kwargs):
+        is_signed_in = False
+
+        creds = views.get_instagram_credentials()
+        if creds is not None:
+            is_signed_in = True
+
+        context = {
+            'is_signed_in': is_signed_in
+        }
+        return mark_safe(render_to_string(self.template_name, context))
+
+
 class NewsletterAuthWidget(forms.Widget):
     template_name = 'main_site/newsletter_auth_button_widget.html'
 
@@ -123,6 +139,7 @@ class NewsletterGroupWidget(forms.Widget):
 
 class ConfigForm(forms.ModelForm):
     fb_auth = forms.Field(widget=FbAuthWidget, required=False)
+    instagram_auth = forms.Field(widget=InstagramAuthWidget, required=False)
     newsletter_auth = forms.Field(widget=NewsletterAuthWidget, required=False)
 
     def save(self, commit=True):
@@ -130,7 +147,7 @@ class ConfigForm(forms.ModelForm):
 
     class Meta:
         fields = sorted((
-            'fb_auth', 'facebook_page_id', 'newsletter_auth', 'newsletter_group_id',
+            'fb_auth', 'facebook_page_id', 'newsletter_auth', 'newsletter_group_id', 'instagram_auth',
             'instagram_url', 'twitter_url', 'facebook_url', 'pintrest_url', 'linkedin_url', 'homify_url',
             'houzz_url', 'bark_url', 'email', 'notification_email', 'mobile', 'phone', 'address', 'email_shop',
             'privacy_policy', 'terms_and_conditions', 'image_slider_speed', 'testimonials_slider_speed',

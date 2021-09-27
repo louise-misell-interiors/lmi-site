@@ -485,7 +485,8 @@ def get_instagram_credentials():
     config = SiteConfig.objects.first()  # type: SiteConfig
     if config is None:
         return None
-    if config.instagram_token_expires is None or config.instagram_token_expires > timezone.now():
+    if config.instagram_token and \
+            config.instagram_token_expires is None or config.instagram_token_expires > timezone.now():
         if config.instagram_token_expires is not None and \
                 config.instagram_token_expires - datetime.timedelta(days=30) < timezone.now():
             r = requests.get("https://graph.instagram.com/refresh_access_token", params={
@@ -499,6 +500,8 @@ def get_instagram_credentials():
                 config.save()
 
         return config.instagram_token
+
+    return None
 
 
 def instagram_authorise(request):

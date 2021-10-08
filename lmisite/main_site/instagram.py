@@ -17,6 +17,8 @@ def get_user_feed():
         )
     except requests.exceptions.Timeout:
         return []
+    except requests.exceptions.ConnectionError:
+        return []
     if r.status_code != 200:
         return []
     media = r.json().get("data", [])

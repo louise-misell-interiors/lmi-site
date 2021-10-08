@@ -386,37 +386,10 @@ class BaseCustomerDetails extends Component {
             </div>
         });
 
-        let firstNameErrors = null;
-        let lastNameErrors = null;
-        let emailErrors = null;
-        let phoneErrors = null;
-        let genericErrors = null;
-        if (this.state.error !== null) {
-            let firstNameError = this.state.error.filter(error => error.field === "first_name");
-            if (firstNameError.length !== 0) {
-                firstNameErrors = firstNameError[0].errors
-                    .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
-            }
-            let lastNameError = this.state.error.filter(error => error.field === "last_name");
-            if (lastNameError.length !== 0) {
-                lastNameErrors = lastNameError[0].errors
-                    .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
-            }
-            let emailError = this.state.error.filter(error => error.field === "email");
-            if (emailError.length !== 0) {
-                emailErrors = emailError[0].errors
-                    .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
-            }
-            let phoneError = this.state.error.filter(error => error.field === "phone");
-            if (phoneError.length !== 0) {
-                phoneErrors = phoneError[0].errors
-                    .map((error, i) => <span className="error" key={i}>{error}<br/></span>);
-            }
-            let genericError = this.state.error.filter(error => error.field === "__all__");
-            if (genericError.length !== 0) {
-                genericErrors = genericError[0].errors
+        let errors = null;
+        if (this.state.error !== null && this.state.error.length !== 0) {
+            errors = this.state.error.map(error => error.errors).flat()
                     .map((error, i) => <h3 className="error" key={i}>{error}</h3>);
-            }
         }
 
         let disp = <div className="CustomerDetails">
@@ -425,7 +398,7 @@ class BaseCustomerDetails extends Component {
                 <h2>{this.props.type.name}</h2>
                 <p>{this.props.type.whilstBookingMessage}</p>
                 <h3>{date.clone().local().format("dddd Do MMMM Y h:mm\xa0A")}</h3>
-                {genericErrors}
+                {errors}
                 {this.state.price === null ?
                     <button onClick={this.scheduleEvent}>Schedule</button> : <React.Fragment>
                         <h3>Price: &pound;{this.state.price}</h3>
@@ -450,23 +423,19 @@ class BaseCustomerDetails extends Component {
                         <input type="text" value={this.state.first_name} required
                                onChange={e => this.setState({first_name: e.target.value})}
                                placeholder="First name"/>
-                        {firstNameErrors}
                     </div>
                     <div>
                         <input type="text" value={this.state.last_name} required
                                onChange={e => this.setState({last_name: e.target.value})} placeholder="Last name"/>
-                        {lastNameErrors}
                     </div>
                     <div>
                         <input type="text" value={this.state.email} required
                                onChange={e => this.setState({email: e.target.value})} placeholder="Email"/>
-                        {emailErrors}
                     </div>
                     <div>
                         <input type="phone" value={this.state.phone} required
                                onChange={e => this.setState({phone: e.target.value})}
                                placeholder="Phone Number"/>
-                        {phoneErrors}
                     </div>
                 </React.Fragment>}
                 {questions}

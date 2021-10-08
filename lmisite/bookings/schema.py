@@ -338,7 +338,7 @@ class CreateBooking(graphene.Mutation):
             if booking_question.required and len(question.value.strip()) == 0:
                 return CreateBooking(
                     ok=False,
-                    error=validation_error_to_graphene([(question.id, ['This field is required'])])
+                    error=validation_error_to_graphene([(question.id, [f'"{booking_question.question}" is required'])])
                 )
             seen_questions.append(str(question.id))
 
@@ -348,10 +348,10 @@ class CreateBooking(graphene.Mutation):
             booking_question_answers.append(booking_question_answer)
 
         for question in booking_type.booking_questions.all():
-            if str(question.id) not in seen_questions:
+            if str(question.id) not in seen_questions and question.required:
                 return CreateBooking(
                     ok=False,
-                    error=validation_error_to_graphene([(question.id, ['This field is required'])])
+                    error=validation_error_to_graphene([(question.id, [f'"{question.question}" is required'])])
                 )
 
         booking.save()

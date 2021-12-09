@@ -145,6 +145,7 @@ class SiteConfig(SingletonModel):
     contact_description = models.TextField(blank=True)
     contact_text_1 = RichTextUploadingField(blank=True)
     contact_text_2 = RichTextUploadingField(blank=True)
+    contact_form_text = RichTextUploadingField(blank=True)
     contact_submitted_texts = RichTextUploadingField(blank=True)
     contact_testimonials_cta = models.CharField(max_length=255, blank=True)
 

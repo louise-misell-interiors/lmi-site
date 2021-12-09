@@ -42,7 +42,7 @@
                         {% if booking_notice %}
                             <h3 class="notice">{{ booking_notice }}</h3>
                         {% endif %}
-                        <h2>Send us a message and we'll contact you:</h2>
+                        {{ config.contact_form_text }}
                         <form action="" method="post">
 
                             {% csrf_token %}

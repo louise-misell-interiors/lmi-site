@@ -94,6 +94,7 @@ class SiteConfig(SingletonModel):
 
     about_title = models.CharField(max_length=255, blank=True)
     about_header_image = models.ImageField(blank=True)
+    about_headshot_image = models.ImageField(blank=True)
     about_image_2 = models.ImageField(blank=True)
     about_description = models.TextField(blank=True)
     about_mission_statement = RichTextUploadingField(blank=True)

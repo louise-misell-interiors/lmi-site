@@ -37,7 +37,7 @@
             <meta itemprop="name" content="Louise Misell">
             <link itemprop="image"
                   href="https://louisemisellinteriors.co.uk{% static 'main_site/img/louise-head.jpg' %}"/>
-            <img src="{% static 'main_site/img/louise-head.jpg' %}" alt="">
+            <img src="{% if config.about_headshot_image %}{{ config.about_headshot_image.url }}{% else %}{% static 'main_site/img/louise-head.jpg' %}{% endif %}" alt="">
 
             {{ config.about_text|safe }}
             <p>

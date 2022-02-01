@@ -258,14 +258,14 @@ h2, h3 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-auto-rows: 1fr;
-    width: 80%;
+    width: 90%;
     align-self: center;
     grid-gap: 25px; }
     .related > div .post {
       display: grid;
       grid-gap: 5px;
       align-items: center;
-      grid-template-rows: 1fr 2fr auto auto; }
+      grid-template-rows: auto 1fr auto auto; }
       .related > div .post > a {
         align-self: stretch;
         background: #e5f0f2;

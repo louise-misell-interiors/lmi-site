@@ -622,7 +622,7 @@ img {
     .wrapper .pre-footer .logos {
       display: grid;
       grid-gap: 25px;
-      grid-template-columns: 2fr 1fr; }
+      grid-template-columns: 1fr; }
       @media (max-width: 800px) {
         .wrapper .pre-footer .logos {
           grid-template-columns: 1fr; } }
@@ -633,17 +633,11 @@ img {
         justify-items: center;
         grid-gap: 25px;
         margin-left: 25px;
+        margin-right: 25px;
         align-content: center;
         align-items: center; }
         .wrapper .pre-footer .logos div:not(.cla) img {
           max-height: 125px; }
-      .wrapper .pre-footer .logos .cla {
-        display: grid;
-        grid-auto-rows: 125px;
-        justify-items: center;
-        align-items: center; }
-        .wrapper .pre-footer .logos .cla img {
-          max-height: 100%; }
     .wrapper .pre-footer .socials {
       display: grid;
       justify-content: center;

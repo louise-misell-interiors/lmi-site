@@ -249,7 +249,7 @@ img {
     .logos {
       display: grid;
       grid-gap: $content-padding;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1fr;
       //justify-items: center;
 
       @media (max-width: $media-small) {
@@ -263,6 +263,7 @@ img {
         justify-items: center;
         grid-gap: $content-padding;
         margin-left: $content-padding;
+        margin-right: $content-padding;
         align-content: center;
         align-items: center;
 
@@ -271,16 +272,16 @@ img {
         }
       }
 
-      .cla {
-        display: grid;
-        grid-auto-rows: 125px;
-        justify-items: center;
-        align-items: center;
-
-        img {
-          max-height: 100%;
-        }
-      }
+      //.cla {
+      //  display: grid;
+      //  grid-auto-rows: 125px;
+      //  justify-items: center;
+      //  align-items: center;
+      //
+      //  img {
+      //    max-height: 100%;
+      //  }
+      //}
     }
 
     .socials {

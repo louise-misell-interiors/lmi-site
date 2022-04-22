@@ -226,9 +226,9 @@ with open("/opt/apps/rm_secret.json") as f:
     RM_API_KEY = d["api_key"]
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "mx.postal.as207960.net"
+EMAIL_HOST = "mx2.postal.as207960.net"
 EMAIL_PORT = 25
-EMAIL_HOST_USER = "lmi/main"
+EMAIL_HOST_USER = "louise-misell-interiors/main"
 EMAIL_HOST_PASSWORD = mail_pass
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = "Louise Misell Interiors <noreply@louisemisellinteriors.co.uk>"

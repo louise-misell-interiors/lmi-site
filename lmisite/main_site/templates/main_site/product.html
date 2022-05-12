@@ -88,8 +88,8 @@
             "image": [{% for image in product.images.all %}
                 "{{ image.image.url }}"{% if not forloop.last %},{% endif %}
             {% endfor %}],
-            "gtin": "{{ product.gtin }}",
-            "mpn": "{% if product.mpn %}{{ product.mpn }}{% endif %}",
+            {% if product.gtin %}"gtin": "{{ product.gtin }}",{% endif %}
+            {% if product.mpn %}"mpn": "{{ product.mpn }}",{% endif %}
             "sku": "{{ product.id }}",
             {% if product.category %}"category": "https://louisemisellinteriors.co.uk
         {% url 'shop_category' product.category.id %}",{% endif %}

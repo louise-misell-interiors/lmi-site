@@ -15,7 +15,6 @@ import ast
 import gtin.validator
 import django_countries.fields
 import pytz
-import pprint
 from bs4 import BeautifulSoup
 from django.conf import settings
 from django.db import models
@@ -853,7 +852,7 @@ class Product(models.Model):
     description = RichTextField()
     extended_description = RichTextField(blank=True, null=True)
     header_image = models.ImageField(blank=True, null=True)
-    gtin = models.CharField(max_length=255, validators=[validate_gtin], verbose_name="GTIN")
+    gtin = models.CharField(max_length=255, validators=[validate_gtin], verbose_name="GTIN", blank=True, null=True)
     mpn = models.CharField(max_length=255, blank=True, null=True, verbose_name="Manufacturer part number")
     price = models.DecimalField(max_digits=9, decimal_places=2)
     availability = models.CharField(max_length=255, choices=AVAILABILITY)

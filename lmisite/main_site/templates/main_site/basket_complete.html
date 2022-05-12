@@ -70,7 +70,7 @@
           "delivery_country": "{{ basket.postage_address.country.code }}",
           "estimated_delivery_date": "{{ estimated_delivery_date|date:"Y-m-d" }}",
           "products": [{% for item in basket.items.all %}
-              {"gtin": "{{ item.product.gtin }}"}
+              {% if item.product.gtin %}{"gtin": "{{ item.product.gtin }}"},{% endif %}
           {% endfor %}]
         });
     });

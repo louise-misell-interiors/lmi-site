@@ -645,12 +645,16 @@ class BrandGoogleManufacturerFeedType(feedgenerator.Rss201rev2Feed):
         handler.addQuickElement('g:id', item["g_id"])
         handler.addQuickElement('g:brand', item["g_brand"])
         handler.addQuickElement('g:title', item["g_name"])
-        handler.addQuickElement('g:gtin', item["g_gtin"])
         handler.addQuickElement('g:description', item["g_description"])
         handler.addQuickElement('g:product_page_url', item["g_product_page_url"])
         handler.addQuickElement('g:product_line', item["g_title"])
         handler.addQuickElement('g:product_name', item["g_subtitle"])
         handler.addQuickElement('g:suggested_retail_price', item["g_price"])
+
+        if item["g_gtin"]:
+            handler.addQuickElement('g:gtin', item["g_gtin"])
+        if item["g_mpn"]:
+            handler.addQuickElement('g:mpn', item["g_mpn"])
 
         if len(item["g_images"]) >= 1:
             handler.addQuickElement('g:image_link', item["g_images"][0])
@@ -703,7 +707,8 @@ class BrandGoogleManufacturerFeed(Feed):
             "g_name": str(item.name),
             "g_title": str(item.title),
             "g_subtitle": str(item.subtitle),
-            "g_gtin": str(item.gtin),
+            "g_gtin": str(item.gtin) if item.gtin else None,
+            "g_mpn": str(item.mpn) if item.mpn else None,
             "g_description": str(item.description_text),
             "g_price": f"GBP {item.price}",
             "g_product_page_url": settings.EXTERNAL_URL_BASE + reverse('shop_product', kwargs={"id": item.id}),
@@ -727,7 +732,11 @@ class GoogleMerchantFeedType(feedgenerator.Rss201rev2Feed):
         handler.addQuickElement('g:link', item["g_link"])
         handler.addQuickElement('g:price', item["g_price"])
         handler.addQuickElement('g:brand', item["g_brand"])
-        handler.addQuickElement('g:gtin', item["g_gtin"])
+
+        if item["g_gtin"]:
+            handler.addQuickElement('g:gtin', item["g_gtin"])
+        if item["g_mpn"]:
+            handler.addQuickElement('g:mpn', item["g_mpn"])
 
         if item["g_availability"] in (
                 Product.IN_STOCK, Product.LIMITED_AVAILABILITY,
@@ -812,11 +821,12 @@ class GoogleMerchantFeed(Feed):
             "g_availability": item.availability,
             "g_price": f"GBP {item.price}",
             "g_brand": str(item.brand.name),
-            "g_gtin": str(item.gtin),
             "g_shipping": item.possible_postage_options,
             "g_weight": str(item.weight),
             "g_width": str(item.width),
             "g_height": str(item.height),
             "g_length": str(item.depth),
-            "g_back_ordered_days": item.back_ordered_days
+            "g_back_ordered_days": item.back_ordered_days,
+            "g_gtin": str(item.gtin) if item.gtin else None,
+            "g_mpn": str(item.mpn) if item.mpn else None,
         }

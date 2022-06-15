@@ -113,6 +113,10 @@
         overflow: hidden;
       }
 
+      form {
+        padding: $content-padding;
+      }
+
       img {
         position: absolute;
         z-index: -1;

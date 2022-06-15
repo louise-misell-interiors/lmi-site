@@ -17,9 +17,18 @@ class BookingType(models.Model):
     hidden = models.BooleanField()
     price = models.DecimalField(max_digits=9, decimal_places=2, blank=True, null=True)
 
-    max_events_per_day = models.PositiveIntegerField(blank=True, null=True)
-    max_events_per_week = models.PositiveIntegerField(blank=True, null=True)
-    max_events_per_month = models.PositiveIntegerField(blank=True, null=True)
+    max_events_per_day = models.PositiveIntegerField(
+        blank=True, null=True, verbose_name="Max events per day (all events)")
+    max_events_per_day_this_event = models.PositiveIntegerField(
+        blank=True, null=True, verbose_name="Max events per day (this event)")
+    max_events_per_week = models.PositiveIntegerField(
+        blank=True, null=True, verbose_name="Max events per week (all events)")
+    max_events_per_week_this_event = models.PositiveIntegerField(
+        blank=True, null=True, verbose_name="Max events per week (this event)")
+    max_events_per_month = models.PositiveIntegerField(
+        blank=True, null=True, verbose_name="Max events per month (all events)")
+    max_events_per_month_this_event = models.PositiveIntegerField(
+        blank=True, null=True, verbose_name="Max events per month (this event)")
     minimum_scheduling_notice = models.DurationField(default=datetime.timedelta())
     scheduling_frequency = models.DurationField(default=datetime.timedelta(0, 30))
     buffer_before_event = models.DurationField(default=datetime.timedelta())

@@ -386,18 +386,20 @@ h2, h3 {
   margin-bottom: $content-padding;
 
   > div {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-auto-rows: 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 90%;
     align-self: center;
-    grid-gap: $content-padding;
+    gap: $content-padding;
 
     .post {
       display: grid;
       grid-gap: 5px;
       align-items: center;
       grid-template-rows: auto 1fr auto auto;
+      min-width: 200px;
+      width: 30%;
 
       > a {
         align-self: stretch;

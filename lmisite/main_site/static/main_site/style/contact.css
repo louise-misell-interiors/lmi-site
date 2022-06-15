@@ -95,6 +95,8 @@
       .content .contact-details .form .form-inner {
         background: #fff;
         overflow: hidden; }
+      .content .contact-details .form form {
+        padding: 25px; }
       .content .contact-details .form img {
         position: absolute;
         z-index: -1;

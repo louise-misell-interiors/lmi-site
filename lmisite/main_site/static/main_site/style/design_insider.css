@@ -275,6 +275,7 @@ h2, h3 {
         justify-self: center; }
         .related > div .post > a img {
           object-fit: cover;
-          min-height: 100%; }
+          height: 100%;
+          width: 100%; }
 
 /*# sourceMappingURL=design_insider.css.map */

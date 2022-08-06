@@ -300,7 +300,7 @@ class CreateBooking(graphene.Mutation):
                     "Authorization": f"OAuth {creds['token']}"
                 }, json={
                     "email_address": email,
-                    "status": "unsubscribed" if newsletter else "subscribed",
+                    "status": "subscribed" if newsletter else "unsubscribed",
                     "source": "Website",
                     "ip_signup": get_client_ip(info.context),
                     "merge_fields": {

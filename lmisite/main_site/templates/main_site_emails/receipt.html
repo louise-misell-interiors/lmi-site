@@ -27,7 +27,8 @@
         </p>
     {% endif %}
     <p>
-        This will appear on your statement as {{ charge.calculated_statement_descriptor }}
+        This will appear on your statement as {{ charge.calculated_statement_descriptor }}.<br/>
+        You will receive a VAT invoice later.
     </p>
     <p>
         <a href="{{ charge.receipt_url }}" target="_blank">View this receipt in your browser</a>

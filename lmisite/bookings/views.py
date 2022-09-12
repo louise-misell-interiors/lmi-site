@@ -157,8 +157,7 @@ def booking_succeeded(booking: Booking):
 
     files_text = []
     for file in booking.booking_files.all():
-        file_url = settings.EXTERNAL_URL_BASE + file.file.url
-        files_text.append(f"- {file_url}")
+        files_text.append(f"- {file.file}")
     files_text = "\r\n".join(files_text)
 
     tz = pytz.timezone(booking.type.timezone)

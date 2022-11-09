@@ -1,41 +1,55 @@
-<div style="background: #335470;padding: 50px 15px;font-family: sans-serif;">
-    <div style="max-width: 600px;margin: 0 auto;color: #335470;background: #fff;">
-        <div style="background: #e5f0f2;padding: 10px;">
-            <img src="https://louisemisellinteriors.co.uk/static/main_site/img/logo.png" alt=""
-                 style="max-width: 300px;margin: 0 auto;display: block;"/>
-        </div>
-        <div style="padding: 15px;">
-            <h1 style="background: #335470;margin: 0;padding: 20px 5px;text-align: center;color: #e5f0f2;">
-                Your booking is confirmed
-            </h1>
-            <h2>
-                Hi {{ first_name }}
-            </h2>
-            <p>
-                Thank you for booking a {{ booking_type.name|lower }} with me, here are the details for your diary;
-            </p>
-            <h3 style="margin-bottom: 0;">
-                Booking time
-            </h3>
-            <p style="margin-top: 0;">
-                {{ time }}
-            </p>
-            <h3 style="margin-bottom: 0;">
-                Your email
-            </h3>
-            <p style="margin-top: 0;">
-                {{ email }}
-            </p>
-            <h3 style="margin-bottom: 0;">
-                Your phone
-            </h3>
-            <p style="margin-top: 0;">
-                {{ phone }}
-            </p>
-            {% for question in questions %}
-                <h3 style="margin-bottom: 0;">{{ question.question.question }}</h3>
-                <p style="margin-top: 0;">{{ question.answer|linebreaks }}</p>
-            {% endfor %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body style="padding: 0; margin: 0">
+<div style="background-image: url({{ settings.EXTERNAL_URL_BASE }}/static/main_site/img/IMG_3705.jpg);background-position: 50% 50%;background-size: cover;padding: 200px 0 50px;">
+    <div style="background: #335470;">
+        <div style="padding: 25px 0;max-width: 600px;margin: 0 auto;color: #e5f0f2;font-family: 'Libre Baskerville', serif;">
+            <h1 style="font-weight: normal;font-size: 40px;margin: 0;">Your booking is confirmed</h1>
         </div>
     </div>
 </div>
+
+<div style="background: #e5f0f2;color: #335470;padding: 50px 15px;font-family: 'Libre Baskerville', serif;">
+    <div style="max-width: 600px;margin: 0 auto;">
+        <h2 style="font-size: 30px;">
+            Hi {{ first_name }}
+        </h2>
+        <p style="font-size: 20px;">
+            Thank you for booking a {{ booking_type.name|lower }} with me, here are the details for your diary;
+        </p>
+        <h3 style="margin-bottom: 0;font-size: 20px;">
+            Booking time
+        </h3>
+        <p style="font-size: 20px;">
+            {{ time }}
+        </p>
+        <h3 style="margin-bottom: 0;font-size: 20px;">
+            Your email
+        </h3>
+        <p style="font-size: 20px;">
+            {{ email }}
+        </p>
+        <h3 style="margin-bottom: 0;font-size: 20px;">
+            Your phone
+        </h3>
+        <p style="font-size: 20px;">
+            {{ phone }}
+        </p>
+        {% for question in questions %}
+            <h3 style="margin-bottom: 0;font-size: 20px;">{{ question.question.question }}</h3>
+            <div style="font-size: 20px;">
+                {{ question.answer|linebreaks }}
+            </div>
+        {% endfor %}
+        <div style="text-align: right">
+            <img src="{{ settings.EXTERNAL_URL_BASE }}/static/main_site/img/logo.png" alt=""
+                 style="max-width: 150px;display: inline-block;"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

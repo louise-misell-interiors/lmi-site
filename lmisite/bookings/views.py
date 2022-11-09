@@ -180,6 +180,7 @@ def booking_succeeded(booking: Booking):
     email_msg.send()
 
     context = {
+        "settings": settings,
         "booking_type": booking.type,
         "time": time,
         "first_name": booking.customer.first_name,
@@ -201,7 +202,7 @@ def booking_succeeded(booking: Booking):
         },
         reply_to=[f"Louise Misell <{config.email}>"]
     )
-    email_msg.attach_alternative(render_to_string("bookings/booking_confirmation_amp.html", context), "text/x-amp-html")
+    # email_msg.attach_alternative(render_to_string("bookings/booking_confirmation_amp.html", context), "text/x-amp-html")
     email_msg.attach_alternative(render_to_string("bookings/booking_confirmation.html", context), "text/html")
     email_msg.send()
 

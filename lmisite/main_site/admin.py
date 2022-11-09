@@ -1,6 +1,6 @@
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
-from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
+from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin, SortableAdminBase
 from .models import *
 from .forms import *
 
@@ -122,7 +122,7 @@ class QuizResultInline(SortableInlineAdminMixin, admin.StackedInline):
 
 
 @admin.register(Quiz)
-class QuizAdmin(admin.ModelAdmin):
+class QuizAdmin(admin.ModelAdmin, SortableAdminBase):
     inlines = [QuizVariableInline, QuizStepInline, QuizResultInline]
     readonly_fields = ["id"]
 

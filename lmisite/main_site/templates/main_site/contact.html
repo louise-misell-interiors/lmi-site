@@ -81,12 +81,12 @@
                                         <textarea name="question_{{ question.id }}" placeholder="{{ question.question }}"
                                                   cols="40" rows="10"></textarea>
                                     {% elif question.question_type == question.TYPE_SELECT %}
-                                        <label for="question_{{ question.id }}">{{ question.question }}</label>
-                                        <select name="question_{{ question.id }}" id="question_{{ question.id }}">
-                                            {% for option in question.options.all %}
-                                                <option value="{{ option.id }}">{{ option.option }}</option>
-                                            {% endfor %}
-                                        </select>
+                                        <label for="question_{{ question.id }}" class="input-like">{{ question.question }}</label>
+                                        {% for option in question.options.all %}
+                                            <input value="{{ option.id }}" type="radio" name="question_{{ question.id }}"
+                                                id="option_{{ option.id }}"/>
+                                            <label for="option_{{ option.id }}">{{ option.option }}</label>
+                                        {% endfor %}
                                     {% endif %}
                                 </div>
                             {% endfor %}

@@ -37,6 +37,33 @@ form {
   }
 }
 
+input[type=radio] {
+  appearance: none;
+  background-color: #fff;
+  font: inherit;
+  color: currentColor;
+  width: 1em;
+  height: 1em;
+  border: 0.1em solid currentcolor;
+  border-radius: 50%;
+  display: inline-grid;
+  place-content: center;
+  margin: 15px 0 0 10px;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em $background-colour;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
 
 input:not([type=radio]), textarea, button, .input-like, select {
   width: 100%;
@@ -44,6 +71,7 @@ input:not([type=radio]), textarea, button, .input-like, select {
   padding: 15px;
   font-size: 20px;
   background: $background-colour;
+  display: inline-block;
   font-family: "Raleway", serif;
 
   @media (max-width: $media-small) {

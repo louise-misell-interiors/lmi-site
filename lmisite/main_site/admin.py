@@ -102,6 +102,17 @@ class NewsletterEntryAdmin(admin.ModelAdmin):
     pass
 
 
+class ContactFormQuestionOptionInline(SortableInlineAdminMixin, admin.TabularInline):
+    model = ContactFormQuestionOption
+    exclude = ["id"]
+    extra = 3
+
+
+@admin.register(ContactFormQuestion)
+class ContactFormQuestionAdmin(SortableAdminMixin, admin.ModelAdmin):
+    inlines = [ContactFormQuestionOptionInline]
+
+
 class QuizVariableInline(admin.TabularInline):
     exclude = ["id"]
     model = QuizVariables

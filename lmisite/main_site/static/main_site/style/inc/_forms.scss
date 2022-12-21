@@ -20,7 +20,7 @@ form {
     }
 
     label {
-      font-size: 18px;
+      font-size: 20px;
     }
 
   }
@@ -59,6 +59,13 @@ input:not([type=radio]), textarea, button, .input-like, select {
     text-align: left;
     color: #6a6f70;
   }
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
 }
 
 .input-like p {

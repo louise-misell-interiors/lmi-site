@@ -1,5 +1,6 @@
 {% extends "main_site/inc/base.html" %}
 {% load static %}
+{% load hash %}
 
 {% block title %}{{ config.contact_title }}{% endblock %}
 
@@ -67,6 +68,28 @@
                                 {{ form.source.errors }}
                                 {{ form.source }}
                             </div>
+                            {% for question in questions %}
+                                <div>
+                                    {% if question.id in question_errors %}
+                                        <ul class="errorlist">
+                                            <li>{{ question_errors|get_dict_key:question.id }}</li>
+                                        </ul>
+                                    {% endif %}
+                                    {% if question.question_type == question.TYPE_ONE_LINE %}
+                                        <input type="text" name="question_{{ question.id }}" placeholder="{{ question.question }}">
+                                    {% elif question.question_type == question.TYPE_MULTI_LINE %}
+                                        <textarea name="question_{{ question.id }}" placeholder="{{ question.question }}"
+                                                  cols="40" rows="10"></textarea>
+                                    {% elif question.question_type == question.TYPE_SELECT %}
+                                        <label for="question_{{ question.id }}">{{ question.question }}</label>
+                                        <select name="question_{{ question.id }}" id="question_{{ question.id }}">
+                                            {% for option in question.options.all %}
+                                                <option value="{{ option.id }}">{{ option.option }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
                             <div>
                                 {{ form.message.errors }}
                                 {{ form.message }}

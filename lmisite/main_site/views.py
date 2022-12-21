@@ -322,6 +322,8 @@ def contact(request):
 
     booking_config = booking_models.Config.objects.first()
     booking_notice = booking_config.booking_notice if booking_config else None
+    questions = ContactFormQuestion.objects.all()
+    question_errors = {}
 
     if request.method == 'POST':
         form = forms.ContactForm(request.POST)
@@ -334,57 +336,85 @@ def contact(request):
             newsletter = form.cleaned_data['newsletter']
             source = form.cleaned_data['source']
 
-            config = SiteConfig.objects.first()
-            email_msg = EmailMultiAlternatives(
-                subject=f"{first_name} has sent a message on your website",
-                body=f"Name: {first_name} {last_name}\r\n"
-                     f"Email: {email}\r\n"
-                     f"Phone: {phone}\r\n"
-                     f"Source: {source}\r\n\r\n"
-                     f"---\r\n\r\n{message}",
-                to=[config.email],
-                reply_to=[email]
-            )
-            email_msg.send()
+            valid = True
+            answers = []
+            for question in questions:
+                if f"question_{question.id}" not in request.POST:
+                    question_errors[question.id] = "This field is required"
+                    valid = False
+                else:
+                    answer = request.POST[f"question_{question.id}"]
+                    if not answer:
+                        question_errors[question.id] = "This field is required"
+                        valid = False
+                    else:
+                        if question.question_type == question.TYPE_SELECT:
+                            answer = question.options.filter(id=answer).first()
+                            if not answer:
+                                question_errors[question.id] = "This field is required"
+                                valid = False
+                            else:
+                                answers.append((question, answer.option))
+                        else:
+                            answers.append((question, answer))
 
-            matching_customers = booking_models.Customer.objects.filter(email=email)
-            if len(matching_customers) > 0:
-                customer = matching_customers.first()
-            else:
-                customer = booking_models.Customer()
-                customer.email = email
+            valid = False
 
-                creds = get_newsletter_credentials()
-                if creds is not None and config.newsletter_group_id:
-                    member = requests.put(
-                        f"{creds['endpoint']}/3.0/lists/{config.newsletter_group_id}/members/",
-                        headers={
-                           "Authorization": f"OAuth {creds['token']}"
-                        }, json={
-                            "email_address": email,
-                            "status_if_new": "subscribed" if newsletter else "unsubscribed",
-                            "source": "Website",
-                            "ip_signup": get_client_ip(request),
-                            "merge_fields": {
-                                "FNAME": first_name,
-                                "LNAME": last_name,
+            if valid:
+                config = SiteConfig.objects.first()
+                body = f"Name: {first_name} {last_name}\r\n" \
+                       f"Email: {email}\r\n" \
+                       f"Phone: {phone}\r\n" \
+                       f"Source: {source}\r\n\r\n"
+                for question, answer in answers:
+                    body += f"{question.question}\r\n{answer}\r\n"
+                body += f"\r\n---\r\n\r\n{message}"
+                email_msg = EmailMultiAlternatives(
+                    subject=f"{first_name} has sent a message on your website",
+                    body=body,
+                    to=[config.email],
+                    reply_to=[email]
+                )
+                email_msg.send()
+
+                matching_customers = booking_models.Customer.objects.filter(email=email)
+                if len(matching_customers) > 0:
+                    customer = matching_customers.first()
+                else:
+                    customer = booking_models.Customer()
+                    customer.email = email
+
+                    creds = get_newsletter_credentials()
+                    if creds is not None and config.newsletter_group_id:
+                        member = requests.put(
+                            f"{creds['endpoint']}/3.0/lists/{config.newsletter_group_id}/members/",
+                            headers={
+                               "Authorization": f"OAuth {creds['token']}"
+                            }, json={
+                                "email_address": email,
+                                "status_if_new": "subscribed" if newsletter else "unsubscribed",
+                                "source": "Website",
+                                "ip_signup": get_client_ip(request),
+                                "merge_fields": {
+                                    "FNAME": first_name,
+                                    "LNAME": last_name,
+                                }
                             }
-                        }
-                    )
-                    if member.status_code == 200:
-                        data = member.json()
-                        customer.mailchimp_id = data.get("id", "")
+                        )
+                        if member.status_code == 200:
+                            data = member.json()
+                            customer.mailchimp_id = data.get("id", "")
 
-            customer.first_name = first_name
-            customer.last_name = last_name
-            customer.phone = phone
-            customer.source = source
+                customer.first_name = first_name
+                customer.last_name = last_name
+                customer.phone = phone
+                customer.source = source
 
-            customer.full_clean()
-            customer.save()
+                customer.full_clean()
+                customer.save()
 
-            return render(request, "main_site/contact.html",
-                          {'form': form, 'sent': True, "testimonial": testimonials.first()})
+                return render(request, "main_site/contact.html",
+                              {'form': form, 'sent': True, "testimonial": testimonials.first()})
     else:
         form = forms.ContactForm()
 
@@ -393,6 +423,8 @@ def contact(request):
         'sent': False,
         "testimonial": testimonials.first(),
         "booking_notice": booking_notice,
+        "questions": questions,
+        "question_errors": question_errors
     })
 
 

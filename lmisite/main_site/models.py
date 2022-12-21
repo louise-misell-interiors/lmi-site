@@ -489,6 +489,44 @@ class ShortPost(models.Model):
         return self.title
 
 
+class ContactFormQuestion(models.Model):
+    TYPE_ONE_LINE = "T"
+    TYPE_MULTI_LINE = "M"
+    TYPE_SELECT = "S"
+
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+
+    question = models.CharField(max_length=255)
+    required = models.BooleanField()
+
+    TYPES = (
+        (TYPE_ONE_LINE, "One Line"),
+        (TYPE_MULTI_LINE, "Multi-line"),
+        (TYPE_SELECT, "Select"),
+    )
+
+    question_type = models.CharField(max_length=1, choices=TYPES)
+
+    def __str__(self):
+        return self.question
+
+    class Meta:
+        ordering = ['order']
+
+
+class ContactFormQuestionOption(models.Model):
+    question = models.ForeignKey(ContactFormQuestion, on_delete=models.CASCADE, related_name='options')
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+
+    option = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.question.question} - {self.option}"
+
+    class Meta:
+        ordering = ['order']
+
+
 class NewsletterEntry(models.Model):
     mailchimp_id = models.CharField(max_length=255, blank=True, null=True)
     first_name = models.CharField(max_length=255)

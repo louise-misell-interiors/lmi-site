@@ -114,7 +114,7 @@
   margin-top: 0;
 }
 .content .contact-details .form {
-  width: 50%;
+  width: 60%;
   padding-top: 0 !important;
   position: relative;
   float: left;
@@ -136,9 +136,9 @@
 .content .contact-details .form img {
   position: absolute;
   z-index: -1;
-  right: -100%;
-  top: -10%;
-  height: 100%;
+  right: -67%;
+  top: 7%;
+  width: 65%;
   object-fit: cover;
 }
 @media (max-width: 1200px) {

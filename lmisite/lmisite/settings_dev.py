@@ -30,6 +30,7 @@ SECRET_KEY = 'qt-d9(74_5==&jku1kr&jh_tmeal+p)&s(lv30^7mpobfoch)v'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://lmi-site.eu.ngrok.io"]
 
 INTERNAL_IPS = (
     '127.0.0.1',

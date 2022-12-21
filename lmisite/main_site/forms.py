@@ -158,7 +158,7 @@ class ConfigForm(forms.ModelForm):
             'about_mission_statement', 'about_text', 'about_text_2', 'about_cta', 'about_testimonials_cta',
             'resources_title', 'resources_image', 'resources_description', 'resources_text',
             'portfolio_title', 'portfolio_header_image', 'portfolio_description', 'portfolio_text',
-            'blog_title', 'blog_header_image', 'blog_description', 'blog_text',
+            'blog_title', 'blog_header_image', 'blog_sidebar_image', 'blog_description', 'blog_text',
             'services_title', 'services_header_image', 'services_description', 'services_text', 'services_cta',
             'services_testimonials_cta',
             'online_design_title', 'online_design_header_image', 'online_design_description', 'online_design_text',

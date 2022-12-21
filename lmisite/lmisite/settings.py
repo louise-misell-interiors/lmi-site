@@ -32,7 +32,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["www.louisemisellinteriors.co.uk", "louisemisellinteriors.co.uk", "test.louisemisellinteriors.co.uk"]
+ALLOWED_HOSTS = ["www.louisemisellinteriors.co.uk", "louisemisellinteriors.co.uk"]
+CSRF_TRUSTED_ORIGINS = ["https://louisemisellinteriors.co.uk"]
 
 # Application definition
 

@@ -114,6 +114,7 @@ class SiteConfig(SingletonModel):
 
     blog_title = models.CharField(max_length=255, blank=True)
     blog_header_image = models.ImageField(blank=True)
+    blog_sidebar_image = models.ImageField(blank=True)
     blog_description = models.TextField(blank=True)
     blog_text = RichTextUploadingField(blank=True)
 

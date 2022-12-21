@@ -47,8 +47,8 @@
   .contact-details {
     display: flex;
     flex-direction: column;
-    width: 80vw;
-    max-width: 1250px;
+    width: 90vw;
+    max-width: 1500px;
     align-self: center;
     position: relative;
 
@@ -100,13 +100,17 @@
     }
 
     .form {
-      max-width: 800px;
+      width: 50%;
       padding-top: 0 !important;
       position: relative;
       float: left;
       margin-top: 10%;
       min-height: 50vw;
       //left: (clamp(#{-3vw}, #{-100px}, #{0px}));
+
+      @media (max-width: $media-medium) {
+        width: 100%
+      }
 
       .form-inner {
         background: #fff;
@@ -120,11 +124,16 @@
       img {
         position: absolute;
         z-index: -1;
-        right: -25vw;
+        right: -100%;
         top: -10%;
         height: 100%;
+        object-fit: cover;
         //max-width: 50vw;
         //width: 100%;
+
+        @media (max-width: $media-medium) {
+          right: 0;
+        }
       }
 
       h2 {

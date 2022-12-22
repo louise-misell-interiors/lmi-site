@@ -340,15 +340,29 @@ def contact(request):
             answers = []
             for question in questions:
                 if f"question_{question.id}" not in request.POST:
-                    question_errors[question.id] = "This field is required"
-                    valid = False
+                    if question.required:
+                        question_errors[question.id] = "This field is required"
+                        valid = False
                 else:
                     answer = request.POST[f"question_{question.id}"]
                     if not answer:
-                        question_errors[question.id] = "This field is required"
-                        valid = False
+                        if question.required:
+                            question_errors[question.id] = "This field is required"
+                            valid = False
                     else:
-                        if question.question_type == question.TYPE_SELECT:
+                        if question.question_type == question.TYPE_MULTI_SELECT:
+                            a = request.POST.getlist(f"question_{question.id}")
+                            answers_str = []
+                            for answer in a:
+                                answer = question.options.filter(id=answer).first()
+                                if not answer:
+                                    question_errors[question.id] = "This field is required"
+                                    valid = False
+                                    break
+                                answers_str.append(answer.option)
+                            if valid:
+                                answers.append((question, ", ".join(answers_str)))
+                        elif question.question_type == question.TYPE_SELECT:
                             answer = question.options.filter(id=answer).first()
                             if not answer:
                                 question_errors[question.id] = "This field is required"
@@ -357,8 +371,6 @@ def contact(request):
                                 answers.append((question, answer.option))
                         else:
                             answers.append((question, answer))
-
-            valid = False
 
             if valid:
                 config = SiteConfig.objects.first()

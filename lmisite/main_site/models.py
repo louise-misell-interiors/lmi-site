@@ -493,6 +493,7 @@ class ContactFormQuestion(models.Model):
     TYPE_ONE_LINE = "T"
     TYPE_MULTI_LINE = "M"
     TYPE_SELECT = "S"
+    TYPE_MULTI_SELECT = "U"
 
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
 
@@ -503,6 +504,7 @@ class ContactFormQuestion(models.Model):
         (TYPE_ONE_LINE, "One Line"),
         (TYPE_MULTI_LINE, "Multi-line"),
         (TYPE_SELECT, "Select"),
+        (TYPE_MULTI_SELECT, "Multi-select"),
     )
 
     question_type = models.CharField(max_length=1, choices=TYPES)

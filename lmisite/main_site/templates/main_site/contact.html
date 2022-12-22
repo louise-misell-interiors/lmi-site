@@ -85,6 +85,15 @@
                                                 {{ option.option }}
                                             </label>
                                         {% endfor %}
+                                    {% elif question.question_type == question.TYPE_MULTI_SELECT %}
+                                        <label for="question_{{ question.id }}" class="input-like">{{ question.question }}</label>
+                                        {% for option in question.options.all %}
+                                            <label for="option_{{ option.id }}">
+                                                <input value="{{ option.id }}" type="checkbox" name="question_{{ question.id }}"
+                                                       id="option_{{ option.id }}"/>
+                                                {{ option.option }}
+                                            </label>
+                                        {% endfor %}
                                     {% endif %}
                                 </div>
                             {% endfor %}

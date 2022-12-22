@@ -39,7 +39,7 @@ form {
   }
 }
 
-input[type=radio] {
+input[type=radio], input[type=checkbox] {
   appearance: none;
   background-color: #fff;
   font: inherit;
@@ -54,7 +54,7 @@ input[type=radio] {
   transform: translateY(-0.15em);
 }
 
-input[type="radio"]::before {
+input[type=radio]::before, input[type=checkbox]::before {
   content: "";
   width: 0.3em;
   height: 0.3em;
@@ -64,11 +64,11 @@ input[type="radio"]::before {
   box-shadow: inset 1em 1em $background-colour-dark;
 }
 
-input[type="radio"]:checked::before {
+input[type=radio]:checked::before, input[type=checkbox]:checked::before {
   transform: scale(1);
 }
 
-input:not([type=radio]), textarea, button, .input-like, select {
+input:not([type=radio]):not([type=checkbox]), textarea, button, .input-like, select {
   width: 100%;
   border: none;
   padding: 15px;
@@ -80,10 +80,6 @@ input:not([type=radio]), textarea, button, .input-like, select {
 
   @media (max-width: $media-small) {
     margin: 0;
-  }
-
-  &[type="checkbox"] {
-    width: initial;
   }
 
   p {

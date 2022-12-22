@@ -362,7 +362,7 @@ form {
   list-style: none;
 }
 
-input[type=radio] {
+input[type=radio], input[type=checkbox] {
   appearance: none;
   background-color: #fff;
   font: inherit;
@@ -377,7 +377,7 @@ input[type=radio] {
   transform: translateY(-0.15em);
 }
 
-input[type=radio]::before {
+input[type=radio]::before, input[type=checkbox]::before {
   content: "";
   width: 0.3em;
   height: 0.3em;
@@ -387,11 +387,11 @@ input[type=radio]::before {
   box-shadow: inset 1em 1em #335470;
 }
 
-input[type=radio]:checked::before {
+input[type=radio]:checked::before, input[type=checkbox]:checked::before {
   transform: scale(1);
 }
 
-input:not([type=radio]), textarea, button, .input-like, select {
+input:not([type=radio]):not([type=checkbox]), textarea, button, .input-like, select {
   width: 100%;
   border: none;
   padding: 15px;
@@ -402,14 +402,11 @@ input:not([type=radio]), textarea, button, .input-like, select {
   color: #335470;
 }
 @media (max-width: 800px) {
-  input:not([type=radio]), textarea, button, .input-like, select {
+  input:not([type=radio]):not([type=checkbox]), textarea, button, .input-like, select {
     margin: 0;
   }
 }
-input:not([type=radio])[type=checkbox], textarea[type=checkbox], button[type=checkbox], .input-like[type=checkbox], select[type=checkbox] {
-  width: initial;
-}
-input:not([type=radio]) p, textarea p, button p, .input-like p, select p {
+input:not([type=radio]):not([type=checkbox]) p, textarea p, button p, .input-like p, select p {
   font-size: 20px !important;
   text-align: left;
   color: #6a6f70;

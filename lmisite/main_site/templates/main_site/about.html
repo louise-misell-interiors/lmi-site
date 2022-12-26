@@ -24,6 +24,9 @@
         </header>
         <div class="bio">
             {{ config.about_text_2|safe }}
+            <p>
+                <a href="{% if config.about_top_cta_link %}{{ config.about_top_cta_link }}{% else %}{% url 'contact' %}{% endif %}" class="button dark">{{ config.about_top_cta }}</a>
+            </p>
         </div>
         <header {% if config.about_header_image %}style="--header-background: url({{ config.about_header_image.url }});"{% endif %}>
             <h1>About Louise</h1>
@@ -41,7 +44,7 @@
 
             {{ config.about_text|safe }}
             <p>
-                <a href="{% url 'contact' %}" class="button dark">{{ config.about_cta }}</a>
+                <a href="{% if config.about_cta_link %}{{ config.about_cta_link }}{% else %}{% url 'contact' %}{% endif %}" class="button dark">{{ config.about_cta }}</a>
             </p>
         </div>
         <div class="testimonials">
@@ -58,7 +61,7 @@
                     <link itemprop="image" href="{{ testimonial.image.url }}"/>
                 {% endif %}
                 <p>
-                    <a href="{% url 'testimonials' %}" class="button">{{ config.about_testimonials_cta }}</a>
+                    <a href="{% if config.about_testimonials_cta_link %}{{ config.about_testimonials_cta_link }}{% else %}{% url 'testimonials' %}{% endif %}" class="button">{{ config.about_testimonials_cta }}</a>
                 </p>
             </div>
         </div>

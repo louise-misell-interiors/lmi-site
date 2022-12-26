@@ -22,7 +22,7 @@
         </header>
         <div class="bar">
             {{ config.services_text|safe }}
-            <a href="{% url 'contact' %}" class="button">{{ config.services_cta }}</a>
+            <a href="{% if config.services_cta_link %}{{ config.services_cta_link }}{% else %}{% url 'contact' %}{% endif %}" class="button">{{ config.services_cta }}</a>
         </div>
         <div class="services">
             {% for service in services %}
@@ -89,7 +89,7 @@
                     <link itemprop="image" href="{{ testimonial.image.url }}"/>
                 {% endif %}
                 <p>
-                    <a href="{% url 'testimonials' %}" class="button">{{ config.services_testimonials_cta }}</a>
+                    <a href="{% if config.services_testimonials_cta_link %}{{ config.services_testimonials_cta_link }}{% else %}{% url 'testimonials' %}{% endif %}" class="button">{{ config.services_testimonials_cta }}</a>
                 </p>
             </div>
         </div>

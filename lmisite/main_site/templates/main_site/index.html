@@ -43,7 +43,7 @@
             <div>
                 {{ config.home_about_text|safe }}
                 <p>
-                    <a href="{% url 'about' %}" class="button">{{ config.home_about_cta }}</a>
+                    <a href="{% if config.home_about_cta_link %}{{ config.home_about_cta_link }}{% else %}{% url 'about' %}{% endif %}" class="button">{{ config.home_about_cta }}</a>
                 </p>
             </div>
         </div>
@@ -54,7 +54,7 @@
                 </h3>
                 {{ config.home_help_text|safe }}
                 <p>
-                    <a href="{% url 'contact' %}" class="button dark">{{ config.home_help_cta }}</a>
+                    <a href="{% if config.home_help_cta_link %}{{ config.home_help_cta_link }}{% else %}{% url 'contact' %}{% endif %}" class="button dark">{{ config.home_help_cta }}</a>
                 </p>
             </div>
         </div>
@@ -93,7 +93,7 @@
                     <link itemprop="image" href="{{ testimonial.image.url }}"/>
                 {% endif %}
                 <p>
-                    <a href="{% url 'testimonials' %}" class="button">{{ config.home_testimonials_cta }}</a>
+                    <a href="{% if config.home_testimonials_cta_link %}{{ config.home_testimonials_cta_link }}{% else %}{% url 'testimonials' %}{% endif %}" class="button">{{ config.home_testimonials_cta }}</a>
                 </p>
             </div>
         </div>

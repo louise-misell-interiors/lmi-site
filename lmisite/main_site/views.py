@@ -12,7 +12,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.utils import feedgenerator, timezone
 from django.utils.encoding import iri_to_uri
 from django.http import HttpResponse
-from django.contrib.admin.views.decorators import staff_member_required
+from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 
 from . import forms
@@ -332,7 +332,7 @@ def contact(request):
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['your_email']
             phone = form.cleaned_data['your_phone']
-            message = form.cleaned_data['message']
+            message = form.cleaned_data['message'].replace('\r', '')
             newsletter = form.cleaned_data['newsletter']
             source = form.cleaned_data['source']
 
@@ -374,18 +374,49 @@ def contact(request):
 
             if valid:
                 config = SiteConfig.objects.first()
-                body = f"Name: {first_name} {last_name}\r\n" \
-                       f"Email: {email}\r\n" \
-                       f"Phone: {phone}\r\n" \
-                       f"Source: {source}\r\n\r\n"
+
+                context = {
+                    "settings": settings,
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "email": email,
+                    "phone": phone,
+                }
+
+                msg_id_1 = django.core.mail.message.make_msgid()
+                msg_id_2 = django.core.mail.message.make_msgid()
+                email_msg = EmailMultiAlternatives(
+                    subject=f"We've received your message",
+                    body=render_to_string("main_site_emails/contact_confirmation_txt.html", context),
+                    to=[email],
+                    headers={
+                        "List-Unsubscribe": f"<mailto:{config.email}?subject=unsubscribe>",
+                        "Message-ID": msg_id_1,
+                        "In-Reply-To": msg_id_2,
+                        "References": msg_id_2,
+                    },
+                    reply_to=[f"Louise Misell <{config.email}>"]
+                )
+                email_msg.attach_alternative(render_to_string("main_site_emails/contact_confirmation.html", context), "text/html")
+                email_msg.send()
+
+                body = f"Name: {first_name} {last_name}\n" \
+                       f"Email: {email}\n" \
+                       f"Phone: {phone}\n" \
+                       f"Source: {source}\n\n"
                 for question, answer in answers:
-                    body += f"{question.question}\r\n{answer}\r\n"
-                body += f"\r\n---\r\n\r\n{message}"
+                    body += f"{question.question}\n{answer}\n"
+                body += f"\n---\n\n{message}"
                 email_msg = EmailMultiAlternatives(
                     subject=f"{first_name} has sent a message on your website",
                     body=body,
                     to=[config.email],
-                    reply_to=[email]
+                    reply_to=[email],
+                    headers={
+                        "Message-ID": msg_id_2,
+                        "In-Reply-To": msg_id_1,
+                        "References": msg_id_1,
+                    }
                 )
                 email_msg.send()
 

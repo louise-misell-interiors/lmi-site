@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body style="padding: 0; margin: 0">
+<div style="background-image: url({{ settings.EXTERNAL_URL_BASE }}/static/main_site/img/IMG_3705.jpg);background-position: 50% 50%;background-size: cover;padding: 200px 0 50px;">
+    <div style="background: #335470;">
+        <div style="padding: 25px 0;max-width: 600px;margin: 0 auto;color: #e5f0f2;font-family: 'Libre Baskerville', serif;">
+            <h1 style="font-weight: normal;font-size: 40px;margin: 0;">Thank you for contacting us</h1>
+        </div>
+    </div>
+</div>
+
+<div style="background: #e5f0f2;color: #335470;padding: 50px 15px;font-family: 'Libre Baskerville', serif;">
+    <div style="max-width: 600px;margin: 0 auto;">
+        <h2 style="font-size: 30px;">
+            Hi {{ first_name }}
+        </h2>
+        <p style="font-size: 20px;">
+            Thank you for sending us a message, we will get back to you shortly.
+        </p>
+        <div style="text-align: right">
+            <img src="{{ settings.EXTERNAL_URL_BASE }}/static/main_site/img/logo.png" alt=""
+                 style="max-width: 150px;display: inline-block;"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

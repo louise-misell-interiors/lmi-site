@@ -95,6 +95,7 @@ class SiteConfig(SingletonModel):
     home_testimonials_cta_link = models.URLField(blank=True)
 
     about_title = models.CharField(max_length=255, blank=True)
+    about_header = models.CharField(max_length=255, blank=True)
     about_header_image = models.ImageField(blank=True)
     about_headshot_image = models.ImageField(blank=True)
     about_image_2 = models.ImageField(blank=True)

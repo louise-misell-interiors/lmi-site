@@ -20,7 +20,7 @@
 {% block content %}
     <div class="content">
         <header {% if config.about_image_2 %}style="--header-background: url({{ config.about_image_2.url }});"{% endif %}>
-            <h1>Why choose me as your interior designer?</h1>
+            <h1>{{ config.about_header }}</h1>
         </header>
         <div class="bio">
             {{ config.about_text_2|safe }}

@@ -159,6 +159,8 @@ class SiteConfig(SingletonModel):
     contact_form_text = RichTextUploadingField(blank=True)
     contact_submitted_texts = RichTextUploadingField(blank=True)
     contact_testimonials_cta = models.CharField(max_length=255, blank=True)
+    contact_cta = models.CharField(max_length=255, blank=True)
+    contact_cta_link = models.URLField(blank=True)
 
     testimonials_title = models.CharField(max_length=255, blank=True)
     testimonials_header_image = models.ImageField(blank=True)

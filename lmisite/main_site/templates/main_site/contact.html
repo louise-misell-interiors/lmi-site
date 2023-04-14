@@ -40,6 +40,11 @@
                     {% if sent %}
                         {{ config.contact_submitted_texts|safe }}
                     {% else %}
+                        {% if config.contact_cta_link %}
+                            <p class="cta">
+                                <a href="{{ config.contact_cta_link }}" class="button dark">{{ config.contact_cta }}</a>
+                            </p>
+                        {% endif %}
                         {% if booking_notice %}
                             <h3 class="notice">{{ booking_notice }}</h3>
                         {% endif %}

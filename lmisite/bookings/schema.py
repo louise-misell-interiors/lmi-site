@@ -173,7 +173,9 @@ def get_booking_times(start_date: datetime.date, booking: models.BookingType, en
 
             if valid:
                 times.append(cur_time.time())
+
             cur_time += booking.scheduling_frequency
+            cur_date = cur_time.date()
 
         out[date] = times
         date += datetime.timedelta(days=1)

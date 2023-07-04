@@ -1,29 +1,38 @@
 .content h2 {
   text-align: center;
   font-size: 37px;
-  color: #335470; }
+  color: #335470;
+}
 .content header {
-  background-image: var(--header-background); }
-  .content header div {
-    margin: 100px 0;
-    text-align: center;
-    color: #335470;
-    background: linear-gradient(rgba(229, 240, 242, 0.6), rgba(229, 240, 242, 0.6));
-    padding: 25px; }
-    .content header div h1, .content header div h2, .content header div h3 {
-      margin: 25px 0; }
-    .content header div h1, .content header div h2 {
-      font-weight: normal; }
-    .content header div h1 {
-      margin-top: 0;
-      text-transform: uppercase; }
-    .content header div h2, .content header div h3 {
-      text-align: center; }
-    .content header div h3 {
-      margin-bottom: 0; }
+  background-image: var(--header-background);
+}
+.content header div {
+  margin: 100px 0;
+  text-align: center;
+  color: #335470;
+  background: linear-gradient(rgba(229, 240, 242, 0.6), rgba(229, 240, 242, 0.6));
+  padding: 25px;
+}
+.content header div h1, .content header div h2, .content header div h3 {
+  margin: 25px 0;
+}
+.content header div h1, .content header div h2 {
+  font-weight: normal;
+}
+.content header div h1 {
+  margin-top: 0;
+  text-transform: uppercase;
+}
+.content header div h2, .content header div h3 {
+  text-align: center;
+}
+.content header div h3 {
+  margin-bottom: 0;
+}
 .content .credits {
   text-align: right;
-  padding-bottom: 0; }
+  padding-bottom: 0;
+}
 .content .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -33,49 +42,65 @@
   justify-content: center;
   align-items: center;
   width: 80vw;
-  margin: 0 auto; }
-  @media (max-width: 1500px) {
-    .content .grid {
-      grid-auto-rows: auto;
-      grid-template-columns: repeat(3, 1fr); }
-      .content .grid > div {
-        grid-column-end: span 1 !important; } }
-  @media (max-width: 1200px) {
-    .content .grid {
-      grid-auto-rows: auto;
-      grid-template-columns: repeat(2, 1fr);
-      width: 100vw; }
-      .content .grid > div {
-        grid-column-end: span 1 !important; } }
-  @media (max-width: 800px) {
-    .content .grid {
-      grid-template-columns: 1fr; }
-      .content .grid > div {
-        grid-column-end: span 1 !important; } }
-  .content .grid p {
-    font-size: 30px;
-    text-align: center; }
-  .content .grid .type-I {
-    align-self: stretch;
-    justify-self: stretch;
-    position: relative; }
-    .content .grid .type-I img {
-      object-fit: cover;
-      height: 100%;
-      width: 100%; }
-    .content .grid .type-I img.hover {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      opacity: 0;
-      pointer-events: none; }
-    .content .grid .type-I:hover img.hover {
-      opacity: 1; }
+  margin: 0 auto;
+}
+@media (max-width: 1500px) {
+  .content .grid {
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .content .grid > div {
+    grid-column-end: span 1 !important;
+  }
+}
+@media (max-width: 1200px) {
+  .content .grid {
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100vw;
+  }
+  .content .grid > div {
+    grid-column-end: span 1 !important;
+  }
+}
+@media (max-width: 800px) {
+  .content .grid {
+    grid-template-columns: 1fr;
+  }
+  .content .grid > div {
+    grid-column-end: span 1 !important;
+  }
+}
+.content .grid p {
+  font-size: 30px;
+  text-align: center;
+}
+.content .grid .type-I {
+  align-self: stretch;
+  justify-self: stretch;
+  position: relative;
+}
+.content .grid .type-I img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.content .grid .type-I img.hover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.content .grid .type-I:hover img.hover {
+  opacity: 1;
+}
 
 .projects {
-  margin: 0 auto; }
+  margin: 0 auto;
+}
 
 .projects {
   display: grid;
@@ -83,44 +108,57 @@
   grid-auto-rows: 1fr;
   width: 80vw;
   align-self: center;
-  grid-gap: 25px; }
-  @media (max-width: 800px) {
-    .projects {
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } }
-  @media (max-width: 700px) {
-    .projects {
-      width: 100vw; } }
-  .projects .project {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; }
-    .projects .project a {
-      height: 100%; }
-    .projects .project h2, .projects .project h3 {
-      color: #e5f0f2;
-      text-align: center; }
-    .projects .project hr {
-      border-color: #e5f0f2; }
-    .projects .project .img-box {
-      position: relative;
-      height: 100%; }
-      .projects .project .img-box img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover; }
-      .projects .project .img-box .show {
-        opacity: 0;
-        display: flex;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        flex-direction: column;
-        justify-content: center;
-        background: rgba(51, 84, 112, 0.7);
-        font-family: "Raleway", sans-serif; }
-      .projects .project .img-box:hover .show {
-        opacity: 1; }
+  grid-gap: 25px;
+}
+@media (max-width: 800px) {
+  .projects {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  .projects {
+    width: 100vw;
+  }
+}
+.projects .project {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.projects .project a {
+  height: 100%;
+}
+.projects .project h2, .projects .project h3 {
+  color: #e5f0f2;
+  text-align: center;
+}
+.projects .project hr {
+  border-color: #e5f0f2;
+}
+.projects .project .img-box {
+  position: relative;
+  height: 100%;
+}
+.projects .project .img-box img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.projects .project .img-box .show {
+  opacity: 0;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(51, 84, 112, 0.7);
+  font-family: "Raleway", sans-serif;
+}
+.projects .project .img-box:hover .show {
+  opacity: 1;
+}
 
 /*# sourceMappingURL=project.css.map */

@@ -93,12 +93,26 @@ WSGI_APPLICATION = 'lmisite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': 'db.sqlite3',
+with open(os.path.join(BASE_DIR, "db_pass.json")) as f:
+    db_conf = json.load(f)
+    DATABASES = {
+        # 'default': {
+        #    'ENGINE': 'django.db.backends.sqlite3',
+        #    'NAME': 'db.sqlite3',
+        # }
+        'default': {
+            'NAME': "lmisite",
+            'USER': "root",
+            'PASSWORD': db_conf["pass"],
+            'HOST': "localhost",
+            'ENGINE': 'django.db.backends.mysql',
+            'PORT': '',
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+            }
+        }
     }
-}
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Password validation
@@ -167,7 +181,8 @@ STATIC_URL = EXTERNAL_URL_BASE + STATIC_URL_PATH
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL_PATH = '/media/'
-MEDIA_URL = EXTERNAL_URL_BASE + MEDIA_URL_PATH
+# MEDIA_URL = EXTERNAL_URL_BASE + MEDIA_URL_PATH
+MEDIA_URL = "https://louisemisellinteriors.co.uk/media/"
 
 PHONENUMBER_DEFAULT_REGION = 'GB'
 

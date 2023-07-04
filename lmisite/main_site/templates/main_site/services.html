@@ -22,35 +22,34 @@
         </header>
         <div class="bar">
             {{ config.services_text|safe }}
-            <a href="{% if config.services_cta_link %}{{ config.services_cta_link }}{% else %}{% url 'contact' %}{% endif %}" class="button">{{ config.services_cta }}</a>
+            <a href="
+                    {% if config.services_cta_link %}{{ config.services_cta_link }}{% else %}{% url 'contact' %}{% endif %}"
+               class="button">{{ config.services_cta }}</a>
         </div>
         <div class="services">
             {% for service in services %}
-                {% if service.group %}
-                    <div class="service-block">
+                <div class="service-block" itemscope itemtype="https://schema.org/Service">
                     <div class="title">
-                    <h2>{{ service.group.name }}</h2>
-                    {% if service.group.description %}
-                        <p>{{ service.group.description }}</p>
-                    {% endif %}
+                        <h2 itemprop="name">{{ service.service.name }}</h2>
+                        {% if service.group.description %}
+                            <p>{{ service.group.description }}</p>
+                        {% endif %}
                     </div>
-                {% endif %}
-                {% with service.service as service %}
-                    <div class="service" itemscope itemtype="https://schema.org/Service">
+                    {% with service.service as service %}
                         {% if service.image %}
                             <img src="{{ service.image.url }}" alt="{{ service.name }}">
                         {% endif %}
-                        <div class="colour-block"></div>
-                        <h3 itemprop="name">{{ service.name }}</h3>
-                        <span itemprop="description" class="description">
-                          {{ service.description|linebreaks }}
-                        </span>
-                        {% if service.price %}
-                            <h3 class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                                <span itemprop="price">{{ service.price }}</span>
-                                <span class="buttons">
+                        <div class="service-content">
+                            <div itemprop="description" class="description">
+                                {{ service.description|linebreaks }}
+                            </div>
+                            {% if service.price %}
+                                <h3 class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    <span itemprop="price">{{ service.price }}</span>
+                                    <span class="buttons">
                                 {% for button in service.buttons.all %}
                                     <a href="
+
 
 
 
@@ -60,19 +59,17 @@
                                     </a>
                                 {% endfor %}
                                 </span>
-                            </h3>
-                        {% endif %}
-                        <span itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog"
-                              style="display: none;">
+                                </h3>
+                            {% endif %}
+                            <span itemprop="hasOfferCatalog" itemscope itemtype="http://schema.org/OfferCatalog"
+                                  style="display: none;">
                             {% for summary in service.service_summaries.all %}
                                 <meta itemprop="itemListElement" content="{{ summary.text }}"/>
                             {% endfor %}
                         </span>
-                    </div>
-                {% endwith %}
-                {% if service.last_group %}
-                    </div>
-                {% endif %}
+                        </div>
+                    {% endwith %}
+                </div>
             {% endfor %}
         </div>
         <div class="testimonials">
@@ -89,7 +86,9 @@
                     <link itemprop="image" href="{{ testimonial.image.url }}"/>
                 {% endif %}
                 <p>
-                    <a href="{% if config.services_testimonials_cta_link %}{{ config.services_testimonials_cta_link }}{% else %}{% url 'testimonials' %}{% endif %}" class="button">{{ config.services_testimonials_cta }}</a>
+                    <a href="
+                            {% if config.services_testimonials_cta_link %}{{ config.services_testimonials_cta_link }}{% else %}{% url 'testimonials' %}{% endif %}"
+                       class="button">{{ config.services_testimonials_cta }}</a>
                 </p>
             </div>
         </div>

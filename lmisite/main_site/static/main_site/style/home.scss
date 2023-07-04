@@ -9,7 +9,7 @@
   .main-slider-inner {
     $width: 60%;
 
-    padding-bottom: ($width/100%) * 49.995%;
+    padding-bottom: 35%;
     position: relative;
     min-height: 40vh;
 
@@ -80,7 +80,7 @@
     color: $dark-text-colour;
     font-size: 45px;
     font-weight: normal;
-    background: linear-gradient(rgba($background-colour, .6), rgba($background-colour, .6));
+    background: linear-gradient(rgba($background-colour, .8), rgba($background-colour, .8));
 
     @media (max-width: $media-small) {
       width: 100%;
@@ -97,6 +97,10 @@
       font-size: 25px;
       max-width: 1100px;
       margin: $content-padding/2 0;
+    }
+
+    .button {
+      font-family: "Baskerville", serif;
     }
   }
 }

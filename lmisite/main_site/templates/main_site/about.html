@@ -22,6 +22,11 @@
         <header {% if config.about_image_2 %}style="--header-background: url({{ config.about_image_2.url }});"{% endif %}>
             <h1>{{ config.about_header }}</h1>
         </header>
+        <div class="about">
+            <div>
+                {{ config.about_mission_statement|safe }}
+            </div>
+        </div>
         <div class="bio">
             {{ config.about_text_2|safe }}
             <p>
@@ -31,11 +36,6 @@
         <header {% if config.about_header_image %}style="--header-background: url({{ config.about_header_image.url }});"{% endif %}>
             <h1>About Louise</h1>
         </header>
-        <div class="about">
-            <div>
-                {{ config.about_mission_statement|safe }}
-            </div>
-        </div>
         <div class="bio" itemscope itemtype="http://schema.org/Person">
             <meta itemprop="name" content="Louise Misell">
             <link itemprop="image"

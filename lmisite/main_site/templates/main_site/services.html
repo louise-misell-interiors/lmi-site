@@ -18,7 +18,7 @@
 {% block content %}
     <div class="content">
         <header {% if config.services_header_image %}style="--header-background: url({{ config.services_header_image.url }});"{% endif %}>
-            <h1>Services</h1>
+            <h1>{{ config.services_header }}</h1>
         </header>
         <div class="bar">
             {{ config.services_text|safe }}

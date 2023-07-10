@@ -20,7 +20,7 @@
 {% block content %}
     <div class="content">
         <header {% if config.testimonials_header_image %}style="--header-background: url({{ config.testimonials_header_image.url }});"{% endif %}>
-            <h1>Testimonials</h1>
+            <h1>{{ config.testimonials_header }}</h1>
             <div class="desc">
                 {{ config.testimonials_text|safe }}
             </div>

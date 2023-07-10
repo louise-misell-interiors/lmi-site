@@ -19,7 +19,7 @@
 {% block content %}
     <div class="content">
         <header {% if config.contact_header_image %}style="--header-background: url({{ config.contact_header_image.url }});"{% endif %}>
-            <h1>Contact</h1>
+            <h1>{{ config.contact_header }}</h1>
         </header>
         {% if config.contact_text_1 %}
             <div class="desc">

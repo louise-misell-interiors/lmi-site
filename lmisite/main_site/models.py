@@ -116,17 +116,20 @@ class SiteConfig(SingletonModel):
     resources_text = RichTextUploadingField(blank=True)
 
     portfolio_title = models.CharField(max_length=255, blank=True)
+    portfolio_header = models.CharField(max_length=255, blank=True)
     portfolio_header_image = models.ImageField(blank=True)
     portfolio_description = models.TextField(blank=True)
     portfolio_text = RichTextUploadingField(blank=True)
 
     blog_title = models.CharField(max_length=255, blank=True)
+    blog_header = models.CharField(max_length=255, blank=True)
     blog_header_image = models.ImageField(blank=True)
     blog_sidebar_image = models.ImageField(blank=True)
     blog_description = models.TextField(blank=True)
     blog_text = RichTextUploadingField(blank=True)
 
     services_title = models.CharField(max_length=255, blank=True)
+    services_header = models.CharField(max_length=255, blank=True)
     services_header_image = models.ImageField(blank=True)
     services_description = models.TextField(blank=True)
     services_text = RichTextUploadingField(blank=True)
@@ -151,6 +154,7 @@ class SiteConfig(SingletonModel):
     designer_in_a_box_content = RichTextUploadingField(blank=True)
 
     contact_title = models.CharField(max_length=255, blank=True)
+    contact_header = models.CharField(max_length=255, blank=True)
     contact_header_image = models.ImageField(blank=True)
     contact_form_image = models.ImageField(blank=True)
     contact_description = models.TextField(blank=True)
@@ -163,6 +167,7 @@ class SiteConfig(SingletonModel):
     contact_cta_link = models.URLField(blank=True)
 
     testimonials_title = models.CharField(max_length=255, blank=True)
+    testimonials_header = models.CharField(max_length=255, blank=True)
     testimonials_header_image = models.ImageField(blank=True)
     testimonials_description = models.TextField(blank=True)
     testimonials_text = RichTextUploadingField(blank=True)

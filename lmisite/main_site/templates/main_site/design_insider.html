@@ -18,7 +18,7 @@
 {% block content %}
     <div class="content" itemscope itemtype="http://schema.org/Blog">
         <header {% if config.blog_header_image %}style="--header-background: url({{ config.blog_header_image.url }});"{% endif %}>
-            <h1>Blog</h1>
+            <h1>{{ config.blog_header }}</h1>
         </header>
         <div class="blog">
             <div class="posts" id="posts">

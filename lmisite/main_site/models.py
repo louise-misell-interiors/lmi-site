@@ -32,7 +32,7 @@ sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
 def compress_img(image, new_width=1500):
     if bool(image) and image.file is not None and isinstance(image.file, UploadedFile):
         img = Img.open(io.BytesIO(image.read()))
-        img.thumbnail((new_width, new_width * image.height / image.width), Img.ANTIALIAS)
+        img.thumbnail((new_width, new_width * image.height / image.width), Img.BICUBIC)
         output = io.BytesIO()
         output_webp = io.BytesIO()
         if img.mode == 'RGBA':

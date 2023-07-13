@@ -108,9 +108,7 @@
       padding-top: 0 !important;
       position: relative;
       float: left;
-      margin-top: 10%;
       min-height: 50vw;
-      //left: (clamp(#{-3vw}, #{-100px}, #{0px}));
 
       @media (max-width: $media-medium) {
         width: 100%

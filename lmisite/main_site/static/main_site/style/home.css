@@ -51,9 +51,11 @@
   text-align: center;
   padding: 10px 0;
   margin-bottom: 8px;
+}
+.services > div > div div span:not(:last-child) {
   position: relative;
 }
-.services > div > div div span::after {
+.services > div > div div span:not(:last-child)::after {
   position: absolute;
   width: 100%;
   left: 50%;
@@ -65,11 +67,17 @@
   transition: opacity 0.2s, width 0.2s;
   bottom: -4px;
 }
-.services > div > div div span::after {
+.services > div > div div span:not(:last-child)::after {
   width: 30%;
 }
-.services > div > div a {
-  font-size: 22px;
+
+.services-cta {
+  padding-top: 0 !important;
+  display: flex;
+  justify-content: center;
+}
+.services-cta a {
+  font-size: 25px;
   background: #335470;
   border: none;
   color: #e5f0f2;
@@ -113,7 +121,7 @@
   margin-top: 25px;
 }
 .main-slider .main-slider-inner {
-  padding-bottom: 35%;
+  padding-bottom: 40%;
   position: relative;
   min-height: 40vh;
 }

@@ -112,6 +112,7 @@ class SiteConfig(SingletonModel):
 
     resources_title = models.CharField(max_length=255, blank=True)
     resources_image = models.ImageField(blank=True)
+    resources_bio_image = models.ImageField(blank=True)
     resources_description = models.TextField(blank=True)
     resources_text = RichTextUploadingField(blank=True)
 
@@ -173,6 +174,7 @@ class SiteConfig(SingletonModel):
     testimonials_text = RichTextUploadingField(blank=True)
 
     booking_title = models.CharField(max_length=255, blank=True)
+    booking_cta = models.CharField(max_length=255, blank=True)
     booking_header_image = models.ImageField(blank=True)
 
     basket_header_image = models.ImageField(blank=True)
@@ -187,6 +189,13 @@ class SiteConfig(SingletonModel):
     shop_header_image = models.ImageField(blank=True)
     shop_description = models.TextField(blank=True)
     shop_text = RichTextField(blank=True)
+
+    faq_title = models.CharField(max_length=255, blank=True)
+    faq_header = models.CharField(max_length=255, blank=True)
+    faq_header_image = models.ImageField(blank=True)
+    faq_description = models.TextField(blank=True)
+    faq_cta = models.CharField(max_length=255, blank=True)
+    faq_cta_link = models.URLField(blank=True)
 
 
 class MainSliderImage(models.Model):
@@ -217,6 +226,20 @@ class Resource(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=255)
+    answer = RichTextUploadingField()
+    order = models.PositiveIntegerField(default=0, blank=True, null=False)
+
+    class Meta:
+        verbose_name_plural = "FAQs"
+        verbose_name = "FAQ"
+        ordering = ['order']
+
+    def __str__(self):
+        return self.question
 
 
 class ServiceGroup(models.Model):
@@ -267,7 +290,7 @@ class ServiceButton(models.Model):
 
 class ServiceSummary(models.Model):
     class Meta:
-        verbose_name_plural = "Serivce Summaries"
+        verbose_name_plural = "Service Summaries"
         ordering = ['order']
 
     service = models.ForeignKey(Service, related_name="service_summaries", on_delete=models.CASCADE)
@@ -758,7 +781,6 @@ class PostageService(models.Model):
         return f'{cutoff_datetime_local.strftime("%H:%M:%S")}{"+" if offset_hours >0 else "-"}{abs(offset_hours):0>2}:{offset_mins:0>2}'
 
     def delivery_time_range(self, timestamp=None, products=None):
-        print(products)
         if not timestamp:
             timestamp = datetime.datetime.utcnow()
 

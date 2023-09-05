@@ -71,6 +71,11 @@ class ResourceAdmin(SortableAdminMixin, admin.ModelAdmin):
     pass
 
 
+@admin.register(FAQ)
+class FAQAdmin(SortableAdminMixin, admin.ModelAdmin):
+    pass
+
+
 @admin.register(MainSliderImage)
 class MainSliderImageAdmin(SortableAdminMixin, admin.ModelAdmin):
     pass

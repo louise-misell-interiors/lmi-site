@@ -471,6 +471,12 @@ def contact(request):
     })
 
 
+def faq(request):
+    faqs = FAQ.objects.all()
+
+    return render(request, "main_site/faq.html", {"faqs": faqs})
+
+
 def booking(request, id):
     return render(request, "main_site/booking.html", {"booking_id": id})
 

@@ -53,22 +53,31 @@
           text-align: center;
           padding: 10px 0;
           margin-bottom: 8px;
-          @include bar;
 
-          &::after {
-            width: 30%;
+          &:not(:last-child) {
+            @include bar;
+
+            &::after {
+              width: 30%;
+            }
           }
         }
       }
-
-      a {
-        font-size: 22px;
-        background: $background-colour-dark;
-        border: none;
-        color: $light-text-colour;
-        display: inline-block;
-        margin-top: 10px;
-      }
     }
+  }
+}
+
+.services-cta {
+  padding-top: 0 !important;
+  display: flex;
+  justify-content: center;
+
+  a {
+    font-size: 25px;
+    background: $background-colour-dark;
+    border: none;
+    color: $light-text-colour;
+    display: inline-block;
+    margin-top: 10px;
   }
 }

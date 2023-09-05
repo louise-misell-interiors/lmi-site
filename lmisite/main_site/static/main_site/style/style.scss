@@ -439,8 +439,12 @@ img {
 
   .back-button {
     position: absolute;
-    top: calc(1.1em + 33.2px);
-    font-size: 25px;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 2.2em;
+    font-size: 40px;
     left: 10px;
   }
 

@@ -1,0 +1,45 @@
+{% extends "main_site/inc/base.html" %}
+{% load static %}
+
+{% block title %}{{ config.faq_title }}{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static "main_site/style/faq.css" %}">
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ config.faq_title }} | Louise Misell Interiors">
+    <meta property="og:image" content="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}">
+    <meta property="og:description" content="{{ config.faq_description }}">
+    <meta name="description" content="{{ config.faq_description }}">
+
+    <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'faq' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <header {% if config.faq_header_image %}style="--header-background: url({{ config.faq_header_image.url }});"{% endif %}>
+            <h1>{{ config.faq_header }}</h1>
+        </header>
+        <div class="bar">
+            <a href="{% if config.faq_cta_link %}{{ config.faq_cta_link }}{% else %}{% url 'contact' %}{% endif %}"
+               class="button">{{ config.faq_cta }}</a>
+        </div>
+        <div class="faq">
+            {% for faq in faqs %}
+                <div class="question">
+                    <h2>{{ faq.question }}</h2>
+                    {{ faq.answer|safe }}
+                </div>
+            {% endfor %}
+            <div class="question">
+                <h2>Test</h2>
+                <p>
+                    Jowl buffalo deserunt ut. Leberkas velit ribeye duis, dolore laborum biltong bacon prosciutto chicken
+                    tail in ham hock. Laboris alcatra aliquip ball tip, exercitation incididunt corned beef proident
+                    adipisicing dolor landjaeger mollit ea tenderloin andouille. Filet mignon veniam et, duis shankle
+                    chicken strip steak andouille pork loin ut.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

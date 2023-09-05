@@ -1,0 +1,64 @@
+.testimonials {
+  background: #335470;
+  color: #fff;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 800px) {
+  .testimonials {
+    padding: 12.5px;
+  }
+}
+.testimonials .content {
+  font-size: 25px;
+  text-align: center;
+  width: 80vw;
+}
+.testimonials .content blockquote {
+  line-height: 1.5;
+}
+.testimonials .content .by-line {
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+}
+.testimonials a {
+  font-size: 22px;
+}
+
+.content .bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #335470;
+  color: #e5f0f2;
+  text-align: center;
+  font-size: 22px;
+}
+.content .bar a {
+  font-size: 30px;
+  margin: 20px;
+}
+.content .faq {
+  background: #e5f0f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content .faq .question {
+  max-width: 750px;
+  width: 100%;
+}
+.content .faq .question h2 {
+  color: #335470;
+}
+.content .faq .question p {
+  font-family: "Raleway", sans-serif;
+}
+
+/*# sourceMappingURL=faq.css.map */

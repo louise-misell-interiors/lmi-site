@@ -1,6 +1,6 @@
 'use strict';
 import 'whatwg-fetch';
-import * as Sentry from '@sentry/browser';
+// import * as Sentry from '@sentry/browser';
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 import {Elements} from '@stripe/react-stripe-js';
@@ -12,7 +12,6 @@ import {CustomerDetails} from "./CustomerDetails";
 import {Conformation} from "./Conformation";
 import {fetchGQL} from "../../../../common_js/graphql";
 
-const apiUrl = "/graphql/";
 const stripePromise = loadStripe(
     process.env.NODE_ENV === 'production' ?
         'pk_live_51IJ0ExINXWHtO11z4UC4ySDoqsL5Mo79lnJOw5C4RvDwEsEXw5PZu0aYFpLp1TsnUvVdUGP8QC5pdrsdGbucW5xc00WT7USUxF' :
@@ -36,9 +35,13 @@ class BookingApp extends Component {
         this.selectType = this.selectType.bind(this);
         this.selectDay = this.selectDay.bind(this);
         this.selectTime = this.selectTime.bind(this);
+        this.handlePopState = this.handlePopState.bind(this);
     }
 
     selectType(type) {
+        history.pushState({
+            state: "selectedType",
+        }, "");
         this.setState({
             selectedType: type,
             selectedDay: null,
@@ -46,6 +49,9 @@ class BookingApp extends Component {
     }
 
     selectDay(day) {
+        history.pushState({
+            state: "selectedDay",
+        }, "");
         this.setState({
             selectedDay: day,
             selectedTime: null,
@@ -53,13 +59,53 @@ class BookingApp extends Component {
     }
 
     selectTime(time) {
+        history.pushState({
+            state: "selectedTime",
+        }, "");
         this.setState({
             selectedTime: time,
         })
     }
 
+    handlePopState(event) {
+        if (event.state) {
+            switch (event.state.state) {
+                case "start":
+                    this.setState({
+                        selectedType: null,
+                        selectedDay: null,
+                        selectedTime: null,
+                        complete: false
+                    });
+                    break;
+                case "selectedType":
+                    this.setState({
+                        selectedDay: null,
+                        selectedTime: null,
+                        complete: false
+                    });
+                    break;
+                case "selectedDay":
+                    this.setState({
+                        selectedTime: null,
+                        complete: false
+                    });
+                    break;
+                case "selectedTime":
+                    this.setState({
+                        complete: false
+                    });
+                    break;
+            }
+        }
+    }
+
     componentDidMount() {
+        window.addEventListener("popstate", this.handlePopState);
         if (this.props.type) {
+            history.replaceState({
+                state: "selectedType",
+            }, "");
             const self = this;
             fetchGQL(
                 `query ($id: ID!) {
@@ -79,17 +125,25 @@ class BookingApp extends Component {
                 .catch(err => this.setState({
                     error: err,
                 }))
+        } else {
+            history.replaceState({
+                state: "start",
+            }, "");
         }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("popstate", this.handlePopState);
     }
 
     componentDidCatch(error, errorInfo) {
         this.setState({error});
-        Sentry.withScope(scope => {
-            Object.keys(errorInfo).forEach(key => {
-                scope.setExtra(key, errorInfo[key]);
-            });
-            Sentry.captureException(error);
-        });
+        // Sentry.withScope(scope => {
+        //     Object.keys(errorInfo).forEach(key => {
+        //         scope.setExtra(key, errorInfo[key]);
+        //     });
+        //     Sentry.captureException(error);
+        // });
     }
 
     render() {
@@ -97,7 +151,8 @@ class BookingApp extends Component {
             return (
                 <React.Fragment>
                     <h2>Sorry, there was an error</h2>
-                    <p>Please email <a href="mailto:hello@louisemisellinteriors.co.uk" target="_blank" className="dark">hello@louisemisellinteriors.co.uk</a></p>
+                    <p>Please email <a href="mailto:hello@louisemisellinteriors.co.uk" target="_blank"
+                                       className="dark">hello@louisemisellinteriors.co.uk</a></p>
                     <p><a className="dark" onClick={() => Sentry.showReportDialog()}>Report feedback</a></p>
                 </React.Fragment>
             );
@@ -153,10 +208,10 @@ function BaseApp() {
     );
 }
 
-Sentry.init({
-    dsn: "https://b147c96f835d46178e4690cbe872a4d7@sentry.io/1370209"
-});
+// Sentry.init({
+//     dsn: "https://b147c96f835d46178e4690cbe872a4d7@sentry.io/1370209"
+// });
 
 const domContainer = document.querySelector('#booking-wrapper');
 
-ReactDom.render(<BaseApp />, domContainer);
+ReactDom.render(<BaseApp/>, domContainer);

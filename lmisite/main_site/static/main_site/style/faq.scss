@@ -1,0 +1,41 @@
+@import "inc/variables";
+@import "inc/testimonials";
+@import "inc/bar";
+
+.content {
+  .bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: $background-colour-dark;
+    color: $light-text-colour;
+    text-align: center;
+    font-size: 22px;
+
+    a {
+      font-size: 30px;
+      margin: $content-margin;
+    }
+  }
+
+  .faq {
+    background: $background-colour;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .question {
+      max-width: 750px;
+      width: 100%;
+
+      h2 {
+        color: $dark-text-colour;
+      }
+
+      p {
+        font-family: "Raleway", sans-serif;
+      }
+    }
+  }
+}

@@ -159,7 +159,7 @@ class ConfigForm(forms.ModelForm):
             'about_description', 'about_mission_statement', 'about_text', 'about_text_2', 'about_top_cta',
             'about_top_cta_link', 'about_cta', 'about_cta_link', 'about_testimonials_cta',
             'about_testimonials_cta_link',
-            'resources_title', 'resources_image', 'resources_description', 'resources_text',
+            'resources_title', 'resources_image', 'resources_description', 'resources_text', 'resources_bio_image',
             'portfolio_title', 'portfolio_header', 'portfolio_header_image', 'portfolio_description', 'portfolio_text',
             'blog_title', 'blog_header', 'blog_header_image', 'blog_sidebar_image', 'blog_description', 'blog_text',
             'services_title', 'services_header', 'services_header_image', 'services_description', 'services_text',
@@ -174,8 +174,10 @@ class ConfigForm(forms.ModelForm):
             'contact_form_text', 'contact_cta', 'contact_cta_link',
             'testimonials_title', 'testimonials_header', 'testimonials_header_image', 'testimonials_description',
             'testimonials_text',
-            'booking_title', 'booking_header_image', 'basket_header_image',
+            'booking_title', 'booking_header_image', 'booking_cta',
+            'basket_header_image',
             'shop_title', 'shop_header_image', 'shop_description', 'shop_text',
+            'faq_title', 'faq_header', 'faq_header_image', 'faq_description', 'faq_cta', 'faq_cta_link',
             'apple_merchantid', 'basket_header_image', 'shop_terms_and_conditions', 'banner_text', 'banner_enabled', 'banner_link'))
         widgets = {
             "facebook_page_id": PageWidget,

@@ -35,8 +35,8 @@
         <div class="bio" itemscope itemtype="http://schema.org/Person">
             <meta itemprop="name" content="Louise Misell">
             <link itemprop="image"
-                  href="https://louisemisellinteriors.co.uk{% static 'main_site/img/louise-head.jpg' %}"/>
-            <img src="{% static 'main_site/img/louise-head.jpg' %}" alt="">
+                  href="https://louisemisellinteriors.co.uk{% if config.resources_bio_image %}{{ config.resources_bio_image.url }}{% else %}{% static 'main_site/img/louise-head.png' %}{% endif %}"/>
+            <img src="{% if config.resources_bio_image %}{{ config.resources_bio_image.url }}{% else %}{% static 'main_site/img/louise-head.png' %}{% endif %}" alt="">
             <div>
                 {{ config.resources_text|safe }}
             </div>

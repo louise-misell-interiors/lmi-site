@@ -70,7 +70,6 @@
                                     <span itemprop="itemListElement">{{ s.text }}</span>
                                 {% endfor %}
                             </div>
-                            <a href="{% url 'services' %}" class="button">{{ service.home_cta }}</a>
                         </div>
                         <meta itemprop="description" content="{{ service.description }}">
                         <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -78,6 +77,9 @@
                         </span>
                     </div>
                 {% endfor %}
+        </div>
+        <div class="services-cta">
+            <a href="{% url 'services' %}" class="button">Learn more</a>
         </div>
         <div class="testimonials">
             <div class="content" itemscope itemtype="https://schema.org/Review">

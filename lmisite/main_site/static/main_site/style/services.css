@@ -95,7 +95,7 @@
   font-size: 25px;
   text-align: center;
   color: #335470;
-  margin: 0;
+  margin: 10px 0 0;
 }
 .content .services .service-block img {
   grid-column: 2;

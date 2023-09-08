@@ -29,15 +29,6 @@
     justify-content: center;
     background: $background-colour;
 
-    @media (max-width: $media-xsmall) {
-      padding: $content-padding/2 !important;
-
-      .service {
-        width: unset;
-
-      }
-    }
-
     .service-block {
       display: grid;
       grid-template-columns: 3fr 4fr;
@@ -140,6 +131,25 @@
           margin: $content-margin $content-margin/2 0;
           background: $background-colour-dark;
           border: none;
+        }
+      }
+    }
+
+    @media (max-width: $media-xsmall) {
+      padding: $content-padding/2 !important;
+
+      .service-block {
+        max-width: unset;
+        grid-template-columns: 1fr !important;
+
+        .title {
+          grid-column: 1 !important;
+        }
+
+        img {
+          grid-column: 1;
+          grid-row: 3;
+          margin-top: $content-padding;
         }
       }
     }

@@ -142,7 +142,7 @@
         max-width: unset;
         grid-template-columns: 1fr !important;
 
-        .title {
+        .title, .service-content {
           grid-column: 1 !important;
         }
 

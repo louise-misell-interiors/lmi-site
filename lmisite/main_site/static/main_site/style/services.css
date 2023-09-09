@@ -141,7 +141,7 @@
     max-width: unset;
     grid-template-columns: 1fr !important;
   }
-  .content .services .service-block .title {
+  .content .services .service-block .title, .content .services .service-block .service-content {
     grid-column: 1 !important;
   }
   .content .services .service-block img {

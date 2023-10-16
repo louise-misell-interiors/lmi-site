@@ -225,19 +225,19 @@
   "logo": "{% static "main_site/img/logo.png" %}",
   "image": "{% static "main_site/img/IMG_2220 adjusted.jpg" %}",
   "description": "{{ config.home_description }}",
-  "address": "{{ config.address }}",
+  "address": "{{ config.address_nl }}",
   "email": "{{ config.email }}",
-  "telephone": "{{ config.phone.as_e164 }}",
   "priceRange": "{{ config.price_range }}",
-  "contactPoint": [{
+  {% if config.phone %}"telephone": "{{ config.phone.as_e164 }}",{% endif %}
+  "contactPoint": [{% if config.phone %}{
     "@type": "ContactPoint",
     "telephone": "{{ config.phone.as_e164 }}",
     "contactType": "sales"
-  },{
+  }{% endif %}{% if config.phone and config.mobile %},{% endif %}{% if config.mobile %}{
     "@type": "ContactPoint",
     "telephone": "{{ config.mobile.as_e164 }}",
     "contactType": "sales"
-  }],
+  }{% endif %}],
   "sameAs": [
     "{{ config.instagram_url }}",
     "{{ config.twitter_url }}",

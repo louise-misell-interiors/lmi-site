@@ -197,6 +197,10 @@ class SiteConfig(SingletonModel):
     faq_cta = models.CharField(max_length=255, blank=True)
     faq_cta_link = models.URLField(blank=True)
 
+    @property
+    def address_nl(self):
+        return self.address.replace("\n", "\\n")
+
 
 class MainSliderImage(models.Model):
     name = models.CharField(max_length=255, default="", blank=True)

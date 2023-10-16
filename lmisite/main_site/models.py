@@ -199,7 +199,7 @@ class SiteConfig(SingletonModel):
 
     @property
     def address_nl(self):
-        return self.address.replace("\n", "\\n")
+        return self.address.replace("\r\n", "\n").replace("\n", "\\n")
 
 
 class MainSliderImage(models.Model):

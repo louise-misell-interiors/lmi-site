@@ -14,6 +14,10 @@
     <meta name="description" content="{{ category.description }}">
 
     <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'shop_category' category.id %}">
+
+    {% if category.noindex %}
+        <meta name="robots" content="noindex">
+    {% endif %}
 {% endblock %}
 
 {% block content %}

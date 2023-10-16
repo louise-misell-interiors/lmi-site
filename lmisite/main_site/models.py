@@ -876,6 +876,7 @@ class Category(models.Model):
     image = models.ImageField(blank=True)
     description = RichTextField()
     draft = models.BooleanField(blank=True, default=False)
+    noindex = models.BooleanField(blank=True, default=False)
 
     def __str__(self):
         return self.name
@@ -927,6 +928,7 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="products")
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name="products", blank=True, null=True)
     name = models.CharField(max_length=255)
+    noindex = models.BooleanField(blank=True, default=False)
     title = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=255, blank=True, null=True)
     description = RichTextField()

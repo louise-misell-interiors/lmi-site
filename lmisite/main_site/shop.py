@@ -2,9 +2,7 @@ import copy
 import datetime
 import json
 import uuid
-
 import requests
-
 import stripe
 import bookings.views
 from django.core.mail import EmailMultiAlternatives, EmailMessage
@@ -354,9 +352,10 @@ def send_stripe_receipt(charge):
         subject = "Your Louise Misell Interiors receipt"
 
     context = {
+        "settings": settings,
         "charge": charge,
         "amount": decimal.Decimal(charge.amount) / decimal.Decimal(100),
-        "date": datetime.datetime.utcfromtimestamp(charge.created)
+        "date": datetime.datetime.utcfromtimestamp(charge.created),
     }
 
     email_msg = EmailMultiAlternatives(

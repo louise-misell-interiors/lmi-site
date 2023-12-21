@@ -143,7 +143,7 @@ class ShopCategorySitemap(Sitemap):
 
 class StaticViewSitemap(Sitemap):
     def items(self):
-        return ['services', 'contact', 'design_insider', 'diversity_for_design', 'about', 'designer_in_a_box']
+        return ['services', 'contact', 'design_insider', 'diversity_for_design', 'about']
 
     def location(self, item):
         return reverse(item)
@@ -154,7 +154,7 @@ SITEMAP = {
     "design_insider": DesignInsiderSitemap,
     "testimonials": TestimonialSitemap,
     "portfolio": PortfolioSitemap,
-    "shop_product": ShopProductSitemap,
-    "shop_category": ShopCategorySitemap,
+    # "shop_product": ShopProductSitemap,
+    # "shop_category": ShopCategorySitemap,
     "static": StaticViewSitemap,
 }

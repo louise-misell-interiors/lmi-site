@@ -192,8 +192,8 @@ class BookingType(DjangoObjectType):
     class Meta:
         model = models.BookingType
         only_fields = (
-            'name', 'length', 'id', 'description', 'whilst_booking_message', 'after_booking_message', 'timezone',
-            'icon', 'price')
+            'name', 'length', 'id', 'description', 'whilst_booking_message', 'after_booking_message', 'terms_message',
+            'timezone', 'icon', 'price')
 
     scheduling_frequency = graphene.String()
     minimum_scheduling_notice = graphene.String()

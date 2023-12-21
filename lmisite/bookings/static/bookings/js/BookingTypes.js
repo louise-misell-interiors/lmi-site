@@ -39,6 +39,7 @@ export class BookingTypes extends Component {
                     description
                     whilstBookingMessage
                     afterBookingMessage
+                    termsMessage
                     icon
                 } 
             }`)

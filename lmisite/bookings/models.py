@@ -4,6 +4,7 @@ import pytz
 from django.core.validators import ValidationError
 from phonenumber_field.modelfields import PhoneNumberField
 from solo.models import SingletonModel
+from ckeditor.fields import RichTextField
 
 
 class BookingType(models.Model):
@@ -11,6 +12,7 @@ class BookingType(models.Model):
     description = models.TextField()
     whilst_booking_message = models.TextField(blank=True)
     after_booking_message = models.TextField(blank=True)
+    terms_message = RichTextField(blank=True)
     length = models.DurationField()
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     icon = models.CharField(max_length=255, blank=True)

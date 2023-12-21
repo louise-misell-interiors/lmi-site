@@ -408,14 +408,9 @@ class BaseCustomerDetails extends Component {
                             </div>
                         }
                         <button onClick={this.scheduleEvent}>Schedule and pay</button>
-                        <p>
-                            If you are unable to make your appointment, you can reschedule to a mutually
-                            convenient date by giving us one week's notice.
-                            By continuing you are agreeing to make payment in accordance with our terms
-                            and conditions as published on our website.
-                        </p>
                     </React.Fragment>
                 }
+                <div dangerouslySetInnerHTML={{__html: this.props.type.termsMessage}} />
             </div>
             <div className="Form">
                 {this.state.hasPr ? null : <React.Fragment>

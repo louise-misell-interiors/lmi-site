@@ -115,6 +115,7 @@ class BookingApp extends Component {
                     description
                     whilstBookingMessage
                     afterBookingMessage
+                    termsMessage
                     icon
                 } 
             }`,

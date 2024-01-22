@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: 1fr;
-  width: 70vw;
+  width: 75vw;
   align-self: center;
   grid-gap: $content-padding $content-padding*3;
 
@@ -23,6 +23,14 @@
     h2, h3 {
       color: $dark-text-colour;
       text-align: center;
+    }
+
+    h2 {
+      font-size: 1.1em;
+    }
+
+    h3 {
+      font-size: 0.9em;
     }
 
     hr {

@@ -16,7 +16,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: 1fr;
-  width: 70vw;
+  width: 75vw;
   align-self: center;
   grid-gap: 25px 75px;
 }
@@ -38,6 +38,12 @@
 .projects .project h2, .projects .project h3 {
   color: #335470;
   text-align: center;
+}
+.projects .project h2 {
+  font-size: 1.1em;
+}
+.projects .project h3 {
+  font-size: 0.9em;
 }
 .projects .project hr {
   border-color: #335470;

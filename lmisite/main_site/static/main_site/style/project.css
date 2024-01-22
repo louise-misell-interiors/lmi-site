@@ -104,9 +104,9 @@
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: 1fr;
-  width: 80vw;
+  width: 70vw;
   align-self: center;
   grid-gap: 25px 75px;
 }
@@ -120,11 +120,6 @@
     width: 100vw;
   }
 }
-.projects .project {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 .projects .project a {
   height: 100%;
   display: flex;
@@ -136,6 +131,8 @@
 }
 .projects .project hr {
   border-color: #335470;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .projects .project img {
   width: 100%;

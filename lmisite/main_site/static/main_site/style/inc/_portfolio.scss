@@ -1,10 +1,10 @@
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-auto-rows: 1fr;
   width: 80vw;
   align-self: center;
-  grid-gap: $content-padding;
+  grid-gap: $content-padding $content-padding*3;
 
   @media (max-width: $media-small) {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -20,46 +20,23 @@
 
     a {
       height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     h2, h3 {
-      color: $light-text-colour;
+      color: $dark-text-colour;
       text-align: center;
     }
 
     hr {
-      border-color: $light-text-colour;
+      border-color: $dark-text-colour;
     }
 
-    .img-box {
-      position: relative;
-      height: 100%;
-
-      img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-      }
-
-      .show {
-        opacity: 0;
-        display: flex;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        flex-direction: column;
-        justify-content: center;
-        background: rgba($background-colour-dark, 0.7);
-        font-family: "Raleway", sans-serif;
-      }
-
-      &:hover {
-        .show {
-          opacity: 1;
-        }
-      }
+    img {
+      width: 100%;
+      flex-grow: 1;
+      object-fit: cover;
     }
   }
 }

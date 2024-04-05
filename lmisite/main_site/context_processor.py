@@ -7,7 +7,7 @@ def config_processor(request):
     config = SiteConfig.objects.first()
     basket = shop.get_basket(request, create=False)
 
-    instagram_feed = instagram.get_user_feed()[:12]
+    instagram_feed = instagram.get_user_feed()[:10]
     return {
         "config": config,
         "instagram": instagram_feed,

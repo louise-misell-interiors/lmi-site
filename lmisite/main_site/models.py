@@ -623,6 +623,9 @@ class Quiz(models.Model):
     results_email_header_background = models.ImageField(blank=True)
     results_email_header_logo = models.ImageField(blank=True)
 
+    class Meta:
+        ordering = ["name"]
+
     def __str__(self):
         return self.name
 

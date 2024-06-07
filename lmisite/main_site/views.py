@@ -38,7 +38,7 @@ def index(request):
     slider_imgs = MainSliderImage.objects.all()
     testimonials = Testimonial.objects.filter(featured_on=Testimonial.HOME_PAGE)
     projects = Project.objects.filter(draft=False)[:4]
-    services = Service.objects.filter(type=Service.MAIN)
+    services = Service.objects.filter(type=Service.HOME_PAGE)
     if not request.user.is_superuser:
         testimonials = testimonials.filter(draft=False)
         services = services.filter(draft=False)
@@ -262,7 +262,7 @@ def project(request, id):
 
 
 def services(request):
-    services = Service.objects.all()
+    services = Service.objects.filter(type=Service.SERVICES_PAGE)
 
     testimonials = Testimonial.objects.filter(featured_on=Testimonial.SERVICES_PAGE)
     if not request.user.is_staff:

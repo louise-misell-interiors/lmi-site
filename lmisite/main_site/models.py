@@ -257,13 +257,13 @@ class ServiceGroup(models.Model):
 class Service(models.Model):
     draft = models.BooleanField(default=False)
     name = models.CharField(max_length=255)
-    MAIN = 'M'
-    OTHER = 'O'
+    HOME_PAGE = 'M'
+    SERVICES_PAGE = 'O'
     TYPES = (
-        (MAIN, "Main"),
-        (OTHER, "Other")
+        (HOME_PAGE, "Home page"),
+        (SERVICES_PAGE, "Services page")
     )
-    type = models.CharField(max_length=1, choices=TYPES, default=MAIN)
+    type = models.CharField(max_length=1, choices=TYPES, default=SERVICES_PAGE)
     image = models.ImageField(blank=True)
     home_page_image = models.ImageField(blank=True)
     home_cta = models.CharField(max_length=255, blank=True)

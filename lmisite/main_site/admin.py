@@ -48,7 +48,9 @@ class ServiceAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 @admin.register(ServiceGroup)
 class ServiceAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ("type",)
+    list_display = ("__str__", "type")
+    sortable_by = ("__str__", "type")
 
 
 class OnlineDesignStepButtonInline(admin.TabularInline):

@@ -58,25 +58,6 @@
     width: 80vw;
     margin: 0 auto;
 
-    @media (max-width: 1500px) {
-      grid-auto-rows: auto;
-      grid-template-columns: repeat(3, 1fr);
-
-      > div {
-        grid-column-end: span 1 !important;
-      }
-    }
-
-    @media (max-width: $media-medium) {
-      grid-auto-rows: auto;
-      grid-template-columns: repeat(2, 1fr);
-      width: 100vw;
-
-      > div {
-        grid-column-end: span 1 !important;
-      }
-    }
-
     @media (max-width: $media-small) {
       grid-template-columns: 1fr;
 

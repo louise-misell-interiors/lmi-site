@@ -76,8 +76,6 @@ class SiteConfig(SingletonModel):
     shop_terms_and_conditions = models.FileField(blank=True)
 
     image_slider_speed = models.PositiveIntegerField(default=5000, verbose_name="Home page image slider speed (ms)")
-    testimonials_slider_speed = \
-        models.PositiveIntegerField(default=10000, verbose_name="Home page testimonials slider speed (ms)")
 
     price_range = models.CharField(max_length=255, blank=True)
 
@@ -93,6 +91,7 @@ class SiteConfig(SingletonModel):
     home_help_cta_link = models.URLField(blank=True)
     home_testimonials_cta = models.CharField(max_length=255, blank=True)
     home_testimonials_cta_link = models.URLField(blank=True)
+    home_slider_text = models.TextField(blank=True)
 
     about_title = models.CharField(max_length=255, blank=True)
     about_header = models.CharField(max_length=255, blank=True)

@@ -21,9 +21,9 @@
             <div class="slider">
                 {% for img in slider_imgs %}
                     <div class="slide{% if forloop.counter == 1 %} is-active{% endif %}">
-                        {% if forloop.counter == 1 %}
+                        {% if forloop.counter == 1 and config.home_slider_text %}
                             <div class="slide-text">
-                                <h1>Welcome to Louise Misell Interiors</h1>
+                                <h1>{{ config.home_slider_text }}</h1>
                             </div>
                         {% endif %}
                         {% if img.url %}<a href="{{ img.url }}">{% endif %}

@@ -64,8 +64,8 @@ class OnlineDesignStepAdmin(SortableAdminMixin, admin.ModelAdmin):
 @admin.register(Testimonial)
 class TestimonialAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_filter = ("draft", "featured_on", "not_on_testimonials", "style")
-    list_display = ("draft", "featured_on", "not_on_testimonials", "style")
-    sortable_by = ("draft", "featured_on", "not_on_testimonials", "style")
+    list_display = ("__str__", "draft", "featured_on", "not_on_testimonials", "style")
+    sortable_by = ("__str__", "draft", "featured_on", "not_on_testimonials", "style")
 
 
 @admin.register(Resource)

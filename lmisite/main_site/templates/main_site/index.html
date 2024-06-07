@@ -19,22 +19,18 @@
     <div class="main-slider">
         <div class="main-slider-inner">
             <div class="slider">
-                <div class="slider-inner">
-                    {% for img in slider_imgs %}
-                        <div class="slide{% if forloop.counter == 1 %} is-prev{% elif forloop.counter == 2 %} is-active{% elif forloop.counter == 3 %} is-next{% endif %}">
-                            {% if forloop.counter == 2 %}
-                                <div class="slide-text">
-                                    <h1>Welcome to Louise Misell Interiors</h1>
-                                </div>
-                            {% endif %}
-                            {% if img.url %}<a href="{{ img.url }}">{% endif %}
-                                <img data-src="{{ img.image.url }}" alt="{{ img.alt_text }}" data-pin-nopin="true">
-                            {% if img.url %}</a>{% endif %}
-                        </div>
-                    {% endfor %}
-                    <span class="arrow"><i class="fas fa-chevron-left"></i></span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                </div>
+                {% for img in slider_imgs %}
+                    <div class="slide{% if forloop.counter == 1 %} is-active{% endif %}">
+                        {% if forloop.counter == 1 %}
+                            <div class="slide-text">
+                                <h1>Welcome to Louise Misell Interiors</h1>
+                            </div>
+                        {% endif %}
+                        {% if img.url %}<a href="{{ img.url }}">{% endif %}
+                            <img data-src="{{ img.image.url }}" alt="{{ img.alt_text }}" data-pin-nopin="true">
+                        {% if img.url %}</a>{% endif %}
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

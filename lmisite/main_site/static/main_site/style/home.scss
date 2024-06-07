@@ -4,8 +4,6 @@
 @import "inc/testimonials";
 
 .main-slider {
-  margin-top: $content-padding;
-
   .main-slider-inner {
     $width: 60%;
 
@@ -25,17 +23,6 @@
       bottom: 0;
       left: 0;
       right: 0;
-
-      .slide {
-        background-size: cover;
-        background-position: 50% 50%;
-
-        img {
-          object-fit: cover;
-          height: 100%;
-          width: 100%;
-        }
-      }
     }
   }
 }
@@ -43,7 +30,6 @@
 .about {
   background: $background-colour-dark;
   color: $light-text-colour;
-  margin-top: $content-padding;
   position: relative;
 
   > div {

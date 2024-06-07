@@ -176,13 +176,10 @@ USE_TZ = True
 EXTERNAL_URL_BASE = "https://lmi-site.eu.ngrok.io"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL_PATH = '/static/'
-STATIC_URL = EXTERNAL_URL_BASE + STATIC_URL_PATH
+STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL_PATH = '/media/'
-MEDIA_URL = EXTERNAL_URL_BASE + MEDIA_URL_PATH
-# MEDIA_URL = "https://louisemisellinteriors.co.uk/media/"
+MEDIA_URL = '/media/'
 
 PHONENUMBER_DEFAULT_REGION = 'GB'
 

@@ -1,54 +1,25 @@
 function nextSlide(slider) {
     const $slide = slider.find(".slide.is-active");
     let $nextSlide = $slide.next(".slide");
-    let $prevSlide = $slide.prev(".slide");
 
     if ($nextSlide.length === 0) {
         $nextSlide = slider.find(".slide:first");
     }
-    if ($prevSlide.length === 0) {
-        $prevSlide = slider.find(".slide:last");
-    }
-    let $nextNextSlide = $nextSlide.next(".slide");
-    if ($nextNextSlide.length === 0) {
-        $nextNextSlide = slider.find(".slide:first");
-    }
-    let $nextNextNextSlide = $nextNextSlide.next(".slide");
-    if ($nextNextNextSlide.length === 0) {
-        $nextNextNextSlide = slider.find(".slide:first");
-    }
-    $prevSlide.removeClass("is-prev");
-    $slide.removeClass("is-active").addClass("is-prev");
-    $nextSlide.addClass("is-active").removeClass("is-next");
-    $nextNextSlide.addClass("is-next").removeClass("is-next-next");
-    $nextNextNextSlide.addClass("is-next-next");
+
+    $slide.removeClass("is-active");
+    $nextSlide.addClass("is-active");
 }
 
 function prevSlide(slider) {
     const $slide = slider.find(".slide.is-active");
-    let $nextSlide = $slide.next(".slide");
     let $prevSlide = $slide.prev(".slide");
 
-    if ($nextSlide.length === 0) {
-        $nextSlide = slider.find(".slide:first");
-    }
     if ($prevSlide.length === 0) {
         $prevSlide = slider.find(".slide:last");
     }
-    let $prevPrevSlide = $prevSlide.prev(".slide");
-    if ($prevPrevSlide.length === 0) {
-        $prevPrevSlide = slider.find(".slide:last");
-    }
-    let $nextNextSlide = $nextSlide.next(".slide");
-    if ($nextNextSlide.length === 0) {
-        $nextNextSlide = slider.find(".slide:first");
-    }
 
-    $nextNextSlide.removeClass("is-next-next");
-    $nextSlide.removeClass("is-next").addClass("is-next-next");
-    $slide.removeClass("is-active").addClass("is-next");
-    $prevSlide.addClass("is-active").removeClass("is-prev");
-    $prevPrevSlide.addClass("is-prev");
+    $slide.removeClass("is-active");
+    $prevSlide.addClass("is-active");
 }
 
 $(function () {

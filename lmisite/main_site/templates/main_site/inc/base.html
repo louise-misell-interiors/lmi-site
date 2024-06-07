@@ -144,12 +144,24 @@
     {% endblock %}
     <div class="pre-footer">
         <div class="socials">
-            <a href="{{ config.instagram_url }}" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
-            <a href="{{ config.twitter_url }}" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
-            <a href="{{ config.pintrest_url }}" target="_blank"><i class="fab fa-pinterest-p fa-lg"></i></a>
-            <a href="{{ config.facebook_url }}" target="_blank"><i class="fab fa-facebook-f fa-lg"></i></a>
-            <a href="{{ config.linkedin_url }}" target="_blank"><i class="fab fa-linkedin-in fa-lg"></i></a>
-            <a href="{{ config.houzz_url }}" target="_blank"><i class="fab fa-houzz fa-lg"></i></a>
+            {% if config.instagram_url %}
+                <a href="{{ config.instagram_url }}" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+            {% endif %}
+            {% if config.twitter_url %}
+                <a href="{{ config.twitter_url }}" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
+            {% endif %}
+            {% if config.pintrest_url %}
+                <a href="{{ config.pintrest_url }}" target="_blank"><i class="fab fa-pinterest-p fa-lg"></i></a>
+            {% endif %}
+            {% if config.facebook_url %}
+                <a href="{{ config.facebook_url }}" target="_blank"><i class="fab fa-facebook-f fa-lg"></i></a>
+            {% endif %}
+            {% if config.linkedin_url %}
+                <a href="{{ config.linkedin_url }}" target="_blank"><i class="fab fa-linkedin-in fa-lg"></i></a>
+            {% endif %}
+            {% if config.houzz_url %}
+                <a href="{{ config.houzz_url }}" target="_blank"><i class="fab fa-houzz fa-lg"></i></a>
+            {% endif %}
         </div>
         <div class="logos">
             <div>
@@ -236,13 +248,13 @@
     "contactType": "sales"
   }{% endif %}],
   "sameAs": [
-    "{{ config.instagram_url }}",
-    "{{ config.twitter_url }}",
-    "{{ config.pintrest_url }}",
-    "{{ config.facebook_url }}",
-    "{{ config.linkedin_url }}",
-    "{{ config.houzz_url }}",
-    "{{ config.homify_url }}"
+    {% if config.instagram_url %}"{{ config.instagram_url }}"{% endif %}
+    {% if config.twitter_url %},"{{ config.twitter_url }}"{% endif %}
+    {% if config.pintrest_url %},"{{ config.pintrest_url }}"{% endif %}
+    {% if config.facebook_url %},"{{ config.facebook_url }}"{% endif %}
+    {% if config.linkedin_url %},"{{ config.linkedin_url }}"{% endif %}
+    {% if config.houzz_url %},"{{ config.houzz_url }}"{% endif %}
+    {% if config.homify_url %},"{{ config.homify_url }}"{% endif %}
   ]
 }
 

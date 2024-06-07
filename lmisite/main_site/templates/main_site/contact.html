@@ -31,7 +31,11 @@
             <meta itemprop="name" content="Louise Misell Interiors">
             <meta itemprop="description" content="{{ config.home_description }}">
             <link itemprop="url" href="{% url 'index' %}">
-            {% csrf_token %}
+            {% if config.contact_cta_show %}
+                <p class="cta">
+                    <a href="{{ config.contact_cta_link }}" class="button dark">{{ config.contact_cta }}</a>
+                </p>
+            {% endif %}
             <div class="form">
                 {% if config.contact_form_image %}
                     <img src="{{ config.contact_form_image.url }}" alt="">
@@ -40,11 +44,6 @@
                     {% if sent %}
                         {{ config.contact_submitted_texts|safe }}
                     {% else %}
-                        {% if config.contact_cta_link %}
-                            <p class="cta">
-                                <a href="{{ config.contact_cta_link }}" class="button dark">{{ config.contact_cta }}</a>
-                            </p>
-                        {% endif %}
                         {% if booking_notice %}
                             <h3 class="notice">{{ booking_notice }}</h3>
                         {% endif %}

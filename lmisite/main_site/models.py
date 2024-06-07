@@ -166,6 +166,7 @@ class SiteConfig(SingletonModel):
     contact_testimonials_cta = models.CharField(max_length=255, blank=True)
     contact_cta = models.CharField(max_length=255, blank=True)
     contact_cta_link = models.URLField(blank=True)
+    contact_cta_show = models.BooleanField(blank=True, default=True)
 
     testimonials_title = models.CharField(max_length=255, blank=True)
     testimonials_header = models.CharField(max_length=255, blank=True)

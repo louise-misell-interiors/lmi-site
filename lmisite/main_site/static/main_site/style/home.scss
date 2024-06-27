@@ -3,13 +3,32 @@
 @import "inc/services";
 @import "inc/testimonials";
 
+.nav-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  .nav {
+    background: rgba($background-colour, 0.7);
+  }
+
+  .top-banner {
+    background: rgba($background-colour-dark, 0.7);
+  }
+
+  .logo img {
+    opacity: 0.85;
+  }
+}
+
 .main-slider {
   .main-slider-inner {
     $width: 60%;
 
-    padding-bottom: 60%;
     position: relative;
-    min-height: 40vh;
+    height: 100vh;
 
     @include slider($width, 20%);
 

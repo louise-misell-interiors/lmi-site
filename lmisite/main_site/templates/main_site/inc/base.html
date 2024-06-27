@@ -3,10 +3,15 @@
 <html lang="en">
 <head>
     <script>
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "59bcdsw0gg");
     </script>
 
@@ -31,7 +36,8 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %} | Louise Misell Interiors</title>
 
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <!--<link rel="stylesheet" href="{% static "fontawesome/css/all.css" %}">-->
     <link rel="stylesheet" href="{% static "main_site/style/style.css" %}">
     <link rel="stylesheet" href="{% static "main_site/style/shadow.css" %}">
@@ -87,57 +93,63 @@
 <!-- End Google Tag Manager (noscript) -->
 <div id="top"></div>
 <div class="wrapper">
-    {% if config.banner_enabled %}
-        <div class="top-banner">
-            {% if config.banner_link %}
-                <a href="{{ config.banner_link }}">
-            {% endif %}
+    <div class="nav-wrapper">
+        {% if config.banner_enabled %}
+            <div class="top-banner">
+                {% if config.banner_link %}
+                    <a href="{{ config.banner_link }}">
+                {% endif %}
                 <div class="top-banner-inner">
                     {{ config.banner_text|safe }}
                 </div>
-            {% if config.banner_link %}
+                {% if config.banner_link %}
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+        <div class="nav" role="navigation">
+            <div class="logo" role="presentation">
+                <a href="{% url 'index' %}" aria-label="Go home">
+                    <img data-pin-nopin="true" src="{% static "main_site/img/logo.png" %}"
+                         alt="Interior designer Cardiff"
+                         role="presentation">
                 </a>
-            {% endif %}
-        </div>
-    {% endif %}
-    <div class="nav" role="navigation">
-        <div class="logo" role="presentation">
-            <a href="{% url 'index' %}" aria-label="Go home">
-                <img data-pin-nopin="true" src="{% static "main_site/img/logo.png" %}" alt="Interior designer Cardiff"
-                     role="presentation">
-            </a>
-        </div>
-        <nav>
-            {% url 'index' as home_url %}
-            {% url 'about' as about_url %}
-            {% url 'portfolio' as portfolio_url %}
-            {% url 'testimonials' as testimonials_url %}
-            {% url 'design_insider' as blog_url %}
-            {% url 'services' as services_url %}
-            {% url 'contact' as contact_url %}
-            {% url 'faq' as faq_url %}
-            {% url 'shop_basket' as basket_url %}
-            <a href="{{ home_url }}" {% if request.get_full_path == home_url %}class="is-active"{% endif %}>Home</a>
-            <a href="{{ about_url }}" {% if request.get_full_path == about_url %}class="is-active"{% endif %}>About</a>
-            <a href="{{ services_url }}" {% if request.get_full_path == services_url %}class="is-active"{% endif %}>Services</a>
-            <a href="{{ portfolio_url }}" {% if request.get_full_path == portfolio_url %}class="is-active"{% endif %}>Portfolio</a>
-            <a href="{{ blog_url }}" {% if request.get_full_path == blog_url %}class="is-active"{% endif %}>Blog</a>
-            <a href="{{ blog_url }}#posts" class="subitem">Blog posts</a>
-            <a href="{{ blog_url }}#short-posts" class="subitem">Updates</a>
-            <a href="{{ testimonials_url }}"
-               {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
-            <a href="{{ faq_url }}" {% if request.get_full_path == faq_url %}class="is-active"{% endif %}>FAQ</a>
-            <a href="{{ contact_url }}" {% if request.get_full_path == contact_url %}class="is-active"{% endif %}>Contact</a>
-            {% if basket %}
-                <a href="{{ basket_url }}" {% if request.get_full_path == basket_url %}class="is-active"{% endif %}>
-                    <i class="fal fa-shopping-basket"></i>&nbsp;<span id="basket-quantity">{{ basket.item_quantity }}</span>
-                </a>
-            {% endif %}
-        </nav>
-        <div class="menu-button">
-            <span></span>
-            <span></span>
-            <span></span>
+            </div>
+            <nav>
+                {% url 'index' as home_url %}
+                {% url 'about' as about_url %}
+                {% url 'portfolio' as portfolio_url %}
+                {% url 'testimonials' as testimonials_url %}
+                {% url 'design_insider' as blog_url %}
+                {% url 'services' as services_url %}
+                {% url 'contact' as contact_url %}
+                {% url 'faq' as faq_url %}
+                {% url 'shop_basket' as basket_url %}
+                <a href="{{ home_url }}" {% if request.get_full_path == home_url %}class="is-active"{% endif %}>Home</a>
+                <a href="{{ about_url }}"
+                   {% if request.get_full_path == about_url %}class="is-active"{% endif %}>About</a>
+                <a href="{{ services_url }}" {% if request.get_full_path == services_url %}class="is-active"{% endif %}>Services</a>
+                <a href="{{ portfolio_url }}"
+                   {% if request.get_full_path == portfolio_url %}class="is-active"{% endif %}>Portfolio</a>
+                <a href="{{ blog_url }}" {% if request.get_full_path == blog_url %}class="is-active"{% endif %}>Blog</a>
+                <a href="{{ blog_url }}#posts" class="subitem">Blog posts</a>
+                <a href="{{ blog_url }}#short-posts" class="subitem">Updates</a>
+                <a href="{{ testimonials_url }}"
+                   {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
+                <a href="{{ faq_url }}" {% if request.get_full_path == faq_url %}class="is-active"{% endif %}>FAQ</a>
+                <a href="{{ contact_url }}" {% if request.get_full_path == contact_url %}class="is-active"{% endif %}>Contact</a>
+                {% if basket %}
+                    <a href="{{ basket_url }}" {% if request.get_full_path == basket_url %}class="is-active"{% endif %}>
+                        <i class="fal fa-shopping-basket"></i>&nbsp;<span
+                            id="basket-quantity">{{ basket.item_quantity }}</span>
+                    </a>
+                {% endif %}
+            </nav>
+            <div class="menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </div>
     {% block content %}
@@ -165,17 +177,23 @@
         </div>
         <div class="logos">
             <div>
-                <img src="{% static "main_site/img/interior_designers-cardiff-2019-clr.svg" %}" width="200" alt="Top 3 Interior Designer in Cardiff 2019">
-                <img src="{% static "main_site/img/interior_designers-cardiff-2020-clr.svg" %}" width="200" alt="Top 3 Interior Designer in Cardiff 2020">
-                <img src="{% static "main_site/img/interior_designers-cardiff-2021-clr.svg" %}" width="200" alt="Top 3 Interior Designer in Cardiff 2021">
-                <img src="{% static "main_site/img/interior_designers-cardiff-2022-clr.svg" %}" width="200" alt="Top 3 Interior Designer in Cardiff 2022">
-                <img src="{% static "main_site/img/interior_designers-cardiff-2023-clr.svg" %}" width="200" alt="Top 3 Interior Designer in Cardiff 2023">
+                <img src="{% static "main_site/img/interior_designers-cardiff-2019-clr.svg" %}" width="200"
+                     alt="Top 3 Interior Designer in Cardiff 2019">
+                <img src="{% static "main_site/img/interior_designers-cardiff-2020-clr.svg" %}" width="200"
+                     alt="Top 3 Interior Designer in Cardiff 2020">
+                <img src="{% static "main_site/img/interior_designers-cardiff-2021-clr.svg" %}" width="200"
+                     alt="Top 3 Interior Designer in Cardiff 2021">
+                <img src="{% static "main_site/img/interior_designers-cardiff-2022-clr.svg" %}" width="200"
+                     alt="Top 3 Interior Designer in Cardiff 2022">
+                <img src="{% static "main_site/img/interior_designers-cardiff-2023-clr.svg" %}" width="200"
+                     alt="Top 3 Interior Designer in Cardiff 2023">
                 <a href="{% url 'diversity_for_design' %}">
                     <img src="{% static "main_site/img/design-for-diversity.svg" %}" alt="Design for Diversity">
                 </a>
                 <img src="{% static "main_site/img/cl-awards-winner.png" %}" alt="Cardiff Life Awards Winner 2022"
                      data-pin-nopin="true">
-                <img src="{% static "main_site/img/cl-awards-winner-2024.png" %}" alt="Cardiff Life Awards Finalist 2024"
+                <img src="{% static "main_site/img/cl-awards-winner-2024.png" %}"
+                     alt="Cardiff Life Awards Finalist 2024"
                      data-pin-nopin="true">
             </div>
             <div>
@@ -222,23 +240,23 @@
     </a>
 </div>
 <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://louisemisellinteriors.co.uk",
-  "currenciesAccepted": "GBP",
-  "name": "Louise Misell Interiors",
-  "legalName": "Louise Misell Interiors Ltd",
-  "duns": "227793268",
-  "url": "https://louisemisellinteriors.co.uk{% url 'index' %}",
+    {
+      "@context": "http://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://louisemisellinteriors.co.uk",
+      "currenciesAccepted": "GBP",
+      "name": "Louise Misell Interiors",
+      "legalName": "Louise Misell Interiors Ltd",
+      "duns": "227793268",
+      "url": "https://louisemisellinteriors.co.uk{% url 'index' %}",
   "logo": "{% static "main_site/img/logo.png" %}",
   "image": "{% static "main_site/img/IMG_2220 adjusted.jpg" %}",
   "description": "{{ config.home_description }}",
   "address": "{{ config.address_nl }}",
   "email": "{{ config.email }}",
   "priceRange": "{{ config.price_range }}",
-  {% if config.phone %}"telephone": "{{ config.phone.as_e164 }}",{% endif %}
-  "contactPoint": [{% if config.phone %}{
+    {% if config.phone %}"telephone": "{{ config.phone.as_e164 }}",{% endif %}
+    "contactPoint": [{% if config.phone %}{
     "@type": "ContactPoint",
     "telephone": "{{ config.phone.as_e164 }}",
     "contactType": "sales"
@@ -255,30 +273,42 @@
     {% if config.linkedin_url %},"{{ config.linkedin_url }}"{% endif %}
     {% if config.houzz_url %},"{{ config.houzz_url }}"{% endif %}
     {% if config.homify_url %},"{{ config.homify_url }}"{% endif %}
-  ]
-}
+    ]
+  }
 
 </script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/0b7426adea00f73189b821c1a/cf1d49ef595f5771b1dc0d454.js");</script>
+<script id="mcjs">!function (c, h, i, m, p) {
+    m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p)
+}(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/0b7426adea00f73189b821c1a/cf1d49ef595f5771b1dc0d454.js");</script>
 <!-- Facebook Pixel Code -->
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window,document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
- fbq('init', '550468805795101');
-fbq('track', 'PageView');
+    !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+            n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '550468805795101');
+    fbq('track', 'PageView');
 </script>
 <noscript>
- <img height="1" width="1"
-src="https://www.facebook.com/tr?id=550468805795101&ev=PageView
+    <img height="1" width="1"
+         src="https://www.facebook.com/tr?id=550468805795101&ev=PageView
 &noscript=1"/>
 </noscript>
 <!-- End Facebook Pixel Code -->

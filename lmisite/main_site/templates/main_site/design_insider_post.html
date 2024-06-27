@@ -13,6 +13,12 @@
           content="http://louisemisellinteriors.co.uk/{% if post.image %}{{ post.image.url }}{% endif %}">
 
     <link rel="canonical" href="https://louisemisellinteriors.co.uk{% url 'design_insider_post' post.id %}">
+
+    <style>
+        .nav-wrapper {
+            position: unset;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}

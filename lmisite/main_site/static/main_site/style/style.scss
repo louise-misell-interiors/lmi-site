@@ -219,8 +219,8 @@ img {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: $content-padding 0;
-      min-height: 65vh;
+      padding: $nav-height 0 $content-padding;
+      min-height: calc(65vh + $nav-height);
       
       @media (hover: none) {
         background-attachment: scroll;
@@ -565,7 +565,7 @@ img {
 }
 
 .top-banner {
-  background-color: $background-colour-dark;
+  background: rgba($background-colour-dark, 0.7);
   font-family: Raleway, sans-serif;
   text-align: center;
   color: $light-text-colour;
@@ -583,5 +583,9 @@ img {
     @media (max-width: $media-medium) {
       max-width: unset;
     }
+  }
+
+  p {
+    margin: $content-padding/2 0;
   }
 }

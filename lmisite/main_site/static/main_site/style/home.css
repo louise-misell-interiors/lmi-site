@@ -117,10 +117,26 @@
   font-size: 22px;
 }
 
+.nav-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+.nav-wrapper .nav {
+  background: rgba(229, 240, 242, 0.7);
+}
+.nav-wrapper .top-banner {
+  background: rgba(51, 84, 112, 0.7);
+}
+.nav-wrapper .logo img {
+  opacity: 0.85;
+}
+
 .main-slider .main-slider-inner {
-  padding-bottom: 60%;
   position: relative;
-  min-height: 40vh;
+  height: 100vh;
 }
 .main-slider .main-slider-inner .slider {
   height: 100%;

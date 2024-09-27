@@ -187,6 +187,9 @@
   scrollbar-width: thin;
   scrollbar-color: #335470 #e5f0f2;
 }
+.content .blog > .short-posts > div h3, .content .blog > .short-posts > div h4 {
+  color: #335470;
+}
 .content .blog > .short-posts > div h4 {
   margin-top: 20px;
   margin-bottom: 20px;

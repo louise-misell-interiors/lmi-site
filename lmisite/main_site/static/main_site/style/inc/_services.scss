@@ -4,23 +4,29 @@
 .services {
   width: 80%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(min-content, max-content);
-  grid-column-gap: $content-padding*2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $content-padding*2;
 
-  @media (max-width: $media-medium) {
-      grid-template-columns: repeat(2, 1fr);
-  }
   @media (max-width: $media-small) {
       width: 100%;
-      grid-template-columns: 1fr;
   }
 
   > div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-basis: calc(25% - $content-padding * 2);
+    max-width: 400px;
+
+    @media (max-width: $media-medium) {
+      flex-basis: calc(50% - $content-padding * 2);
+    }
+
+    @media (max-width: $media-small) {
+      flex-basis: 100%;
+    }
 
     h3, div {
       padding: 0 $content-padding;

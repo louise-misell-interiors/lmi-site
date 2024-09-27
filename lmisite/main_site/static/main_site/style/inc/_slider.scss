@@ -20,10 +20,11 @@
 
       transition: opacity $medium-transition;
       opacity: 0;
-      pointer-events: auto;
+      pointer-events: none;
 
       &.is-active {
         opacity: 1;
+        pointer-events: auto;
       }
 
       img {

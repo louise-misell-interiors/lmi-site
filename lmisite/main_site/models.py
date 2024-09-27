@@ -134,6 +134,7 @@ class SiteConfig(SingletonModel):
     services_header_image = models.ImageField(blank=True)
     services_description = models.TextField(blank=True)
     services_text = RichTextUploadingField(blank=True)
+    services_other_heading = models.CharField(max_length=255, blank=True)
     services_cta = models.CharField(max_length=255, blank=True)
     services_cta_link = models.URLField(blank=True)
     services_testimonials_cta = models.CharField(max_length=255, blank=True)
@@ -268,10 +269,11 @@ class Service(models.Model):
     image = models.ImageField(blank=True)
     home_page_image = models.ImageField(blank=True)
     home_cta = models.CharField(max_length=255, blank=True)
-    description = models.TextField(blank=True)
+    description = RichTextUploadingField(blank=True)
     price = models.CharField(max_length=255, default="", blank=True)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)
     group = models.ForeignKey(ServiceGroup, on_delete=models.PROTECT, blank=True, null=True)
+    hero = models.BooleanField(default=False, blank=True)
 
     class Meta:
         ordering = ['order']
@@ -367,7 +369,7 @@ class ProjectItem(models.Model):
     image_alt_text = models.CharField(max_length=255, blank=True)
     hover_image = models.ImageField(blank=True)
     hover_image_alt_text = models.CharField(max_length=255, blank=True)
-    text = models.TextField(blank=True)
+    text = RichTextField(blank=True)
     width = models.PositiveIntegerField(default=1)
     height = models.PositiveIntegerField(default=1)
     order = models.PositiveIntegerField(default=0, blank=True, null=False)

@@ -12,7 +12,7 @@ urlpatterns = [
     path('portfolio/', views.portfolio, name='portfolio'),
     path('project/<id>/', views.project, name='project'),
     path('services/', views.services, name='services'),
-    path('online_design/', views.online_design, name='online_design'),
+    # path('online_design/', views.online_design, name='online_design'),
     path('design_for_diversity/', views.diversity_for_design, name='diversity_for_design'),
     path('design_insider/', views.design_insider, name='design_insider'),
     path('design_insider.rss', views.DesignInsiderFeed(), name='design_insider_rss'),
@@ -21,7 +21,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('faq/', views.faq, name='faq'),
     path('booking/<id>/', views.booking, name='booking'),
-    path('quiz/<uuid:id>/', views.quiz, name='quiz'),
+    # path('quiz/<uuid:id>/', views.quiz, name='quiz'),
 
     # path('designer_in_a_box/', views.designer_in_a_box, name='designer_in_a_box'),
 

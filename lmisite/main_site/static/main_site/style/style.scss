@@ -234,9 +234,10 @@ img {
         margin: 0;
         text-align: center;
         color: $dark-text-colour;
-        font-size: 45px;
+        font-size: 86px;
+        letter-spacing: 5px;
         font-weight: normal;
-        text-transform: uppercase;
+        font-family: Benedict, serif;
         background: linear-gradient(rgba($background-colour, .8), rgba($background-colour, .8));
         padding: $content-padding;
       }

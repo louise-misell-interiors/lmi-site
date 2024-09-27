@@ -163,6 +163,7 @@ class ConfigForm(forms.ModelForm):
             'blog_title', 'blog_header', 'blog_header_image', 'blog_sidebar_image', 'blog_description', 'blog_text',
             'services_title', 'services_header', 'services_header_image', 'services_description', 'services_text',
             'services_cta', 'services_cta_link', 'services_testimonials_cta', 'services_testimonials_cta_link',
+            'services_other_heading',
             'online_design_title', 'online_design_header_image', 'online_design_description', 'online_design_text',
             'online_design_button_text',
             'design_for_diversity_title', 'design_for_diversity_header_image', 'design_for_diversity_description',

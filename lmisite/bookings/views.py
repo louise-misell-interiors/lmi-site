@@ -174,7 +174,7 @@ def booking_succeeded(booking: Booking):
     email_msg = EmailMessage(
         subject=f"{booking.customer.first_name} {booking.customer.last_name} has booked {booking.type.name}",
         body=body,
-        to=[config.notification_email],
+        to=config.notification_email.split(";"),
         reply_to=[f"{booking.customer.first_name} {booking.customer.last_name} <{booking.customer.email}>"]
     )
     email_msg.send()

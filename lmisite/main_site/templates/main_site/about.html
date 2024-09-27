@@ -37,11 +37,13 @@
         <header {% if config.about_why_header_image %}style="--header-background: url({{ config.about_why_header_image.url }});"{% endif %}>
             <h1>{{ config.about_why_header }}</h1>
         </header>
+        {% if config.about_mission_statement %}
         <div class="about">
             <div>
                 {{ config.about_mission_statement|safe }}
             </div>
         </div>
+        {% endif %}
         <div class="bio">
             {{ config.about_text_2|safe }}
             <p>

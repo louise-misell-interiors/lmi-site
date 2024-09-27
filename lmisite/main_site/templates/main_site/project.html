@@ -44,7 +44,7 @@
                                  alt="{{ item.hover_image_alt_text }}" data-pin-nopin="true">
                         {% endif %}
                     {% elif item.type == "T" %}
-                        {{ item.text|linebreaks }}
+                        {{ item.text|safe }}
                     {% endif %}
                 </div>
             {% endfor %}

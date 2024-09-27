@@ -445,7 +445,7 @@ def order_succeeded(basket: Basket):
     email_msg = EmailMessage(
         subject=f"New shop order - {basket.id}",
         body=body,
-        to=[config.notification_email],
+        to=config.notification_email.split(";"),
         reply_to=[f"{basket.name} <{basket.email}>"]
     )
     email_msg.send()

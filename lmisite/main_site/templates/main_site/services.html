@@ -28,7 +28,7 @@
         </div>
         <div class="services">
             {% for service in services %}
-                <div class="service-block" itemscope itemtype="https://schema.org/Service">
+                <div class="service-block{% if service.service.hero %} hero-service-block{% endif %}" itemscope itemtype="https://schema.org/Service">
                     <div class="title">
                         <h2 itemprop="name">{{ service.service.name }}</h2>
                         {% if service.group.description %}
@@ -41,20 +41,14 @@
                         {% endif %}
                         <div class="service-content">
                             <div itemprop="description" class="description">
-                                {{ service.description|linebreaks }}
+                                {{ service.description|safe }}
                             </div>
                             {% if service.price %}
                                 <h3 class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                     <span itemprop="price">{{ service.price }}</span>
                                     <span class="buttons">
                                 {% for button in service.buttons.all %}
-                                    <a href="
-
-
-
-
-                                            {% if button.button_url %}{{ button.button_url }}{% else %}{% url 'contact' %}{% endif %}"
-                                       class="button">
+                                    <a href="{% if button.button_url %}{{ button.button_url }}{% else %}{% url 'contact' %}{% endif %}" class="button">
                                         <span>{{ button.button_text }}</span>
                                     </a>
                                 {% endfor %}
@@ -70,6 +64,11 @@
                         </div>
                     {% endwith %}
                 </div>
+                {% ifchanged service.service.hero %}
+                    {% if config.services_other_heading %}
+                        <h3>{{ config.services_other_heading }}</h3>
+                    {% endif %}
+                {% endifchanged %}
             {% endfor %}
         </div>
         <div class="testimonials">

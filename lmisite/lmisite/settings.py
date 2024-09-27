@@ -249,6 +249,7 @@ CKEDITOR_CONFIGS = {
         'width': 1200,
         'font_names': 'Baskerville; Raleway; Benedict',
         'extraPlugins': 'lineheight,richcombo',
-        'allowedContent': True
+        'allowedContent': True,
+        'fontSize_sizes': '8px;9px;10px;11px;12px;14px;16px;18px;20px;22px;24px;26px;28px;30px;32px;34px;36px;38px;40px;44px;48px;52px;56px;60px;64px;68px;72px;76px;80px;84px;88px;92px;96px;100px',
     },
 }

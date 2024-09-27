@@ -37,6 +37,25 @@
       justify-self: center;
       grid-column-gap: $content-padding*2;
 
+      &.hero-service-block {
+        grid-template-columns: 1fr;
+        margin-top: 0;
+
+        img {
+          grid-column: 1;
+          grid-row: 1;
+          margin-bottom: $content-margin*2;
+        }
+
+        .title {
+          grid-row: 2;
+        }
+
+        .service-content {
+          grid-row: 3;
+        }
+      }
+
       &:nth-child(even) {
         grid-template-columns: 4fr 3fr;
 
@@ -133,6 +152,13 @@
           border: none;
         }
       }
+    }
+
+    > h3 {
+      text-align: center;
+      font-size: 1.8em;
+      margin: 0;
+      color: $dark-text-colour;
     }
 
     @media (max-width: $media-xsmall) {

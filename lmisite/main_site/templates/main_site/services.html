@@ -28,6 +28,11 @@
         </div>
         <div class="services">
             {% for service in services %}
+                {% ifchanged service.service.hero %}
+                    {% if not forloop.first and config.services_other_heading %}
+                        <h3>{{ config.services_other_heading }}</h3>
+                    {% endif %}
+                {% endifchanged %}
                 <div class="service-block{% if service.service.hero %} hero-service-block{% endif %}" itemscope itemtype="https://schema.org/Service">
                     <div class="title">
                         <h2 itemprop="name">{{ service.service.name }}</h2>
@@ -64,11 +69,6 @@
                         </div>
                     {% endwith %}
                 </div>
-                {% ifchanged service.service.hero %}
-                    {% if config.services_other_heading %}
-                        <h3>{{ config.services_other_heading }}</h3>
-                    {% endif %}
-                {% endifchanged %}
             {% endfor %}
         </div>
         <div class="testimonials">

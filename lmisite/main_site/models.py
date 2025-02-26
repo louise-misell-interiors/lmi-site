@@ -36,7 +36,7 @@ def compress_img(image, new_width=1500):
         output = io.BytesIO()
         output_webp = io.BytesIO()
         if img.mode == 'RGBA':
-            background = Img.new("RGB", image.size, (255, 255, 255))
+            background = Img.new("RGB", (image.width, image.height), (255, 255, 255))
             background.paste(img, img.split()[-1])
             img = background
         img.save(output, format='JPEG', quality=80, optimise=True)
@@ -66,7 +66,7 @@ class SiteConfig(SingletonModel):
 
     email = models.EmailField(default="", blank=True)
     email_shop = models.EmailField(default="", blank=True)
-    notification_email = models.EmailField(default="", blank=True)
+    notification_email = models.CharField(max_length=255, default="", blank=True)
     mobile = PhoneNumberField(blank=True)
     phone = PhoneNumberField(blank=True)
     address = models.TextField(default="", blank=True)

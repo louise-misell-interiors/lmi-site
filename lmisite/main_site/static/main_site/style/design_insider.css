@@ -173,45 +173,6 @@
   grid-column: 2/3;
   align-self: stretch;
 }
-.content .blog > .short-posts {
-  grid-column: 2/3;
-  position: relative;
-}
-.content .blog > .short-posts > div {
-  overflow-y: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  scrollbar-width: thin;
-  scrollbar-color: #335470 #e5f0f2;
-}
-.content .blog > .short-posts > div h3, .content .blog > .short-posts > div h4 {
-  color: #335470;
-}
-.content .blog > .short-posts > div h4 {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-@media (max-width: 700px) {
-  .content .blog > .short-posts > div {
-    position: relative;
-  }
-}
-.content .blog > .short-posts > div::-webkit-scrollbar-thumb {
-  background: #335470;
-}
-.content .blog > .short-posts > div::-webkit-scrollbar {
-  width: 10px;
-  background: #e5f0f2;
-}
-.content .blog > .short-posts > div .short {
-  margin-bottom: 25px;
-}
-.content .blog > .short-posts > div .short:last-of-type {
-  margin-bottom: 0;
-}
 @media (max-width: 1200px) {
   .content .blog {
     width: 100vw;
@@ -234,10 +195,6 @@
   .content .blog > .side {
     grid-column: 1;
     grid-row: 1;
-  }
-  .content .blog > .short-posts {
-    grid-column: 1;
-    grid-row: 3;
   }
 }
 

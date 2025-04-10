@@ -80,31 +80,6 @@
                     {{ config.blog_text|safe }}
                 </div>
                 {% include "main_site/newsletter_form.html" with form=form %}
-                <div class="short-posts">
-                    <div>
-                        {% for post in short_posts %}
-                            <div class="post short" itemprop="blogPost" itemscope
-                                 itemtype="http://schema.org/BlogPosting">
-                                <meta itemprop="datePublished" content="{{ post.date|date:"c" }}"/>
-                                <meta itemprop="dateModified" content="{{ post.date|date:"c" }}"/>
-                                <meta itemprop="description" content="{{ post.summary }}"/>
-                                <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-                                <meta itemprop="name" content="Louise Misell"/>
-                            </span>
-                                <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-                                <meta itemprop="name" content="Louise Misell Interiors"/>
-                                <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-                                    <link itemprop="url"
-                                          href="http://louisemisellinteriors.co.uk/{% static "main_site/img/logo.png" %}"/>
-                                </span>
-                            </span>
-                                <h3 itemprop="headline">{{ post.title }}</h3>
-                                <h4>{{ post.date }}</h4>
-                                {{ post.content|safe }}
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
             </div>
         </div>
         <link itemprop="mainEntityOfPage" href="{% url 'design_insider_post' post.id %}"/>

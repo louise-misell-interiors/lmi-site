@@ -29,6 +29,7 @@ class ProjectItemInline(SortableInlineAdminMixin, admin.StackedInline):
 @admin.register(Project)
 class ProjectAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = [ProjectItemInline]
+    save_as = True
 
 
 class ServiceSummaryInline(SortableInlineAdminMixin, admin.TabularInline):
@@ -100,11 +101,6 @@ class DesignInsiderPostRelatedInline(SortableInlineAdminMixin, admin.TabularInli
 @admin.register(DesignInsiderPost)
 class DesignInsiderPostAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = [DesignInsiderPostRelatedInline]
-
-
-@admin.register(ShortPost)
-class ShortPostAdmin(admin.ModelAdmin):
-    pass
 
 
 @admin.register(NewsletterEntry)

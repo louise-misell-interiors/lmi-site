@@ -185,7 +185,7 @@ class SiteConfig(SingletonModel):
 
     banner_text = RichTextField(blank=True, null=True)
     banner_link = models.URLField(blank=True, null=True)
-    banner_enabled = models.BooleanField(blank=True)
+    banner_enabled = models.BooleanField(blank=True, default=False)
 
     shop_title = models.CharField(max_length=255, blank=True)
     shop_header_image = models.ImageField(blank=True)

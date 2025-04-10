@@ -102,39 +102,30 @@ def design_insider(request):
     if not request.user.is_staff:
         posts = posts.filter(draft=False)
 
-    short_posts = ShortPost.objects.all()
-    if not request.user.is_staff:
-        short_posts = short_posts.filter(draft=False)
-
     if request.method == "POST":
         form = handle_newsletter(request)
         return render(request, "main_site/design_insider.html",
-                      {"posts": posts, "short_posts": short_posts, "form": form, "sent": True})
+                      {"posts": posts, "form": form, "sent": True})
     else:
         form = forms.NewsletterForm()
 
     return render(request, "main_site/design_insider.html",
-                  {"posts": posts, "short_posts": short_posts, "form": form})
+                  {"posts": posts, "form": form})
 
 
 def design_insider_post(request, id):
     post = get_object_or_404(DesignInsiderPost, id=id)
 
-    short_posts = ShortPost.objects.all()
-    if not request.user.is_staff:
-        short_posts = short_posts.filter(draft=False)
-
     if request.method == "POST":
         form = handle_newsletter(request)
         return render(request, "main_site/design_insider_post.html",
-                      {"post": post, "short_posts": short_posts, "form": form, "sent": True})
+                      {"post": post, "form": form, "sent": True})
     else:
         form = forms.NewsletterForm()
 
     return render(
         request, "main_site/design_insider_post.html", {
             "post": post,
-            "short_posts": short_posts,
             "form": form
         })
 

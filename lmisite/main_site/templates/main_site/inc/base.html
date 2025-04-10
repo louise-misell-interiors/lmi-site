@@ -132,8 +132,6 @@
                 <a href="{{ portfolio_url }}"
                    {% if request.get_full_path == portfolio_url %}class="is-active"{% endif %}>Portfolio</a>
                 <a href="{{ blog_url }}" {% if request.get_full_path == blog_url %}class="is-active"{% endif %}>Blog</a>
-                <a href="{{ blog_url }}#posts" class="subitem">Blog posts</a>
-                <a href="{{ blog_url }}#short-posts" class="subitem">Updates</a>
                 <a href="{{ testimonials_url }}"
                    {% if request.get_full_path == testimonials_url %}class="is-active"{% endif %}>Testimonials</a>
                 <a href="{{ faq_url }}" {% if request.get_full_path == faq_url %}class="is-active"{% endif %}>FAQ</a>

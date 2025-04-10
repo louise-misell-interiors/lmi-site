@@ -63,6 +63,7 @@
 
     @media (max-width: $media-small) {
       grid-template-columns: 1fr;
+      grid-auto-rows: unset;
 
       > div {
         grid-column-end: span 1 !important;

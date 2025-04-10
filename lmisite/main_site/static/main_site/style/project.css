@@ -50,6 +50,7 @@
 @media (max-width: 800px) {
   .content .grid {
     grid-template-columns: 1fr;
+    grid-auto-rows: unset;
   }
   .content .grid > div {
     grid-column-end: span 1 !important;

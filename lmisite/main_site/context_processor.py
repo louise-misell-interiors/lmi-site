@@ -12,5 +12,6 @@ def config_processor(request):
         "config": config,
         "instagram": instagram_feed,
         "basket": basket,
-        "stripe_public_key": settings.STRIPE_PUBLIC_KEY
+        "stripe_public_key": settings.STRIPE_PUBLIC_KEY,
+        "cf_turnstile_site_key": settings.CF_TURNSTILE_SITE_KEY,
     }

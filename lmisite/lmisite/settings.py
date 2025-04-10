@@ -226,6 +226,11 @@ with open("/opt/apps/rm_secret.json") as f:
     d = json.load(f)
     RM_API_KEY = d["api_key"]
 
+with open("/opt/apps/cf_turnstile.json") as f:
+    d = json.load(f)
+    CF_TURNSTILE_SITE_KEY = d["site_key"]
+    CF_TURNSTILE_SECRET_KEY = d["secret_key"]
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "mx2.postal.as207960.net"
 EMAIL_PORT = 25

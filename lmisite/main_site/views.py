@@ -284,7 +284,8 @@ def services(request):
         })
         last_group = service.group
 
-    return render(request, "main_site/services.html", {"services": services_render, "testimonial": testimonials.first()})
+    return render(request, "main_site/services.html",
+                  {"services": services_render, "testimonial": testimonials.first()})
 
 
 def online_design(request):
@@ -373,91 +374,104 @@ def contact(request):
                             answers.append((question, answer))
 
             if valid:
-                config = SiteConfig.objects.first()
+                r = requests.post("https://challenges.cloudflare.com/turnstile/v0/siteverify", json={
+                    "secret": settings.CF_TURNSTILE_SECRET_KEY,
+                    "response": request.POST.get("cf-turnstile-response"),
+                    "remoteip": get_client_ip(request),
+                })
+                r.raise_for_status()
+                cf_resp = r.json()
 
-                context = {
-                    "settings": settings,
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "email": email,
-                    "phone": phone,
-                }
+                if cf_resp.get("success"):
+                    config = SiteConfig.objects.first()
 
-                msg_id_1 = django.core.mail.message.make_msgid()
-                msg_id_2 = django.core.mail.message.make_msgid()
-                email_msg = EmailMultiAlternatives(
-                    subject=f"We've received your message",
-                    body=render_to_string("main_site_emails/contact_confirmation_txt.html", context),
-                    to=[email],
-                    headers={
-                        "List-Unsubscribe": f"<mailto:{config.email}?subject=unsubscribe>",
-                        "Message-ID": msg_id_1,
-                        "In-Reply-To": msg_id_2,
-                        "References": msg_id_2,
-                    },
-                    reply_to=[f"Louise Misell <{config.email}>"]
-                )
-                email_msg.attach_alternative(render_to_string("main_site_emails/contact_confirmation.html", context), "text/html")
-                email_msg.send()
-
-                body = f"Name: {first_name} {last_name}\n" \
-                       f"Email: {email}\n" \
-                       f"Phone: {phone}\n" \
-                       f"Source: {source}\n\n"
-                for question, answer in answers:
-                    body += f"{question.question}\n{answer}\n"
-                body += f"\n---\n\n{message}"
-                email_msg = EmailMultiAlternatives(
-                    subject=f"{first_name} has sent a message on your website",
-                    body=body,
-                    to=[config.email],
-                    reply_to=[email],
-                    headers={
-                        "Message-ID": msg_id_2,
-                        "In-Reply-To": msg_id_1,
-                        "References": msg_id_1,
+                    context = {
+                        "settings": settings,
+                        "first_name": first_name,
+                        "last_name": last_name,
+                        "email": email,
+                        "phone": phone,
                     }
-                )
-                email_msg.send()
 
-                matching_customers = booking_models.Customer.objects.filter(email=email)
-                if len(matching_customers) > 0:
-                    customer = matching_customers.first()
-                else:
-                    customer = booking_models.Customer()
-                    customer.email = email
+                    msg_id_1 = django.core.mail.message.make_msgid()
+                    msg_id_2 = django.core.mail.message.make_msgid()
+                    email_msg = EmailMultiAlternatives(
+                        subject=f"We've received your message",
+                        body=render_to_string("main_site_emails/contact_confirmation_txt.html", context),
+                        to=[email],
+                        headers={
+                            "List-Unsubscribe": f"<mailto:{config.email}?subject=unsubscribe>",
+                            "Message-ID": msg_id_1,
+                            "In-Reply-To": msg_id_2,
+                            "References": msg_id_2,
+                        },
+                        reply_to=[f"Louise Misell <{config.email}>"]
+                    )
+                    email_msg.attach_alternative(
+                        render_to_string("main_site_emails/contact_confirmation.html", context), "text/html")
+                    email_msg.send()
 
-                    creds = get_newsletter_credentials()
-                    if creds is not None and config.newsletter_group_id:
-                        member = requests.put(
-                            f"{creds['endpoint']}/3.0/lists/{config.newsletter_group_id}/members/",
-                            headers={
-                               "Authorization": f"OAuth {creds['token']}"
-                            }, json={
-                                "email_address": email,
-                                "status_if_new": "subscribed" if newsletter else "unsubscribed",
-                                "source": "Website",
-                                "ip_signup": get_client_ip(request),
-                                "merge_fields": {
-                                    "FNAME": first_name,
-                                    "LNAME": last_name,
+                    body = f"Name: {first_name} {last_name}\n" \
+                           f"Email: {email}\n" \
+                           f"Phone: {phone}\n" \
+                           f"Source: {source}\n\n"
+                    for question, answer in answers:
+                        body += f"{question.question}\n{answer}\n"
+                    body += f"\n---\n\n{message}"
+                    email_msg = EmailMultiAlternatives(
+                        subject=f"{first_name} has sent a message on your website",
+                        body=body,
+                        to=[config.email],
+                        reply_to=[email],
+                        headers={
+                            "Message-ID": msg_id_2,
+                            "In-Reply-To": msg_id_1,
+                            "References": msg_id_1,
+                        }
+                    )
+                    email_msg.send()
+
+                    matching_customers = booking_models.Customer.objects.filter(email=email)
+                    if len(matching_customers) > 0:
+                        customer = matching_customers.first()
+                    else:
+                        customer = booking_models.Customer()
+                        customer.email = email
+
+                        creds = get_newsletter_credentials()
+                        if creds is not None and config.newsletter_group_id:
+                            member = requests.put(
+                                f"{creds['endpoint']}/3.0/lists/{config.newsletter_group_id}/members/",
+                                headers={
+                                    "Authorization": f"OAuth {creds['token']}"
+                                }, json={
+                                    "email_address": email,
+                                    "status_if_new": "subscribed" if newsletter else "unsubscribed",
+                                    "source": "Website",
+                                    "ip_signup": get_client_ip(request),
+                                    "merge_fields": {
+                                        "FNAME": first_name,
+                                        "LNAME": last_name,
+                                    }
                                 }
-                            }
-                        )
-                        if member.status_code == 200:
-                            data = member.json()
-                            customer.mailchimp_id = data.get("id", "")
+                            )
+                            if member.status_code == 200:
+                                data = member.json()
+                                customer.mailchimp_id = data.get("id", "")
 
-                customer.first_name = first_name
-                customer.last_name = last_name
-                customer.phone = phone
-                customer.source = source
+                    customer.first_name = first_name
+                    customer.last_name = last_name
+                    customer.phone = phone
+                    customer.source = source
 
-                customer.full_clean()
-                customer.save()
+                    customer.full_clean()
+                    customer.save()
 
-                return render(request, "main_site/contact.html",
-                              {'form': form, 'sent': True, "testimonial": testimonials.first()})
+                    return render(request, "main_site/contact.html", {
+                        'form': form,
+                        'sent': True,
+                        "testimonial": testimonials.first()
+                    })
     else:
         form = forms.ContactForm()
 
@@ -836,7 +850,7 @@ class GoogleMerchantFeedType(feedgenerator.Rss201rev2Feed):
             for img in item["g_images"][1:]:
                 handler.addQuickElement('g:additional_image_link', img)
 
-        for shipping in item["g_shipping"]: # type: PostageServiceType
+        for shipping in item["g_shipping"]:  # type: PostageServiceType
             handler.startElement('g:shipping', {})
             handler.addQuickElement("g:country", shipping.service.country.code)
             handler.addQuickElement("g:service", shipping.service.name)

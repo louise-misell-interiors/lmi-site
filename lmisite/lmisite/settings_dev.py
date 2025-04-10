@@ -96,21 +96,21 @@ WSGI_APPLICATION = 'lmisite.wsgi.application'
 with open(os.path.join(BASE_DIR, "db_pass.json")) as f:
     db_conf = json.load(f)
     DATABASES = {
-        # 'default': {
-        #    'ENGINE': 'django.db.backends.sqlite3',
-        #    'NAME': 'db.sqlite3',
-        # }
         'default': {
-            'NAME': "lmisite",
-            'USER': "root",
-            'PASSWORD': db_conf["pass"],
-            'HOST': "localhost",
-            'ENGINE': 'django.db.backends.mysql',
-            'PORT': '',
-            'OPTIONS': {
-                'charset': 'utf8mb4',
-            }
+           'ENGINE': 'django.db.backends.sqlite3',
+           'NAME': 'db.sqlite3',
         }
+        # 'default': {
+        #     'NAME': "lmisite",
+        #     'USER': "root",
+        #     'PASSWORD': db_conf["pass"],
+        #     'HOST': "localhost",
+        #     'ENGINE': 'django.db.backends.mysql',
+        #     'PORT': '',
+        #     'OPTIONS': {
+        #         'charset': 'utf8mb4',
+        #     }
+        # }
     }
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -238,6 +238,11 @@ with open(os.path.join(BASE_DIR, "stripe_secret.json")) as f:
     stripe.api_key = d["api_key"]
     STRIPE_WEBHOOK_SECRET = d["webhook_secret"]
     STRIPE_PUBLIC_KEY = d["public_key"]
+
+with open(os.path.join(BASE_DIR, "cf_turnstile.json")) as f:
+    d = json.load(f)
+    CF_TURNSTILE_SITE_KEY = d["site_key"]
+    CF_TURNSTILE_SECRET_KEY = d["secret_key"]
 
 with open(os.path.join(BASE_DIR, "rm_secret.json")) as f:
     d = json.load(f)

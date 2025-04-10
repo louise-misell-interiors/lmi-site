@@ -21,7 +21,7 @@ from .models import *
 FB_CLIENT_SECRETS_FILE = "facebook_client_secret.json"
 FB_SCOPES = ['instagram_basic', 'pages_show_list']
 INSTAGRAM_CLIENT_SECRETS_FILE = "instagram_client_secret.json"
-INSTAGRAM_SCOPES = ['user_profile', 'user_media']
+INSTAGRAM_SCOPES = ['instagram_business_basic']
 NEWSLETTER_CLIENT_SECRETS_FILE = "mailchimp_client_secret.json"
 
 

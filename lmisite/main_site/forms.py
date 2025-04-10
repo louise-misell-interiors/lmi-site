@@ -138,7 +138,7 @@ class NewsletterGroupWidget(forms.Widget):
 
 
 class ConfigForm(forms.ModelForm):
-    fb_auth = forms.Field(widget=FbAuthWidget, required=False)
+    # fb_auth = forms.Field(widget=FbAuthWidget, required=False)
     instagram_auth = forms.Field(widget=InstagramAuthWidget, required=False)
     newsletter_auth = forms.Field(widget=NewsletterAuthWidget, required=False)
 
@@ -147,7 +147,7 @@ class ConfigForm(forms.ModelForm):
 
     class Meta:
         fields = sorted((
-            'fb_auth', 'facebook_page_id', 'newsletter_auth', 'newsletter_group_id', 'instagram_auth',
+            'newsletter_auth', 'newsletter_group_id', 'instagram_auth',
             'instagram_url', 'twitter_url', 'facebook_url', 'pintrest_url', 'linkedin_url', 'homify_url',
             'houzz_url', 'bark_url', 'email', 'notification_email', 'mobile', 'phone', 'address', 'email_shop',
             'privacy_policy', 'terms_and_conditions', 'image_slider_speed', 'price_range',
@@ -180,7 +180,7 @@ class ConfigForm(forms.ModelForm):
             'faq_title', 'faq_header', 'faq_header_image', 'faq_description', 'faq_cta', 'faq_cta_link',
             'apple_merchantid', 'basket_header_image', 'shop_terms_and_conditions', 'banner_text', 'banner_enabled', 'banner_link'))
         widgets = {
-            "facebook_page_id": PageWidget,
+            # "facebook_page_id": PageWidget,
             "newsletter_group_id": NewsletterGroupWidget
         }
         model = models.SiteConfig

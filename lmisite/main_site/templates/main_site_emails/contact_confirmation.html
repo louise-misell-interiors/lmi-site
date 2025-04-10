@@ -13,8 +13,10 @@
         src: url({{ settings.EXTERNAL_URL_BASE }}/static/main_site/fonts/Benedict-Regular.otf) format('opentype');
       }
 
-      h1 {
-          font-size: 4rem !important;
+      @media (max-width: 768px) {
+          h1 {
+              font-size: 2rem !important;
+          }
       }
     </style>
 </head>

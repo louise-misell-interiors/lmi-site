@@ -10,11 +10,11 @@ import phonenumber_field.formfields
 
 class ContactForm(forms.Form):
     first_name = forms.CharField(label='Your first name',
-                                 widget=forms.TextInput(attrs={'placeholder': 'Your first name'}))
-    last_name = forms.CharField(label='Your last name', widget=forms.TextInput(attrs={'placeholder': 'Your last name'}))
-    your_email = forms.EmailField(label='Your email', widget=forms.EmailInput(attrs={'placeholder': 'Your email'}))
+                                 widget=forms.TextInput(attrs={'placeholder': 'Your first name', 'autocomplete': 'given-name'}))
+    last_name = forms.CharField(label='Your last name', widget=forms.TextInput(attrs={'placeholder': 'Your last name', 'autocomplete': 'family-name'}))
+    your_email = forms.EmailField(label='Your email', widget=forms.EmailInput(attrs={'placeholder': 'Your email', 'autocomplete': 'email'}))
     your_phone = phonenumber_field.formfields.PhoneNumberField(
-        label='Your phone', widget=forms.TextInput(attrs={'placeholder': 'Your phone'})
+        label='Your phone', widget=forms.TextInput(attrs={'placeholder': 'Your phone', 'autocomplete': 'tel'})
     )
     message = forms.CharField(label='Your message', widget=forms.Textarea(attrs={'placeholder': 'Your message'}))
     source = forms.CharField(

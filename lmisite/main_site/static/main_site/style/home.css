@@ -32,12 +32,15 @@
   padding: 0 25px;
 }
 .services > div h3 {
+  display: flex;
   text-align: center;
   margin: 25px 0;
   font-size: 50px;
   font-weight: normal;
   font-family: "Benedict", serif;
   color: #335470;
+  min-height: 150px;
+  align-items: center;
 }
 .services > div > div {
   padding: 25px 0;

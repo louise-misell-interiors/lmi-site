@@ -33,12 +33,15 @@
     }
 
     h3 {
+      display: flex;
       text-align: center;
       margin: $content-padding 0;
       font-size: 50px;
       font-weight: normal;
       font-family: 'Benedict', serif;
       color: $dark-text-colour;
+      min-height: 150px;
+      align-items: center;
     }
 
     > div {
